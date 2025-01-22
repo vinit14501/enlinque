@@ -11,9 +11,9 @@ export default function HomePage() {
     <>
       <Hero />
       <Text />
-      <Quotes />
-      <Services />
       <Cta />
+      <Services />
+      <Quotes />
       <Testimonials />
       <Cta2 />
     </>

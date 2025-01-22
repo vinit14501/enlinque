@@ -5,13 +5,13 @@ export default function Cta() {
   return (
     <>
       {/* Option 1: With Background Image */}
-      <section 
+      <section
         className="px-4 py-16 md:py-24 bg-cover bg-center bg-no-repeat relative"
-        style={{ 
-          backgroundImage: "url('hero1.jpg')" 
+        style={{
+          backgroundImage: "url('cta.jpg')",
         }}
       >
-        <div className="absolute inset-0 bg-black/50" /> 
+        <div className="absolute inset-0 bg-black/50" />
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

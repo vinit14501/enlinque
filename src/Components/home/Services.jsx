@@ -1,19 +1,7 @@
-import { motion } from "framer-motion"
-import {
-  HiComputerDesktop,
-  HiChartBar,
-  HiCommandLine,
-  HiShoppingCart,
-  HiDeviceTablet,
-  HiCubeTransparent,
-} from "react-icons/hi2"
-import { MdArrowForward } from "react-icons/md"
-
 export default function Services() {
   const services = [
     {
       title: "IT Consulting",
-      icon: <HiComputerDesktop className="w-8 h-8 text-blue-600" />,
       description:
         "Strategic IT consulting to align technology with your business objectives. We help organizations optimize their IT infrastructure, improve security, and implement best practices.",
       tools: [
@@ -23,10 +11,10 @@ export default function Services() {
         "Security Assessment",
         "Infrastructure Planning",
       ],
+      imageUrl: "hero1.jpg",
     },
     {
       title: "Marketing Consulting",
-      icon: <HiChartBar className="w-8 h-8 text-blue-600" />,
       description:
         "Data-driven marketing strategies to boost your brand presence and drive growth. We specialize in digital marketing, brand development, and market analysis.",
       tools: [
@@ -36,10 +24,10 @@ export default function Services() {
         "SEO Tools",
         "Social Media Management",
       ],
+      imageUrl: "hero1.jpg",
     },
     {
       title: "Software Development",
-      icon: <HiCommandLine className="w-8 h-8 text-blue-600" />,
       description:
         "Custom software solutions built with cutting-edge technologies. From web applications to mobile apps, we deliver scalable and maintainable software.",
       tools: [
@@ -47,13 +35,13 @@ export default function Services() {
         "Node.js",
         "Python",
         "Java",
-        "Mobile Development",
+        "Mobile Development (iOS/Android)",
         "Cloud Services",
       ],
+      imageUrl: "hero1.jpg",
     },
     {
       title: "eCommerce Solutions",
-      icon: <HiShoppingCart className="w-8 h-8 text-blue-600" />,
       description:
         "End-to-end eCommerce solutions to help you succeed in the digital marketplace. We build robust online stores with seamless user experiences.",
       tools: [
@@ -63,10 +51,10 @@ export default function Services() {
         "Inventory Management",
         "Analytics",
       ],
+      imageUrl: "hero1.jpg",
     },
     {
       title: "Digital Transformation",
-      icon: <HiDeviceTablet className="w-8 h-8 text-blue-600" />,
       description:
         "Guide your organization through digital transformation with our comprehensive solutions. We help modernize processes and implement digital solutions.",
       tools: [
@@ -76,10 +64,10 @@ export default function Services() {
         "Enterprise Systems",
         "Data Analytics",
       ],
+      imageUrl: "hero1.jpg",
     },
     {
       title: "Agile Implementation",
-      icon: <HiCubeTransparent className="w-8 h-8 text-blue-600" />,
       description:
         "Transform your project management with Agile methodologies. We help teams adopt Agile practices for better efficiency and delivery.",
       tools: [
@@ -87,93 +75,66 @@ export default function Services() {
         "Kanban",
         "Jira",
         "Confluence",
-        "Agile Project Management",
+        "Agile Project Management Tools",
       ],
+      imageUrl: "hero1.jpg",
     },
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  }
-
   return (
-    <div
-      className="min-h-screen bg-white"
-      id="services"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+    <div className="min-h-screen bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Our Services
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Comprehensive solutions tailored to elevate your business in the
-            digital age
+          <p className="text-xl text-black">
+            Comprehensive solutions for your business needs
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              variants={itemVariants}
-              className="bg-white rounded-xl p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-200 shadow-md"
+              className="bg-gray-100 rounded-sm border overflow-hidden "
             >
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="bg-blue-50 p-4 rounded-lg">{service.icon}</div>
-                <h2 className="text-2xl font-semibold text-gray-900">
+              {/* Upper section with image */}
+              <div className="h-48 bg-blue-100">
+                <img
+                  src={service.imageUrl}
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Lower section with content */}
+              <div className="p-8">
+                <h2 className="text-2xl font-semibold text-black mb-4 text-left">
                   {service.title}
                 </h2>
-              </div>
-
-              <p className="text-gray-600 mb-6">{service.description}</p>
-
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  Tools & Technologies
-                  <MdArrowForward className="ml-2 text-blue-600" />
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {service.tools.map((tool, toolIndex) => (
-                    <span
-                      key={toolIndex}
-                      className="bg-blue-50 text-blue-600 px-3 py-1 rounded-lg text-sm font-medium"
-                    >
-                      {tool}
-                    </span>
-                  ))}
+                <p className="text-black mb-6 text-left">
+                  {service.description}
+                </p>
+                <div>
+                  {/* <h3 className="text-lg font-semibold text-blue-600 mb-3">
+                    Tools & Technologies
+                  </h3> */}
+                  {/* <div className="flex flex-wrap gap-2">
+                    {service.tools.map((tool, toolIndex) => (
+                      <span
+                        key={toolIndex}
+                        className="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div> */}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   )

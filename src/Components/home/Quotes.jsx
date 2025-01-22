@@ -9,7 +9,7 @@ export default function Quotes() {
   }, [])
 
   return (
-    <div className="flex items-center justify-center min-h-[50vh] bg-blue-50">
+    <div className="flex items-center justify-center min-h-[50vh] bg-[#000048]">
       <div className="w-full max-w-2xl px-6">
         <div
           className={`
@@ -21,15 +21,15 @@ export default function Quotes() {
             }
           `}
         >
-          <div className="border-t border-gray-400 mb-4 transition-all duration-1000"></div>
+          <div className="border-t border-white mb-4 transition-all duration-1000"></div>
           <div className="relative">
-            <FaQuoteLeft className="absolute -left-8 top-0 text-gray-600 text-3xl" />
-            <FaQuoteRight className="absolute -right-8 top-0 text-gray-600 text-3xl" />
+            <FaQuoteLeft className="absolute -left-8 top-0 text-white text-3xl" />
+            <FaQuoteRight className="absolute -right-8 top-0 text-white text-3xl" />
             <p
               className="
                 text-2xl sm:text-3xl md:text-4xl lg:text-5xl 
                 italic text-center 
-                text-gray-800 mb-4
+                text-white mb-4
                 font-['Playfair_Display','Merriweather']
               "
             >
@@ -39,7 +39,7 @@ export default function Quotes() {
           <p
             className="
               text-base sm:text-lg md:text-xl 
-              text-center text-gray-700
+              text-center text-white
               font-sans
             "
           >
