@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import {
   HiComputerDesktop,
   HiChartBar,
@@ -6,14 +7,13 @@ import {
   HiDeviceTablet,
   HiCubeTransparent,
 } from "react-icons/hi2"
+import { MdArrowForward } from "react-icons/md"
 
 export default function Services() {
   const services = [
     {
       title: "IT Consulting",
-      icon: (
-        <HiComputerDesktop className="w-10 h-10 md:w-12 md:h-12 text-blue-600" />
-      ),
+      icon: <HiComputerDesktop className="w-8 h-8 text-blue-600" />,
       description:
         "Strategic IT consulting to align technology with your business objectives. We help organizations optimize their IT infrastructure, improve security, and implement best practices.",
       tools: [
@@ -26,7 +26,7 @@ export default function Services() {
     },
     {
       title: "Marketing Consulting",
-      icon: <HiChartBar className="w-10 h-10 md:w-12 md:h-12 text-blue-600" />,
+      icon: <HiChartBar className="w-8 h-8 text-blue-600" />,
       description:
         "Data-driven marketing strategies to boost your brand presence and drive growth. We specialize in digital marketing, brand development, and market analysis.",
       tools: [
@@ -39,9 +39,7 @@ export default function Services() {
     },
     {
       title: "Software Development",
-      icon: (
-        <HiCommandLine className="w-10 h-10 md:w-12 md:h-12 text-blue-600" />
-      ),
+      icon: <HiCommandLine className="w-8 h-8 text-blue-600" />,
       description:
         "Custom software solutions built with cutting-edge technologies. From web applications to mobile apps, we deliver scalable and maintainable software.",
       tools: [
@@ -49,15 +47,13 @@ export default function Services() {
         "Node.js",
         "Python",
         "Java",
-        "Mobile Development (iOS/Android)",
+        "Mobile Development",
         "Cloud Services",
       ],
     },
     {
       title: "eCommerce Solutions",
-      icon: (
-        <HiShoppingCart className="w-10 h-10 md:w-12 md:h-12 text-blue-600" />
-      ),
+      icon: <HiShoppingCart className="w-8 h-8 text-blue-600" />,
       description:
         "End-to-end eCommerce solutions to help you succeed in the digital marketplace. We build robust online stores with seamless user experiences.",
       tools: [
@@ -70,9 +66,7 @@ export default function Services() {
     },
     {
       title: "Digital Transformation",
-      icon: (
-        <HiDeviceTablet className="w-10 h-10 md:w-12 md:h-12 text-blue-600" />
-      ),
+      icon: <HiDeviceTablet className="w-8 h-8 text-blue-600" />,
       description:
         "Guide your organization through digital transformation with our comprehensive solutions. We help modernize processes and implement digital solutions.",
       tools: [
@@ -85,9 +79,7 @@ export default function Services() {
     },
     {
       title: "Agile Implementation",
-      icon: (
-        <HiCubeTransparent className="w-10 h-10 md:w-12 md:h-12 text-blue-600" />
-      ),
+      icon: <HiCubeTransparent className="w-8 h-8 text-blue-600" />,
       description:
         "Transform your project management with Agile methodologies. We help teams adopt Agile practices for better efficiency and delivery.",
       tools: [
@@ -95,56 +87,93 @@ export default function Services() {
         "Kanban",
         "Jira",
         "Confluence",
-        "Agile Project Management Tools",
+        "Agile Project Management",
       ],
     },
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  }
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
-        <div className="text-center mb-12 md:mb-16">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+    <div
+      className="min-h-screen bg-white"
+      id="services"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Our Services
           </h1>
-          <p className="text-lg md:text-xl text-gray-600">
-            Comprehensive solutions for your business needs
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Comprehensive solutions tailored to elevate your business in the
+            digital age
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white rounded-lg p-6 md:p-8 transition-transform duration-300 hover:scale-[1.02] border border-gray-100"
+              variants={itemVariants}
+              className="bg-white rounded-xl p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-200 shadow-md"
             >
-              <div className="flex items-center justify-center mb-6 bg-blue-50 p-4 rounded-full w-16 h-16 md:w-20 md:h-20 mx-auto">
-                {service.icon}
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="bg-blue-50 p-4 rounded-lg">{service.icon}</div>
+                <h2 className="text-2xl font-semibold text-gray-900">
+                  {service.title}
+                </h2>
               </div>
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4 text-center">
-                {service.title}
-              </h2>
-              <p className="text-gray-600 mb-6 text-center text-sm md:text-base">
-                {service.description}
-              </p>
+
+              <p className="text-gray-600 mb-6">{service.description}</p>
+
               <div>
-                <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                   Tools & Technologies
+                  <MdArrowForward className="ml-2 text-blue-600" />
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {service.tools.map((tool, toolIndex) => (
                     <span
                       key={toolIndex}
-                      className="bg-blue-50 text-blue-700 text-xs md:text-sm px-3 py-1 rounded-full"
+                      className="bg-blue-50 text-blue-600 px-3 py-1 rounded-lg text-sm font-medium"
                     >
                       {tool}
                     </span>
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   )

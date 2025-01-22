@@ -1,73 +1,84 @@
 import { useState } from "react"
-import { FaStar } from "react-icons/fa"
+import { FaQuoteRight } from "react-icons/fa"
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 
 const testimonials = [
   {
     id: 1,
-    name: "John Doe",
-    position: "Founder of Rubik",
-    avatar: "https://readymadeui.com/profile_2.webp",
+    name: "Sarah Mitchell",
+    company: "TechForward Solutions",
+    avatar: "/api/placeholder/80/80",
     review:
-      "The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was impressively prompt.",
-    rating: 3,
+      "The enterprise solution exceeded our expectations in every metric. The robust architecture and innovative approach resulted in a 40% improvement in system performance and significant cost savings.",
   },
   {
     id: 2,
-    name: "Mark Adair",
-    position: "Founder of Alpha",
-    avatar: "https://readymadeui.com/profile_3.webp",
+    name: "Michael Chen",
+    company: "InnovateX Systems",
+    avatar: "/api/placeholder/80/80",
     review:
-      "The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was impressively prompt.",
-    rating: 5,
+      "The implementation was flawless. Their expertise in scalable architecture and commitment to security standards made them the ideal partner for our digital transformation journey.",
   },
   {
     id: 3,
-    name: "Simon Konecki",
-    position: "Founder of Labar",
-    avatar: "https://readymadeui.com/profile_4.webp",
+    name: "Emma Thompson",
+    company: "DataSphere Analytics",
+    avatar: "/api/placeholder/80/80",
     review:
-      "The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was impressively prompt.",
-    rating: 4,
+      "Their enterprise-grade solution delivered exceptional results. The attention to compliance requirements and performance optimization has transformed our data processing capabilities.",
   },
 ]
 
-const TestimonialCard = ({ testimonial }) => {
+const TestimonialCard = ({ testimonial, isActive }) => {
   return (
-    <div className="p-4 sm:p-6 rounded-lg bg-white border border-gray-200">
-      <div className="flex items-center">
-        <img
-          src={testimonial.avatar}
-          alt={testimonial.name}
-          className="w-12 h-12 rounded-full object-cover"
-        />
-        <div className="ml-4">
-          <h4 className="text-gray-800 text-sm sm:text-base font-bold">
-            {testimonial.name}
-          </h4>
-          <p className="mt-0.5 text-xs sm:text-sm text-gray-600">
-            {testimonial.position}
-          </p>
-        </div>
-      </div>
-
-      <div className="mt-4 sm:mt-6">
-        <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-          {testimonial.review}
-        </p>
-      </div>
-
-      <div className="flex space-x-1 mt-4">
-        {[...Array(5)].map((_, index) => (
-          <FaStar
-            key={index}
-            className={`w-4 h-4 ${
-              index < testimonial.rating ? "text-yellow-500" : "text-gray-300"
-            }`}
+    <div
+      className={`p-8 bg-white rounded-xl transition-all duration-300 ${
+        isActive
+          ? "ring-1 ring-indigo-100 shadow-xl"
+          : "shadow-sm hover:shadow-md border border-gray-100"
+      }`}
+    >
+      <div className="space-y-8">
+        <div className="flex items-center space-x-4">
+          <img
+            src={testimonial.avatar}
+            alt={`${testimonial.name}`}
+            className="w-16 h-16 rounded-full object-cover border-2 border-indigo-50"
           />
-        ))}
+          <div>
+            <h3 className="font-semibold text-gray-900">{testimonial.name}</h3>
+            <p className="text-indigo-600 text-sm">{testimonial.company}</p>
+          </div>
+        </div>
+
+        <blockquote className="relative">
+          <FaQuoteRight className="absolute -top-4 -left-3 w-8 h-8 text-indigo-50" />
+          <p className="text-gray-700 leading-relaxed pl-4 text-lg">
+            {testimonial.review}
+          </p>
+        </blockquote>
       </div>
     </div>
+  )
+}
+
+const NavigationButton = ({ onClick, children, isNext }) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`group w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 
+        ${
+          isNext
+            ? "bg-indigo-600 hover:bg-indigo-700 text-white"
+            : "bg-white hover:bg-gray-50 text-gray-700 border border-gray-200"
+        }
+        focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+          isNext ? "focus:ring-indigo-500" : "focus:ring-gray-500"
+        }`}
+      aria-label={`Show ${isNext ? "next" : "previous"} testimonial`}
+    >
+      {children}
+    </button>
   )
 }
 
@@ -87,45 +98,49 @@ export default function Testimonials() {
   }
 
   return (
-    <div className="p-4 sm:p-6 lg:p-12 font-sans bg-gray-50">
+    <section className="py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-4 items-center">
-          <div className="col-span-2">
-            <h2 className="text-gray-800 text-xl sm:text-2xl font-bold">
-              What our happy clients say
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end space-y-8 lg:space-y-0 mb-16">
+          <div className="max-w-2xl">
+            <div className="inline-block px-4 py-2 bg-indigo-50 rounded-full mb-6">
+              <span className="text-indigo-600 font-medium text-sm">
+                Client Success Stories
+              </span>
+            </div>
+            <h2 className="text-4xl font-bold text-gray-900 tracking-tight mb-6">
+              Trusted by Industry Leaders
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 mt-4 leading-relaxed">
-              Discover the experiences of our satisfied customers and their
-              journey with us.
+            <p className="text-lg text-gray-600">
+              See how our solutions have transformed businesses worldwide
             </p>
           </div>
 
-          <div className="flex space-x-4 items-center justify-end">
-            <button
-              onClick={handlePrevious}
-              className="bg-white w-10 h-10 grid place-items-center rounded-full border border-gray-200 hover:bg-gray-100 transition-colors duration-200"
-            >
-              <IoIosArrowBack className="text-gray-700 w-5 h-5" />
-            </button>
-            <button
+          <div className="flex items-center space-x-4">
+            <NavigationButton onClick={handlePrevious}>
+              <IoIosArrowBack className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
+            </NavigationButton>
+            <NavigationButton
               onClick={handleNext}
-              className="bg-gray-800 w-10 h-10 grid place-items-center rounded-full hover:bg-gray-700 transition-colors duration-200"
+              isNext
             >
-              <IoIosArrowForward className="text-white w-5 h-5" />
-            </button>
+              <IoIosArrowForward className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </NavigationButton>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12">
-          <TestimonialCard testimonial={testimonials[currentIndex]} />
-          <TestimonialCard
-            testimonial={testimonials[(currentIndex + 1) % testimonials.length]}
-          />
-          <TestimonialCard
-            testimonial={testimonials[(currentIndex + 2) % testimonials.length]}
-          />
+        <div className="grid lg:grid-cols-3 gap-8">
+          {[0, 1, 2].map((offset) => {
+            const index = (currentIndex + offset) % testimonials.length
+            return (
+              <TestimonialCard
+                key={testimonials[index].id}
+                testimonial={testimonials[index]}
+                isActive={offset === 0}
+              />
+            )
+          })}
         </div>
       </div>
-    </div>
+    </section>
   )
 }

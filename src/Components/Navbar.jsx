@@ -7,11 +7,12 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
-    { label: "Home", to: "/" },
+    // { label: "Home", to: "/" },
+    { label: "Services", to: "/services" },
+    { label: "Fractional CxO", to: "/fractionalCxO" },
     { label: "About", to: "/about" },
     { label: "FAQ", to: "/faq" },
     { label: "Contact", to: "/contact" },
-    { label: "FractionalCxO", to: "/fractionalCxO" },
   ]
 
   const toggleMenu = () => {
@@ -70,7 +71,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center text- space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -92,7 +93,7 @@ const Navbar = () => {
                 ></span>
               </Link>
             ))}
-
+            {/* <Link key={contact}> */}
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -103,8 +104,9 @@ const Navbar = () => {
                 whitespace-nowrap ml-4 shadow-lg shadow-blue-600/20
               "
             >
-              Get Started
+              Contact Us
             </motion.button>
+            {/* </Link> */}
           </div>
 
           {/* Mobile Menu Button */}
