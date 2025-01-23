@@ -29,59 +29,6 @@ const testimonials = [
   },
 ]
 
-const TestimonialCard = ({ testimonial, isActive }) => {
-  return (
-    <div
-      className={`p-8 bg-white rounded-xl transition-all duration-300 ${
-        isActive
-          ? "ring-1 ring-indigo-100 shadow-xl"
-          : "shadow-sm hover:shadow-md border border-gray-100"
-      }`}
-    >
-      <div className="space-y-8">
-        <div className="flex items-center space-x-4">
-          <img
-            src={testimonial.avatar}
-            alt={`${testimonial.name}`}
-            className="w-16 h-16 rounded-full object-cover border-2 border-indigo-50"
-          />
-          <div>
-            <h3 className="font-semibold text-gray-900">{testimonial.name}</h3>
-            <p className="text-indigo-600 text-sm">{testimonial.company}</p>
-          </div>
-        </div>
-
-        <blockquote className="relative">
-          <FaQuoteRight className="absolute -top-4 -left-3 w-8 h-8 text-indigo-50" />
-          <p className="text-gray-700 leading-relaxed pl-4 text-lg">
-            {testimonial.review}
-          </p>
-        </blockquote>
-      </div>
-    </div>
-  )
-}
-
-const NavigationButton = ({ onClick, children, isNext }) => {
-  return (
-    <button
-      onClick={onClick}
-      className={`group w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 
-        ${
-          isNext
-            ? "bg-indigo-600 hover:bg-indigo-700 text-white"
-            : "bg-white hover:bg-gray-50 text-gray-700 border border-gray-200"
-        }
-        focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-          isNext ? "focus:ring-indigo-500" : "focus:ring-gray-500"
-        }`}
-      aria-label={`Show ${isNext ? "next" : "previous"} testimonial`}
-    >
-      {children}
-    </button>
-  )
-}
-
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -98,47 +45,73 @@ export default function Testimonials() {
   }
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end space-y-8 lg:space-y-0 mb-16">
-          <div className="max-w-2xl">
-            <div className="inline-block px-4 py-2 bg-indigo-50 rounded-full mb-6">
-              <span className="text-indigo-600 font-medium text-sm">
-                Client Success Stories
-              </span>
-            </div>
-            <h2 className="text-4xl font-bold text-gray-900 tracking-tight mb-6">
-              Trusted by Industry Leaders
-            </h2>
-            <p className="text-lg text-gray-600">
-              See how our solutions have transformed businesses worldwide
-            </p>
-          </div>
-
-          <div className="flex items-center space-x-4">
-            <NavigationButton onClick={handlePrevious}>
-              <IoIosArrowBack className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
-            </NavigationButton>
-            <NavigationButton
-              onClick={handleNext}
-              isNext
-            >
-              <IoIosArrowForward className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </NavigationButton>
-          </div>
+    <section className="py-16 px-4 bg-gray-50">
+      <div className="max-w-7xl mx-auto relative">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">
+            Trusted by Industry Leaders
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Discover how our innovative solutions have transformed businesses
+            across various industries
+          </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {[0, 1, 2].map((offset) => {
-            const index = (currentIndex + offset) % testimonials.length
-            return (
-              <TestimonialCard
-                key={testimonials[index].id}
-                testimonial={testimonials[index]}
-                isActive={offset === 0}
-              />
-            )
-          })}
+        <div className="relative">
+          <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10">
+            <button
+              onClick={handlePrevious}
+              className="bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition"
+            >
+              <IoIosArrowBack className="text-gray-700" />
+            </button>
+          </div>
+          <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10">
+            <button
+              onClick={handleNext}
+              className="bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition"
+            >
+              <IoIosArrowForward className="text-gray-700" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-3 gap-8">
+            {[0, 1, 2].map((offset) => {
+              const index = (currentIndex + offset) % testimonials.length
+              const testimonial = testimonials[index]
+              return (
+                <div
+                  key={testimonial.id}
+                  className={`bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 ${
+                    offset === 1 ? "scale-105 shadow-xl" : "hover:shadow-lg"
+                  }`}
+                >
+                  <div className="p-6">
+                    <div className="flex items-center mb-4">
+                      <img
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
+                        className="w-14 h-14 rounded-full mr-4 border-2 border-gray-100"
+                      />
+                      <div>
+                        <h3 className="font-semibold text-gray-900 text-lg">
+                          {testimonial.name}
+                        </h3>
+                        <p className="text-gray-500 text-sm">
+                          {testimonial.company}
+                        </p>
+                      </div>
+                    </div>
+
+                    <blockquote className="text-gray-700 text-base relative pl-4 border-l-4 border-blue-500">
+                      <FaQuoteRight className="absolute -top-2 left-0 text-blue-200 w-5 h-5" />
+                      {testimonial.review}
+                    </blockquote>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>
