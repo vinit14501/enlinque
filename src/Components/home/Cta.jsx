@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import { FaUserTie } from "react-icons/fa"
+import ctaBackground from "../../assets/cta.jpg"
 
 export default function Cta() {
   return (
@@ -8,7 +9,7 @@ export default function Cta() {
       <section
         className="px-4 py-16 md:py-24 bg-cover bg-center bg-no-repeat relative"
         style={{
-          backgroundImage: "url('cta.jpg')",
+          backgroundImage: `url(${ctaBackground})`,
         }}
       >
         <div className="absolute inset-0 bg-black/50" />

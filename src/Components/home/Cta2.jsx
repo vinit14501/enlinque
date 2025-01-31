@@ -63,7 +63,6 @@ const Cta2 = () => {
           whileTap={{ scale: 0.95 }}
           className="inline-flex items-center px-8 py-4 text-lg font-semibold text-blue-600 bg-white rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
           onClick={() => {
-            // Add contact page redirect logic here when needed
             console.log("Navigate to contact page")
           }}
         >

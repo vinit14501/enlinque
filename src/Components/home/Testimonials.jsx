@@ -1,118 +1,166 @@
-import { useState } from "react"
-import { FaQuoteRight } from "react-icons/fa"
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
+import { FaStar, FaChevronLeft, FaChevronRight } from "react-icons/fa"
+import { useState, useEffect } from "react"
+import hero1 from "../../assets/hero1.jpg"
 
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Mitchell",
-    company: "TechForward Solutions",
-    avatar: "/api/placeholder/80/80",
-    review:
-      "The enterprise solution exceeded our expectations in every metric. The robust architecture and innovative approach resulted in a 40% improvement in system performance and significant cost savings.",
+    name: "Leslie Alexander",
+    role: "Medical Assistant",
+    avatar: hero1,
+    review: "This proved to be impossible using concepts of space and time.",
+    rating: 4,
+    website: "https://example1.com",
   },
   {
     id: 2,
-    name: "Michael Chen",
-    company: "InnovateX Systems",
-    avatar: "/api/placeholder/80/80",
-    review:
-      "The implementation was flawless. Their expertise in scalable architecture and commitment to security standards made them the ideal partner for our digital transformation journey.",
+    name: "Savannah Nguyen",
+    role: "Nursing Assistant",
+    avatar: hero1,
+    review: "This proved to be impossible using concepts of space and time.",
+    rating: 4,
+    website: "https://example2.com",
   },
   {
     id: 3,
-    name: "Emma Thompson",
-    company: "DataSphere Analytics",
-    avatar: "/api/placeholder/80/80",
-    review:
-      "Their enterprise-grade solution delivered exceptional results. The attention to compliance requirements and performance optimization has transformed our data processing capabilities.",
+    name: "Savannah Nguyen",
+    role: "Nursing Assistant",
+    avatar: hero1,
+    review: "This proved to be impossible using concepts of space and time.",
+    rating: 4,
+    website: "https://example2.com",
   },
 ]
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const itemsToShow = 2
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-    )
-  }
+  const totalSlides = Math.ceil(testimonials.length / itemsToShow)
+
+  useEffect(() => {
+    if (currentIndex >= totalSlides) {
+      setCurrentIndex(Math.max(0, totalSlides - 1))
+    }
+  }, [testimonials.length])
 
   const handlePrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    )
+    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides)
   }
 
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % totalSlides)
+  }
+
+  const getCurrentTestimonials = () => {
+    const start = currentIndex * itemsToShow
+    const items = testimonials.slice(start, start + itemsToShow)
+
+    if (items.length === 1 && start + itemsToShow > testimonials.length) {
+      return { items, isSingle: true }
+    }
+    return { items, isSingle: false }
+  }
+
+  const { items, isSingle } = getCurrentTestimonials()
+
   return (
-    <section className="py-16 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto relative">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
-            Trusted by Industry Leaders
+    <section className="py-16 px-4 relative">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            What Clients Say
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Discover how our innovative solutions have transformed businesses
-            across various industries
+          <p className="text-gray-600">
+            Problems trying to resolve the conflict between the two major realms
+            of Classical physics: Newtonian mechanics.
           </p>
         </div>
 
         <div className="relative">
-          <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10">
-            <button
-              onClick={handlePrevious}
-              className="bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition"
-            >
-              <IoIosArrowBack className="text-gray-700" />
-            </button>
-          </div>
-          <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10">
-            <button
-              onClick={handleNext}
-              className="bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition"
-            >
-              <IoIosArrowForward className="text-gray-700" />
-            </button>
-          </div>
+          <button
+            onClick={handlePrevious}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-400 hover:text-gray-600 transition-all duration-300"
+          >
+            <FaChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-400 hover:text-gray-600 transition-all duration-300"
+          >
+            <FaChevronRight className="w-5 h-5" />
+          </button>
 
-          <div className="grid grid-cols-3 gap-8">
-            {[0, 1, 2].map((offset) => {
-              const index = (currentIndex + offset) % testimonials.length
-              const testimonial = testimonials[index]
-              return (
-                <div
-                  key={testimonial.id}
-                  className={`bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 ${
-                    offset === 1 ? "scale-105 shadow-xl" : "hover:shadow-lg"
-                  }`}
-                >
-                  <div className="p-6">
-                    <div className="flex items-center mb-4">
-                      <img
-                        src={testimonial.avatar}
-                        alt={testimonial.name}
-                        className="w-14 h-14 rounded-full mr-4 border-2 border-gray-100"
-                      />
-                      <div>
-                        <h3 className="font-semibold text-gray-900 text-lg">
-                          {testimonial.name}
-                        </h3>
-                        <p className="text-gray-500 text-sm">
-                          {testimonial.company}
-                        </p>
-                      </div>
+          <div
+            className={`grid ${
+              isSingle
+                ? "grid-cols-1 max-w-md mx-auto"
+                : "grid-cols-1 md:grid-cols-2"
+            } gap-8`}
+          >
+            {items.map((testimonial) => (
+              <div
+                key={testimonial.id}
+                className="flex"
+              >
+                <div className="flex-shrink-0 mr-4">
+                  <img
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    className="w-[160px] h-[250px] object-cover"
+                  />
+                </div>
+                <div className="flex flex-col justify-center h-[250px]">
+                  <div>
+                    <h3 className="font-medium text-gray-900 text-lg">
+                      {testimonial.name}
+                    </h3>
+                    <p className="text-gray-500 text-sm mb-2">
+                      {testimonial.role}
+                    </p>
+                    <div className="flex items-center mb-2">
+                      {[...Array(5)].map((_, index) => (
+                        <FaStar
+                          key={index}
+                          className={`w-4 h-4 ${
+                            index < testimonial.rating
+                              ? "text-yellow-400"
+                              : "text-gray-300"
+                          }`}
+                        />
+                      ))}
                     </div>
-
-                    <blockquote className="text-gray-700 text-base relative pl-4 border-l-4 border-blue-500">
-                      <FaQuoteRight className="absolute -top-2 left-0 text-blue-200 w-5 h-5" />
+                    <p className="text-gray-600 text-sm mb-2">
                       {testimonial.review}
-                    </blockquote>
+                    </p>
+                    <a
+                      href={testimonial.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 text-sm"
+                    >
+                      Visit Website
+                    </a>
                   </div>
                 </div>
-              )
-            })}
+              </div>
+            ))}
           </div>
         </div>
+
+        {totalSlides > 1 && (
+          <div className="flex justify-center mt-8 gap-2">
+            {[...Array(totalSlides)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full ${
+                  currentIndex === index ? "bg-gray-900" : "bg-gray-300"
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )

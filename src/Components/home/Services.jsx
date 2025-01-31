@@ -1,32 +1,63 @@
-import { FaCloudDownloadAlt, FaShippingFast, FaCloud } from "react-icons/fa"
+import {
+  FaLaptopCode,
+  FaBullhorn,
+  FaCode,
+  FaShoppingCart,
+  FaDigitalTachograph,
+  FaTasks,
+} from "react-icons/fa"
 
 export default function Services() {
   const services = [
     {
-      icon: FaCloudDownloadAlt,
+      icon: FaLaptopCode,
       iconColor: "text-blue-500",
-      title: "Assess Modernization Viability",
+      title: "IT consulting",
       description:
-        "Assess your portfolio and cloud readiness to create a migrate to modernize roadmap",
+        "Optimize your technology strategy to align with business goals, ensuring faster time-to-market and scalable growth",
     },
     {
-      icon: FaShippingFast,
+      icon: FaBullhorn,
       iconColor: "text-orange-500",
-      title: "Move to Container",
+      title: "Marketing consulting",
       description:
-        "Migrate your application with the best fit from the 7R migration strategy",
+        "Craft and execute data-driven marketing strategies that maximize ROI and drive customer acquisition for startups",
     },
     {
-      icon: FaCloud,
-      iconColor: "text-green-500",
-      title: "Move to Cloud Native Architecture",
+      icon: FaCode,
+      iconColor: "text-purple-500",
+      title: "Software development",
       description:
-        "Transform your legacy applications with cloud modernization",
+        "Deliver custom software solutions tailored to your business needs, from MVP to full-scale applications",
+    },
+    {
+      icon: FaShoppingCart,
+      iconColor: "text-red-500",
+      title: "eCommerce solution",
+      description:
+        "Launch and grow your e-commerce business with end-to-end support, from platform selection to optimization",
+    },
+    {
+      icon: FaDigitalTachograph,
+      iconColor: "text-indigo-500",
+      title: "Digital Transformation",
+      description:
+        "Modernize your business operations with innovative digital solutions that enhance efficiency and competitiveness",
+    },
+    {
+      icon: FaTasks,
+      iconColor: "text-emerald-500",
+      title: "Agile implementation",
+      description:
+        "Adopt agile methodologies to streamline processes, improve collaboration, and accelerate project delivery",
     },
   ]
 
   return (
-    <div className="bg-white py-16">
+    <div
+      id="services"
+      className="bg-white py-16"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">

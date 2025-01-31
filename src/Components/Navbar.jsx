@@ -1,115 +1,113 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { FaBars, FaTimes } from "react-icons/fa"
+import logo from "../assets/logo.png"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const navItems = [
-    // { label: "Home", to: "/" },
-    { label: "Services", to: "/services" },
-    { label: "Fractional CxO", to: "/fractionalCxO" },
-    { label: "About", to: "/about" },
-    { label: "FAQ", to: "/faq" },
-    { label: "Contact", to: "/contact" },
+    { label: "Services", to: "/#services", isScroll: true },
+    { label: "Fractional CxO", to: "/fractionalCxO", isScroll: false },
+    { label: "About", to: "/about", isScroll: false },
+    { label: "FAQ", to: "/faq", isScroll: false },
   ]
+
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById("services")
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" })
+    } else if (location.pathname !== "/") {
+      // If we're not on the homepage, navigate to homepage first
+      navigate("/#services")
+    }
+  }
+
+  // Handle scroll when navigating to homepage with #services hash
+  useEffect(() => {
+    if (location.hash === "#services" && location.pathname === "/") {
+      setTimeout(() => {
+        scrollToServices()
+      }, 0)
+    }
+  }, [location])
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
   }
 
-  const sidebarVariants = {
-    closed: {
-      x: "100%",
-      transition: {
-        type: "tween",
-        duration: 0.3,
-      },
-    },
-    open: {
-      x: 0,
-      transition: {
-        type: "tween",
-        duration: 0.3,
-        when: "beforeChildren",
-        staggerChildren: 0.1,
-      },
-    },
+  const handleContactClick = () => {
+    navigate("/contact")
   }
 
-  const linkVariants = {
-    closed: {
-      opacity: 0,
-      x: 50,
-    },
-    open: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 20,
-      },
-    },
+  const handleNavItemClick = (item) => {
+    if (item.isScroll && item.to === "/#services") {
+      scrollToServices()
+      if (isOpen) toggleMenu()
+    }
   }
 
   return (
-    <>
-      {/* Fixed Navigation Bar */}
-      <nav className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex justify-between items-center">
-          <Link
-            to="/"
-            className="flex items-center flex-shrink-0"
-          >
-            <img
-              src="logo.png"
-              alt="Company Logo"
-              className="h-8 sm:h-10 lg:h-12 w-auto object-contain"
-            />
-          </Link>
+    <div className="relative">
+      <nav className="fixed top-0 left-0 w-full bg-white z-50 shadow-md">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3 flex justify-between items-center">
+          <div className="flex items-center space-x-6">
+            <Link
+              to="/"
+              className="flex items-center flex-shrink-0"
+            >
+              <img
+                src={logo}
+                alt="Company Logo"
+                className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
+              />
+            </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center text- space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                className="
-                  text-gray-800 font-medium hover:text-blue-600 
-                  transition-colors duration-300 
-                  group relative text-base tracking-wide
-                  whitespace-nowrap
-                "
-              >
-                {item.label}
-                <span
+            <div className="hidden lg:flex items-center space-x-6">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  onClick={() => handleNavItemClick(item)}
                   className="
-                    absolute -bottom-1 left-0 w-0 h-0.5 
-                    bg-blue-600 transition-all duration-300 
-                    group-hover:w-full
+                    text-gray-800 font-medium hover:text-blue-600 
+                    transition-colors duration-300 
+                    group relative text-base tracking-wide
+                    whitespace-nowrap
                   "
-                ></span>
-              </Link>
-            ))}
-            {/* <Link key={contact}> */}
+                >
+                  {item.label}
+                  <span
+                    className="
+                      absolute -bottom-1 left-0 w-0 h-0.5 
+                      bg-blue-600 transition-all duration-300 
+                      group-hover:w-full
+                    "
+                  ></span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="hidden lg:block">
             <motion.button
+              onClick={handleContactClick}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="
                 px-5 py-2.5 bg-blue-600 text-white 
                 rounded-lg text-base font-medium 
                 hover:bg-blue-700 transition-colors duration-300
-                whitespace-nowrap ml-4 shadow-lg shadow-blue-600/20
+                whitespace-nowrap shadow-lg shadow-blue-600/20
               "
             >
               Contact Us
             </motion.button>
-            {/* </Link> */}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
             className="lg:hidden p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
@@ -122,11 +120,11 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay and Content */}
+      <div className="h-[64px] sm:h-[72px] lg:h-[80px]"></div>
+
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -135,7 +133,6 @@ const Navbar = () => {
               className="fixed inset-0 bg-black bg-opacity-50 z-[60]"
             />
 
-            {/* Mobile Menu */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -143,7 +140,6 @@ const Navbar = () => {
               transition={{ type: "tween", duration: 0.3 }}
               className="fixed top-0 right-0 h-full w-[280px] bg-white shadow-xl z-[70]"
             >
-              {/* Close Button */}
               <div className="flex justify-end p-4">
                 <button
                   onClick={toggleMenu}
@@ -156,20 +152,20 @@ const Navbar = () => {
                 </button>
               </div>
 
-              {/* Mobile Menu Items */}
               <div className="px-4 py-2">
                 {navItems.map((item) => (
                   <Link
                     key={item.label}
                     to={item.to}
-                    onClick={toggleMenu}
-                    className="block py-3 px-4 text-lg font-medium text-gray-800 hover:bg-gray-50 rounded-lg"
+                    onClick={() => handleNavItemClick(item)}
+                    className="block py-3 px-4 text-lg font-medium text-gray-800 hover:bg-gray-100 rounded-lg"
                   >
                     {item.label}
                   </Link>
                 ))}
 
                 <motion.button
+                  onClick={handleContactClick}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="
@@ -179,14 +175,14 @@ const Navbar = () => {
                     shadow-lg shadow-blue-600/20
                   "
                 >
-                  Get Started
+                  Contact Us
                 </motion.button>
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
-    </>
+    </div>
   )
 }
 
