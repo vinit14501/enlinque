@@ -17,6 +17,10 @@ export default {
         sans: ["Poppins", "ui-sans-serif", "system-ui"],
       },
       keyframes: {
+        "gradient-x": {
+          "0%, 100%": { "background-position": "0% 50%" },
+          "50%": { "background-position": "100% 50%" },
+        },
         // Existing keyframes
         fadeIn: {
           "0%": { opacity: "0", transform: "translateY(20px)" },
@@ -64,6 +68,8 @@ export default {
         // New animations
         glitch: "glitch 2s ease-in-out infinite",
         pulse: "pulse 2s ease-in-out infinite",
+
+        "gradient-x": "gradient-x 3s ease infinite",
       },
       boxShadow: {
         // Existing box shadows

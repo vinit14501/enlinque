@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { FaUserTie } from "react-icons/fa"
-import ctaBackground from "../../assets/cta.jpg"
+import ctaBackground from "../../assets/cta2.jpg"
 
 export default function Cta() {
   return (
