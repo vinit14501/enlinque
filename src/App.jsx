@@ -5,7 +5,8 @@ import HomePage from "./pages/HomePage"
 import AboutPage from "./pages/AboutPage"
 import ContactPage from "./pages/ContactPage"
 import FractionalCxoPage from "./pages/FractionalCxoPage"
-import FaqPage from "./pages/FaqPage"
+import WebsiteDevelopmentPage from "./pages/WebsiteDevelopmentPage"
+// import FaqPage from "./pages/FaqPage"
 
 export default function App() {
   return (
@@ -22,10 +23,10 @@ export default function App() {
               path="/about"
               element={<AboutPage />}
             />
-            <Route
+            {/* <Route
               path="/faq"
               element={<FaqPage />}
-            />
+            /> */}
             <Route
               path="/contact"
               element={<ContactPage />}
@@ -33,6 +34,10 @@ export default function App() {
             <Route
               path="/fractionalCxO"
               element={<FractionalCxoPage />}
+            />
+            <Route
+              path="/websitedevelopment"
+              element={<WebsiteDevelopmentPage />}
             />
           </Routes>
         </main>
