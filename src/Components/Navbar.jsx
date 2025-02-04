@@ -13,7 +13,11 @@ const Navbar = () => {
     { label: "Services", to: "/#services", isScroll: true },
     { label: "Fractional CxO", to: "/fractionalCxO", isScroll: false },
     { label: "About", to: "/about", isScroll: false },
-    { label: "Website Development", to: "/websitedevelopment", isScroll: false },
+    {
+      label: "Website Development",
+      to: "/websitedevelopment",
+      isScroll: false,
+    },
     // { label: "FAQ", to: "/faq", isScroll: false },
   ]
 
@@ -67,14 +71,14 @@ const Navbar = () => {
               />
             </Link>
 
-            <div className="hidden lg:flex items-center space-x-6">
+            <div className="hidden lg:flex items-conter space-x-6">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
                   to={item.to}
                   onClick={() => handleNavItemClick(item)}
                   className="
-                    text-gray-800 font-medium hover:text-blue-600 
+                    text-black font-semibold font-raleway hover:text-blue-600 
                     transition-colors duration-300 
                     group relative text-base tracking-wide
                     whitespace-nowrap
@@ -99,8 +103,8 @@ const Navbar = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="
-                px-5 py-2.5 bg-blue-600 text-white 
-                rounded-lg text-base font-medium 
+                px-5 py-2.5 bg-[#0b60a0] text-white 
+                rounded-lg text-base font-medium font-raleway
                 hover:bg-blue-700 transition-colors duration-300
                 whitespace-nowrap shadow-lg shadow-blue-600/20
               "
@@ -159,7 +163,7 @@ const Navbar = () => {
                     key={item.label}
                     to={item.to}
                     onClick={() => handleNavItemClick(item)}
-                    className="block py-3 px-4 text-lg font-medium text-gray-800 hover:bg-gray-100 rounded-lg"
+                    className="block py-3 px-4 text-lg font-medium font-raleway text-gray-800 hover:bg-gray-100 rounded-lg"
                   >
                     {item.label}
                   </Link>
@@ -171,7 +175,7 @@ const Navbar = () => {
                   whileTap={{ scale: 0.98 }}
                   className="
                     w-full mt-4 py-3 bg-blue-600 text-white 
-                    rounded-lg font-medium hover:bg-blue-700 
+                    rounded-lg font-medium font-raleway hover:bg-blue-700 
                     transition-colors duration-300
                     shadow-lg shadow-blue-600/20
                   "

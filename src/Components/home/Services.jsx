@@ -19,7 +19,7 @@ export default function Services() {
     {
       icon: FaBullhorn,
       iconColor: "text-orange-500",
-      title: "Marketing consulting",
+      title: "Digital marketing",
       description:
         "Craft and execute data-driven marketing strategies that maximize ROI and drive customer acquisition for startups",
     },

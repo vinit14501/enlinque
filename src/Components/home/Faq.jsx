@@ -11,7 +11,7 @@ const FAQItem = ({ title, content, isOpen, onToggle }) => {
         <div className="flex items-start">
           <div className="flex-1">
             <div className="flex justify-between items-center group">
-              <h3 className="text-lg font-medium text-gray-900 pr-4 group-hover:text-blue-600 transition-colors duration-200">
+              <h3 className="text-lg font-medium font-raleway text-gray-900 pr-4 group-hover:text-blue-600 transition-colors duration-200">
                 {title}
               </h3>
               <button
@@ -121,10 +121,10 @@ export default function Faq() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold font-raleway text-gray-900 mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl font-raleway mx-auto">
             Find answers to common questions about our services, process, and
             how we can help your business grow.
           </p>

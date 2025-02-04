@@ -1,23 +1,24 @@
 import React from "react"
 import { motion } from "framer-motion"
 import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa"
-import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md"
+import { MdEmail } from "react-icons/md"
 
 const Footer = () => {
   const services = [
-    "Enterprise Solutions",
+    "Fractional CxO",
+    "IT Consulting",
+    "Digital Marketing",
+    "E-Commerce",
     "Digital Transformation",
-    "Cloud Architecture",
-    "Business Intelligence",
-    "Cybersecurity Services",
+    "Agile Implementation",
   ]
 
   const resources = [
-    "Industry Insights",
-    "Case Studies",
-    "Client Portal",
-    "Documentation",
-    "Support Center",
+    "About",
+    "Privacy Policy",
+    "terms of service",
+    "Cookie Policy",
+    // "Partners",
   ]
 
   const animations = {
@@ -45,18 +46,14 @@ const Footer = () => {
     },
   }
 
-  const socialIcons = [
-    { icon: FaLinkedin, link: "#", label: "LinkedIn" },
-    { icon: FaTwitter, link: "#", label: "Twitter" },
-    { icon: FaGithub, link: "#", label: "GitHub" },
-  ]
+  const socialIcons = [{ icon: FaLinkedin, link: "#", label: "LinkedIn" }]
 
   return (
     <motion.footer
       initial="hidden"
       animate="visible"
       variants={animations.container}
-      className="bg-slate-900 text-white"
+      className="bg-[#000048] text-white"
     >
       <div className="max-w-7xl mx-auto px-6 pt-20 pb-12">
         {/* Main Content */}
@@ -67,12 +64,13 @@ const Footer = () => {
             className="space-y-6"
           >
             <h2 className="text-2xl font-bold tracking-tight text-white">
-              Enlinque
+              Enlinque Consulting
             </h2>
-            <p className="text-slate-300 leading-relaxed">
-              Empowering enterprises with cutting-edge technology solutions and
+            <p className="text-white leading-relaxed">
+              {/* Empowering enterprises with cutting-edge technology solutions and
               strategic consulting services. We transform challenges into
-              opportunities for growth and innovation.
+              opportunities for growth and innovation. */}
+              Where speed meets strategy
             </p>
             <div className="flex items-center space-x-4 pt-2">
               {socialIcons.map((social, index) => (
@@ -94,13 +92,13 @@ const Footer = () => {
             variants={animations.item}
             className="space-y-6"
           >
-            <h3 className="text-lg font-semibold text-white">Solutions</h3>
+            <h3 className="text-lg font-semibold text-white">Services</h3>
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <motion.li
                   key={index}
                   variants={animations.item}
-                  className="text-slate-300 hover:text-blue-400 cursor-pointer 
+                  className="text-white hover:text-blue-400 cursor-pointer 
                            transition-colors duration-200 flex items-center space-x-2"
                 >
                   <div className="w-1 h-1 bg-blue-500 rounded-full" />
@@ -115,13 +113,13 @@ const Footer = () => {
             variants={animations.item}
             className="space-y-6"
           >
-            <h3 className="text-lg font-semibold text-white">Resources</h3>
+            <h3 className="text-lg font-semibold text-white">Company</h3>
             <ul className="space-y-3">
               {resources.map((resource, index) => (
                 <motion.li
                   key={index}
                   variants={animations.item}
-                  className="text-slate-300 hover:text-blue-400 cursor-pointer 
+                  className="text-white hover:text-blue-400 cursor-pointer 
                            transition-colors duration-200 flex items-center space-x-2"
                 >
                   <div className="w-1 h-1 bg-blue-500 rounded-full" />
@@ -138,45 +136,43 @@ const Footer = () => {
           >
             <h3 className="text-lg font-semibold text-white">Contact</h3>
             <ul className="space-y-4">
-              <motion.li
+              {/* <motion.li
                 variants={animations.item}
                 className="flex items-center space-x-3"
               >
                 <MdPhone className="text-blue-400 text-xl flex-shrink-0" />
                 <a
                   href="tel:+1234567890"
-                  className="text-slate-300 hover:text-blue-400 
-                                                   transition-colors duration-200"
+                  className="text-white hover:text-blue-400 transition-colors duration-200"
                 >
                   +1 (234) 567-890
                 </a>
-              </motion.li>
+              </motion.li> */}
               <motion.li
                 variants={animations.item}
                 className="flex items-center space-x-3"
               >
-                <MdEmail className="text-blue-400 text-xl flex-shrink-0" />
+                <MdEmail className="text-white text-xl flex-shrink-0" />
                 <a
                   href="mailto:contact@enlinque.com"
-                  className="text-slate-300 hover:text-blue-400 
-                                                               transition-colors duration-200"
+                  className="text-white hover:text-blue-400 transition-colors duration-200"
                 >
                   contact@enlinque.com
                 </a>
               </motion.li>
-              <motion.li
+              {/* <motion.li
                 variants={animations.item}
                 className="flex items-start space-x-3"
               >
                 <MdLocationOn className="text-blue-400 text-xl mt-1 flex-shrink-0" />
-                <address className="not-italic text-slate-300 leading-relaxed">
+                <address className="not-italic text-white leading-relaxed">
                   One World Trade Center
                   <br />
                   285 Fulton Street
                   <br />
                   New York, NY 10007
                 </address>
-              </motion.li>
+              </motion.li> */}
             </ul>
           </motion.div>
         </div>
@@ -190,7 +186,7 @@ const Footer = () => {
             <p className="text-slate-400 text-sm">
               © {new Date().getFullYear()} Enlinque. All rights reserved.
             </p>
-            <div className="flex space-x-6 text-sm">
+            {/* <div className="flex space-x-6 text-sm">
               <a
                 href="#"
                 className="text-slate-400 hover:text-blue-400 transition-colors duration-200"
@@ -209,7 +205,7 @@ const Footer = () => {
               >
                 Cookie Policy
               </a>
-            </div>
+            </div> */}
           </div>
         </motion.div>
       </div>
