@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
-import hero1 from "../../assets/hero1.jpg"
 import { FaCheckCircle } from "react-icons/fa"
+import hero1 from "../../assets/hero1.jpg"
+import cmo from "../../assets/cmo.jpg"
 
 const services = [
   {
@@ -19,7 +20,7 @@ const services = [
     title: "Chief Marketing Officer (CMO)",
     description:
       "Enhance your market presence and drive growth with strategic marketing leadership. Our CMOs develop comprehensive marketing strategies, build strong brands, and optimize customer acquisition.",
-    image: hero1,
+    image: cmo,
     points: [
       "Create and execute integrated marketing campaigns",
       "Develop brand positioning and messaging",
@@ -115,7 +116,7 @@ export default function FractionalCxO() {
                       <img
                         src={service.image}
                         alt={service.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-[90%] object-cover"
                       />
                     </motion.div>
                   </div>
@@ -169,7 +170,7 @@ export default function FractionalCxO() {
                       <img
                         src={service.image}
                         alt={service.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-[90%] object-cover"
                       />
                     </motion.div>
                   </div>
