@@ -23,7 +23,7 @@ const Cta3 = () => {
             <p className="text-base md:text-lg font-raleway mb-4 opacity-80">
               That Elevate Brands and Engage Audiences
             </p>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold font-raleway py-2 px-5 rounded-full inline-flex items-center transition-all duration-300 ease-in-out">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold font-raleway py-2 px-5 rounded-lg inline-flex items-center transition-all duration-300 ease-in-out">
               Get Started <FaArrowRight className="ml-2" />
             </button>
           </div>

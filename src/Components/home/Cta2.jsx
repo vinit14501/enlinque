@@ -1,6 +1,5 @@
-import React from "react"
 import { motion } from "framer-motion"
-import { BsArrowRight } from "react-icons/bs" // Using Bootstrap icons from react-icons
+import { BsArrowRight } from "react-icons/bs"
 
 const Cta2 = () => {
   /* Background image version (commented out as requested)
@@ -53,15 +52,15 @@ const Cta2 = () => {
           variants={itemVariants}
           className="text-lg md:text-xl text-white/90 font-raleway mb-8 max-w-2xl mx-auto"
         >
-          Let's create something amazing together. Our team is just one click
-          away from turning your vision into success.
+          Let&apos;s create something amazing together. Our team is just one
+          click away from turning your vision into success.
         </motion.p>
 
         <motion.button
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="inline-flex items-center px-8 py-4 text-lg font-semibold font-raleway text-blue-600 bg-white rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
+          className="inline-flex items-center px-8 py-4 text-lg font-semibold font-raleway text-blue-600 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
           onClick={() => {
             console.log("Navigate to contact page")
           }}

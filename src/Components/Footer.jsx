@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { FaLinkedin } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
-import logo2 from "../assets/logo2.png"
+// import logo2 from "../assets/logo2.png"
 
 const Footer = () => {
   const services = [
@@ -61,11 +61,11 @@ const Footer = () => {
             className="lg:col-span-4 space-y-2"
           >
             <div className="w-48">
-              <img
+              {/* <img
                 src={logo2}
                 alt="Enlinque Logo"
                 className="h-12 object-contain"
-              />
+              /> */}<h2 className="">Enlinque Consulting LLC</h2>
             </div>
             <p className="text-white text-lg">Where speed meets strategy</p>
           </motion.div>

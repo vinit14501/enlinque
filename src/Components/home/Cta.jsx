@@ -26,7 +26,7 @@ export default function Cta() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-100 transition-colors flex items-center gap-3 mx-auto"
+              className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-medium hover:bg-gray-100 transition-colors flex items-center gap-3 mx-auto"
             >
               <FaUserTie className="text-xl" />
               <span>Get Started Today</span>

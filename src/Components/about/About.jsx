@@ -126,54 +126,54 @@ const About = () => {
             transition={{ delay: 0.4 }}
           >
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
                 Our Vision
               </h2>
-              <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+              <p className="text-lg text-black max-w-3xl mx-auto">
                 At Enlinque, we bring together diverse perspectives and
                 cutting-edge skills to deliver exceptional results.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
-              <div className="bg-slate-50 p-8 rounded-lg h-72">
+              <div className="bg-[#0b60a0] p-6 rounded-md h-80 flex flex-col">
                 <h3 className="text-xl font-semibold mb-4 text-black">
                   Innovation That Inspires
                 </h3>
-                <p className="text-black">
+                <p className="text-black overflow-y-auto">
                   We envision a future where businesses of all sizes harness
                   cutting-edge technology and innovative strategies to drive
                   growth and transformation. At Enlinque, we strive to be the
                   catalyst that sparks creativity and pushes boundaries.
                 </p>
               </div>
-              <div className="bg-[#000048] p-8 rounded-lg text-white h-72">
-                <h3 className="text-xl font-semibold mb-4">
+              <div className="bg-[#000048] p-6 rounded-md h-80 flex flex-col">
+                <h3 className="text-xl font-semibold mb-4 text-white">
                   Empowering Startups Globally
                 </h3>
-                <p className="text-slate-200">
+                <p className="text-white overflow-y-auto">
                   Our vision is to create an ecosystem where startups around the
                   world have access to the resources, expertise, and support
                   they need to thrive and scale, regardless of their industry or
                   location.
                 </p>
               </div>
-              <div className="bg-slate-50 p-8 rounded-lg h-72">
-                <h3 className="text-xl font-semibold mb-4 text-slate-900">
+              <div className="bg-[#0b60a0] p-6 rounded-md h-80 flex flex-col">
+                <h3 className="text-xl font-semibold mb-4 text-black">
                   Sustainable Growth
                 </h3>
-                <p className="text-slate-600">
+                <p className="text-black overflow-y-auto">
                   We are committed to fostering long-term success for our
                   clients by promoting sustainable business practices, efficient
                   processes, and strategic decision-making that drives
                   meaningful impact.
                 </p>
               </div>
-              <div className="bg-[#000048] p-8 rounded-lg text-white h-72">
-                <h3 className="text-xl font-semibold mb-4">
+              <div className="bg-[#000048] p-6 rounded-md h-80 flex flex-col">
+                <h3 className="text-xl font-semibold mb-4 text-white">
                   Leadership Excellence
                 </h3>
-                <p className="text-slate-200">
+                <p className="text-white overflow-y-auto">
                   We aim to redefine what it means to lead by providing
                   businesses with expert fractional leadership that ensures
                   agility, strategic alignment, and operational excellence.
@@ -185,7 +185,7 @@ const About = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="bg-blue-600 py-20">
+      <section className="bg-[#0b60a0] py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0 }}
@@ -230,7 +230,7 @@ const About = () => {
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                   className="bg-white p-6 rounded-xl shadow-md border border-green-100 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300"
                 >
-                  <value.icon className="text-blue-600 h-12 w-12 mb-4" />
+                  <value.icon className="text-[#0b60a0] h-12 w-12 mb-4" />
                   <h3 className="text-xl font-semibold text-black mb-3">
                     {value.title}
                   </h3>
@@ -243,7 +243,7 @@ const About = () => {
       </section>
 
       {/* Connect Section */}
-      <section className="bg-blue-600 py-20">
+      <section className="bg-[#0b60a0] py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0 }}
@@ -261,7 +261,7 @@ const About = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center px-8 py-4 text-lg font-semibold text-blue-600 bg-white rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="inline-flex items-center px-8 py-4 text-lg font-semibold text-blue-600 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               Get in Touch
               <BsArrowRight className="ml-2 w-5 h-5" />

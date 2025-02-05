@@ -33,38 +33,36 @@ const Contact = () => {
   }
 
   return (
-    <div className="bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 min-h-[calc(100vh-144px)]">
+    <div className="bg-gradient-to-br from-[#000048] to-[#0b60a0] min-h-[calc(100vh-144px)]">
       <div className="container mx-auto max-w-6xl flex flex-col lg:flex-row gap-16 p-16">
         <div className="w-full lg:w-1/2 space-y-16">
           <div>
-            <h1 className="text-3xl font-extralight mb-2 text-blue-100 tracking-wide">
+            <h1 className="text-3xl font-extralight mb-2 text-[white] tracking-wide">
               Pave your way to
             </h1>
-            <h2 className="text-4xl lg:text-6xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-300 animate-gradient-x leading-tight">
+            <h2 className="text-4xl lg:text-6xl font-black mb-6 text-transparent bg-clip-text bg-white animate-gradient-x leading-tight">
               Rapid, Smarter Business and Technology Solutions
             </h2>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-left space-y-1 border-r border-white/20">
-              <h3 className="font-bold text-xl mb-1 text-green-300">
-                Strategic
-              </h3>
+              <h3 className="font-bold text-xl mb-1 text-white">Strategic</h3>
               <p className="text-sm text-white/80">Growth Solutions</p>
             </div>
             <div className="text-left space-y-1 border-r border-white/20">
-              <h3 className="font-bold text-xl mb-1 text-yellow-300">
-                Value-Centric
+              <h3 className="font-bold text-xl mb-1 text-white">
+                Value-centric
               </h3>
               <p className="text-sm text-white/80">Approach</p>
             </div>
             <div className="text-left space-y-1 border-r border-white/20">
-              <h3 className="font-bold text-xl mb-1 text-red-300">Scalable</h3>
+              <h3 className="font-bold text-xl mb-1 text-white">Scalable</h3>
               <p className="text-sm text-white/80">Technology Solutions</p>
             </div>
             <div className="text-left space-y-1">
-              <h3 className="font-bold text-xl mb-1 text-purple-300">
-                Customer-Centric
+              <h3 className="font-bold text-xl mb-1 text-white">
+                Customer-centric
               </h3>
               <p className="text-sm text-white/80">Focus</p>
             </div>
@@ -105,10 +103,10 @@ const Contact = () => {
         >
           <div className="bg-white shadow-2xl p-16">
             <div className="mb-16">
-              <h2 className="text-2xl font-light text-gray-600 mb-2">
+              <h2 className="text-2xl font-light text-black mb-2">
                 Contact Form
               </h2>
-              <h3 className="text-4xl font-black text-gray-900 tracking-tight">
+              <h3 className="text-4xl font-black text-black tracking-tight">
                 Send a Message
               </h3>
             </div>
@@ -118,7 +116,7 @@ const Contact = () => {
               className="space-y-8"
             >
               <div className="relative flex items-center">
-                <IoPersonOutline className="absolute left-0 top-0 text-gray-500 text-xl" />
+                <IoPersonOutline className="absolute left-0 top-0 text-black text-xl" />
                 <input
                   type="text"
                   name="name"
@@ -126,12 +124,12 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your Name *"
-                  className="w-full h-10 pl-8 text-gray-800 placeholder-gray-500 border-b-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors duration-300"
+                  className="w-full h-10 pl-8 text-black placeholder-black border-b-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors duration-300"
                 />
               </div>
 
               <div className="relative flex items-center">
-                <IoBusinessOutline className="absolute left-0 top-0 text-gray-500 text-xl" />
+                <IoBusinessOutline className="absolute left-0 top-0 text-black text-xl" />
                 <input
                   type="text"
                   name="company"
@@ -139,12 +137,12 @@ const Contact = () => {
                   value={formData.company}
                   onChange={handleChange}
                   placeholder="Company Name *"
-                  className="w-full h-10 pl-8 text-gray-800 placeholder-gray-500 border-b-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors duration-300"
+                  className="w-full h-10 pl-8 text-black placeholder-black border-b-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors duration-300"
                 />
               </div>
 
               <div className="relative flex items-center">
-                <IoMailOutline className="absolute left-0 top-0 text-gray-500 text-xl" />
+                <IoMailOutline className="absolute left-0 top-0 text-black text-xl" />
                 <input
                   type="email"
                   name="email"
@@ -152,12 +150,12 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Your Email *"
-                  className="w-full h-10 pl-8 text-gray-800 placeholder-gray-500 border-b-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors duration-300"
+                  className="w-full h-10 pl-8 text-black placeholder-black border-b-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors duration-300"
                 />
               </div>
 
               <div className="relative flex items-center">
-                <IoPhonePortraitOutline className="absolute left-0 top-0 text-gray-500 text-xl" />
+                <IoPhonePortraitOutline className="absolute left-0 top-0 text-black text-xl" />
                 <input
                   type="tel"
                   name="phone"
@@ -165,19 +163,19 @@ const Contact = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="Phone Number *"
-                  className="w-full h-10 pl-8 text-gray-800 placeholder-gray-500 border-b-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors duration-300"
+                  className="w-full h-10 pl-8 text-black placeholder-black border-b-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors duration-300"
                 />
               </div>
 
               <div className="relative">
-                <IoChatbubbleOutline className="absolute left-0 top-0 text-gray-500 text-xl" />
+                <IoChatbubbleOutline className="absolute left-0 top-0 text-black text-xl" />
                 <textarea
                   name="message"
                   required
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Your Message *"
-                  className="w-full pl-8 pt-2 text-gray-800 placeholder-gray-500 border-b-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors duration-300 h-32 resize-none"
+                  className="w-full pl-8 pt-2 text-black placeholder-black border-b-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors duration-300 h-32 resize-none"
                 />
               </div>
 
@@ -185,7 +183,7 @@ const Contact = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-semibold shadow-lg hover:from-blue-700 hover:to-indigo-800 transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full py-4 bg-[#000048] text-white font-semibold shadow-lg hover:from-blue-700 hover:to-indigo-800 transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <IoSendOutline className="text-xl" />
                 <span>Send Message</span>

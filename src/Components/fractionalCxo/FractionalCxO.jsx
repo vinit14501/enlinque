@@ -1,16 +1,20 @@
 import { motion } from "framer-motion"
 import { FaCheckCircle } from "react-icons/fa"
 import { Link } from "react-scroll"
-import hero1 from "../../assets/hero1.jpg"
-import cmo from "../../assets/cmo.jpg"
+import cmo from "../../assets/cmo.png"
+import cto from "../../assets/cto.png"
+import cfo from "../../assets/cfo.png"
+import coo from "../../assets/coo.png"
+import cio from "../../assets/cio.png"
 
 const services = [
   {
     id: "cto",
     title: "Chief Technology Officer (CTO)",
+    shortTitle: "CTO",
     description:
       "Drive technological innovation and digital transformation with our experienced CTOs. We help align technology strategy with business goals, manage tech teams, and implement cutting-edge solutions.",
-    image: hero1,
+    image: cto,
     points: [
       "Oversee IT infrastructure and operations",
       "Develop and implement technology roadmaps",
@@ -21,6 +25,7 @@ const services = [
   {
     id: "cmo",
     title: "Chief Marketing Officer (CMO)",
+    shortTitle: "CMO",
     description:
       "Enhance your market presence and drive growth with strategic marketing leadership. Our CMOs develop comprehensive marketing strategies, build strong brands, and optimize customer acquisition.",
     image: cmo,
@@ -34,9 +39,10 @@ const services = [
   {
     id: "cfo",
     title: "Chief Financial Officer (CFO)",
+    shortTitle: "CFO",
     description:
       "Optimize your financial strategy and operations with expert CFO guidance. We provide financial planning, risk management, and strategic decision-making support to drive business success.",
-    image: hero1,
+    image: coo,
     points: [
       "Manage financial planning and budgeting",
       "Implement robust financial controls and reporting",
@@ -47,9 +53,10 @@ const services = [
   {
     id: "coo",
     title: "Chief Operating Officer (COO)",
+    shortTitle: "COO",
     description:
       "Streamline your operations and improve organizational efficiency with seasoned COO leadership. Our COOs optimize business processes, manage resource allocation, and drive operational excellence.",
-    image: hero1,
+    image: cfo,
     points: [
       "Develop and oversee operational strategies",
       "Optimize workflows and business processes",
@@ -60,9 +67,10 @@ const services = [
   {
     id: "cio",
     title: "Chief Information Officer (CIO)",
+    shortTitle: "CIO",
     description:
       "Leverage strategic IT leadership to transform your digital capabilities and drive business innovation. Our CIOs align information technology with business objectives, manage digital infrastructure, and ensure technological competitiveness.",
-    image: hero1,
+    image: cio,
     points: [
       "Develop and execute comprehensive IT strategies",
       "Manage and optimize digital infrastructure",
@@ -80,18 +88,18 @@ export default function FractionalCxO() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative py-20 bg-gradient-to-r from-blue-950 via-blue-800 to-blue-600 text-white overflow-hidden"
+        className="relative py-12 md:py-20 bg-[#000048] text-white overflow-hidden"
       >
         <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
           <motion.h1
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl font-bold mb-6 tracking-tight"
+            className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight"
           >
             Fractional CxO Services
           </motion.h1>
-          <p className="text-xl max-w-3xl mx-auto mb-8 text-gray-200 font-light">
+          <p className="text-lg md:text-xl max-w-3xl mx-auto mb-6 md:mb-8 text-gray-200 font-light">
             Access world-class executive leadership without the full-time
             commitment. Our fractional CxOs bring decades of experience to
             elevate your business.
@@ -100,25 +108,27 @@ export default function FractionalCxO() {
       </motion.div>
 
       {/* CxO Navigation Bar */}
-      <div className="sticky top-0 z-40 bg-[#0b60a0] shadow-md">
-        <div className="max-w-6xl mx-auto flex justify-center space-x-4 py-4">
-          {services.map((service) => (
-            <Link
-              key={service.id}
-              to={service.id}
-              smooth={true}
-              duration={500}
-              className="cursor-pointer text-sm font-medium text-white hover:text-black transition-colors"
-            >
-              {service.title.replace("Chief ", "").replace(" ()", "")}
-            </Link>
-          ))}
+      <div className="sticky top-0 z-40 bg-[#0b60a0] shadow-md overflow-x-auto">
+        <div className="max-w-6xl mx-auto flex justify-start md:justify-center px-2 py-2">
+          <div className="flex space-x-4 md:space-x-8">
+            {services.map((service) => (
+              <Link
+                key={service.id}
+                to={service.id}
+                smooth={true}
+                duration={500}
+                className="cursor-pointer text-sm md:text-base font-medium text-white hover:text-black transition-colors whitespace-nowrap px-2"
+              >
+                {service.shortTitle}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* CxO Sections */}
-      <div className="py-24 px-4">
-        <div className="max-w-6xl mx-auto space-y-24">
+      <div className="py-16 md:py-24 px-4">
+        <div className="max-w-6xl mx-auto space-y-16 md:space-y-24">
           {services.map((service, index) => (
             <motion.div
               id={service.id}
@@ -127,12 +137,12 @@ export default function FractionalCxO() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="grid md:grid-cols-2 gap-12 items-stretch"
+              className="grid md:grid-cols-2 gap-8 md:gap-12 items-stretch"
             >
               {index % 2 === 0 ? (
                 <>
                   <div className="relative group flex flex-col justify-center">
-                    <div className="absolute -left-4 -bottom-4 w-full h-full bg-gradient-to-r from-blue-950 via-blue-800 to-blue-600 z-0"></div>
+                    <div className="absolute -left-2 md:-left-4 -bottom-2 md:-bottom-4 w-full h-full bg-gradient-to-r from-blue-950 via-blue-800 to-blue-600 z-0"></div>
                     <motion.div
                       whileHover={{ scale: 1.03 }}
                       className="relative z-10 flex-grow overflow-hidden"
@@ -140,22 +150,22 @@ export default function FractionalCxO() {
                       <img
                         src={service.image}
                         alt={service.title}
-                        className="w-full h-[350px] object-cover object-center"
+                        className="w-full h-[250px] md:h-[350px] object-cover object-center"
                       />
                     </motion.div>
                   </div>
-                  <div className="space-y-6 pl-4 flex flex-col justify-center">
-                    <h2 className="text-4xl font-bold text-gray-900">
+                  <div className="space-y-4 md:space-y-6 pl-0 md:pl-4 flex flex-col justify-center">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
                       {service.title}
                     </h2>
-                    <p className="text-gray-600 leading-relaxed text-lg">
+                    <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                       {service.description}
                     </p>
-                    <ul className="space-y-3 text-gray-700 flex-grow">
+                    <ul className="space-y-2 md:space-y-3 text-gray-700 flex-grow">
                       {service.points.map((point, idx) => (
                         <li
                           key={idx}
-                          className="flex items-center text-base"
+                          className="flex items-center text-sm md:text-base"
                         >
                           <FaCheckCircle className="text-indigo-500 mr-3 flex-shrink-0" />
                           {point}
@@ -166,18 +176,18 @@ export default function FractionalCxO() {
                 </>
               ) : (
                 <>
-                  <div className="space-y-6 pr-4 flex flex-col justify-center">
-                    <h2 className="text-4xl font-bold text-gray-900">
+                  <div className="space-y-4 md:space-y-6 pr-0 md:pr-4 flex flex-col justify-center">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
                       {service.title}
                     </h2>
-                    <p className="text-gray-600 leading-relaxed text-lg">
+                    <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                       {service.description}
                     </p>
-                    <ul className="space-y-3 text-gray-700 flex-grow">
+                    <ul className="space-y-2 md:space-y-3 text-gray-700 flex-grow">
                       {service.points.map((point, idx) => (
                         <li
                           key={idx}
-                          className="flex items-center text-base"
+                          className="flex items-center text-sm md:text-base"
                         >
                           <FaCheckCircle className="text-indigo-500 mr-3 flex-shrink-0" />
                           {point}
@@ -186,7 +196,7 @@ export default function FractionalCxO() {
                     </ul>
                   </div>
                   <div className="relative group flex flex-col justify-center">
-                    <div className="absolute -right-4 -bottom-4 w-full h-full bg-gradient-to-r from-blue-950 via-blue-800 to-blue-600 z-0"></div>
+                    <div className="absolute -right-2 md:-right-4 -bottom-2 md:-bottom-4 w-full h-full bg-gradient-to-r from-blue-600 via-blue-800 to-blue-950 z-0"></div>
                     <motion.div
                       whileHover={{ scale: 1.03 }}
                       className="relative z-10 flex-grow overflow-hidden"
@@ -194,7 +204,7 @@ export default function FractionalCxO() {
                       <img
                         src={service.image}
                         alt={service.title}
-                        className="w-full h-[350px] object-cover object-center"
+                        className="w-full h-[250px] md:h-[350px] object-cover object-center"
                       />
                     </motion.div>
                   </div>
