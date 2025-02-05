@@ -18,7 +18,6 @@ const Navbar = () => {
       to: "/websitedevelopment",
       isScroll: false,
     },
-    // { label: "FAQ", to: "/faq", isScroll: false },
   ]
 
   const scrollToServices = () => {
@@ -26,12 +25,10 @@ const Navbar = () => {
     if (servicesSection) {
       servicesSection.scrollIntoView({ behavior: "smooth" })
     } else if (location.pathname !== "/") {
-      // If we're not on the homepage, navigate to homepage first
       navigate("/#services")
     }
   }
 
-  // Handle scroll when navigating to homepage with #services hash
   useEffect(() => {
     if (location.hash === "#services" && location.pathname === "/") {
       setTimeout(() => {
@@ -58,20 +55,22 @@ const Navbar = () => {
   return (
     <div className="relative">
       <nav className="fixed top-0 left-0 w-full bg-white z-50 shadow-md">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3 flex justify-between items-center">
-          <div className="flex items-center space-x-6">
-            <Link
-              to="/"
-              className="flex items-center flex-shrink-0"
-            >
-              <img
-                src={logo}
-                alt="Company Logo"
-                className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
-              />
-            </Link>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+          {/* Logo - Made even larger */}
+          <Link
+            to="/"
+            className="flex-shrink-0"
+          >
+            <img
+              src={logo}
+              alt="Company Logo"
+              className="h-20 sm:h-20 lg:h-24 w-auto object-contain"
+            />
+          </Link>
 
-            <div className="hidden lg:flex items-conter space-x-6">
+          {/* Centered Navigation Links */}
+          <div className="hidden lg:flex flex-1 justify-center items-center">
+            <div className="flex items-center space-x-6">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
@@ -97,7 +96,8 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="hidden lg:block">
+          {/* Contact Button - Right aligned */}
+          <div className="hidden lg:block flex-shrink-0">
             <motion.button
               onClick={handleContactClick}
               whileHover={{ scale: 1.02 }}
@@ -115,7 +115,7 @@ const Navbar = () => {
 
           <button
             onClick={toggleMenu}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
+            className="lg:hidden ml-auto p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
           >
             <FaBars
               size={24}
@@ -125,7 +125,8 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <div className="h-[64px] sm:h-[72px] lg:h-[80px]"></div>
+      {/* Significantly reduced the spacing below navbar */}
+      <div className="h-[60px] sm:h-[68px] lg:h-[72px]"></div>
 
       <AnimatePresence>
         {isOpen && (

@@ -1,7 +1,7 @@
-import React from "react"
 import { motion } from "framer-motion"
-import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa"
+import { FaLinkedin } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
+import logo2 from "../assets/logo2.png"
 
 const Footer = () => {
   const services = [
@@ -18,7 +18,6 @@ const Footer = () => {
     "Privacy Policy",
     "terms of service",
     "Cookie Policy",
-    // "Partners",
   ]
 
   const animations = {
@@ -46,8 +45,6 @@ const Footer = () => {
     },
   }
 
-  const socialIcons = [{ icon: FaLinkedin, link: "#", label: "LinkedIn" }]
-
   return (
     <motion.footer
       initial="hidden"
@@ -57,124 +54,98 @@ const Footer = () => {
     >
       <div className="max-w-7xl mx-auto px-6 pt-20 pb-12">
         {/* Main Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
-          {/* Company Overview */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-8">
+          {/* Logo and Tagline Section */}
           <motion.div
             variants={animations.item}
-            className="space-y-6"
+            className="lg:col-span-4 space-y-2"
           >
-            <h2 className="text-2xl font-bold tracking-tight text-white">
-              Enlinque Consulting
-            </h2>
-            <p className="text-white leading-relaxed">
-              {/* Empowering enterprises with cutting-edge technology solutions and
-              strategic consulting services. We transform challenges into
-              opportunities for growth and innovation. */}
-              Where speed meets strategy
-            </p>
-            <div className="flex items-center space-x-4 pt-2">
-              {socialIcons.map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.link}
-                  aria-label={social.label}
-                  whileHover={{ scale: 1.1 }}
-                  className="text-slate-400 hover:text-blue-400 transition-colors duration-200"
-                >
-                  <social.icon className="text-xl" />
-                </motion.a>
-              ))}
+            <div className="w-48">
+              <img
+                src={logo2}
+                alt="Enlinque Logo"
+                className="h-12 object-contain"
+              />
             </div>
+            <p className="text-white text-lg">Where speed meets strategy</p>
           </motion.div>
 
-          {/* Services */}
-          <motion.div
-            variants={animations.item}
-            className="space-y-6"
-          >
-            <h3 className="text-lg font-semibold text-white">Services</h3>
-            <ul className="space-y-3">
-              {services.map((service, index) => (
+          {/* Right side sections */}
+          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-8">
+            {/* Services */}
+            <motion.div
+              variants={animations.item}
+              className="space-y-4"
+            >
+              <h3 className="text-lg font-semibold text-white">Services</h3>
+              <ul className="space-y-2">
+                {services.map((service, index) => (
+                  <motion.li
+                    key={index}
+                    variants={animations.item}
+                    className="text-white hover:text-blue-400 cursor-pointer 
+                             transition-colors duration-200"
+                  >
+                    {service}
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Resources */}
+            <motion.div
+              variants={animations.item}
+              className="space-y-4"
+            >
+              <h3 className="text-lg font-semibold text-white">Company</h3>
+              <ul className="space-y-2">
+                {resources.map((resource, index) => (
+                  <motion.li
+                    key={index}
+                    variants={animations.item}
+                    className="text-white hover:text-blue-400 cursor-pointer 
+                             transition-colors duration-200"
+                  >
+                    {resource}
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Contact Information */}
+            <motion.div
+              variants={animations.item}
+              className="space-y-4"
+            >
+              <h3 className="text-lg font-semibold text-white">Contact</h3>
+              <ul className="space-y-3">
                 <motion.li
-                  key={index}
                   variants={animations.item}
-                  className="text-white hover:text-blue-400 cursor-pointer 
-                           transition-colors duration-200 flex items-center space-x-2"
+                  className="flex items-center space-x-3"
                 >
-                  <div className="w-1 h-1 bg-blue-500 rounded-full" />
-                  <span>{service}</span>
+                  <MdEmail className="text-white text-xl flex-shrink-0" />
+                  <a
+                    href="mailto:contact@enlinque.com"
+                    className="text-white hover:text-blue-400 transition-colors duration-200"
+                  >
+                    contact@enlinque.com
+                  </a>
                 </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Resources */}
-          <motion.div
-            variants={animations.item}
-            className="space-y-6"
-          >
-            <h3 className="text-lg font-semibold text-white">Company</h3>
-            <ul className="space-y-3">
-              {resources.map((resource, index) => (
                 <motion.li
-                  key={index}
                   variants={animations.item}
-                  className="text-white hover:text-blue-400 cursor-pointer 
-                           transition-colors duration-200 flex items-center space-x-2"
+                  className="flex items-center space-x-3"
                 >
-                  <div className="w-1 h-1 bg-blue-500 rounded-full" />
-                  <span>{resource}</span>
+                  <FaLinkedin className="text-white text-xl flex-shrink-0" />
+                  <a
+                    href="#"
+                    className="text-white hover:text-blue-400 transition-colors duration-200"
+                  >
+                    LinkedIn
+                  </a>
                 </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Contact Information */}
-          <motion.div
-            variants={animations.item}
-            className="space-y-6"
-          >
-            <h3 className="text-lg font-semibold text-white">Contact</h3>
-            <ul className="space-y-4">
-              {/* <motion.li
-                variants={animations.item}
-                className="flex items-center space-x-3"
-              >
-                <MdPhone className="text-blue-400 text-xl flex-shrink-0" />
-                <a
-                  href="tel:+1234567890"
-                  className="text-white hover:text-blue-400 transition-colors duration-200"
-                >
-                  +1 (234) 567-890
-                </a>
-              </motion.li> */}
-              <motion.li
-                variants={animations.item}
-                className="flex items-center space-x-3"
-              >
-                <MdEmail className="text-white text-xl flex-shrink-0" />
-                <a
-                  href="mailto:contact@enlinque.com"
-                  className="text-white hover:text-blue-400 transition-colors duration-200"
-                >
-                  contact@enlinque.com
-                </a>
-              </motion.li>
-              {/* <motion.li
-                variants={animations.item}
-                className="flex items-start space-x-3"
-              >
-                <MdLocationOn className="text-blue-400 text-xl mt-1 flex-shrink-0" />
-                <address className="not-italic text-white leading-relaxed">
-                  One World Trade Center
-                  <br />
-                  285 Fulton Street
-                  <br />
-                  New York, NY 10007
-                </address>
-              </motion.li> */}
-            </ul>
-          </motion.div>
+              </ul>
+            </motion.div>
+          </div>
         </div>
 
         {/* Bottom Section */}
@@ -186,26 +157,6 @@ const Footer = () => {
             <p className="text-slate-400 text-sm">
               © {new Date().getFullYear()} Enlinque. All rights reserved.
             </p>
-            {/* <div className="flex space-x-6 text-sm">
-              <a
-                href="#"
-                className="text-slate-400 hover:text-blue-400 transition-colors duration-200"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="text-slate-400 hover:text-blue-400 transition-colors duration-200"
-              >
-                Terms of Service
-              </a>
-              <a
-                href="#"
-                className="text-slate-400 hover:text-blue-400 transition-colors duration-200"
-              >
-                Cookie Policy
-              </a>
-            </div> */}
           </div>
         </motion.div>
       </div>

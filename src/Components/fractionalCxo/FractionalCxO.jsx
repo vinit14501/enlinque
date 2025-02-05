@@ -1,10 +1,12 @@
 import { motion } from "framer-motion"
 import { FaCheckCircle } from "react-icons/fa"
+import { Link } from "react-scroll"
 import hero1 from "../../assets/hero1.jpg"
 import cmo from "../../assets/cmo.jpg"
 
 const services = [
   {
+    id: "cto",
     title: "Chief Technology Officer (CTO)",
     description:
       "Drive technological innovation and digital transformation with our experienced CTOs. We help align technology strategy with business goals, manage tech teams, and implement cutting-edge solutions.",
@@ -17,6 +19,7 @@ const services = [
     ],
   },
   {
+    id: "cmo",
     title: "Chief Marketing Officer (CMO)",
     description:
       "Enhance your market presence and drive growth with strategic marketing leadership. Our CMOs develop comprehensive marketing strategies, build strong brands, and optimize customer acquisition.",
@@ -29,6 +32,7 @@ const services = [
     ],
   },
   {
+    id: "cfo",
     title: "Chief Financial Officer (CFO)",
     description:
       "Optimize your financial strategy and operations with expert CFO guidance. We provide financial planning, risk management, and strategic decision-making support to drive business success.",
@@ -41,6 +45,7 @@ const services = [
     ],
   },
   {
+    id: "coo",
     title: "Chief Operating Officer (COO)",
     description:
       "Streamline your operations and improve organizational efficiency with seasoned COO leadership. Our COOs optimize business processes, manage resource allocation, and drive operational excellence.",
@@ -53,6 +58,7 @@ const services = [
     ],
   },
   {
+    id: "cio",
     title: "Chief Information Officer (CIO)",
     description:
       "Leverage strategic IT leadership to transform your digital capabilities and drive business innovation. Our CIOs align information technology with business objectives, manage digital infrastructure, and ensure technological competitiveness.",
@@ -74,7 +80,7 @@ export default function FractionalCxO() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative py-16 bg-[#000048] text-white overflow-hidden"
+        className="relative py-20 bg-gradient-to-r from-blue-950 via-blue-800 to-blue-600 text-white overflow-hidden"
       >
         <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
           <motion.h1
@@ -93,11 +99,29 @@ export default function FractionalCxO() {
         </div>
       </motion.div>
 
+      {/* CxO Navigation Bar */}
+      <div className="sticky top-0 z-40 bg-[#0b60a0] shadow-md">
+        <div className="max-w-6xl mx-auto flex justify-center space-x-4 py-4">
+          {services.map((service) => (
+            <Link
+              key={service.id}
+              to={service.id}
+              smooth={true}
+              duration={500}
+              className="cursor-pointer text-sm font-medium text-white hover:text-black transition-colors"
+            >
+              {service.title.replace("Chief ", "").replace(" ()", "")}
+            </Link>
+          ))}
+        </div>
+      </div>
+
       {/* CxO Sections */}
-      <div className="py-16 px-4">
-        <div className="max-w-6xl mx-auto space-y-16">
+      <div className="py-24 px-4">
+        <div className="max-w-6xl mx-auto space-y-24">
           {services.map((service, index) => (
             <motion.div
+              id={service.id}
               key={service.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -107,20 +131,20 @@ export default function FractionalCxO() {
             >
               {index % 2 === 0 ? (
                 <>
-                  <div className="relative group flex flex-col">
-                    <div className="absolute -left-4 -bottom-4 w-full h-full bg-[#000048] z-0"></div>
+                  <div className="relative group flex flex-col justify-center">
+                    <div className="absolute -left-4 -bottom-4 w-full h-full bg-gradient-to-r from-blue-950 via-blue-800 to-blue-600 z-0"></div>
                     <motion.div
                       whileHover={{ scale: 1.03 }}
-                      className="relative z-10 flex-grow"
+                      className="relative z-10 flex-grow overflow-hidden"
                     >
                       <img
                         src={service.image}
                         alt={service.title}
-                        className="w-full h-[90%] object-cover"
+                        className="w-full h-[350px] object-cover object-center"
                       />
                     </motion.div>
                   </div>
-                  <div className="space-y-6 pl-4 flex flex-col justify-start">
+                  <div className="space-y-6 pl-4 flex flex-col justify-center">
                     <h2 className="text-4xl font-bold text-gray-900">
                       {service.title}
                     </h2>
@@ -142,7 +166,7 @@ export default function FractionalCxO() {
                 </>
               ) : (
                 <>
-                  <div className="space-y-6 pr-4 flex flex-col justify-start">
+                  <div className="space-y-6 pr-4 flex flex-col justify-center">
                     <h2 className="text-4xl font-bold text-gray-900">
                       {service.title}
                     </h2>
@@ -161,16 +185,16 @@ export default function FractionalCxO() {
                       ))}
                     </ul>
                   </div>
-                  <div className="relative group flex flex-col">
-                    <div className="absolute -right-4 -bottom-4 w-full h-full bg-[#000048] z-0"></div>
+                  <div className="relative group flex flex-col justify-center">
+                    <div className="absolute -right-4 -bottom-4 w-full h-full bg-gradient-to-r from-blue-950 via-blue-800 to-blue-600 z-0"></div>
                     <motion.div
                       whileHover={{ scale: 1.03 }}
-                      className="relative z-10 flex-grow"
+                      className="relative z-10 flex-grow overflow-hidden"
                     >
                       <img
                         src={service.image}
                         alt={service.title}
-                        className="w-full h-[90%] object-cover"
+                        className="w-full h-[350px] object-cover object-center"
                       />
                     </motion.div>
                   </div>

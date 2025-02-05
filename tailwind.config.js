@@ -2,26 +2,15 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      sans: ["Raleway", "ui-sans-serif", "system-ui"],
+    },
     extend: {
-      fontFamily: {
-        poppins: ["Poppins", "sans-serif"],
-        "space-grotesk": ['"Space Grotesk"', "sans-serif"],
-        inter: ['"Inter"', "sans-serif"],
-        "neue-haas-grotesk": ["Neue Haas Grotesk", "sans-serif"],
-        playfair: ["Playfair Display", "serif"],
-        lato: ["Lato", "sans-serif"],
-        raleway: ["Raleway", "sans-serif"],
-        "source-sans-pro": ["Source Sans Pro", "sans-serif"],
-        roboto: ["Roboto", "sans-serif"],
-        orbitron: ["Orbitron", "sans-serif"],
-        sans: ["Poppins", "ui-sans-serif", "system-ui"],
-      },
       keyframes: {
         "gradient-x": {
           "0%, 100%": { "background-position": "0% 50%" },
           "50%": { "background-position": "100% 50%" },
         },
-        // Existing keyframes
         fadeIn: {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
@@ -40,7 +29,6 @@ export default {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        // New keyframes for glitch and pulse effects
         glitch: {
           "0%, 100%": {
             textShadow: "0 0 5px rgba(0,255,255,0)",
@@ -55,7 +43,6 @@ export default {
         },
       },
       animation: {
-        // Existing animations
         fadeIn: "fadeIn 0.6s ease-out forwards",
         "slide-in-left": "slide-in-left 0.7s ease-out",
         fadeInSequence1: "fadeInSequence 0.6s ease-out forwards 100ms",
@@ -64,17 +51,12 @@ export default {
         fadeInSequence4: "fadeInSequence 0.6s ease-out forwards 400ms",
         fadeInSequence5: "fadeInSequence 0.6s ease-out forwards 500ms",
         fadeInSequence6: "fadeInSequence 0.6s ease-out forwards 600ms",
-
-        // New animations
         glitch: "glitch 2s ease-in-out infinite",
         pulse: "pulse 2s ease-in-out infinite",
-
         "gradient-x": "gradient-x 3s ease infinite",
       },
       boxShadow: {
-        // Existing box shadows
         neon: "0 0 15px rgba(45, 212, 191, 0.7)",
-        // New box shadows for Contact7
         "neon-teal": "0 0 15px rgba(0,255,255,0.5)",
         "glow-teal": "0 0 20px rgba(0,255,255,0.3)",
       },
@@ -82,12 +64,9 @@ export default {
         navy: {
           900: "#0A1128",
         },
-        // Existing colors
         "services-bg": "#F9F9F9",
         "services-teal": "#009688",
         "services-teal-dark": "#00796B",
-
-        // New color palette for Contact7
         "digital-dark": {
           DEFAULT: "#111827",
           50: "#f9fafb",
