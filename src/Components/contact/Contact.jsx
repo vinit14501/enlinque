@@ -103,7 +103,7 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="w-full lg:w-7/12 lg:pl-6 relative z-0"
         >
-          <div className="bg-white shadow-2xl rounded-sm p-6 lg:p-8 lg:ml-16">
+          <div className="bg-white shadow-2xl rounded-lg p-6 lg:p-8 lg:ml-16">
             <div className="mb-8">
               <h2 className="text-xl font-light text-[#000048] mb-2">
                 Submit an Inquiry
