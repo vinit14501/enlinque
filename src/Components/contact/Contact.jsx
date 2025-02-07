@@ -106,10 +106,10 @@ const Contact = () => {
           <div className="bg-white shadow-2xl rounded-lg p-6 lg:p-8 lg:ml-16">
             <div className="mb-8">
               <h2 className="text-xl font-light text-[#000048] mb-2">
-                Submit an Inquiry
+                Let’S Grow Your Brand Online
               </h2>
               <h3 className="text-3xl font-black text-[#000048] tracking-tight">
-                Submit Your Inquiry
+                Start a conversation with us
               </h3>
             </div>
 

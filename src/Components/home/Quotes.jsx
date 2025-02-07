@@ -9,7 +9,7 @@ export default function Quotes() {
   }, [])
 
   return (
-    <div className="flex items-center justify-center min-h-[40vh] sm:min-h-[45vh] md:min-h-[50vh] bg-[#000048]">
+    <div className="flex items-center justify-center min-h-[40vh] sm:min-h-[45vh] md:min-h-[50vh] bg-[#000048] font-['playfair']">
       <div className="w-full max-w-xl sm:max-w-2xl px-4 sm:px-6 py-8 sm:py-10 md:py-12">
         <div
           className={`
@@ -28,7 +28,7 @@ export default function Quotes() {
             <p
               className="
                 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl
-                italic text-center 
+                text-center italic
                 text-white mb-3 sm:mb-4
               "
             >
@@ -38,7 +38,7 @@ export default function Quotes() {
           <p
             className="
               text-sm sm:text-base md:text-lg lg:text-xl
-              text-center text-white
+              text-center text-white italic
             "
           >
             – Malcolm X

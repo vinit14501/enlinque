@@ -56,13 +56,11 @@ export default function Services() {
   return (
     <div
       id="services"
-      className="bg-white py-16"
+      className="bg-gray-50 text-black py-16"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-black mb-4">
-            Our Services
-          </h2>
+          <h2 className="text-3xl font-bold text-black mb-4">Our Services</h2>
           <p className="text-black text-lg">
             Comprehensive solutions for your business needs
           </p>
@@ -72,13 +70,16 @@ export default function Services() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-gray-100 rounded-lg overflow-hidden"
+              className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-xl transition-all group overflow-hidden"
             >
               {/* Upper section with icon */}
               <div
                 className={` p-6 flex justify-center items-center ${service.iconColor}`}
               >
-                <service.icon size={36} />
+                <service.icon
+                  className="text-[#000048] group-hover:text-[#0b60a0] transition-colors"
+                  size={36}
+                />
               </div>
               {/* Lower section with content */}
               <div className="p-8">

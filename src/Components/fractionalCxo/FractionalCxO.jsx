@@ -5,6 +5,7 @@ import cto from "../../assets/cto.png"
 import cfo from "../../assets/CFO.png"
 import coo from "../../assets/COO.png"
 import cio from "../../assets/CIO.png"
+import fractional from "../../assets/fractional.jpg"
 
 const services = [
   {
@@ -41,7 +42,7 @@ const services = [
     shortTitle: "CFO",
     description:
       "Optimize your financial strategy and operations with expert CFO guidance. We provide financial planning, risk management, and strategic decision-making support to drive business success.",
-    image: coo,
+    image: cfo,
     points: [
       "Manage financial planning and budgeting",
       "Implement robust financial controls and reporting",
@@ -55,7 +56,7 @@ const services = [
     shortTitle: "COO",
     description:
       "Streamline your operations and improve organizational efficiency with seasoned COO leadership. Our COOs optimize business processes, manage resource allocation, and drive operational excellence.",
-    image: cfo,
+    image: coo,
     points: [
       "Develop and oversee operational strategies",
       "Optimize workflows and business processes",
@@ -89,10 +90,10 @@ export default function FractionalCxO() {
         transition={{ duration: 0.8 }}
         className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] bg-cover bg-center bg-no-repeat text-white overflow-hidden"
         style={{
-          backgroundImage: "url('/api/placeholder/1920/1080')",
+          backgroundImage: `url(${fractional})`,
         }}
       >
-        <div className="absolute inset-0 bg-black/60" /> {/* Black overlay */}
+        <div className="absolute inset-0 bg-black/60" />
         <div className="h-full max-w-5xl mx-auto px-4 text-center relative z-10 flex items-center justify-center">
           <div>
             <motion.h1
