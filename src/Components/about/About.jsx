@@ -46,7 +46,7 @@ const About = () => {
             alt="Hero Background"
             className="w-full h-full object-cover filter blur-none scale-105"
           />
-          <div className="absolute inset-0" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
         <div className="relative h-full">
           <div className="h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
@@ -83,13 +83,13 @@ const About = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#000048]">
                 Who We Are
               </h2>
-              <p className="text-base sm:text-lg text-slate-700">
+              <p className="text-base sm:text-lg text-black">
                 Enlinque was founded on the belief that every great idea
                 deserves the chance to thrive. We understand the challenges
                 startups face—from navigating speed-to-market pressures to
                 scaling operations efficiently.
               </p>
-              <p className="text-base sm:text-lg text-slate-700">
+              <p className="text-base sm:text-lg text-black">
                 We are a team of seasoned professionals with diverse expertise
                 in technology, strategy, marketing, and leadership. Together, we
                 bring a blend of innovation, strategy, and execution to help
@@ -130,14 +130,14 @@ const About = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-[#000048]">
                 Our Vision
               </h2>
-              <p className="text-base sm:text-lg text-slate-700 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg text-black max-w-3xl mx-auto">
                 At Enlinque, we bring together diverse perspectives and
                 cutting-edge skills to deliver exceptional results.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto">
-              <div className="bg-[#0b60a0] p-6 rounded-md h-auto sm:h-80 flex flex-col">
+              <div className="bg-[#0b60a0] p-6 rounded-lg h-auto sm:h-80 flex flex-col">
                 <h3 className="text-lg sm:text-xl font-semibold mb-4 text-white">
                   Innovation That Inspires
                 </h3>
@@ -148,7 +148,7 @@ const About = () => {
                   catalyst that sparks creativity and pushes boundaries.
                 </p>
               </div>
-              <div className="bg-[#000048] p-6 rounded-md h-auto sm:h-80 flex flex-col">
+              <div className="bg-[#000048] p-6 rounded-lg h-auto sm:h-80 flex flex-col">
                 <h3 className="text-lg sm:text-xl font-semibold mb-4 text-white">
                   Empowering Startups Globally
                 </h3>
@@ -159,7 +159,7 @@ const About = () => {
                   location.
                 </p>
               </div>
-              <div className="bg-[#0b60a0] p-6 rounded-md h-auto sm:h-80 flex flex-col">
+              <div className="bg-[#0b60a0] p-6 rounded-lg h-auto sm:h-80 flex flex-col">
                 <h3 className="text-lg sm:text-xl font-semibold mb-4 text-white">
                   Sustainable Growth
                 </h3>
@@ -170,7 +170,7 @@ const About = () => {
                   meaningful impact.
                 </p>
               </div>
-              <div className="bg-[#000048] p-6 rounded-md h-auto sm:h-80 flex flex-col">
+              <div className="bg-[#000048] p-6 rounded-lg h-auto sm:h-80 flex flex-col">
                 <h3 className="text-lg sm:text-xl font-semibold mb-4 text-white">
                   Leadership Excellence
                 </h3>
@@ -215,7 +215,7 @@ const About = () => {
             Our Values
           </h2>
           <div className="flex flex-col lg:flex-row w-full space-y-6 lg:space-y-0 lg:space-x-8">
-            <div className="w-full lg:w-1/2 overflow-hidden rounded-2xl shadow-xl">
+            <div className="w-full lg:w-1/2 overflow-hidden rounded-lg shadow-xl">
               <img
                 src={vision}
                 alt="Company Values"
@@ -229,13 +229,13 @@ const About = () => {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
-                  className="bg-white p-6 rounded-xl shadow-md border border-[#0b60a0]/20 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300"
+                  className="bg-white p-6 rounded-lg shadow-md border border-[#0b60a0]/20 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300"
                 >
                   <value.icon className="text-[#0b60a0] h-8 w-8 sm:h-12 sm:w-12 mb-4" />
                   <h3 className="text-lg sm:text-xl font-semibold text-[#000048] mb-3">
                     {value.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-slate-700">
+                  <p className="text-sm sm:text-base text-black">
                     {value.description}
                   </p>
                 </motion.div>

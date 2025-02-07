@@ -130,7 +130,7 @@ const WebsiteDevelopment = () => {
               key={service.title}
               className="bg-white border border-gray-200 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-all group"
             >
-              <service.icon className="text-3xl md:text-4xl mb-3 md:mb-4 text-blue-600 group-hover:text-blue-400 transition-colors" />
+              <service.icon className="text-3xl md:text-4xl mb-3 md:mb-4 text-[#000048] group-hover:text-[#0b60a0] transition-colors" />
               <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-black">
                 {service.title}
               </h3>
@@ -180,7 +180,7 @@ const WebsiteDevelopment = () => {
           {PricingPlans.map((plan) => (
             <div
               key={plan.name}
-              className="bg-white border border-gray-200 p-4 md:p-6 rounded-xl shadow-md hover:shadow-xl transition-all group"
+              className="bg-white border border-gray-200 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-all group"
             >
               <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-black group-hover:text-blue-600 transition-colors">
                 {plan.name} Plan

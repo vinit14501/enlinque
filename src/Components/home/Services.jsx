@@ -60,19 +60,19 @@ export default function Services() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-black mb-4">
             Our Services
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-black text-lg">
             Comprehensive solutions for your business needs
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-gray-100 rounded-sm overflow-hidden"
+              className="bg-gray-100 rounded-lg overflow-hidden"
             >
               {/* Upper section with icon */}
               <div
@@ -82,10 +82,10 @@ export default function Services() {
               </div>
               {/* Lower section with content */}
               <div className="p-8">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <h3 className="text-xl font-semibold text-black mb-4">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
+                <p className="text-black mb-6">{service.description}</p>
               </div>
             </div>
           ))}

@@ -1,6 +1,5 @@
 import { motion } from "framer-motion"
 import { FaCheckCircle } from "react-icons/fa"
-import { Link } from "react-scroll"
 import cmo from "../../assets/CMO.png"
 import cto from "../../assets/cto.png"
 import cfo from "../../assets/CFO.png"
@@ -88,43 +87,33 @@ export default function FractionalCxO() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative py-12 md:py-20 bg-[#000048] text-white overflow-hidden"
+        className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] bg-cover bg-center bg-no-repeat text-white overflow-hidden"
+        style={{
+          backgroundImage: "url('/api/placeholder/1920/1080')",
+        }}
       >
-        <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
-          <motion.h1
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight"
-          >
-            Fractional CxO Services
-          </motion.h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto mb-6 md:mb-8 text-gray-200 font-light">
-            Access world-class executive leadership without the full-time
-            commitment. Our fractional CxOs bring decades of experience to
-            elevate your business.
-          </p>
-        </div>
-      </motion.div>
-
-      {/* CxO Navigation Bar */}
-      <div className="sticky top-0 z-40 bg-[#0b60a0] shadow-md overflow-x-auto">
-        <div className="max-w-6xl mx-auto flex justify-start md:justify-center px-2 py-2">
-          <div className="flex space-x-4 md:space-x-8">
-            {services.map((service) => (
-              <Link
-                key={service.id}
-                to={service.id}
-                smooth={true}
-                duration={500}
-                className="cursor-pointer text-sm md:text-base font-medium text-white hover:text-black transition-colors whitespace-nowrap px-2"
-              >
-                {service.shortTitle}
-              </Link>
-            ))}
+        <div className="absolute inset-0 bg-black/60" /> {/* Black overlay */}
+        <div className="h-full max-w-5xl mx-auto px-4 text-center relative z-10 flex items-center justify-center">
+          <div>
+            <motion.h1
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight"
+            >
+              Fractional CxO Services
+            </motion.h1>
+            <p className="text-lg md:text-xl max-w-3xl mx-auto mb-6 md:mb-8 text-white font-light">
+              Access world-class executive leadership without the full-time
+              commitment. Our fractional CxOs bring decades of experience to
+              elevate your business.
+            </p>
+            <p className="text-lg md:text-xl max-w-3xl mx-auto text-white font-light">
+              [CTO] [CMO] [CFO] [COO] [CIO]
+            </p>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* CxO Sections */}
       <div className="py-16 md:py-24 px-4">

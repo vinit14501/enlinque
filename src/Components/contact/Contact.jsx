@@ -34,9 +34,9 @@ const Contact = () => {
 
   return (
     <div className="bg-gradient-to-br from-[#000048] to-[#0b60a0] min-h-[calc(100vh-144px)]">
-      <div className="container mx-auto max-w-6xl flex flex-col lg:flex-row gap-8 lg:gap-16 p-4 lg:p-8">
-        {/* Left Column - Adjusted margin */}
-        <div className="w-full lg:w-6/12 space-y-6 lg:space-y-12 py-4 lg:py-8 lg:-ml-20 relative z-10">
+      <div className="container mx-auto max-w-7xl flex flex-col lg:flex-row gap-8 lg:gap-16 p-4 lg:p-8">
+        {/* Left Column - Adjusted margin and spacing */}
+        <div className="w-full lg:w-6/12 space-y-6 lg:space-y-12 py-4 lg:py-8 lg:-ml-12 relative z-10">
           <div className="space-y-4">
             <h1 className="text-2xl lg:text-3xl font-extralight text-white tracking-wide">
               Pave your way to
@@ -103,7 +103,7 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="w-full lg:w-7/12 lg:pl-6 relative z-0"
         >
-          <div className="bg-white shadow-2xl rounded-sm p-6 lg:p-8 lg:ml-20">
+          <div className="bg-white shadow-2xl rounded-sm p-6 lg:p-8 lg:ml-16">
             <div className="mb-8">
               <h2 className="text-xl font-light text-[#000048] mb-2">
                 Submit an Inquiry
