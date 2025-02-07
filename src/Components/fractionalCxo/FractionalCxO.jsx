@@ -1,11 +1,11 @@
 import { motion } from "framer-motion"
 import { FaCheckCircle } from "react-icons/fa"
 import { Link } from "react-scroll"
-import cmo from "../../assets/cmo.png"
+import cmo from "../../assets/CMO.png"
 import cto from "../../assets/cto.png"
-import cfo from "../../assets/cfo.png"
-import coo from "../../assets/coo.png"
-import cio from "../../assets/cio.png"
+import cfo from "../../assets/CFO.png"
+import coo from "../../assets/COO.png"
+import cio from "../../assets/CIO.png"
 
 const services = [
   {
