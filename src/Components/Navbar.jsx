@@ -55,79 +55,78 @@ const Navbar = () => {
   return (
     <div className="relative">
       <nav className="fixed top-0 left-0 w-full bg-white z-50 shadow-md">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-          {/* Logo - Made even larger */}
-          <Link
-            to="/"
-            className="flex-shrink-0"
-          >
-            <img
-              src={logo}
-              alt="Company Logo"
-              className="h-20 sm:h-20 lg:h-24 w-auto object-contain"
-            />
-          </Link>
-
-          {/* Centered Navigation Links */}
-          <div className="hidden lg:flex flex-1 justify-center items-center">
-            <div className="flex items-center space-x-6">
-              {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.to}
-                  onClick={() => handleNavItemClick(item)}
-                  className="
-                    text-black font-semibold font-raleway hover:text-blue-600 
-                    transition-colors duration-300 
-                    group relative text-base tracking-wide
-                    whitespace-nowrap
-                  "
-                >
-                  {item.label}
-                  <span
-                    className="
-                      absolute -bottom-1 left-0 w-0 h-0.5 
-                      bg-blue-600 transition-all duration-300 
-                      group-hover:w-full
-                    "
-                  ></span>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Contact Button - Right aligned */}
-          <div className="hidden lg:block flex-shrink-0">
-            <motion.button
-              onClick={handleContactClick}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="
-                px-5 py-2.5 bg-[#0b60a0] text-white 
-                rounded-lg text-base font-medium font-raleway
-                hover:bg-blue-700 transition-colors duration-300
-                whitespace-nowrap shadow-lg shadow-blue-600/20
-              "
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24">
+            {/* Logo with responsive sizing */}
+            <Link
+              to="/"
+              className="flex-shrink-0 flex items-center"
             >
-              Contact Us
-            </motion.button>
-          </div>
+              <img
+                src={logo}
+                alt="Company Logo"
+                className="h-12 w-auto sm:h-16 lg:h-20 object-contain transition-all duration-200"
+              />
+            </Link>
 
-          <button
-            onClick={toggleMenu}
-            className="lg:hidden ml-auto p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
-          >
-            <FaBars
-              size={24}
-              className="text-gray-800"
-            />
-          </button>
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center justify-center flex-1 px-4">
+              <div className="flex items-center space-x-1 xl:space-x-3">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    onClick={() => handleNavItemClick(item)}
+                    className="
+                      px-2 py-2 text-black font-semibold font-raleway
+                      hover:text-blue-600 transition-colors duration-300
+                      group relative text-sm xl:text-base tracking-wide
+                      whitespace-nowrap
+                    "
+                  >
+                    {item.label}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Contact Button - Desktop */}
+            <div className="hidden lg:flex items-center">
+              <motion.button
+                onClick={handleContactClick}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="
+                  px-4 sm:px-5 py-2 sm:py-2.5 bg-[#0b60a0] text-white
+                  rounded-lg text-sm sm:text-base font-medium font-raleway
+                  hover:bg-blue-700 transition-colors duration-300
+                  whitespace-nowrap shadow-lg shadow-blue-600/20
+                "
+              >
+                Contact Us
+              </motion.button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={toggleMenu}
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              <FaBars
+                size={24}
+                className="text-gray-800"
+              />
+            </button>
+          </div>
         </div>
       </nav>
 
-      {/* Significantly reduced the spacing below navbar */}
-      <div className="h-[60px] sm:h-[68px] lg:h-[72px]"></div>
+      {/* Dynamic spacing based on navbar height */}
+      <div className="h-16 sm:h-20 lg:h-24 transition-all duration-200"></div>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -144,12 +143,13 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 h-full w-[280px] bg-white shadow-xl z-[70]"
+              className="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-white shadow-xl z-[70] overflow-y-auto"
             >
-              <div className="flex justify-end p-4">
+              <div className="sticky top-0 flex justify-end p-4 bg-white">
                 <button
                   onClick={toggleMenu}
                   className="p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
+                  aria-label="Close menu"
                 >
                   <FaTimes
                     size={24}
@@ -164,7 +164,11 @@ const Navbar = () => {
                     key={item.label}
                     to={item.to}
                     onClick={() => handleNavItemClick(item)}
-                    className="block py-3 px-4 text-lg font-medium font-raleway text-gray-800 hover:bg-gray-100 rounded-lg"
+                    className="
+                      block py-3 px-4 text-base sm:text-lg font-medium
+                      font-raleway text-gray-800 hover:bg-gray-100
+                      rounded-lg transition-colors duration-200
+                    "
                   >
                     {item.label}
                   </Link>
@@ -175,9 +179,9 @@ const Navbar = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="
-                    w-full mt-4 py-3 bg-blue-600 text-white 
-                    rounded-lg font-medium font-raleway hover:bg-blue-700 
-                    transition-colors duration-300
+                    w-full mt-4 py-3 bg-[#0b60a0] text-white
+                    rounded-lg text-base sm:text-lg font-medium font-raleway
+                    hover:bg-blue-700 transition-colors duration-300
                     shadow-lg shadow-blue-600/20
                   "
                 >

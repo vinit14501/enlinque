@@ -1,25 +1,24 @@
 import { useState } from "react"
-import { motion } from "framer-motion"
 
 const FAQItem = ({ title, content, isOpen, onToggle }) => {
   return (
     <div className="border-b border-gray-200 last:border-b-0">
       <div
-        className="py-6 cursor-pointer"
+        className="py-4 sm:py-6 cursor-pointer"
         onClick={onToggle}
       >
         <div className="flex items-start">
           <div className="flex-1">
             <div className="flex justify-between items-center group">
-              <h3 className="text-lg font-medium font-raleway text-gray-900 pr-4 group-hover:text-blue-600 transition-colors duration-200">
+              <h3 className="text-base sm:text-lg font-medium font-raleway text-gray-900 pr-3 sm:pr-4 group-hover:text-blue-600 transition-colors duration-200">
                 {title}
               </h3>
               <button
-                className="text-blue-500 transition-transform duration-200 w-6 h-6 flex items-center justify-center"
+                className="text-blue-500 transition-transform duration-200 w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center"
                 aria-label={isOpen ? "Close answer" : "Show answer"}
               >
                 <svg
-                  className={`w-5 h-5 transition-transform duration-300 ease-in-out ${
+                  className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 ease-in-out ${
                     isOpen ? "rotate-180" : ""
                   }`}
                   fill="none"
@@ -42,10 +41,10 @@ const FAQItem = ({ title, content, isOpen, onToggle }) => {
               style={{
                 maxHeight: isOpen ? "1000px" : "0",
                 opacity: isOpen ? 1 : 0,
-                marginTop: isOpen ? "1rem" : "0",
+                marginTop: isOpen ? "0.75rem" : "0",
               }}
             >
-              <div className="text-gray-600 text-base leading-relaxed">
+              <div className="text-gray-600 text-sm sm:text-base leading-relaxed">
                 {content}
               </div>
             </div>
@@ -104,27 +103,13 @@ export default function Faq() {
   }
 
   return (
-    <div className="bg-white py-16">
-      {/* Commented out previous hero section
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative px-4 py-12 lg:py-16 overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
-        }}
-      >
-        ...previous hero content...
-      </motion.div>
-      */}
-
+    <div className="bg-white py-8 sm:py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold font-raleway text-gray-900 mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-raleway text-gray-900 mb-3 sm:mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl font-raleway mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl font-raleway mx-auto">
             Find answers to common questions about our services, process, and
             how we can help your business grow.
           </p>

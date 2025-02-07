@@ -48,7 +48,7 @@ const Hero = () => {
   }
 
   return (
-    <div className="relative w-full h-[500px] flex overflow-hidden">
+    <div className="relative w-full h-[100vh] sm:h-[85vh] md:h-[75vh] lg:h-[500px] flex overflow-hidden">
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.img

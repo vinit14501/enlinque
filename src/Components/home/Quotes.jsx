@@ -9,8 +9,8 @@ export default function Quotes() {
   }, [])
 
   return (
-    <div className="flex items-center justify-center min-h-[50vh] bg-[#000048]">
-      <div className="w-full max-w-2xl px-6">
+    <div className="flex items-center justify-center min-h-[40vh] sm:min-h-[45vh] md:min-h-[50vh] bg-[#000048]">
+      <div className="w-full max-w-xl sm:max-w-2xl px-4 sm:px-6 py-8 sm:py-10 md:py-12">
         <div
           className={`
             transition-all duration-1000 ease-out
@@ -21,16 +21,15 @@ export default function Quotes() {
             }
           `}
         >
-          <div className="border-t border-white mb-4 transition-all duration-1000"></div>
-          <div className="relative">
-            <FaQuoteLeft className="absolute -left-8 top-0 text-white text-3xl" />
-            <FaQuoteRight className="absolute -right-8 top-0 text-white text-3xl" />
+          <div className="border-t border-white mb-3 sm:mb-4 transition-all duration-1000"></div>
+          <div className="relative px-8 sm:px-10 md:px-12">
+            <FaQuoteLeft className="absolute -left-2 sm:-left-4 md:-left-8 top-0 text-white text-xl sm:text-2xl md:text-3xl" />
+            <FaQuoteRight className="absolute -right-2 sm:-right-4 md:-right-8 top-0 text-white text-xl sm:text-2xl md:text-3xl" />
             <p
               className="
-                text-2xl sm:text-3xl md:text-4xl lg:text-5xl 
+                text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl
                 italic text-center 
-                text-white mb-4
-                font-['Playfair_Display','Merriweather']
+                text-white mb-3 sm:mb-4
               "
             >
               &quot;The future belongs to those who prepare for it today.&quot;
@@ -38,14 +37,13 @@ export default function Quotes() {
           </div>
           <p
             className="
-              text-base sm:text-lg md:text-xl 
+              text-sm sm:text-base md:text-lg lg:text-xl
               text-center text-white
-              font-sans
             "
           >
             – Malcolm X
           </p>
-          <div className="border-b border-gray-400 mt-4 transition-all duration-1000"></div>
+          <div className="border-b border-gray-400 mt-3 sm:mt-4 transition-all duration-1000"></div>
         </div>
       </div>
     </div>
