@@ -1,7 +1,8 @@
 import { motion } from "framer-motion"
 import { FaCheckCircle, FaSync, FaLightbulb, FaHandshake } from "react-icons/fa"
-import hero1 from "../../assets/hero1.jpg"
 import { BsArrowRight } from "react-icons/bs"
+import about from "../../assets/about.jpg"
+import vision from "../../assets/vision.jpg"
 
 const About = () => {
   const valueDetails = [
@@ -41,9 +42,9 @@ const About = () => {
       >
         <div className="absolute inset-0">
           <img
-            src={hero1}
+            src={about}
             alt="Hero Background"
-            className="w-full h-full object-cover filter blur-sm scale-105"
+            className="w-full h-full object-cover filter blur-none scale-105"
           />
           <div className="absolute inset-0" />
         </div>
@@ -216,7 +217,7 @@ const About = () => {
           <div className="flex flex-col lg:flex-row w-full space-y-6 lg:space-y-0 lg:space-x-8">
             <div className="w-full lg:w-1/2 overflow-hidden rounded-2xl shadow-xl">
               <img
-                src={hero1}
+                src={vision}
                 alt="Company Values"
                 className="w-full h-64 lg:h-full object-cover"
               />
