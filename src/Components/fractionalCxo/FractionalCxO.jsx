@@ -124,7 +124,7 @@ export default function FractionalCxO() {
               commitment. Our fractional CxOs bring decades of experience to
               elevate your business.
             </p>
-            <p className="text-lg md:text-xl max-w-3xl mx-auto text-white font-bold tracking-[0.2em]">
+            <p className="text-lg md:text-xl max-w-3xl mx-auto text-white font-bold tracking-[0.1em]">
               <a
                 href="#cio"
                 onClick={(e) => handleScroll(e, "cio")}

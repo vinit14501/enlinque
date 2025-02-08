@@ -23,9 +23,13 @@ const Cta3 = () => {
             <p className="text-sm sm:text-base md:text-lg font-raleway mb-3 sm:mb-4 opacity-80">
               That Elevate Brands and Engage Audiences
             </p>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold font-raleway py-2 px-4 sm:px-5 rounded-lg inline-flex items-center gap-1 sm:gap-2 text-sm sm:text-base transition-all duration-300 ease-in-out">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-blue-600 text-white font-semibold font-raleway py-2 px-4 sm:px-5 rounded-lg inline-flex items-center gap-1 sm:gap-2 text-sm sm:text-base transition-all duration-300"
+            >
               Get Started <FaArrowRight className="text-sm sm:text-base" />
-            </button>
+            </motion.button>
           </div>
         </div>
       </motion.div>

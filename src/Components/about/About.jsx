@@ -56,7 +56,7 @@ const About = () => {
               transition={{ duration: 0.8 }}
               className="max-w-2xl w-full"
             >
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-white mb-4 md:mb-6">
+              <h1 className="text-3xl md:text-5xl font-bold text-center text-white mb-4 md:mb-6">
                 Transforming Businesses Through Technology
               </h1>
               <p className="text-lg sm:text-xl text-center text-white">

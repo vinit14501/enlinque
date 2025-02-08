@@ -218,12 +218,14 @@ const WebsiteDevelopment = () => {
             We&apos;re excited to help you bring your digital vision to life.
             Let&apos;s discuss your project and how we can help you succeed.
           </p>
-          <a
-            href="/contact"
-            className="bg-white text-[#000048] px-6 md:px-8 py-2 md:py-3 rounded-lg hover:bg-gray-100 inline-flex items-center gap-2 font-semibold text-sm md:text-base"
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold text-[#000048] bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
-            Contact Us <BsArrowRight className="text-lg md:text-xl" />
-          </a>
+            Contact Us
+            <BsArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+          </motion.button>
         </div>
       </section>
     </div>
