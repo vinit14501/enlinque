@@ -9,6 +9,20 @@ import fractional from "../../assets/fractional.jpg"
 
 const services = [
   {
+    id: "cio",
+    title: "Chief Information Officer (CIO)",
+    shortTitle: "CIO",
+    description:
+      "Leverage strategic IT leadership to transform your digital capabilities and drive business innovation. Our CIOs align information technology with business objectives, manage digital infrastructure, and ensure technological competitiveness.",
+    image: cio,
+    points: [
+      "Develop and execute comprehensive IT strategies",
+      "Manage and optimize digital infrastructure",
+      "Drive digital transformation initiatives",
+      "Ensure cybersecurity and technological compliance",
+    ],
+  },
+  {
     id: "cto",
     title: "Chief Technology Officer (CTO)",
     shortTitle: "CTO",
@@ -64,23 +78,24 @@ const services = [
       "Enhance organizational efficiency and productivity",
     ],
   },
-  {
-    id: "cio",
-    title: "Chief Information Officer (CIO)",
-    shortTitle: "CIO",
-    description:
-      "Leverage strategic IT leadership to transform your digital capabilities and drive business innovation. Our CIOs align information technology with business objectives, manage digital infrastructure, and ensure technological competitiveness.",
-    image: cio,
-    points: [
-      "Develop and execute comprehensive IT strategies",
-      "Manage and optimize digital infrastructure",
-      "Drive digital transformation initiatives",
-      "Ensure cybersecurity and technological compliance",
-    ],
-  },
 ]
 
 export default function FractionalCxO() {
+  const handleScroll = (e, id) => {
+    e.preventDefault()
+    const element = document.getElementById(id)
+    const offset = 100 // Adjust this value to control how far from the top the section should stop
+    const bodyRect = document.body.getBoundingClientRect().top
+    const elementRect = element.getBoundingClientRect().top
+    const elementPosition = elementRect - bodyRect
+    const offsetPosition = elementPosition - offset
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    })
+  }
+
   return (
     <div className="font-sans bg-white">
       {/* Hero section */}
@@ -100,7 +115,7 @@ export default function FractionalCxO() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6 }}
-              className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight"
+              className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 font-raleway tracking-tight"
             >
               Fractional CxO Services
             </motion.h1>
@@ -109,8 +124,46 @@ export default function FractionalCxO() {
               commitment. Our fractional CxOs bring decades of experience to
               elevate your business.
             </p>
-            <p className="text-lg md:text-xl max-w-3xl mx-auto text-white font-light">
-              CTO | CMO | CFO | COO | CIO
+            <p className="text-lg md:text-xl max-w-3xl mx-auto text-white font-bold tracking-[0.2em]">
+              <a
+                href="#cio"
+                onClick={(e) => handleScroll(e, "cio")}
+                className="hover:text-blue-300 transition-colors cursor-pointer"
+              >
+                CIO
+              </a>{" "}
+              |{" "}
+              <a
+                href="#cto"
+                onClick={(e) => handleScroll(e, "cto")}
+                className="hover:text-blue-300 transition-colors cursor-pointer"
+              >
+                CTO
+              </a>{" "}
+              |{" "}
+              <a
+                href="#cmo"
+                onClick={(e) => handleScroll(e, "cmo")}
+                className="hover:text-blue-300 transition-colors cursor-pointer"
+              >
+                CMO
+              </a>{" "}
+              |{" "}
+              <a
+                href="#cfo"
+                onClick={(e) => handleScroll(e, "cfo")}
+                className="hover:text-blue-300 transition-colors cursor-pointer"
+              >
+                CFO
+              </a>{" "}
+              |{" "}
+              <a
+                href="#coo"
+                onClick={(e) => handleScroll(e, "coo")}
+                className="hover:text-blue-300 transition-colors cursor-pointer"
+              >
+                COO
+              </a>
             </p>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import hero1 from "../../assets/1.png"
 import hero2 from "../../assets/2.png"
@@ -42,9 +42,23 @@ const carouselContent = [
 
 const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+
+  useEffect(() => {
+    let interval
+    if (isAutoPlaying) {
+      interval = setInterval(() => {
+        setActiveIndex((prev) => (prev + 1) % carouselContent.length)
+      }, 5000) // Change slide every 5 seconds
+    }
+    return () => clearInterval(interval)
+  }, [isAutoPlaying])
 
   const handleSectionClick = (index) => {
     setActiveIndex(index)
+    setIsAutoPlaying(false) // Pause auto-play when manually clicking
+    // Resume auto-play after 10 seconds of inactivity
+    setTimeout(() => setIsAutoPlaying(true), 10000)
   }
 
   return (

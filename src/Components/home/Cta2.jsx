@@ -34,7 +34,7 @@ const Cta2 = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.h2
           variants={itemVariants}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-raleway text-white mb-4 sm:mb-6"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-raleway text-white mb-4 sm:mb-6"
         >
           Ready to Transform Your Ideas Into Reality?
         </motion.h2>
