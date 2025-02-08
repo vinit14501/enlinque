@@ -41,7 +41,7 @@ const Contact = () => {
             <h1 className="text-2xl lg:text-3xl font-extralight text-white tracking-wide">
               Pave your way to
             </h1>
-            <h2 className="text-3xl lg:text-5xl font-black text-white leading-tight">
+            <h2 className="text-2xl lg:text-4xl font-black text-white leading-tight">
               Rapid, Smarter Business and Technology Solutions
             </h2>
           </div>
@@ -106,7 +106,7 @@ const Contact = () => {
           <div className="bg-white shadow-2xl rounded-lg p-6 lg:p-8 lg:ml-16">
             <div className="mb-8">
               <h2 className="text-xl font-light text-[#000048] mb-2">
-                Let’S Grow Your Brand Online
+                Let'S Grow Your Brand Online
               </h2>
               <h3 className="text-3xl font-black text-[#000048] tracking-tight">
                 Start a conversation with us
@@ -185,7 +185,7 @@ const Contact = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full py-4 bg-[#000048] text-white font-semibold rounded-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group"
+                className="w-1/2 py-2 bg-[#0b60a0] text-white font-semibold rounded-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group mx-auto"
               >
                 <IoSendOutline className="text-xl group-hover:translate-x-1 transition-transform duration-300" />
                 <span>Send Message</span>

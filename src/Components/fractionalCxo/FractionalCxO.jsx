@@ -110,7 +110,7 @@ export default function FractionalCxO() {
               elevate your business.
             </p>
             <p className="text-lg md:text-xl max-w-3xl mx-auto text-white font-light">
-              [CTO] [CMO] [CFO] [COO] [CIO]
+              CTO | CMO | CFO | COO | CIO
             </p>
           </div>
         </div>
