@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
-import { FaUserTie } from "react-icons/fa"
 import ctaBackground from "../../assets/cta.jpg"
+import { BsArrowRight } from "react-icons/bs"
 
 export default function Cta() {
   return (
@@ -26,10 +26,10 @@ export default function Cta() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium hover:bg-gray-100 transition-colors flex items-center gap-2 sm:gap-3 mx-auto"
+              className="bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-base sm:text-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2 sm:gap-3 mx-auto"
             >
-              <FaUserTie className="text-lg sm:text-xl" />
-              <span>Get Started Today</span>
+              <span>Get Started</span>
+              <BsArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </motion.button>
           </motion.div>
         </div>

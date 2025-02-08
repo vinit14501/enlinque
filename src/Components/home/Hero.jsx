@@ -20,7 +20,7 @@ const carouselContent = [
     subtext:
       "Scaling startups with data-driven strategies, ROI-focused solutions and flawless execution",
     image: hero2,
-    navWord: "Digital",
+    navWord: "Digital Marketing",
   },
   {
     header: "E-commerce Solutions",
@@ -36,7 +36,7 @@ const carouselContent = [
     subtext:
       "Transforming ideas into high-performance apps, designed for speed and scalability—from concept to MVP in just 4 months",
     image: hero4,
-    navWord: "App",
+    navWord: "App Development",
   },
 ]
 
@@ -98,12 +98,8 @@ const Hero = () => {
               key={section.navWord}
               onClick={() => handleSectionClick(index)}
               className={`
-                relative whitespace-nowrap text-base sm:text-lg font-bold font-raleway tracking-wider transition-all duration-300
-                ${
-                  activeIndex === index
-                    ? "text-white scale-105"
-                    : "text-gray-400 hover:text-white"
-                }
+                relative whitespace-nowrap text-sm sm:text-base font-bold font-raleway tracking-wider transition-all duration-300
+                ${activeIndex === index ? "text-white scale-105" : "text-white"}
               `}
             >
               {section.navWord}

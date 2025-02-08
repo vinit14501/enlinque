@@ -98,7 +98,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="
-                  px-4 sm:px-5 py-2 sm:py-2.5 bg-[#0b60a0] text-white
+                  px-4 sm:px-5 py-2 sm:py-2.5 bg-blue-600 text-white
                   rounded-lg text-sm sm:text-base font-medium font-raleway
                   hover:bg-blue-700 transition-colors duration-300
                   whitespace-nowrap shadow-lg shadow-blue-600/20

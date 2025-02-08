@@ -9,7 +9,7 @@ export default function Quotes() {
   }, [])
 
   return (
-    <div className="flex items-center justify-center min-h-[40vh] sm:min-h-[45vh] md:min-h-[50vh] bg-[#000048] font-['playfair']">
+    <div className="flex items-center justify-center min-h-[40vh] sm:min-h-[45vh] md:min-h-[50vh] bg-[#000048] font-['lora']">
       <div className="w-full max-w-xl sm:max-w-2xl px-4 sm:px-6 py-8 sm:py-10 md:py-12">
         <div
           className={`
@@ -27,12 +27,13 @@ export default function Quotes() {
             <FaQuoteRight className="absolute -right-2 sm:-right-4 md:-right-8 top-0 text-white text-xl sm:text-2xl md:text-3xl" />
             <p
               className="
-                text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl
+                text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl
                 text-center italic
                 text-white mb-3 sm:mb-4
               "
             >
-              &quot;The future belongs to those who prepare for it today.&quot;
+              &quot;The way to get started is to quit talking and begin
+              doing.&quot;
             </p>
           </div>
           <p
@@ -41,7 +42,7 @@ export default function Quotes() {
               text-center text-white italic
             "
           >
-            – Malcolm X
+            – Walt Disney
           </p>
           <div className="border-b border-gray-400 mt-3 sm:mt-4 transition-all duration-1000"></div>
         </div>

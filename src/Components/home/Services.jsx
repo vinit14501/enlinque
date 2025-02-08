@@ -60,7 +60,7 @@ export default function Services() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-[#000048] mb-4">
+          <h2 className="text-3xl font-bold text-blue-600 mb-4">
             Our Services
           </h2>
           <p className="text-black text-lg">
@@ -75,17 +75,17 @@ export default function Services() {
               className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-xl transition-all group overflow-hidden"
             >
               {/* Upper section with icon */}
-              <div
+              {/* <div
                 className={` p-6 flex justify-center items-center ${service.iconColor}`}
               >
                 <service.icon
-                  className="text-[#000048] group-hover:text-[#0b60a0] transition-colors"
+                  className="group-hover:text-[#0b60a0] transition-colors"
                   size={36}
                 />
-              </div>
+              </div> */}
               {/* Lower section with content */}
               <div className="p-8">
-                <h3 className="text-xl font-semibold text-black mb-4">
+                <h3 className="text-xl font-semibold text-blue-600 mb-4">
                   {service.title}
                 </h3>
                 <p className="text-black mb-6">{service.description}</p>

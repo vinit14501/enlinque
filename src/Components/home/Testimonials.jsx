@@ -1,12 +1,12 @@
 import React, { useState } from "react"
-import { FaExternalLinkAlt } from "react-icons/fa"
+// import { FaExternalLinkAlt } from "react-icons/fa"
 
 const testimonials = [
   {
     id: 1,
     name: "John Doe",
     company: "Rubik",
-    website: "https://rubik.com",
+    // website: "https://rubik.com",
     image: "https://readymadeui.com/team-2.webp",
     quote:
       "The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was impressively prompt.",
@@ -15,7 +15,7 @@ const testimonials = [
     id: 2,
     name: "Mark Adair",
     company: "Alpha",
-    website: "https://alpha.com",
+    // website: "https://alpha.com",
     image: "https://readymadeui.com/team-5.webp",
     quote:
       "The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was impressively prompt.",
@@ -24,7 +24,7 @@ const testimonials = [
     id: 3,
     name: "Simon Konecki",
     company: "Labar",
-    website: "https://labar.com",
+    // website: "https://labar.com",
     image: "https://readymadeui.com/team-4.webp",
     quote:
       "The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was impressively prompt.",
@@ -33,7 +33,7 @@ const testimonials = [
     id: 4,
     name: "Emily Johnson",
     company: "TechCorp",
-    website: "https://techcorp.com",
+    // website: "https://techcorp.com",
     image: "https://readymadeui.com/team-1.webp",
     quote:
       "Exceptional service that exceeded my expectations. The team was professional and the results were outstanding.",
@@ -86,13 +86,12 @@ export default function Testimonials() {
       <div className="max-w-6xl mx-auto">
         {/* Centered title and description */}
         <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-          <h2 className="text-[#000048] text-xl md:text-2xl font-bold">
-            What our happy client say
+          <h2 className="text-blue-600 text-3xl md:text-3xl font-bold">
+            What our happy clients say
           </h2>
-          <p className="text-sm text-black mt-3 md:mt-4 leading-relaxed px-4 md:px-0">
-            Veniam proident aute magna anim excepteur et ex consectetur velit
-            ullamco veniam minim aute sit. Elit occaecat officia et laboris
-            Lorem minim. Officia do aliqua adipisicing ullamco in.
+          <p className="text-lg text-black mt-3 md:mt-4 leading-relaxed px-4 md:px-0">
+            Don’t just take our word for it—our clients say it best! Hear how
+            we’ve helped them achieve their goals with ease
           </p>
         </div>
 
@@ -117,7 +116,7 @@ export default function Testimonials() {
           </div>
           <div
             onClick={nextTestimonials}
-            className="bg-[#0b60a0] w-8 md:w-10 h-8 md:h-10 grid items-center justify-center rounded-full -rotate-90 shrink-0 cursor-pointer"
+            className="bg-blue-600 w-8 md:w-10 h-8 md:h-10 grid items-center justify-center rounded-full -rotate-90 shrink-0 cursor-pointer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -159,14 +158,14 @@ export default function Testimonials() {
                           Founder of {testimonial.company}
                         </p>
                       </div>
-                      <a
+                      {/* <a
                         href={testimonial.website}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#0b60a0] hover:text-[#000048]"
                       >
                         <FaExternalLinkAlt className="w-3 md:w-4 h-3 md:h-4" />
-                      </a>
+                      </a> */}
                     </div>
 
                     <div className="mt-4">
