@@ -12,28 +12,28 @@ export default function Services() {
     {
       icon: FaLaptopCode,
       iconColor: "text-blue-500",
-      title: "IT consulting",
+      title: "IT Consulting",
       description:
         "Optimize your technology strategy to align with business goals, ensuring faster time-to-market and scalable growth",
     },
     {
       icon: FaBullhorn,
       iconColor: "text-orange-500",
-      title: "Digital marketing",
+      title: "Digital Marketing",
       description:
         "Craft and execute data-driven marketing strategies that maximize ROI and drive customer acquisition for startups",
     },
     {
       icon: FaCode,
       iconColor: "text-purple-500",
-      title: "Software development",
+      title: "Software Development",
       description:
         "Deliver custom software solutions tailored to your business needs, from MVP to full-scale applications",
     },
     {
       icon: FaShoppingCart,
       iconColor: "text-red-500",
-      title: "eCommerce solution",
+      title: "E-commerce Solution",
       description:
         "Launch and grow your e-commerce business with end-to-end support, from platform selection to optimization",
     },
@@ -47,7 +47,7 @@ export default function Services() {
     {
       icon: FaTasks,
       iconColor: "text-emerald-500",
-      title: "Agile implementation",
+      title: "Agile Implementation",
       description:
         "Adopt agile methodologies to streamline processes, improve collaboration, and accelerate project delivery",
     },
@@ -60,7 +60,7 @@ export default function Services() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-blue-600 mb-4">
+          <h2 className="text-3xl font-bold text-[#000048] mb-4">
             Our Services
           </h2>
           <p className="text-black text-lg">
@@ -75,20 +75,22 @@ export default function Services() {
               className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-xl transition-all group overflow-hidden"
             >
               {/* Upper section with icon */}
-              {/* <div
+              <div
                 className={` p-6 flex justify-center items-center ${service.iconColor}`}
               >
                 <service.icon
-                  className="group-hover:text-[#0b60a0] transition-colors"
+                  className="group-hover:text-[#0b60a0] text-[#0b60a0] transition-colors"
                   size={36}
                 />
-              </div> */}
+              </div>
               {/* Lower section with content */}
-              <div className="p-8">
-                <h3 className="text-xl font-semibold text-blue-600 mb-4">
+              <div className="p-7">
+                <h3 className="text-lg text-center sm:text-xl font-semibold text-[#000048] mb-3">
                   {service.title}
                 </h3>
-                <p className="text-black mb-6">{service.description}</p>
+                <p className="text-sm sm:text-base text-center text-black">
+                  {service.description}
+                </p>
               </div>
             </div>
           ))}

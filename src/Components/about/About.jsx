@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { FaCheckCircle, FaSync, FaLightbulb, FaHandshake } from "react-icons/fa"
 import { BsArrowRight } from "react-icons/bs"
 import about from "../../assets/about.jpg"
-import vision from "../../assets/vision.jpg"
+import values from "../../assets/values.jpg"
 
 const About = () => {
   const valueDetails = [
@@ -217,7 +217,7 @@ const About = () => {
           <div className="flex flex-col lg:flex-row w-full space-y-6 lg:space-y-0 lg:space-x-8">
             <div className="w-full lg:w-1/2 overflow-hidden rounded-lg shadow-xl">
               <img
-                src={vision}
+                src={values}
                 alt="Company Values"
                 className="w-full h-64 lg:h-full object-cover"
               />
@@ -229,7 +229,7 @@ const About = () => {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
-                  className="bg-white p-6 rounded-lg shadow-md border border-[#0b60a0]/20 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300"
+                  className="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300"
                 >
                   <value.icon className="text-[#0b60a0] h-8 w-8 sm:h-12 sm:w-12 mb-4" />
                   <h3 className="text-lg sm:text-xl font-semibold text-[#000048] mb-3">
