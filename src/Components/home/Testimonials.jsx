@@ -152,7 +152,7 @@ export default function Testimonials() {
                     </div>
 
                     <div className="mt-4">
-                      <p className="text-black text-xs md:text-sm leading-relaxed">
+                      <p className="text-black text-sm md:text-base leading-relaxed p-4">
                         {testimonial.quote}
                       </p>
                     </div>

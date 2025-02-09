@@ -11,42 +11,36 @@ export default function Services() {
   const services = [
     {
       icon: FaLaptopCode,
-      iconColor: "text-blue-500",
       title: "IT Consulting",
       description:
         "Optimize your technology strategy to align with business goals, ensuring faster time-to-market and scalable growth",
     },
     {
       icon: FaBullhorn,
-      iconColor: "text-orange-500",
       title: "Digital Marketing",
       description:
         "Craft and execute data-driven marketing strategies that maximize ROI and drive customer acquisition for startups",
     },
     {
       icon: FaCode,
-      iconColor: "text-purple-500",
       title: "Software Development",
       description:
         "Deliver custom software solutions tailored to your business needs, from MVP to full-scale applications",
     },
     {
       icon: FaShoppingCart,
-      iconColor: "text-red-500",
       title: "E-commerce Solution",
       description:
         "Launch and grow your e-commerce business with end-to-end support, from platform selection to optimization",
     },
     {
       icon: FaDigitalTachograph,
-      iconColor: "text-indigo-500",
       title: "Digital Transformation",
       description:
         "Modernize your business operations with innovative digital solutions that enhance efficiency and competitiveness",
     },
     {
       icon: FaTasks,
-      iconColor: "text-emerald-500",
       title: "Agile Implementation",
       description:
         "Adopt agile methodologies to streamline processes, improve collaboration, and accelerate project delivery",
@@ -59,8 +53,8 @@ export default function Services() {
       className="bg-gray-50 text-black py-16 scroll-mt-24 lg:scroll-mt-32"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-[#000048] mb-4">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#000048] mb-4">
             Our Services
           </h2>
           <p className="text-black text-lg">
@@ -68,28 +62,17 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-xl transition-all group overflow-hidden"
+              className="bg-white border border-gray-200 p-6 rounded-lg shadow-md hover:shadow-xl transition-all group"
             >
-              <div
-                className={`p-6 flex justify-center items-center ${service.iconColor}`}
-              >
-                <service.icon
-                  className="group-hover:text-[#000048] text-[#0b60a0] transition-colors"
-                  size={36}
-                />
-              </div>
-              <div className="p-7">
-                <h3 className="text-lg text-center sm:text-xl font-semibold text-[#000048] mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-sm sm:text-base text-center text-black">
-                  {service.description}
-                </p>
-              </div>
+              <service.icon className="text-3xl md:text-4xl mb-4 text-[#000048] group-hover:text-[#0b60a0] transition-colors" />
+              <h3 className="text-lg md:text-xl font-semibold mb-3 text-black">
+                {service.title}
+              </h3>
+              <p className="text-base text-black">{service.description}</p>
             </div>
           ))}
         </div>
