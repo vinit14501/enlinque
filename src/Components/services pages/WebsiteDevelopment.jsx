@@ -147,8 +147,8 @@ const WebsiteDevelopment = () => {
                 key={service.title}
                 className="bg-white border border-gray-200 p-6 rounded-lg shadow-md hover:shadow-xl transition-all group"
               >
-                <service.icon className="text-3xl md:text-4xl mb-4 text-[#000048] group-hover:text-[#0b60a0] transition-colors" />
-                <h3 className="text-lg md:text-xl font-semibold mb-3 text-black">
+                <service.icon className="text-3xl md:text-4xl mb-4 text-[#0b60a0] group-hover:text-[#0b60a0] transition-colors" />
+                <h3 className="text-lg md:text-xl font-semibold mb-3 text-[#0b60a0]">
                   {service.title}
                 </h3>
                 <p className="text-base text-black">{service.description}</p>
