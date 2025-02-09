@@ -9,15 +9,24 @@ import {
 } from "react-icons/fa"
 import { BsArrowRight } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
-import websitedevelopment from "../../assets/websitedevelopment7.jpg"
+import React from "react"
+import websitedevelopment from "../../assets/websitedevelopment8.jpg"
 import digitalmarketing from "../../assets/digitalmarketing3.jpg"
+import PlanModal from "../modal/PlanModal"
 
 const WebsiteDevelopment = () => {
   const navigate = useNavigate()
+  const [isModalOpen, setIsModalOpen] = React.useState(false)
+  const [selectedPlan, setSelectedPlan] = React.useState(null)
 
   const scrollToPricing = () => {
     const pricingSection = document.getElementById("pricing-section")
     pricingSection.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
+  const handlePlanSelection = (plan) => {
+    setSelectedPlan(plan)
+    setIsModalOpen(true)
   }
 
   const Services = [
@@ -55,7 +64,7 @@ const WebsiteDevelopment = () => {
 
   const PricingPlans = [
     {
-      name: "Basic",
+      name: "Express",
       price: 50,
       features: [
         "Responsive Website Design",
@@ -78,7 +87,7 @@ const WebsiteDevelopment = () => {
       ],
     },
     {
-      name: "Premium",
+      name: "Advanced",
       price: 250,
       features: [
         "Full Custom Design",
@@ -112,12 +121,12 @@ const WebsiteDevelopment = () => {
                 Custom Website Design and Development
               </h1>
               <div className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8">
-                <p className="text-base sm:text-lg md:text-xl font-semibold text-white">
+                <p className="text-base sm:text-lg md:text-xl text-white">
                   Looking to launch a new website or redesign your existing one?
                   We craft engaging digital experiences tailored for businesses
                   of all sizes and industries.
                 </p>
-                <p className="text-base sm:text-lg md:text-xl font-semibold text-white">
+                <p className="text-base sm:text-lg md:text-xl text-white">
                   Our comprehensive approach ensures your online presence is
                   both visually stunning and strategically effective.
                 </p>
@@ -182,7 +191,7 @@ const WebsiteDevelopment = () => {
             whileHover={{ scale: 1.05 }}
             className="bg-white font-semibold text-[#000048] px-6 py-3 text-lg rounded-lg hover:bg-gray-100 transition-all"
           >
-            Digital Media Marketing
+            Digital Marketing
           </motion.button>
         </div>
       </section>
@@ -205,7 +214,7 @@ const WebsiteDevelopment = () => {
                 className="inline-block bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-xl transition-all group p-6"
               >
                 <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#000048] group-hover:text-blue-600 transition-colors">
-                  {plan.name} Plan
+                  {plan.name}
                 </h3>
                 <p className="text-2xl md:text-3xl font-bold mb-4 text-blue-600">
                   ${plan.price}
@@ -225,6 +234,7 @@ const WebsiteDevelopment = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => handlePlanSelection(plan)}
                   className="w-full inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
                 >
                   Choose {plan.name} Plan
@@ -236,7 +246,7 @@ const WebsiteDevelopment = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-[#0b60a0] py-16 md:py-24 px-4 sm:px-6 text-white sticky top-0 z-50">
+      <section className="bg-[#0b60a0] py-16 md:py-24 px-4 sm:px-6 text-white">
         <div className="container mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
             Ready to Get Started?
@@ -256,6 +266,13 @@ const WebsiteDevelopment = () => {
           </motion.button>
         </div>
       </section>
+
+      {/* Modal Component */}
+      <PlanModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        selectedPlan={selectedPlan}
+      />
     </div>
   )
 }

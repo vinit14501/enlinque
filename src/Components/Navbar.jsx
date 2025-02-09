@@ -13,11 +13,11 @@ const Navbar = () => {
     { label: "Services", to: "/#services", isScroll: true },
     { label: "Fractional CxO", to: "/fractionalCxO", isScroll: false },
     { label: "About", to: "/about", isScroll: false },
-    {
-      label: "Website Development",
-      to: "/websitedevelopment",
-      isScroll: false,
-    },
+    // {
+    //   label: "Website Development",
+    //   to: "/websitedevelopment",
+    //   isScroll: false,
+    // },
   ]
 
   const scrollToServices = () => {
