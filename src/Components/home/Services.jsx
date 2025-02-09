@@ -56,7 +56,7 @@ export default function Services() {
   return (
     <div
       id="services"
-      className="bg-gray-50 text-black py-16"
+      className="bg-gray-50 text-black py-16 scroll-mt-24 lg:scroll-mt-32"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
@@ -74,16 +74,14 @@ export default function Services() {
               key={index}
               className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-xl transition-all group overflow-hidden"
             >
-              {/* Upper section with icon */}
               <div
-                className={` p-6 flex justify-center items-center ${service.iconColor}`}
+                className={`p-6 flex justify-center items-center ${service.iconColor}`}
               >
                 <service.icon
-                  className="group-hover:text-[#0b60a0] text-[#0b60a0] transition-colors"
+                  className="group-hover:text-[#000048] text-[#0b60a0] transition-colors"
                   size={36}
                 />
               </div>
-              {/* Lower section with content */}
               <div className="p-7">
                 <h3 className="text-lg text-center sm:text-xl font-semibold text-[#000048] mb-3">
                   {service.title}

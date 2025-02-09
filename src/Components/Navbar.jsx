@@ -23,19 +23,30 @@ const Navbar = () => {
   const scrollToServices = () => {
     const servicesSection = document.getElementById("services")
     if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: "smooth" })
+      const navHeight = document.querySelector("nav").offsetHeight
+      const elementPosition = servicesSection.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
     } else if (location.pathname !== "/") {
       navigate("/#services")
     }
   }
 
   useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo(0, 0)
+    }
+
     if (location.hash === "#services" && location.pathname === "/") {
       setTimeout(() => {
         scrollToServices()
-      }, 0)
+      }, 100)
     }
-  }, [location])
+  }, [location.pathname, location.hash])
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -43,13 +54,17 @@ const Navbar = () => {
 
   const handleContactClick = () => {
     navigate("/contact")
+    window.scrollTo(0, 0)
+    if (isOpen) toggleMenu() // Added this line to close the mobile menu
   }
 
   const handleNavItemClick = (item) => {
     if (item.isScroll && item.to === "/#services") {
       scrollToServices()
-      if (isOpen) toggleMenu()
+    } else {
+      window.scrollTo(0, 0)
     }
+    if (isOpen) toggleMenu()
   }
 
   return (
@@ -57,10 +72,10 @@ const Navbar = () => {
       <nav className="fixed top-0 left-0 w-full bg-white z-50 shadow-md">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24">
-            {/* Logo with responsive sizing */}
             <Link
               to="/"
               className="flex-shrink-0 flex items-center"
+              onClick={() => window.scrollTo(0, 0)}
             >
               <img
                 src={logo}
@@ -69,7 +84,6 @@ const Navbar = () => {
               />
             </Link>
 
-            {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center justify-center flex-1 px-4">
               <div className="flex items-center space-x-1 xl:space-x-3">
                 {navItems.map((item) => (
@@ -91,7 +105,6 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Contact Button - Desktop */}
             <div className="hidden lg:flex items-center">
               <motion.button
                 onClick={handleContactClick}
@@ -99,16 +112,14 @@ const Navbar = () => {
                 whileTap={{ scale: 0.98 }}
                 className="
                   px-4 sm:px-5 py-2 sm:py-2.5 bg-blue-600 text-white
-                  rounded-lg text-sm sm:text-base font-medium font-raleway
-                  hover:bg-blue-700 transition-colors duration-300
-                  whitespace-nowrap shadow-lg shadow-blue-600/20
+                  rounded-lg text-base sm:text-lg font-semibold font-raleway
+                  shadow-lg hover:shadow-xl transition-shadow duration-300 gap-2
                 "
               >
                 Contact Us
               </motion.button>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={toggleMenu}
               className="lg:hidden p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
@@ -123,10 +134,8 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Dynamic spacing based on navbar height */}
       <div className="h-16 sm:h-20 lg:h-24 transition-all duration-200"></div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -179,10 +188,9 @@ const Navbar = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="
-                    w-full mt-4 py-3 bg-[#0b60a0] text-white
-                    rounded-lg text-base sm:text-lg font-medium font-raleway
-                    hover:bg-blue-700 transition-colors duration-300
-                    shadow-lg shadow-blue-600/20
+                    w-full mt-4 py-3 bg-blue-600 text-white
+                    rounded-lg text-base sm:text-lg font-semibold font-raleway
+                   shadow-lg hover:shadow-xl transition-shadow duration-300 gap-2
                   "
                 >
                   Contact Us

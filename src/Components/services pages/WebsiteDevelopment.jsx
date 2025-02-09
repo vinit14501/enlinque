@@ -8,10 +8,18 @@ import {
   FaCheck,
 } from "react-icons/fa"
 import { BsArrowRight } from "react-icons/bs"
-import websitedevelopment from "../../assets/websitedevelopment2.jpg"
-import digitalmarketing from "../../assets/digitalmarketing2.jpg"
+import { useNavigate } from "react-router-dom"
+import websitedevelopment from "../../assets/websitedevelopment7.jpg"
+import digitalmarketing from "../../assets/digitalmarketing3.jpg"
 
 const WebsiteDevelopment = () => {
+  const navigate = useNavigate()
+
+  const scrollToPricing = () => {
+    const pricingSection = document.getElementById("pricing-section")
+    pricingSection.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
   const Services = [
     {
       icon: FaServer,
@@ -85,84 +93,94 @@ const WebsiteDevelopment = () => {
   ]
 
   return (
-    <div className="bg-gray-50 text-black min-h-screen">
+    <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-12 md:py-24 px-4 text-center overflow-hidden">
+      <section className="relative w-full h-[calc(80vh-4rem)] sm:h-[calc(80vh-5rem)] lg:h-[calc(80vh-6rem)]">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url(${websitedevelopment})`,
           }}
-        ></div>
+        >
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
 
-        <div className="relative z-10 container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-8 text-[#0b60a0]">
-            Custom Website Design and Development
-          </h1>
-          <div className="max-w-2xl mx-auto space-y-3 md:space-y-4 mb-6 md:mb-8">
-            <p className="text-lg md:text-xl font-semibold text-white">
-              Looking to launch a new website or redesign your existing one? We
-              craft engaging digital experiences tailored for businesses of all
-              sizes and industries.
-            </p>
-            <p className="text-lg md:text-xl font-semibold text-white">
-              Our comprehensive approach ensures your online presence is both
-              visually stunning and strategically effective.
-            </p>
+        <div className="relative h-full flex items-center justify-center">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto text-center">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 text-white">
+                Custom Website Design and Development
+              </h1>
+              <div className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8">
+                <p className="text-base sm:text-lg md:text-xl font-semibold text-white">
+                  Looking to launch a new website or redesign your existing one?
+                  We craft engaging digital experiences tailored for businesses
+                  of all sizes and industries.
+                </p>
+                <p className="text-base sm:text-lg md:text-xl font-semibold text-white">
+                  Our comprehensive approach ensures your online presence is
+                  both visually stunning and strategically effective.
+                </p>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={scrollToPricing}
+                className="bg-blue-600 text-white px-3 sm:px-4 md:px-6 py-2 md:py-3 text-sm sm:text-base md:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                Check Pricing
+              </motion.button>
+            </div>
           </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            className="bg-[#000048] text-white px-4 md:px-6 py-2 md:py-3 text-sm md:text-base font-semibold rounded-lg hover:opacity-90 transition-all"
-          >
-            Check Pricing Packages
-          </motion.button>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="container mx-auto py-12 md:py-20 px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-black">
-          Components of Web Development
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
-          {Services.map((service) => (
-            <div
-              key={service.title}
-              className="bg-white border border-gray-200 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-all group"
-            >
-              <service.icon className="text-3xl md:text-4xl mb-3 md:mb-4 text-[#000048] group-hover:text-[#0b60a0] transition-colors" />
-              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-black">
-                {service.title}
-              </h3>
-              <p className="text-sm md:text-base text-black">
-                {service.description}
-              </p>
-            </div>
-          ))}
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12 text-[#000048]">
+            Components of Web Development
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            {Services.map((service) => (
+              <div
+                key={service.title}
+                className="bg-white border border-gray-200 p-6 rounded-lg shadow-md hover:shadow-xl transition-all group"
+              >
+                <service.icon className="text-3xl md:text-4xl mb-4 text-[#000048] group-hover:text-[#0b60a0] transition-colors" />
+                <h3 className="text-lg md:text-xl font-semibold mb-3 text-black">
+                  {service.title}
+                </h3>
+                <p className="text-base text-black">{service.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Digital Marketing Section */}
-      <section className="relative py-12 md:py-20 px-4 text-white overflow-hidden">
+      <section className="relative py-16 md:py-24 text-white">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url(${digitalmarketing})`,
           }}
-        ></div>
+        >
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
 
-        <div className="relative z-10 text-center container mx-auto text-black px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">
+        <div className="relative z-10 text-center container mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-white">
             Looking to build a strong online presence?
           </h2>
-          <p className="max-w-2xl mx-auto mb-6 md:mb-8 text-base md:text-xl">
+          <p className="max-w-2xl mx-auto mb-8 text-lg md:text-xl text-white">
             Your website is just the beginning. Leverage powerful digital
             marketing strategies to boost visibility, drive traffic, and
             increase conversions.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
-            className="bg-white font-semibold text-[#000048] px-4 md:px-6 py-2 md:py-3 text-sm md:text-base rounded-lg hover:bg-gray-100 transition-all"
+            className="bg-white font-semibold text-[#000048] px-6 py-3 text-lg rounded-lg hover:bg-gray-100 transition-all"
           >
             Digital Media Marketing
           </motion.button>
@@ -170,61 +188,71 @@ const WebsiteDevelopment = () => {
       </section>
 
       {/* Pricing Section */}
-      <section className="container mx-auto py-12 md:py-20 px-4">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
-            Pricing Plans
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {PricingPlans.map((plan) => (
-            <div
-              key={plan.name}
-              className="bg-white border border-gray-200 p-4 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-all group"
-            >
-              <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-black group-hover:text-blue-600 transition-colors">
-                {plan.name} Plan
-              </h3>
-              <p className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-blue-600">
-                ${plan.price}
-                <span className="text-sm text-gray-500">/month</span>
-              </p>
-              <ul className="space-y-2 md:space-y-3 text-gray-600 mb-4 md:mb-6">
-                {plan.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-center text-sm md:text-base"
-                  >
-                    <FaCheck className="text-green-500 mr-2" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <button className="w-full bg-[#000048] text-white py-2 rounded-lg hover:opacity-90 text-sm md:text-base">
-                Choose {plan.name} Plan
-              </button>
-            </div>
-          ))}
+      <section
+        id="pricing-section"
+        className="py-16 md:py-24 px-4 sm:px-6 lg:px-8"
+      >
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-[#000048]">
+              Pricing Plans
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
+            {PricingPlans.map((plan) => (
+              <div
+                key={plan.name}
+                className="inline-block bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-xl transition-all group p-6"
+              >
+                <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#000048] group-hover:text-blue-600 transition-colors">
+                  {plan.name} Plan
+                </h3>
+                <p className="text-2xl md:text-3xl font-bold mb-4 text-blue-600">
+                  ${plan.price}
+                  <span className="text-sm text-gray-500">/month</span>
+                </p>
+                <ul className="space-y-3 text-gray-600 mb-6">
+                  {plan.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-center text-base"
+                    >
+                      <FaCheck className="text-green-500 mr-2 flex-shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                >
+                  Choose {plan.name} Plan
+                </motion.button>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="bg-[#0b60a0] py-12 md:py-20 px-4 text-white">
-        <div className="text-center container mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">
+      <section className="bg-[#0b60a0] py-16 md:py-24 px-4 sm:px-6 text-white sticky top-0 z-50">
+        <div className="container mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
             Ready to Get Started?
           </h2>
-          <p className="max-w-2xl mx-auto mb-6 md:mb-8 text-base md:text-xl">
+          <p className="max-w-2xl mx-auto mb-8 text-lg md:text-xl">
             We&apos;re excited to help you bring your digital vision to life.
             Let&apos;s discuss your project and how we can help you succeed.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold text-[#000048] bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold font-raleway text-[#000048] bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 gap-2"
+            onClick={() => navigate("/contact")}
           >
             Contact Us
-            <BsArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+            <BsArrowRight className="ml-2 w-5 h-5" />
           </motion.button>
         </div>
       </section>

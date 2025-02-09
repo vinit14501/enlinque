@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { FaLinkedin } from "react-icons/fa"
+import { GrSend } from "react-icons/gr"
 import {
   IoPersonOutline,
   IoBusinessOutline,
   IoMailOutline,
   IoPhonePortraitOutline,
   IoChatbubbleOutline,
-  IoSendOutline,
 } from "react-icons/io5"
 
 const Contact = () => {
@@ -46,7 +46,8 @@ const Contact = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+          {/* Added py-8 (padding-top and padding-bottom) to create more space */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 py-8">
             <div className="flex flex-col items-start lg:border-r border-b lg:border-b-0 border-white/20 pb-3 lg:pb-0 lg:pr-4">
               <h3 className="font-bold text-lg text-white mb-2">Strategic</h3>
               <p className="text-sm text-white/90">Growth Solutions</p>
@@ -106,7 +107,7 @@ const Contact = () => {
           <div className="bg-white shadow-2xl rounded-lg p-6 lg:p-8 lg:ml-16">
             <div className="mb-8">
               <h2 className="text-lg font-light text-[#000048] mb-2">
-                Let’s Make Something Great Together!
+                Let&apos;s Make Something Great Together!
               </h2>
               <h3 className="text-3xl font-bold text-[#000048] tracking-tight">
                 Start a conversation with us
@@ -185,10 +186,10 @@ const Contact = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-1/2 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group mx-auto"
+                className="w-1/2 bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group mx-auto"
               >
-                <IoSendOutline className="text-xl group-hover:translate-x-1 transition-transform duration-300" />
                 <span>Send Message</span>
+                <GrSend className="w-4 h-4 sm:w-5 sm:h-5" />
               </motion.button>
             </form>
           </div>

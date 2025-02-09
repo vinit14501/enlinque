@@ -1,11 +1,13 @@
 import { motion } from "framer-motion"
 import ctaBackground from "../../assets/cta.jpg"
 import { BsArrowRight } from "react-icons/bs"
+import { useNavigate } from "react-router-dom"
 
 export default function Cta() {
+  const navigate = useNavigate()
+
   return (
     <>
-      {/* Option 1: With Background Image */}
       <section
         className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24 bg-cover bg-center bg-no-repeat relative"
         style={{
@@ -27,6 +29,7 @@ export default function Cta() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center gap-2 sm:gap-3 mx-auto"
+              onClick={() => navigate("/fractionalCxO")}
             >
               <span>Get Started</span>
               <BsArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />

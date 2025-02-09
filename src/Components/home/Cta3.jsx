@@ -1,9 +1,11 @@
-import React from "react"
 import { motion } from "framer-motion"
 import { FaArrowRight } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
 import cta from "../../assets/cta3.jpg"
 
 const Cta3 = () => {
+  const navigate = useNavigate()
+
   return (
     <div
       className="relative w-full h-[300px] sm:h-[350px] md:h-[400px] bg-cover bg-center"
@@ -27,8 +29,9 @@ const Cta3 = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-blue-600 text-white font-semibold font-raleway py-2 px-4 sm:px-5 rounded-lg inline-flex items-center gap-1 sm:gap-2 text-sm sm:text-base transition-all duration-300"
+              onClick={() => navigate("/websitedevelopment")}
             >
-              Get Started <FaArrowRight className="text-sm sm:text-base" />
+              Get Started <FaArrowRight className="text-base sm:text-base" />
             </motion.button>
           </div>
         </div>

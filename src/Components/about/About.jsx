@@ -1,10 +1,13 @@
 import { motion } from "framer-motion"
 import { FaCheckCircle, FaSync, FaLightbulb, FaHandshake } from "react-icons/fa"
 import { BsArrowRight } from "react-icons/bs"
+import { useNavigate } from "react-router-dom"
 import about from "../../assets/about.jpg"
 import values from "../../assets/values.jpg"
 
 const About = () => {
+  const navigate = useNavigate()
+
   const valueDetails = [
     {
       icon: FaCheckCircle,
@@ -246,7 +249,7 @@ const About = () => {
       </section>
 
       {/* Connect Section */}
-      <section className="bg-[#0b60a0] py-12 sm:py-16 md:py-20">
+      <section className="bg-[#0b60a0] py-12 sm:py-16 md:py-20 sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0 }}
@@ -265,6 +268,7 @@ const About = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold text-[#000048] bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              onClick={() => navigate("/contact")}
             >
               Get in Touch
               <BsArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />

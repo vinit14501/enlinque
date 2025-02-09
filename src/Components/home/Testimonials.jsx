@@ -80,12 +80,12 @@ export default function Testimonials() {
     <div className="py-8 md:py-16 px-4 md:px-8 font-[sans-serif]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-          <h2 className="text-blue-600 text-3xl md:text-3xl font-bold">
+          <h2 className="text-[#000048] text-3xl md:text-3xl font-bold">
             What our happy clients say
           </h2>
           <p className="text-lg text-black mt-3 md:mt-4 leading-relaxed px-4 md:px-0">
-            Don't just take our word for it—our clients say it best! Hear how
-            we've helped them achieve their goals with ease
+            Don&apos;t just take our word for it—our clients say it best! Hear
+            how we&apos;ve helped them achieve their goals with ease
           </p>
         </div>
 
