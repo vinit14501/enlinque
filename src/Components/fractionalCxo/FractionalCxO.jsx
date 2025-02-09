@@ -198,7 +198,7 @@ export default function FractionalCxO() {
                     </motion.div>
                   </div>
                   <div className="space-y-4 md:space-y-6 pl-0 md:pl-4 flex flex-col justify-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#0b60a0]">
                       {service.title}
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
@@ -210,7 +210,7 @@ export default function FractionalCxO() {
                           key={idx}
                           className="flex items-center text-sm md:text-base"
                         >
-                          <FaCheckCircle className="text-indigo-500 mr-3 flex-shrink-0" />
+                          <FaCheckCircle className="text-[#0b60a0] mr-3 flex-shrink-0" />
                           {point}
                         </li>
                       ))}
@@ -220,7 +220,7 @@ export default function FractionalCxO() {
               ) : (
                 <>
                   <div className="space-y-4 md:space-y-6 pr-0 md:pr-4 flex flex-col justify-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#0b60a0]">
                       {service.title}
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
@@ -232,7 +232,7 @@ export default function FractionalCxO() {
                           key={idx}
                           className="flex items-center text-sm md:text-base"
                         >
-                          <FaCheckCircle className="text-indigo-500 mr-3 flex-shrink-0" />
+                          <FaCheckCircle className="text-[#0b60a0] mr-3 flex-shrink-0" />
                           {point}
                         </li>
                       ))}
