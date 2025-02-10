@@ -19,23 +19,90 @@ const Contact = () => {
     message: "",
   })
 
+  const [formErrors, setFormErrors] = useState({
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    message: "",
+  })
+
+  const validateForm = () => {
+    const { name, company, email, phone, message } = formData
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/
+    const newErrors = {
+      name: !name.trim() || name.trim().length < 2 ? "Invalid name" : "",
+      company: !company.trim() ? "Invalid company" : "",
+      email: !email.trim() || !emailRegex.test(email) ? "Invalid email" : "",
+      phone: !phone.trim() || !phoneRegex.test(phone) ? "Invalid phone" : "",
+      message:
+        !message.trim() || message.trim().length < 10
+          ? "Message too short"
+          : "",
+    }
+
+    setFormErrors(newErrors)
+    return !Object.values(newErrors).some((error) => error !== "")
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }))
+
+    // Clear error when user starts typing
+    setFormErrors((prev) => ({
+      ...prev,
+      [name]: "",
+    }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+
+    if (!validateForm()) return
+
+    try {
+      const response = await fetch("/api/forms/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        alert("Message sent successfully!")
+        setFormData({
+          name: "",
+          company: "",
+          email: "",
+          phone: "",
+          message: "",
+        })
+        setFormErrors({
+          name: "",
+          company: "",
+          email: "",
+          phone: "",
+          message: "",
+        })
+      } else {
+        const errorData = await response.json()
+        alert(errorData.message || "Failed to send message")
+      }
+    } catch (error) {
+      alert("Network error. Please try again.")
+    }
   }
 
   return (
     <div className="bg-gradient-to-br from-[#000048] to-[#0b60a0] min-h-[calc(100vh-144px)]">
       <div className="container mx-auto max-w-7xl flex flex-col lg:flex-row gap-8 lg:gap-16 p-4 lg:p-8">
-        {/* Left Column - Adjusted margin and spacing */}
+        {/* Left Column */}
         <div className="w-full lg:w-6/12 space-y-6 lg:space-y-12 py-4 lg:py-8 lg:-ml-12 relative z-10">
           <div className="space-y-4">
             <h1 className="text-2xl lg:text-3xl font-extralight text-white tracking-wide">
@@ -46,7 +113,6 @@ const Contact = () => {
             </h2>
           </div>
 
-          {/* Added py-8 (padding-top and padding-bottom) to create more space */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 py-8">
             <div className="flex flex-col items-start lg:border-r border-b lg:border-b-0 border-white/20 pb-3 lg:pb-0 lg:pr-4">
               <h3 className="font-bold text-lg text-white mb-2">Strategic</h3>
@@ -97,7 +163,7 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Right Column */}
+        {/* Right Column with Form */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -118,68 +184,106 @@ const Contact = () => {
               onSubmit={handleSubmit}
               className="space-y-6"
             >
-              <div className="relative flex items-center group">
-                <IoPersonOutline className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your Name *"
-                  className="w-full h-10 pl-8 text-[#000048] placeholder-[#000048]/60 border-b-2 border-gray-200 focus:border-[#0b60a0] focus:outline-none transition-colors duration-300"
-                />
+              <div className="relative flex flex-col group">
+                <div className="flex items-center">
+                  <IoPersonOutline className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your Name *"
+                    className={`w-full h-10 pl-8 text-[#000048] placeholder-[#000048]/60 border-b-2 ${
+                      formErrors.name ? "border-red-500" : "border-gray-200"
+                    } focus:border-[#0b60a0] focus:outline-none transition-colors duration-300`}
+                  />
+                </div>
+                {formErrors.name && (
+                  <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>
+                )}
               </div>
 
-              <div className="relative flex items-center group">
-                <IoBusinessOutline className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
-                <input
-                  type="text"
-                  name="company"
-                  required
-                  value={formData.company}
-                  onChange={handleChange}
-                  placeholder="Company Name *"
-                  className="w-full h-10 pl-8 text-[#000048] placeholder-[#000048]/60 border-b-2 border-gray-200 focus:border-[#0b60a0] focus:outline-none transition-colors duration-300"
-                />
+              <div className="relative flex flex-col group">
+                <div className="flex items-center">
+                  <IoBusinessOutline className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
+                  <input
+                    type="text"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder="Company Name *"
+                    className={`w-full h-10 pl-8 text-[#000048] placeholder-[#000048]/60 border-b-2 ${
+                      formErrors.company ? "border-red-500" : "border-gray-200"
+                    } focus:border-[#0b60a0] focus:outline-none transition-colors duration-300`}
+                  />
+                </div>
+                {formErrors.company && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {formErrors.company}
+                  </p>
+                )}
               </div>
 
-              <div className="relative flex items-center group">
-                <IoMailOutline className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Your Email *"
-                  className="w-full h-10 pl-8 text-[#000048] placeholder-[#000048]/60 border-b-2 border-gray-200 focus:border-[#0b60a0] focus:outline-none transition-colors duration-300"
-                />
+              <div className="relative flex flex-col group">
+                <div className="flex items-center">
+                  <IoMailOutline className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Your Email *"
+                    className={`w-full h-10 pl-8 text-[#000048] placeholder-[#000048]/60 border-b-2 ${
+                      formErrors.email ? "border-red-500" : "border-gray-200"
+                    } focus:border-[#0b60a0] focus:outline-none transition-colors duration-300`}
+                  />
+                </div>
+                {formErrors.email && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {formErrors.email}
+                  </p>
+                )}
               </div>
 
-              <div className="relative flex items-center group">
-                <IoPhonePortraitOutline className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
-                <input
-                  type="tel"
-                  name="phone"
-                  required
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Phone Number *"
-                  className="w-full h-10 pl-8 text-[#000048] placeholder-[#000048]/60 border-b-2 border-gray-200 focus:border-[#0b60a0] focus:outline-none transition-colors duration-300"
-                />
+              <div className="relative flex flex-col group">
+                <div className="flex items-center">
+                  <IoPhonePortraitOutline className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Phone Number *"
+                    className={`w-full h-10 pl-8 text-[#000048] placeholder-[#000048]/60 border-b-2 ${
+                      formErrors.phone ? "border-red-500" : "border-gray-200"
+                    } focus:border-[#0b60a0] focus:outline-none transition-colors duration-300`}
+                  />
+                </div>
+                {formErrors.phone && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {formErrors.phone}
+                  </p>
+                )}
               </div>
 
-              <div className="relative group">
-                <IoChatbubbleOutline className="absolute left-0 top-3 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
-                <textarea
-                  name="message"
-                  required
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Your Message *"
-                  className="w-full pl-8 pt-2 text-[#000048] placeholder-[#000048]/60 border-b-2 border-gray-200 focus:border-[#0b60a0] focus:outline-none transition-colors duration-300 h-32 resize-none"
-                />
+              <div className="relative flex flex-col group">
+                <div className="flex items-start">
+                  <IoChatbubbleOutline className="absolute left-0 top-3 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Your Message *"
+                    className={`w-full pl-8 pt-2 text-[#000048] placeholder-[#000048]/60 border-b-2 ${
+                      formErrors.message ? "border-red-500" : "border-gray-200"
+                    } focus:border-[#0b60a0] focus:outline-none transition-colors duration-300 h-32 resize-none`}
+                  />
+                </div>
+                {formErrors.message && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {formErrors.message}
+                  </p>
+                )}
               </div>
 
               <motion.button

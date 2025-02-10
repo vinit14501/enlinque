@@ -1,9 +1,8 @@
-require("dotenv").config()
+const dotenv = require("dotenv")
 const express = require("express")
 const cors = require("cors")
 const helmet = require("helmet")
 const mongoSanitize = require("express-mongo-sanitize")
-const xss = require("xss-clean")
 const compression = require("compression")
 const connectDB = require("./config/db")
 const formRoutes = require("./routes/formRoutes")
@@ -14,18 +13,27 @@ const app = express()
 connectDB()
 
 // Security Middleware
-app.use(helmet()) // Secure HTTP headers
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+      },
+    },
+    xssFilter: true,
+  })
+)
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL, // Restrict to your frontend domain
-    methods: ["POST"], // Only allow POST requests
+    origin: process.env.FRONTEND_URL,
+    methods: ["POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 )
-app.use(express.json({ limit: "10kb" })) // Body parser with size limit
-app.use(mongoSanitize()) // Prevent NoSQL injection
-app.use(xss()) // Prevent XSS attacks
-app.use(compression()) // Compress responses
+app.use(express.json({ limit: "10kb" }))
+app.use(mongoSanitize())
+app.use(compression())
 
 // Routes
 app.use("/api/forms", formRoutes)
