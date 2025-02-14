@@ -39,14 +39,14 @@ const PricingSection = () => {
                 <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#000048] group-hover:text-blue-600 transition-colors">
                   {plan.name}
                 </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="text-black mb-6 leading-relaxed">
                   {plan.description}
                 </p>
                 <div className="flex items-baseline">
                   <p className="text-3xl md:text-4xl font-bold text-blue-600">
                     ${plan.price}
                   </p>
-                  <span className="text-gray-500 ml-2">/month</span>
+                  {/* <span className="text-gray-500 ml-2">/month</span> */}
                 </div>
               </div>
 
@@ -67,13 +67,13 @@ const PricingSection = () => {
                 <h4 className="font-semibold text-lg mb-6 text-[#000048] border-b border-gray-100 pb-3">
                   Features
                 </h4>
-                <ul className="space-y-4 text-gray-600">
+                <ul className="space-y-4 text-black">
                   {plan.features.map((feature) => (
                     <li
                       key={feature}
                       className="flex items-center text-base group-hover:transform group-hover:translate-x-1 transition-transform duration-300"
                     >
-                      <FaCheck className="text-green-500 mr-3 flex-shrink-0" />
+                      <FaCheck className="text-blue-600 mr-3 flex-shrink-0" />
                       <span className="leading-relaxed">{feature}</span>
                     </li>
                   ))}
@@ -85,7 +85,7 @@ const PricingSection = () => {
                 <h4 className="font-semibold text-lg mb-6 text-[#000048] border-b border-gray-100 pb-3">
                   Additional Services
                 </h4>
-                <ul className="space-y-4 text-gray-600">
+                <ul className="space-y-4 text-black">
                   {plan.additionalServices.map((service) => (
                     <li
                       key={service}

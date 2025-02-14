@@ -5,7 +5,7 @@ import cto from "../../assets/cto.png"
 import cfo from "../../assets/CFO.png"
 import coo from "../../assets/COO.png"
 import cio from "../../assets/CIO.png"
-import fractional from "../../assets/fractional.jpg"
+import fractional from "../../assets/fractional2.jpg"
 
 const services = [
   {

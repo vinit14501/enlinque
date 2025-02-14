@@ -9,6 +9,7 @@ export default defineConfig({
   },
   build: {
     outDir: "dist",
+    sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -16,6 +17,15 @@ export default defineConfig({
             return "vendor"
           }
         },
+        chunkFileNames: "assets/[name]-[hash].js",
+        entryFileNames: "assets/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash].[ext]",
+      },
+    },
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true,
       },
     },
   },

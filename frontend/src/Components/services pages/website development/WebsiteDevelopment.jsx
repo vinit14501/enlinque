@@ -10,9 +10,9 @@ import { BsArrowRight } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
 import React from "react"
 import websitedevelopment from "../../../assets/websitedevelopment8.jpg"
-import digitalmarketing from "../../../assets/digitalmarketing3.jpg"
+import digitalmarketing from "../../../assets/digitalmarketing2.jpg"
 import PlanModal from "../../modal/PlanModal"
-import PricingSection from "./PricingSection" // Import the new component
+import PricingSection from "./PricingSection"
 
 const WebsiteDevelopment = () => {
   const navigate = useNavigate()
@@ -129,35 +129,39 @@ const WebsiteDevelopment = () => {
       </section>
 
       {/* Digital Marketing Section */}
-      <section className="relative py-16 md:py-24 text-white">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${digitalmarketing})`,
-          }}
+      <div
+        className="relative w-full h-[300px] sm:h-[350px] md:h-[400px] bg-cover bg-center"
+        style={{ backgroundImage: `url(${digitalmarketing})` }}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="absolute bottom-0 left-0 right-0 flex justify-center"
         >
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+          <div className="w-[80%] sm:w-[92%] md:w-[85%] bg-[#000048]/80 backdrop-blur-md p-4 sm:p-6 md:p-8 shadow-lg">
+            <div className="text-left text-white">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-raleway mb-2 sm:mb-3">
+                Looking to build a strong online presence?
+              </h2>
+              <p className="text-sm sm:text-base md:text-lg font-raleway mb-3 sm:mb-4 opacity-80">
+                Your website is just the beginning. Leverage powerful digital
+                marketing strategies to boost visibility, drive traffic, and
+                increase conversions.
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-blue-600 text-white font-semibold font-raleway py-2 px-4 sm:px-5 rounded-lg inline-flex items-center gap-1 sm:gap-2 text-sm sm:text-base transition-all duration-300"
+              >
+                Digital Marketing
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
+      </div>
 
-        <div className="relative z-10 text-center container mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-white">
-            Looking to build a strong online presence?
-          </h2>
-          <p className="max-w-2xl mx-auto mb-8 text-lg md:text-xl text-white">
-            Your website is just the beginning. Leverage powerful digital
-            marketing strategies to boost visibility, drive traffic, and
-            increase conversions.
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            className="bg-white font-semibold text-[#000048] px-6 py-3 text-lg rounded-lg hover:bg-gray-100 transition-all"
-          >
-            Digital Marketing
-          </motion.button>
-        </div>
-      </section>
-
-      {/* Pricing Section - Using the new component */}
+      {/* Pricing Section */}
       <PricingSection />
 
       {/* CTA Section */}

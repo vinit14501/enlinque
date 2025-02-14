@@ -1,6 +1,6 @@
 {
-    "name": "Your Company Name - Professional Business Solutions",
-    "short_name": "YourApp",
+    "name": "Enlinque - Professional Business Solutions",
+    "short_name": "Enlinque",
     "description": "Professional business solutions including Fractional CxO and Website Development services",
     "start_url": "/",
     "display": "standalone",
@@ -60,22 +60,6 @@
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
-        }
-    ],
-    "screenshots": [
-        {
-            "src": "/screenshots/home-desktop.png",
-            "sizes": "1920x1080",
-            "type": "image/png",
-            "platform": "wide",
-            "label": "Home Screen"
-        },
-        {
-            "src": "/screenshots/home-mobile.png",
-            "sizes": "750x1334",
-            "type": "image/png",
-            "platform": "narrow",
-            "label": "Home Screen Mobile"
         }
     ]
 }

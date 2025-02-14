@@ -20,55 +20,88 @@ const SuccessView = ({ selectedPlan, onClose }) => (
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        transition={{ delay: 0.2 }}
-        className="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center mb-6"
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 15,
+          delay: 0.2,
+        }}
+        className="w-28 h-28 rounded-full bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center mb-8 shadow-lg shadow-green-100"
       >
-        <IoCheckmarkCircleOutline className="w-14 h-14 text-green-600" />
+        <motion.div
+          initial={{ scale: 0, rotate: -180 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          <IoCheckmarkCircleOutline className="w-16 h-16 text-green-500" />
+        </motion.div>
       </motion.div>
+
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        transition={{ delay: 0.4 }}
-        className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded-full"
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 15,
+          delay: 0.4,
+        }}
+        className="absolute -top-2 -right-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-sm font-medium px-3 py-1.5 rounded-full shadow-md"
       >
         ${selectedPlan.price}/mo
       </motion.div>
     </div>
 
     <motion.h3
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
-      className="text-2xl font-semibold text-gray-900 mb-2"
+      className="text-3xl font-semibold text-gray-900 mb-3"
     >
-      Subscription Confirmed!
+      Welcome Aboard! 🎉
     </motion.h3>
 
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4 }}
-      className="space-y-3"
+      className="space-y-4 max-w-md"
     >
-      <p className="text-gray-600">
-        Thank you for subscribing to our{" "}
-        <span className="font-medium text-blue-600">{selectedPlan.name}</span>{" "}
+      <p className="text-lg text-gray-700">
+        Thank you for choosing our{" "}
+        <span className="font-medium text-blue-600 bg-blue-50 px-2 py-0.5 rounded">
+          {selectedPlan.name}
+        </span>{" "}
         plan
       </p>
-      <p className="text-sm text-gray-500">
-        We&apos;ve sent the confirmation details to your email. Our team will
-        contact you shortly to get you started.
-      </p>
+      <div className="bg-gray-50 p-4 rounded-lg">
+        <p className="text-gray-600">
+          We've sent all the details to your email. Our team will reach out
+          shortly to help you get started on your journey with us.
+        </p>
+      </div>
     </motion.div>
 
     <motion.button
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
       onClick={onClose}
-      className="mt-8 px-6 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-200"
+      className="mt-8 px-8 py-3 bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-gray-200 hover:text-gray-900 transition-all duration-200 shadow-sm hover:shadow group"
     >
       Close Window
+      <motion.span
+        initial={{ x: 0 }}
+        animate={{ x: [0, 5, 0] }}
+        transition={{
+          duration: 1,
+          repeat: Infinity,
+          repeatDelay: 3,
+        }}
+        className="inline-block ml-2"
+      >
+        👋
+      </motion.span>
     </motion.button>
   </motion.div>
 )
@@ -253,7 +286,7 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
                           <span className="text-3xl font-medium text-gray-900">
                             ${selectedPlan.price}
                           </span>
-                          <span className="text-gray-600">/month</span>
+                          {/* <span className="text-gray-600">/month</span> */}
                         </div>
                         <p className="text-gray-600 text-sm mt-2">
                           {selectedPlan.name} Package
