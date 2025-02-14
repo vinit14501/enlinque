@@ -1,12 +1,13 @@
-const express = require("express")
-const router = express.Router()
-const formController = require("../controllers/formController")
-const { formSubmissionLimiter } = require("../middleware/rateLimiter")
-const {
+import express from "express"
+import * as formController from "../controllers/formController.js"
+import { formSubmissionLimiter } from "../middleware/rateLimiter.js"
+import {
   validateContactForm,
   validatePlanForm,
   validate,
-} = require("../middleware/validator")
+} from "../middleware/validator.js"
+
+const router = express.Router()
 
 router.post(
   "/contact",
@@ -24,4 +25,4 @@ router.post(
   formController.submitPlanForm
 )
 
-module.exports = router
+export default router

@@ -1,14 +1,86 @@
-import React, { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { IoClose } from "react-icons/io5"
-import { FaUser, FaEnvelope, FaPhone, FaRegPaperPlane } from "react-icons/fa"
+import { IoClose, IoCheckmarkCircleOutline } from "react-icons/io5"
+import {
+  IoPersonOutline,
+  IoMailOutline,
+  IoPhonePortraitOutline,
+} from "react-icons/io5"
+import { FaRegPaperPlane } from "react-icons/fa"
+import axios from "axios"
+
+const SuccessView = ({ selectedPlan, onClose }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    className="p-12 flex flex-col items-center text-center"
+  >
+    <div className="relative">
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 0.2 }}
+        className="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center mb-6"
+      >
+        <IoCheckmarkCircleOutline className="w-14 h-14 text-green-600" />
+      </motion.div>
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 0.4 }}
+        className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded-full"
+      >
+        ${selectedPlan.price}/mo
+      </motion.div>
+    </div>
+
+    <motion.h3
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.3 }}
+      className="text-2xl font-semibold text-gray-900 mb-2"
+    >
+      Subscription Confirmed!
+    </motion.h3>
+
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.4 }}
+      className="space-y-3"
+    >
+      <p className="text-gray-600">
+        Thank you for subscribing to our{" "}
+        <span className="font-medium text-blue-600">{selectedPlan.name}</span>{" "}
+        plan
+      </p>
+      <p className="text-sm text-gray-500">
+        We&apos;ve sent the confirmation details to your email. Our team will
+        contact you shortly to get you started.
+      </p>
+    </motion.div>
+
+    <motion.button
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.5 }}
+      onClick={onClose}
+      className="mt-8 px-6 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-200"
+    >
+      Close Window
+    </motion.button>
+  </motion.div>
+)
 
 const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
 
   useEffect(() => {
     const handleEsc = (e) => {
@@ -18,10 +90,38 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
     return () => window.removeEventListener("keydown", handleEsc)
   }, [onClose])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("Form submitted:", { ...formData, plan: selectedPlan })
-    onClose()
+    setIsSubmitting(true)
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/forms/plan`,
+        {
+          ...formData,
+          selectedPlan,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+
+      if (response.data.success) {
+        setIsSuccess(true)
+        setFormData({ name: "", email: "", phone: "" })
+      }
+    } catch (error) {
+      console.error("Submission error:", error)
+      const errorMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Failed to submit plan subscription"
+      alert(errorMessage) // Fallback error handling
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e) => {
@@ -35,6 +135,14 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
     if (e.target === e.currentTarget) onClose()
   }
 
+  const handleClose = () => {
+    onClose()
+    // Reset success state after animation completes
+    setTimeout(() => {
+      setIsSuccess(false)
+    }, 200)
+  }
+
   if (!selectedPlan) return null
 
   return (
@@ -46,123 +154,121 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
           onClick={handleBackdropClick}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-[2px] font-raleway"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="relative w-full max-w-4xl bg-[#000048] rounded-2xl shadow-2xl overflow-hidden"
+            className="relative w-full max-w-4xl bg-white rounded-lg shadow-xl overflow-hidden"
           >
-            {/* Simplified Background */}
-            <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#000048] via-[#0b60a0]/20 to-[#000048]" />
-            </div>
-
-            {/* Close Button */}
             <button
-              onClick={onClose}
-              className="absolute right-4 top-4 text-white/40 hover:text-white z-20 transition-colors"
+              onClick={handleClose}
+              disabled={isSubmitting}
+              className="absolute right-5 top-5 text-gray-500 hover:text-gray-700 z-20 transition-colors disabled:opacity-50"
             >
-              <IoClose className="w-6 h-6" />
+              <IoClose className="w-5 h-5" />
             </button>
 
-            {/* Header Section */}
-            <div className="relative p-6 md:p-8 text-white border-b border-white/10">
-              <h2 className="text-2xl md:text-3xl font-light mb-2">
-                Ready to <span className="font-semibold">elevate</span> your
-                digital presence?
-              </h2>
-              <p className="text-sm md:text-base text-white/60">
-                Join our {selectedPlan.name} plan and unlock a world of
-                possibilities.
-              </p>
-            </div>
-
-            {/* Content Section */}
-            <div className="relative grid md:grid-cols-2 gap-6 md:gap-0 p-6 md:p-8">
-              {/* Form Section */}
-              <div className="md:pr-8 md:border-r border-white/10">
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-4"
-                >
-                  {[
-                    {
-                      icon: FaUser,
-                      name: "name",
-                      placeholder: "Full Name",
-                      type: "text",
-                    },
-                    {
-                      icon: FaEnvelope,
-                      name: "email",
-                      placeholder: "Email Address",
-                      type: "email",
-                    },
-                    {
-                      icon: FaPhone,
-                      name: "phone",
-                      placeholder: "Phone Number",
-                      type: "tel",
-                    },
-                  ].map((field) => (
-                    <div
-                      key={field.name}
-                      className="relative group"
-                    >
-                      <field.icon className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-hover:text-white/60 transition-colors text-lg" />
-                      <input
-                        type={field.type}
-                        name={field.name}
-                        value={formData[field.name]}
-                        onChange={handleChange}
-                        placeholder={field.placeholder}
-                        className="w-full pl-10 pr-4 py-3 bg-white/5 text-white placeholder-white/40 border border-white/10 rounded-lg focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-blue-500/20 transition-colors text-base"
-                        required
-                      />
-                    </div>
-                  ))}
-
-                  <button
-                    type="submit"
-                    className="w-full inline-flex items-center justify-center px-6 py-3 text-base md:text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 gap-2"
-                  >
-                    <span>Complete Subscription</span>
-                    <FaRegPaperPlane />
-                  </button>
-                </form>
-              </div>
-
-              {/* Package Details */}
-              <div className="md:pl-8">
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-white/60 uppercase tracking-wider text-xs font-medium mb-2">
-                      Selected Plan
-                    </p>
-                    <h3 className="text-xl md:text-2xl text-white font-light">
-                      {selectedPlan.name}{" "}
-                      <span className="font-semibold">Package</span>
+            {!isSuccess ? (
+              <>
+                <div className="relative px-8 pt-8 pb-6 border-b border-gray-100 bg-blue-50/50">
+                  <div className="max-w-3xl">
+                    <h3 className="text-2xl text-gray-900 font-medium">
+                      {selectedPlan.name} Plan Subscription
                     </h3>
+                    <p className="text-gray-600 mt-1">
+                      Complete your subscription details below
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 p-8">
+                  <div className="md:pr-12 md:border-r border-gray-100">
+                    <form
+                      onSubmit={handleSubmit}
+                      className="space-y-7"
+                    >
+                      {[
+                        {
+                          icon: IoPersonOutline,
+                          name: "name",
+                          type: "text",
+                          placeholder: "Your Name *",
+                        },
+                        {
+                          icon: IoMailOutline,
+                          name: "email",
+                          type: "email",
+                          placeholder: "Your Email *",
+                        },
+                        {
+                          icon: IoPhonePortraitOutline,
+                          name: "phone",
+                          type: "tel",
+                          placeholder: "Phone Number *",
+                        },
+                      ].map((field) => (
+                        <div
+                          key={field.name}
+                          className="relative flex flex-col group"
+                        >
+                          <div className="flex items-center">
+                            <field.icon className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400 text-lg group-focus-within:text-blue-600 transition-colors duration-300" />
+                            <input
+                              type={field.type}
+                              name={field.name}
+                              value={formData[field.name]}
+                              onChange={handleChange}
+                              placeholder={field.placeholder}
+                              disabled={isSubmitting}
+                              className="w-full h-10 pl-7 text-gray-900 placeholder-gray-500 border-b border-gray-200 focus:border-blue-600 focus:outline-none transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                              required
+                            />
+                          </div>
+                        </div>
+                      ))}
+
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full bg-blue-600 text-white px-6 py-2.5 font-medium rounded shadow-sm hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isSubmitting
+                          ? "Processing..."
+                          : "Complete Subscription"}
+                        <FaRegPaperPlane className="w-3.5 h-3.5" />
+                      </button>
+                    </form>
                   </div>
 
-                  <div className="space-y-4">
-                    <div className="pb-4 border-b border-white/10">
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-3xl md:text-4xl font-light text-white">
-                          ${selectedPlan.price}
-                        </span>
-                        <span className="text-sm md:text-base text-white/60">
-                          /month
-                        </span>
+                  <div className="md:pl-12 mt-8 md:mt-0">
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-900 mb-4">
+                        SUBSCRIPTION SUMMARY
+                      </h4>
+                      <div className="p-5 rounded-lg bg-gray-50 border border-gray-100">
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-3xl font-medium text-gray-900">
+                            ${selectedPlan.price}
+                          </span>
+                          <span className="text-gray-600">/month</span>
+                        </div>
+                        <p className="text-gray-600 text-sm mt-2">
+                          {selectedPlan.name} Package
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </>
+            ) : (
+              <SuccessView
+                selectedPlan={selectedPlan}
+                onClose={handleClose}
+              />
+            )}
           </motion.div>
         </motion.div>
       )}

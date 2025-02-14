@@ -1,5 +1,5 @@
-const mongoose = require("mongoose")
-const validator = require("validator")
+import mongoose from "mongoose"
+import validator from "validator"
 
 const contactFormSchema = new mongoose.Schema({
   name: {
@@ -46,4 +46,6 @@ const contactFormSchema = new mongoose.Schema({
   },
 })
 
-module.exports = mongoose.model("ContactForm", contactFormSchema)
+const ContactForm = mongoose.model("ContactForm", contactFormSchema)
+
+export { ContactForm }

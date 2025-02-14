@@ -1,4 +1,5 @@
-const contactFormTemplate = (data) => `
+// backend/controllers/emailTemplates.js
+export const contactFormTemplate = (data) => `
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,7 @@ const contactFormTemplate = (data) => `
 </html>
 `
 
-const planFormTemplate = (data) => `
+export const planFormTemplate = (data) => `
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,13 +71,3 @@ const planFormTemplate = (data) => `
 </body>
 </html>
 `
-
-module.exports = {
-  contactFormTemplate,
-  planFormTemplate,
-}
-
-module.exports = {
-  contactFormTemplate,
-  planFormTemplate,
-}

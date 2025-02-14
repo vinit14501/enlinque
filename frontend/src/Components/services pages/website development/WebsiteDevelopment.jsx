@@ -5,14 +5,14 @@ import {
   FaGoogle,
   FaAddressBook,
   FaCloudUploadAlt,
-  FaCheck,
 } from "react-icons/fa"
 import { BsArrowRight } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
 import React from "react"
-import websitedevelopment from "../../assets/websitedevelopment8.jpg"
-import digitalmarketing from "../../assets/digitalmarketing3.jpg"
-import PlanModal from "../modal/PlanModal"
+import websitedevelopment from "../../../assets/websitedevelopment8.jpg"
+import digitalmarketing from "../../../assets/digitalmarketing3.jpg"
+import PlanModal from "../../modal/PlanModal"
+import PricingSection from "./PricingSection" // Import the new component
 
 const WebsiteDevelopment = () => {
   const navigate = useNavigate()
@@ -59,45 +59,6 @@ const WebsiteDevelopment = () => {
       title: "Ongoing Website Enhancement & Maintenance",
       description:
         "Ensuring your website stays updated, secure, and optimized for peak performance with regular enhancements and maintenance.",
-    },
-  ]
-
-  const PricingPlans = [
-    {
-      name: "Express",
-      price: 50,
-      features: [
-        "Responsive Website Design",
-        "Basic SEO Optimization",
-        "3 Page Website",
-        "Mobile Friendly",
-        "Standard Support",
-      ],
-    },
-    {
-      name: "Standard",
-      price: 100,
-      features: [
-        "Custom Design",
-        "Advanced SEO",
-        "Up to 10 Pages",
-        "E-commerce Integration",
-        "Performance Optimization",
-        "Monthly Analytics Report",
-      ],
-    },
-    {
-      name: "Advanced",
-      price: 250,
-      features: [
-        "Full Custom Design",
-        "Enterprise SEO",
-        "Unlimited Pages",
-        "Advanced E-commerce",
-        "Priority Support",
-        "Quarterly Strategy Session",
-        "Content Management System",
-      ],
     },
   ]
 
@@ -196,54 +157,8 @@ const WebsiteDevelopment = () => {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section
-        id="pricing-section"
-        className="py-16 md:py-24 px-4 sm:px-6 lg:px-8"
-      >
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-[#000048]">
-              Pricing Plans
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
-            {PricingPlans.map((plan) => (
-              <div
-                key={plan.name}
-                className="inline-block bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-xl transition-all group p-6"
-              >
-                <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#000048] group-hover:text-blue-600 transition-colors">
-                  {plan.name}
-                </h3>
-                <p className="text-2xl md:text-3xl font-bold mb-4 text-blue-600">
-                  ${plan.price}
-                  <span className="text-sm text-gray-500">/month</span>
-                </p>
-                <ul className="space-y-3 text-gray-600 mb-6">
-                  {plan.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-center text-base"
-                    >
-                      <FaCheck className="text-green-500 mr-2 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handlePlanSelection(plan)}
-                  className="w-full inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-                >
-                  Choose {plan.name} Plan
-                </motion.button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Pricing Section - Using the new component */}
+      <PricingSection />
 
       {/* CTA Section */}
       <section className="bg-[#0b60a0] py-16 md:py-24 px-4 sm:px-6 text-white">

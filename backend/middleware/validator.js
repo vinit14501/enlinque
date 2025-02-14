@@ -1,4 +1,4 @@
-const { validationResult, body } = require("express-validator")
+import { validationResult, body } from "express-validator"
 
 const validateContactForm = [
   body("name").trim().isLength({ min: 2, max: 50 }).escape(),
@@ -29,8 +29,4 @@ const validate = (req, res, next) => {
   next()
 }
 
-module.exports = {
-  validateContactForm,
-  validatePlanForm,
-  validate,
-}
+export { validateContactForm, validatePlanForm, validate }

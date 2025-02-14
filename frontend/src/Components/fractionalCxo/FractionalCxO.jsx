@@ -13,13 +13,13 @@ const services = [
     title: "Chief Information Officer (CIO)",
     shortTitle: "CIO",
     description:
-      "Leverage strategic IT leadership to transform your digital capabilities and drive business innovation. Our CIOs align information technology with business objectives, manage digital infrastructure, and ensure technological competitiveness.",
+      "Leverage strategic IT leadership to transform digital capabilities and drive business innovation. Our CIOs align technology with business objectives, optimize digital infrastructure, and ensure long-term technological competitiveness.",
     image: cio,
     points: [
       "Develop and execute comprehensive IT strategies",
-      "Manage and optimize digital infrastructure",
-      "Drive digital transformation initiatives",
-      "Ensure cybersecurity and technological compliance",
+      "Optimize and manage digital infrastructure",
+      "Lead digital transformation and innovation initiatives",
+      "Ensure cybersecurity, compliance, and risk management",
     ],
   },
   {
@@ -27,12 +27,12 @@ const services = [
     title: "Chief Technology Officer (CTO)",
     shortTitle: "CTO",
     description:
-      "Drive technological innovation and digital transformation with our experienced CTOs. We help align technology strategy with business goals, manage tech teams, and implement cutting-edge solutions.",
+      "Accelerate innovation and digital transformation with strategic technology leadership. Our CTOs align technology with business objectives, oversee IT and engineering teams, and drive the adoption of cutting-edge solutions for sustainable growth.",
     image: cto,
     points: [
-      "Oversee IT infrastructure and operations",
-      "Develop and implement technology roadmaps",
-      "Manage software development and deployment",
+      "Define and execute technology roadmaps",
+      "Oversee IT infrastructure, architecture, and operations",
+      "Lead software development, deployment, and scalability",
       "Foster a culture of innovation and continuous improvement",
     ],
   },
@@ -41,13 +41,13 @@ const services = [
     title: "Chief Marketing Officer (CMO)",
     shortTitle: "CMO",
     description:
-      "Enhance your market presence and drive growth with strategic marketing leadership. Our CMOs develop comprehensive marketing strategies, build strong brands, and optimize customer acquisition.",
+      "Elevate your brand and accelerate growth with strategic marketing leadership. Our CMOs craft data-driven marketing strategies, strengthen brand positioning, and optimize customer acquisition for long-term success.",
     image: cmo,
     points: [
-      "Create and execute integrated marketing campaigns",
-      "Develop brand positioning and messaging",
-      "Analyze market trends and customer insights",
-      "Optimize digital and traditional marketing channels",
+      "Develop and execute integrated marketing strategies",
+      "Define brand positioning, messaging, and market differentiation",
+      "Analyze market trends and customer insights to drive decision-making",
+      "Optimize digital and traditional marketing channels for maximum ROI",
     ],
   },
   {
@@ -55,13 +55,13 @@ const services = [
     title: "Chief Financial Officer (CFO)",
     shortTitle: "CFO",
     description:
-      "Optimize your financial strategy and operations with expert CFO guidance. We provide financial planning, risk management, and strategic decision-making support to drive business success.",
+      "Strengthen financial strategy and drive sustainable growth with expert CFO leadership. Our CFOs provide financial planning, risk management, and strategic insights to optimize business performance and profitability.",
     image: cfo,
     points: [
-      "Manage financial planning and budgeting",
-      "Implement robust financial controls and reporting",
-      "Assess and mitigate financial risks",
-      "Support strategic decision-making and growth",
+      "Oversee financial planning, budgeting, and forecasting.",
+      "Implement robust financial controls, compliance, and reporting.",
+      "Assess and mitigate financial and operational risks.",
+      "Provide data-driven insights to support strategic decision-making and growth.",
     ],
   },
   {
@@ -69,11 +69,11 @@ const services = [
     title: "Chief Operating Officer (COO)",
     shortTitle: "COO",
     description:
-      "Streamline your operations and improve organizational efficiency with seasoned COO leadership. Our COOs optimize business processes, manage resource allocation, and drive operational excellence.",
+      "Streamline operations and boost organizational efficiency with experienced COO leadership. Our COOs excel at optimizing business processes, managing resource allocation, and driving operational excellence.",
     image: coo,
     points: [
-      "Develop and oversee operational strategies",
-      "Optimize workflows and business processes",
+      "Develop and implement operational strategies",
+      "Streamline workflows and optimize business processes",
       "Manage resource allocation and utilization",
       "Enhance organizational efficiency and productivity",
     ],

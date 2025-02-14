@@ -1,149 +1,195 @@
-const nodemailer = require("nodemailer")
-const ContactForm = require("../models/ContactForm")
-const PlanForm = require("../models/PlanForm")
+import nodemailer from "nodemailer"
+import { ContactForm } from "../models/ContactForm.js"
+import { PlanForm } from "../models/PlanForm.js"
+import { contactFormTemplate, planFormTemplate } from "./emailTemplates.js"
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-})
+// Create transporter with more detailed configuration
+const createTransporter = () => {
+  return nodemailer.createTransport({
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true, // use SSL
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+    debug: true,
+    logger: true, // Enable logger
+  })
+}
 
-const formController = {
-  submitContactForm: async (req, res) => {
-    try {
-      const { name, company, email, phone, message } = req.body
+export const submitContactForm = async (req, res) => {
+  let savedForm = null
 
-      // Save to database
-      const contactForm = new ContactForm({
+  try {
+    const { name, company, email, phone, message } = req.body
+    const submittedAt = new Date()
+
+    // First, save to database independently of email status
+    const contactForm = new ContactForm({
+      name,
+      company,
+      email,
+      phone,
+      message,
+      submittedAt,
+    })
+
+    savedForm = await contactForm.save()
+    console.log("Form data saved to database successfully")
+
+    // Then attempt to send emails
+    const transporter = createTransporter()
+
+    // Test connection first
+    await transporter.verify()
+    console.log("Transporter verified successfully")
+
+    // Send admin notification
+    const mailOptions = {
+      from: `"Contact Form" <${process.env.EMAIL_USER}>`,
+      to: process.env.RECIPIENT_EMAIL,
+      subject: "🔔 New Contact Form Submission",
+      html: contactFormTemplate({
         name,
         company,
         email,
         phone,
         message,
-      })
-      await contactForm.save()
+        submittedAt,
+      }),
+    }
 
-      // Send email
-      const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: process.env.RECIPIENT_EMAIL,
-        subject: "🔔 New Contact Form Submission",
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #000048;">New Contact Form Submission</h2>
-            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 5px;">
-              <p><strong>Name:</strong> ${name}</p>
-              <p><strong>Company:</strong> ${company}</p>
-              <p><strong>Email:</strong> ${email}</p>
-              <p><strong>Phone:</strong> ${phone}</p>
-              <p><strong>Message:</strong></p>
-              <p style="background-color: white; padding: 15px; border-radius: 5px;">${message}</p>
-              <p><strong>Submitted at:</strong> ${new Date().toLocaleString()}</p>
-            </div>
-          </div>
-        `,
-      }
+    await transporter.sendMail(mailOptions)
+    console.log("Admin notification sent successfully")
 
-      await transporter.sendMail(mailOptions)
+    // Send user confirmation
+    const userConfirmation = {
+      from: `"Enlinque" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "We received your message",
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #000048;">Thank you for contacting us!</h2>
+          <p>Dear ${name},</p>
+          <p>We have received your message and will get back to you shortly.</p>
+          <p>Best regards,<br>Enlinque Team</p>
+        </div>
+      `,
+    }
 
-      // Send confirmation to user
-      const userConfirmation = {
-        from: process.env.EMAIL_USER,
-        to: email,
-        subject: "We received your message",
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #000048;">Thank you for contacting us!</h2>
-            <p>We have received your message and will get back to you shortly.</p>
-            <p>Best regards,<br>Your Team</p>
-          </div>
-        `,
-      }
+    await transporter.sendMail(userConfirmation)
+    console.log("User confirmation sent successfully")
 
-      await transporter.sendMail(userConfirmation)
+    res.status(200).json({
+      success: true,
+      message: "Message sent and stored successfully",
+      formId: savedForm._id,
+    })
+  } catch (error) {
+    console.error("Detailed error:", error)
 
+    // If we successfully saved to database but email failed
+    if (savedForm) {
       res.status(200).json({
         success: true,
-        message: "Message sent successfully",
+        message:
+          "Your message was stored successfully, but email notification failed. We will contact you soon.",
+        formId: savedForm._id,
+        emailError: true,
       })
-    } catch (error) {
-      console.error("Contact form error:", error)
+    } else {
       res.status(500).json({
         success: false,
-        message: "Failed to send message",
+        message: "Failed to process your request",
+        error: error.message,
       })
     }
-  },
+  }
+}
 
-  submitPlanForm: async (req, res) => {
-    try {
-      const { name, email, phone, selectedPlan } = req.body
+export const submitPlanForm = async (req, res) => {
+  let savedForm = null
 
-      // Save to database
-      const planForm = new PlanForm({
+  try {
+    const { name, email, phone, selectedPlan } = req.body
+    const submittedAt = new Date()
+
+    // First save to database
+    const planForm = new PlanForm({
+      name,
+      email,
+      phone,
+      selectedPlan,
+      submittedAt,
+    })
+
+    savedForm = await planForm.save()
+    console.log("Plan form saved to database successfully")
+
+    // Then attempt to send emails
+    const transporter = createTransporter()
+    await transporter.verify()
+
+    // Send admin notification
+    const mailOptions = {
+      from: `"Plan Form" <${process.env.EMAIL_USER}>`,
+      to: process.env.RECIPIENT_EMAIL,
+      subject: "🎯 New Plan Selection",
+      html: planFormTemplate({
         name,
         email,
         phone,
         selectedPlan,
-      })
-      await planForm.save()
+        submittedAt,
+      }),
+    }
 
-      // Send email
-      const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: process.env.RECIPIENT_EMAIL,
-        subject: "🎯 New Plan Selection",
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #000048;">New Plan Selection</h2>
-            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 5px;">
-              <p><strong>Name:</strong> ${name}</p>
-              <p><strong>Email:</strong> ${email}</p>
-              <p><strong>Phone:</strong> ${phone}</p>
-              <div style="background-color: #e6f0ff; padding: 15px; border-radius: 5px; margin: 15px 0;">
-                <h3 style="color: #000048; margin-top: 0;">Selected Plan</h3>
-                <p><strong>Plan Name:</strong> ${selectedPlan.name}</p>
-                <p><strong>Price:</strong> $${selectedPlan.price}/month</p>
-              </div>
-              <p><strong>Submitted at:</strong> ${new Date().toLocaleString()}</p>
-            </div>
-          </div>
-        `,
-      }
+    await transporter.sendMail(mailOptions)
+    console.log("Plan form admin notification sent successfully")
 
-      await transporter.sendMail(mailOptions)
+    // Send user confirmation
+    const userConfirmation = {
+      from: `"Enlinque" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Thank you for your interest!",
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #000048;">Thank you for choosing our services!</h2>
+          <p>Dear ${name},</p>
+          <p>We have received your request for the ${selectedPlan.name} plan.</p>
+          <p>Our team will contact you shortly to complete the setup process.</p>
+          <p>Best regards,<br>Enlinque Team</p>
+        </div>
+      `,
+    }
 
-      // Send confirmation to user
-      const userConfirmation = {
-        from: process.env.EMAIL_USER,
-        to: email,
-        subject: "Thank you for your interest!",
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #000048;">Thank you for choosing our services!</h2>
-            <p>We have received your request for the ${selectedPlan.name} plan.</p>
-            <p>Our team will contact you shortly to complete the setup process.</p>
-            <p>Best regards,<br>Your Team</p>
-          </div>
-        `,
-      }
+    await transporter.sendMail(userConfirmation)
+    console.log("Plan form user confirmation sent successfully")
 
-      await transporter.sendMail(userConfirmation)
+    res.status(200).json({
+      success: true,
+      message: "Plan selection submitted successfully",
+      formId: savedForm._id,
+    })
+  } catch (error) {
+    console.error("Detailed error:", error)
 
+    // If we successfully saved to database but email failed
+    if (savedForm) {
       res.status(200).json({
         success: true,
-        message: "Plan selection submitted successfully",
+        message:
+          "Your plan selection was stored successfully, but email notification failed. We will contact you soon.",
+        formId: savedForm._id,
+        emailError: true,
       })
-    } catch (error) {
-      console.error("Plan selection error:", error)
+    } else {
       res.status(500).json({
         success: false,
-        message: "Failed to submit plan selection",
+        message: "Failed to process your request",
+        error: error.message,
       })
     }
-  },
+  }
 }
-
-module.exports = formController
