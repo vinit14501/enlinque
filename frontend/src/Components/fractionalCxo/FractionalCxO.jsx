@@ -1,11 +1,11 @@
 import { motion } from "framer-motion"
 import { FaCheckCircle } from "react-icons/fa"
-import cmo from "../../assets/CMO.png"
-import cto from "../../assets/cto.png"
-import cfo from "../../assets/CFO.png"
-import coo from "../../assets/COO.png"
-import cio from "../../assets/CIO.png"
-import fractional from "../../assets/fractional2.jpg"
+import cmo from "../../assets/cmo.webp"
+import cto from "../../assets/cto.webp"
+import cfo from "../../assets/cfo.webp"
+import coo from "../../assets/coo.webp"
+import cio from "../../assets/cio.webp"
+import fractional from "../../assets/fractional.webp"
 
 const services = [
   {

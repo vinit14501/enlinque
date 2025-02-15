@@ -9,8 +9,8 @@ import {
 import { BsArrowRight } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
 import React from "react"
-import websitedevelopment from "../../../assets/websitedevelopment8.jpg"
-import digitalmarketing from "../../../assets/digitalmarketing2.jpg"
+import websitedevelopment from "../../../assets/websitedevelopment.webp"
+import digitalmarketing from "../../../assets/digitalmarketing.webp"
 import PlanModal from "../../modal/PlanModal"
 import PricingSection from "./PricingSection"
 

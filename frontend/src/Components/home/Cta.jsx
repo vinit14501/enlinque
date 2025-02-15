@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import ctaBackground from "../../assets/cta.jpg"
+import ctaBackground from "../../assets/cta.webp"
 import { BsArrowRight } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
 

@@ -10,14 +10,20 @@ export default defineConfig({
   build: {
     outDir: "dist",
     sourcemap: false,
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes("node_modules")) {
-            return "vendor"
-          }
+        manualChunks: {
+          // Split vendor chunks by major dependencies
+          "react-vendor": ["react", "react-dom"],
+          // "ui-vendor": ["@/components/ui"],
+          // "utils-vendor": ["lodash", "recharts"],
         },
-        chunkFileNames: "assets/[name]-[hash].js",
+        // Improved chunk naming strategy
+        chunkFileNames: (chunkInfo) => {
+          const prefix = chunkInfo.name.includes("vendor") ? "vendor" : "chunk"
+          return `assets/${prefix}/[name]-[hash].js`
+        },
         entryFileNames: "assets/[name]-[hash].js",
         assetFileNames: "assets/[name]-[hash].[ext]",
       },
@@ -26,6 +32,10 @@ export default defineConfig({
     terserOptions: {
       compress: {
         drop_console: true,
+        passes: 2,
+      },
+      format: {
+        comments: false,
       },
     },
   },

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { FaArrowRight } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
-import cta from "../../assets/cta3.jpg"
+import cta from "../../assets/cta3.webp"
 
 const Cta3 = () => {
   const navigate = useNavigate()

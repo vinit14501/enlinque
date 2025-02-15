@@ -4,10 +4,10 @@ import {
   RiCheckboxBlankCircleLine,
   RiCheckboxBlankCircleFill,
 } from "react-icons/ri"
-import hero1 from "../../assets/1.png"
-import hero2 from "../../assets/2.png"
-import hero3 from "../../assets/3.png"
-import hero4 from "../../assets/4.png"
+import hero1 from "../../assets/1.webp"
+import hero2 from "../../assets/2.webp"
+import hero3 from "../../assets/3.webp"
+import hero4 from "../../assets/4.webp"
 
 const carouselContent = [
   {

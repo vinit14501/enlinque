@@ -2,8 +2,8 @@ import { motion } from "framer-motion"
 import { FaCheckCircle, FaSync, FaLightbulb, FaHandshake } from "react-icons/fa"
 import { BsArrowRight } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
-import about from "../../assets/about.jpg"
-import values from "../../assets/values.jpg"
+import about from "../../assets/about.webp"
+import values from "../../assets/value.webp"
 
 const About = () => {
   const navigate = useNavigate()
