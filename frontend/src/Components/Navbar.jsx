@@ -18,6 +18,7 @@ const Navbar = () => {
       to: "/websitedevelopment",
       isScroll: false,
     },
+    { label: "Privacy", to: "/privacy-policy", isScroll: false },
   ]
 
   const scrollToServices = () => {

@@ -6,17 +6,19 @@ const Footer = () => {
   const services = [
     "Fractional CxO",
     "IT Consulting",
+    "Software Development",
     "Digital Marketing",
     "E-Commerce",
     "Digital Transformation",
-    "Agile Implementation",
+    "Website Development",
+    // "Agile Implementation",
   ]
 
   const resources = [
     "About",
     "Privacy Policy",
-    "terms of service",
-    "Cookie Policy",
+    "Terms of service",
+    // "Cookie Policy",
   ]
 
   const animations = {
