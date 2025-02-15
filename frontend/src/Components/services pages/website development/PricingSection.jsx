@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { FaCheck, FaPlus } from "react-icons/fa"
-import { pricingPlans } from "./PricingPlans"
+import { pricingPlans } from "./pricingPlans"
 import PlanModal from "../../modal/PlanModal"
 
 const PricingSection = () => {

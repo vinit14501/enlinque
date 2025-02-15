@@ -16,10 +16,15 @@ const app = express()
 // Connect to MongoDB
 connectDB()
 
+// Get frontend URL with fallback
+const frontendUrl = process.env.FRONTEND_URL
+  ? process.env.FRONTEND_URL.replace(/\/$/, "")
+  : "*"
+
 // CORS Configuration
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL.replace(/\/$/, ""), // Remove trailing slash
+    origin: frontendUrl,
     credentials: true,
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -35,7 +40,7 @@ app.use(
         scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
         styleSrc: ["'self'", "'unsafe-inline'"],
         imgSrc: ["'self'", "data:", "https:"],
-        connectSrc: ["'self'", process.env.FRONTEND_URL.replace(/\/$/, "")],
+        connectSrc: ["'self'", frontendUrl],
       },
     },
     crossOriginEmbedderPolicy: false,
