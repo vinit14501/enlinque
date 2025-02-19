@@ -4,9 +4,9 @@ import Quotes from "../Components/home/Quotes"
 import Text from "../Components/home/Text"
 import Hero from "../Components/home/Hero"
 import Cta from "../Components/home/Cta"
-import Cta2 from "../Components/home/Cta2"
 import Cta3 from "../Components/home/Cta3"
 import Faq from "../Components/home/Faq"
+import ContactCta from "../Components/contact cta/ContactCta"
 
 export default function HomePage() {
   return (
@@ -19,7 +19,7 @@ export default function HomePage() {
       <Faq />
       <Quotes />
       <Testimonials />
-      <Cta2 />
+      <ContactCta />
     </>
   )
 }

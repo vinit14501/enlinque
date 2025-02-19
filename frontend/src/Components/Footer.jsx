@@ -1,25 +1,57 @@
 import { motion } from "framer-motion"
 import { FaLinkedin } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 const Footer = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const services = [
-    "Fractional CxO",
-    "IT Consulting",
-    "Software Development",
-    "Digital Marketing",
-    "E-Commerce",
-    "Digital Transformation",
-    "Website Development",
-    // "Agile Implementation",
+    { label: "Website Development", path: "/websitedevelopment" },
+    { label: "Fractional CxO", path: "/fractionalCxO" },
+    { label: "IT Consulting", path: "/#services" },
+    { label: "Software Development", path: "/#services" },
+    { label: "Digital Marketing", path: "/#services" },
+    { label: "E-Commerce", path: "/#services" },
+    { label: "Digital Transformation", path: "/#services" },
+    { label: "Agile Implementation", path: "/#services" },
   ]
 
   const resources = [
-    "About",
-    "Privacy Policy",
-    "Terms of service",
-    // "Cookie Policy",
+    { label: "About", path: "/about" },
+    { label: "Privacy Policy", path: "/privacy-policy" },
+    { label: "Terms of service", path: "/terms-of-service" },
   ]
+
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById("services")
+    if (servicesSection) {
+      const navHeight = document.querySelector("nav").offsetHeight
+      const elementPosition = servicesSection.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
+    } else if (location.pathname !== "/") {
+      navigate("/#services")
+    }
+  }
+
+  const handleServiceClick = (path) => {
+    if (path === "/#services") {
+      if (location.pathname === "/") {
+        scrollToServices()
+      } else {
+        navigate("/#services")
+      }
+    } else {
+      navigate(path)
+      window.scrollTo(0, 0)
+    }
+  }
 
   const animations = {
     container: {
@@ -80,10 +112,23 @@ const Footer = () => {
                   <motion.li
                     key={index}
                     variants={animations.item}
-                    className="text-white hover:text-blue-400 cursor-pointer 
-                             transition-colors duration-200 text-sm"
+                    className="text-sm"
                   >
-                    {service}
+                    {service.path === "/fractionalCxO" ? (
+                      <Link
+                        to={service.path}
+                        className="text-white hover:text-blue-400 transition-colors duration-200"
+                      >
+                        {service.label}
+                      </Link>
+                    ) : (
+                      <span
+                        onClick={() => handleServiceClick(service.path)}
+                        className="text-white hover:text-blue-400 cursor-pointer transition-colors duration-200"
+                      >
+                        {service.label}
+                      </span>
+                    )}
                   </motion.li>
                 ))}
               </ul>
@@ -100,10 +145,14 @@ const Footer = () => {
                   <motion.li
                     key={index}
                     variants={animations.item}
-                    className="text-white hover:text-blue-400 cursor-pointer 
-                             transition-colors duration-200 text-sm"
+                    className="text-sm"
                   >
-                    {resource}
+                    <Link
+                      to={resource.path}
+                      className="text-white hover:text-blue-400 transition-colors duration-200"
+                    >
+                      {resource.label}
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
@@ -152,7 +201,8 @@ const Footer = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-slate-400 text-sm">
-              © {new Date().getFullYear()} Enlinque. All rights reserved.
+              © {new Date().getFullYear()} Enlinque Consulting LLC. All rights
+              reserved.
             </p>
           </div>
         </motion.div>

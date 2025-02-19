@@ -4,6 +4,7 @@ import { BsArrowRight } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
 import about from "../../assets/about.webp"
 import values from "../../assets/value.webp"
+import ContactCta from "../contact cta/ContactCta"
 
 const About = () => {
   const navigate = useNavigate()
@@ -59,6 +60,9 @@ const About = () => {
               transition={{ duration: 0.8 }}
               className="max-w-2xl w-full"
             >
+              <h1 className="text-2xl md:text-4xl font-bold text-center text-white mb-4 md:mb-6">
+                About Us
+              </h1>
               <h1 className="text-3xl md:text-5xl font-bold text-center text-white mb-4 md:mb-6">
                 Transforming Businesses Through Technology
               </h1>
@@ -249,33 +253,7 @@ const About = () => {
       </section>
 
       {/* Connect Section */}
-      <section className="bg-[#0b60a0] py-12 sm:py-16 md:py-20 sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="text-white"
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl mb-6 text-white">
-              Let&apos;s work together to bring your vision to life with our
-              innovative solutions and expertise.
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold text-[#000048] bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-              onClick={() => navigate("/contact")}
-            >
-              Get in Touch
-              <BsArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-            </motion.button>
-          </motion.div>
-        </div>
-      </section>
+      <ContactCta />
     </div>
   )
 }

@@ -1,9 +1,5 @@
-import PrivacyPolicy from "../Components/privacy policy/PrivacyPolicy"
+import PrivacyPolicy from "../Components/privacy/PrivacyPolicy"
 
 export default function PrivacyPolicyPage() {
-  return (
-    <>
-      <PrivacyPolicy />
-    </>
-  )
+  return <PrivacyPolicy />
 }

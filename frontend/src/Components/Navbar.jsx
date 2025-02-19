@@ -12,13 +12,12 @@ const Navbar = () => {
   const navItems = [
     { label: "Services", to: "/#services", isScroll: true },
     { label: "Fractional CxO", to: "/fractionalCxO", isScroll: false },
-    { label: "About", to: "/about", isScroll: false },
     {
       label: "Website Development",
       to: "/websitedevelopment",
       isScroll: false,
     },
-    { label: "Privacy", to: "/privacy-policy", isScroll: false },
+    { label: "About", to: "/about", isScroll: false },
   ]
 
   const scrollToServices = () => {

@@ -32,8 +32,7 @@ export default function Quotes() {
                 text-white mb-3 sm:mb-4
               "
             >
-              &quot;The way to get started is to quit talking and begin
-              doing.&quot;
+              The way to get started is to quit talking and begin doing.
             </p>
           </div>
           <p

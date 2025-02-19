@@ -6,6 +6,7 @@ import cfo from "../../assets/cfo.webp"
 import coo from "../../assets/coo.webp"
 import cio from "../../assets/cio.webp"
 import fractional from "../../assets/fractional.webp"
+import ContactCta from "../contact cta/ContactCta"
 
 const services = [
   {
@@ -257,6 +258,9 @@ export default function FractionalCxO() {
           ))}
         </div>
       </div>
+
+      {/* Connect Section */}
+      <ContactCta />
     </div>
   )
 }

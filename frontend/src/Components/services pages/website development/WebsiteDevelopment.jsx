@@ -13,6 +13,7 @@ import websitedevelopment from "../../../assets/websitedevelopment.webp"
 import digitalmarketing from "../../../assets/digitalmarketing.webp"
 import PlanModal from "../../modal/PlanModal"
 import PricingSection from "./PricingSection"
+import ContactCta from "../../contact cta/ContactCta"
 
 const WebsiteDevelopment = () => {
   const navigate = useNavigate()
@@ -164,27 +165,8 @@ const WebsiteDevelopment = () => {
       {/* Pricing Section */}
       <PricingSection />
 
-      {/* CTA Section */}
-      <section className="bg-[#0b60a0] py-16 md:py-24 px-4 sm:px-6 text-white">
-        <div className="container mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
-            Ready to Get Started?
-          </h2>
-          <p className="max-w-2xl mx-auto mb-8 text-lg md:text-xl">
-            We&apos;re excited to help you bring your digital vision to life.
-            Let&apos;s discuss your project and how we can help you succeed.
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold font-raleway text-[#000048] bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 gap-2"
-            onClick={() => navigate("/contact")}
-          >
-            Contact Us
-            <BsArrowRight className="ml-2 w-5 h-5" />
-          </motion.button>
-        </div>
-      </section>
+      {/* Connect Section */}
+      <ContactCta />
 
       {/* Modal Component */}
       <PlanModal

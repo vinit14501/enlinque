@@ -1,107 +1,39 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { IoClose, IoCheckmarkCircleOutline } from "react-icons/io5"
+import { IoClose } from "react-icons/io5"
 import {
   IoPersonOutline,
   IoMailOutline,
   IoPhonePortraitOutline,
+  IoCheckmarkCircleOutline,
+  IoRefreshOutline,
+  IoRocketOutline,
 } from "react-icons/io5"
-import { FaRegPaperPlane } from "react-icons/fa"
+import { GrSend } from "react-icons/gr"
 import axios from "axios"
 
-const SuccessView = ({ selectedPlan, onClose }) => (
+const SuccessMessage = ({ onReset }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-    className="p-12 flex flex-col items-center text-center"
+    className="bg-white shadow-2xl rounded-lg p-8 flex flex-col items-center justify-center min-h-[400px] space-y-6"
   >
-    <div className="relative">
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{
-          type: "spring",
-          stiffness: 200,
-          damping: 15,
-          delay: 0.2,
-        }}
-        className="w-28 h-28 rounded-full bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center mb-8 shadow-lg shadow-green-100"
-      >
-        <motion.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-        >
-          <IoCheckmarkCircleOutline className="w-16 h-16 text-green-500" />
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{
-          type: "spring",
-          stiffness: 200,
-          damping: 15,
-          delay: 0.4,
-        }}
-        className="absolute -top-2 -right-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-sm font-medium px-3 py-1.5 rounded-full shadow-md"
-      >
-        ${selectedPlan.price}/mo
-      </motion.div>
-    </div>
-
-    <motion.h3
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3 }}
-      className="text-3xl font-semibold text-gray-900 mb-3"
-    >
-      Welcome Aboard! 🎉
-    </motion.h3>
-
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.4 }}
-      className="space-y-4 max-w-md"
-    >
-      <p className="text-lg text-gray-700">
-        Thank you for choosing our{" "}
-        <span className="font-medium text-blue-600 bg-blue-50 px-2 py-0.5 rounded">
-          {selectedPlan.name}
-        </span>{" "}
-        plan
-      </p>
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <p className="text-gray-600">
-          We've sent all the details to your email. Our team will reach out
-          shortly to help you get started on your journey with us.
-        </p>
-      </div>
-    </motion.div>
-
+    <IoCheckmarkCircleOutline className="text-6xl text-green-600" />
+    <h2 className="text-2xl font-bold text-[#000048] text-center">
+      Thank you for subscribing!
+    </h2>
+    <p className="text-lg text-[#000048]/80 text-center max-w-md">
+      Your subscription request has been successfully received. We will get back
+      to you shortly.
+    </p>
     <motion.button
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5 }}
-      onClick={onClose}
-      className="mt-8 px-8 py-3 bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-gray-200 hover:text-gray-900 transition-all duration-200 shadow-sm hover:shadow group"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      onClick={onReset}
+      className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
     >
-      Close Window
-      <motion.span
-        initial={{ x: 0 }}
-        animate={{ x: [0, 5, 0] }}
-        transition={{
-          duration: 1,
-          repeat: Infinity,
-          repeatDelay: 3,
-        }}
-        className="inline-block ml-2"
-      >
-        👋
-      </motion.span>
+      <IoRefreshOutline className="text-xl" />
+      <span>Subscribe to Another Plan</span>
     </motion.button>
   </motion.div>
 )
@@ -151,7 +83,7 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
         error.response?.data?.message ||
         error.response?.data?.error ||
         "Failed to submit plan subscription"
-      alert(errorMessage) // Fallback error handling
+      alert(errorMessage)
     } finally {
       setIsSubmitting(false)
     }
@@ -168,9 +100,17 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
     if (e.target === e.currentTarget) onClose()
   }
 
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+    })
+    setIsSuccess(false)
+  }
+
   const handleClose = () => {
     onClose()
-    // Reset success state after animation completes
     setTimeout(() => {
       setIsSuccess(false)
     }, 200)
@@ -187,54 +127,60 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
           onClick={handleBackdropClick}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-[2px] font-raleway"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-[2px]"
         >
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="relative w-full max-w-4xl bg-white rounded-lg shadow-xl overflow-hidden"
+            className="relative w-full max-w-6xl bg-gradient-to-br from-[#000048] to-[#0b60a0] rounded-lg shadow-xl overflow-hidden"
           >
             <button
               onClick={handleClose}
               disabled={isSubmitting}
-              className="absolute right-5 top-5 text-gray-500 hover:text-gray-700 z-20 transition-colors disabled:opacity-50"
+              className="absolute right-5 top-5 text-white/70 hover:text-white z-20 transition-colors disabled:opacity-50"
             >
-              <IoClose className="w-5 h-5" />
+              <IoClose className="w-6 h-6" />
             </button>
 
-            {!isSuccess ? (
-              <>
-                <div className="relative px-8 pt-8 pb-6 border-b border-gray-100 bg-blue-50/50">
-                  <div className="max-w-3xl">
-                    <h3 className="text-2xl text-gray-900 font-medium">
-                      {selectedPlan.name} Plan Subscription
-                    </h3>
-                    <p className="text-gray-600 mt-1">
-                      Complete your subscription details below
-                    </p>
-                  </div>
-                </div>
+            <div className="container mx-auto flex flex-col lg:flex-row gap-8 p-6 lg:p-8">
+              {/* Left Column - Form */}
+              <motion.div
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="w-full lg:w-7/12"
+              >
+                {isSuccess ? (
+                  <SuccessMessage onReset={resetForm} />
+                ) : (
+                  <div className="bg-white shadow-2xl rounded-lg p-6 lg:p-8">
+                    <div className="mb-8">
+                      <h2 className="text-lg font-light text-[#000048] mb-2">
+                        Subscribe to Our Services
+                      </h2>
+                      <h3 className="text-3xl font-bold text-[#000048] tracking-tight">
+                        Complete your subscription
+                      </h3>
+                    </div>
 
-                <div className="grid md:grid-cols-2 p-8">
-                  <div className="md:pr-12 md:border-r border-gray-100">
                     <form
                       onSubmit={handleSubmit}
-                      className="space-y-7"
+                      className="space-y-6"
                     >
                       {[
                         {
                           icon: IoPersonOutline,
                           name: "name",
                           type: "text",
-                          placeholder: "Your Name *",
+                          placeholder: "Name *",
                         },
                         {
                           icon: IoMailOutline,
                           name: "email",
                           type: "email",
-                          placeholder: "Your Email *",
+                          placeholder: "Email *",
                         },
                         {
                           icon: IoPhonePortraitOutline,
@@ -248,7 +194,7 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
                           className="relative flex flex-col group"
                         >
                           <div className="flex items-center">
-                            <field.icon className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400 text-lg group-focus-within:text-blue-600 transition-colors duration-300" />
+                            <field.icon className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
                             <input
                               type={field.type}
                               name={field.name}
@@ -256,52 +202,66 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
                               onChange={handleChange}
                               placeholder={field.placeholder}
                               disabled={isSubmitting}
-                              className="w-full h-10 pl-7 text-gray-900 placeholder-gray-500 border-b border-gray-200 focus:border-blue-600 focus:outline-none transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                               required
+                              className="w-full h-10 pl-8 text-[#000048] placeholder-[#000048]/60 border-b-2 border-gray-200 focus:border-[#0b60a0] focus:outline-none transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                             />
                           </div>
                         </div>
                       ))}
 
-                      <button
+                      <motion.button
+                        whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                        whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-blue-600 text-white px-6 py-2.5 font-medium rounded shadow-sm hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full sm:w-1/2 bg-blue-600 text-white px-6 py-3 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        {isSubmitting
-                          ? "Processing..."
-                          : "Complete Subscription"}
-                        <FaRegPaperPlane className="w-3.5 h-3.5" />
-                      </button>
+                        <span>
+                          {isSubmitting ? "Processing..." : "Subscribe Now"}
+                        </span>
+                        <GrSend
+                          className={`w-5 h-5 ${
+                            isSubmitting ? "animate-pulse" : ""
+                          }`}
+                        />
+                      </motion.button>
                     </form>
                   </div>
+                )}
+              </motion.div>
 
-                  <div className="md:pl-12 mt-8 md:mt-0">
+              {/* Right Column - Plan Info */}
+              <div className="w-full lg:w-5/12 space-y-6 lg:space-y-8 py-4 lg:py-8 px-4 lg:px-8 relative z-10">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <IoRocketOutline className="text-4xl text-white" />
+                    <h1 className="text-2xl lg:text-3xl font-light text-white tracking-wide">
+                      Ready to Launch?
+                    </h1>
+                  </div>
+
+                  <div className="space-y-6">
                     <div>
-                      <h4 className="text-sm font-medium text-gray-900 mb-4">
-                        SUBSCRIPTION SUMMARY
-                      </h4>
-                      <div className="p-5 rounded-lg bg-gray-50 border border-gray-100">
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-3xl font-medium text-gray-900">
-                            ${selectedPlan.price}
-                          </span>
-                          {/* <span className="text-gray-600">/month</span> */}
-                        </div>
-                        <p className="text-gray-600 text-sm mt-2">
-                          {selectedPlan.name} Package
-                        </p>
+                      <h2 className="text-2xl lg:text-4xl font-black text-white leading-tight">
+                        {selectedPlan.name} Plan
+                      </h2>
+                      <p className="text-white/80 mt-2 text-lg">
+                        {selectedPlan.description ||
+                          "Description not available"}
+                      </p>
+                    </div>
+
+                    <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg p-6 mr-4 lg:mr-8">
+                      <div className="flex items-baseline gap-2 mb-4">
+                        <span className="text-5xl font-bold text-white">
+                          ${selectedPlan.price}
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
-              </>
-            ) : (
-              <SuccessView
-                selectedPlan={selectedPlan}
-                onClose={handleClose}
-              />
-            )}
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       )}

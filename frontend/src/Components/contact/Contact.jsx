@@ -41,7 +41,7 @@ const SuccessMessage = ({ onReset }) => (
     </h2>
     <p className="text-lg text-[#000048]/80 text-center max-w-md">
       Your message has been successfully received. We will get back to you
-      shortly
+      shortly.
     </p>
     <motion.button
       whileHover={{ scale: 1.02 }}
@@ -80,10 +80,7 @@ const Contact = () => {
         !phone.trim() || !phoneRegex.test(phone)
           ? "Please enter a valid phone number"
           : "",
-      message:
-        !message.trim() || message.trim().length < 10
-          ? "Message must be at least 10 characters"
-          : "",
+      message: !message.trim() ? "Message is required" : "",
     }
 
     setFormErrors(newErrors)
