@@ -17,6 +17,11 @@ const Navbar = () => {
       to: "/websitedevelopment",
       isScroll: false,
     },
+    {
+      label: "Digital Marketing",
+      to: "/digitalmarketing",
+      isScroll: false,
+    },
     { label: "About", to: "/about", isScroll: false },
   ]
 

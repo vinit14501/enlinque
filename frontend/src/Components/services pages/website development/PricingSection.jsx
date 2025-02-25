@@ -25,7 +25,7 @@ const PricingSection = () => {
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
-          {pricingPlans.map((plan) => (
+          {pricingPlans.map((plan, index) => (
             <motion.div
               key={plan.name}
               initial={{ opacity: 0, y: 20 }}
@@ -41,10 +41,21 @@ const PricingSection = () => {
                 <p className="text-black mb-6 leading-relaxed">
                   {plan.description}
                 </p>
-                <div className="flex items-baseline">
-                  <p className="text-3xl md:text-4xl font-bold text-blue-600">
-                    ${plan.price}
-                  </p>
+                <div className="flex flex-col h-14 justify-end">
+                  {" "}
+                  {/* Fixed height container */}
+                  {index === 2 && (
+                    <span className="text-sm text-gray-600 mb-1">
+                      Starting at
+                    </span>
+                  )}
+                  {index !== 2 && <div className="mb-1" />}{" "}
+                  {/* Spacer for non-Advanced plans */}
+                  <div className="flex items-baseline">
+                    <p className="text-3xl md:text-4xl font-bold text-blue-600">
+                      ${plan.price}
+                    </p>
+                  </div>
                 </div>
               </div>
 

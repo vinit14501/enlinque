@@ -9,10 +9,10 @@ const Footer = () => {
 
   const services = [
     { label: "Website Development", path: "/websitedevelopment" },
+    { label: "Digital Marketing", path: "/digitalmarketing" },
     { label: "Fractional CxO", path: "/fractionalCxO" },
     { label: "IT Consulting", path: "/#services" },
     { label: "Software Development", path: "/#services" },
-    { label: "Digital Marketing", path: "/#services" },
     { label: "E-Commerce", path: "/#services" },
     { label: "Digital Transformation", path: "/#services" },
     { label: "Agile Implementation", path: "/#services" },

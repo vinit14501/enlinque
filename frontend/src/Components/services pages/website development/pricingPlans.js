@@ -29,7 +29,7 @@ export const pricingPlans = [
     name: "Standard",
     description:
       "Designed for small to mid-sized businesses ready to grow their digital presence",
-    price: 1100,
+    price: 1200,
     features: [
       "2-4 Pages (6-9 sections)",
       "Custom Layout & Design",

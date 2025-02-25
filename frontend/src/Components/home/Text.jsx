@@ -7,7 +7,7 @@ export default function Text() {
           <span className="text-[#0b60a0] font-bold">startup solutions</span>{" "}
           that drive <span className="text-[#0b60a0] font-bold">success</span>{" "}
           without breaking the
-          <span className="text-[#0b60a0] font-bold"> budget</span>
+          <span className="text-[#0b60a0] font-bold"> budget</span>.
         </p>
       </div>
     </div>

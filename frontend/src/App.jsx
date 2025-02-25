@@ -9,6 +9,7 @@ import WebsiteDevelopmentPage from "./pages/WebsiteDevelopmentPage"
 import { Toaster } from "react-hot-toast"
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage"
 import TermsConditionsPage from "./pages/TermsConditionsPage"
+import DigitalMarketingPage from "./pages/DigitalMarketingPage"
 // import FaqPage from "./pages/FaqPage"
 
 export default function App() {
@@ -43,6 +44,10 @@ export default function App() {
               <Route
                 path="/websitedevelopment"
                 element={<WebsiteDevelopmentPage />}
+              />
+              <Route
+                path="/digitalmarketing"
+                element={<DigitalMarketingPage />}
               />
               <Route
                 path="/privacy-policy"

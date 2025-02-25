@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, memo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { IoClose } from "react-icons/io5"
 import {
@@ -12,17 +12,18 @@ import {
 import { GrSend } from "react-icons/gr"
 import axios from "axios"
 
-const SuccessMessage = ({ onReset }) => (
+// Memoized SuccessMessage component to prevent unnecessary re-renders
+const SuccessMessage = memo(({ onReset }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    className="bg-white shadow-2xl rounded-lg p-8 flex flex-col items-center justify-center min-h-[400px] space-y-6"
+    className="bg-white shadow-2xl rounded-lg p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center min-h-[300px] sm:min-h-[350px] w-full max-w-xl mx-auto space-y-4 sm:space-y-6"
   >
-    <IoCheckmarkCircleOutline className="text-6xl text-green-600" />
-    <h2 className="text-2xl font-bold text-[#000048] text-center">
+    <IoCheckmarkCircleOutline className="text-4xl sm:text-5xl md:text-6xl text-green-600" />
+    <h2 className="text-xl sm:text-2xl font-bold text-[#000048] text-center">
       Thank you for subscribing!
     </h2>
-    <p className="text-lg text-[#000048]/80 text-center max-w-md">
+    <p className="text-base sm:text-lg text-[#000048]/80 text-center max-w-md px-2">
       Your subscription request has been successfully received. We will get back
       to you shortly.
     </p>
@@ -30,13 +31,36 @@ const SuccessMessage = ({ onReset }) => (
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onClick={onReset}
-      className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+      className="flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base w-auto"
     >
-      <IoRefreshOutline className="text-xl" />
+      <IoRefreshOutline className="text-lg sm:text-xl" />
       <span>Subscribe to Another Plan</span>
     </motion.button>
   </motion.div>
-)
+))
+
+SuccessMessage.displayName = "SuccessMessage"
+
+// Memoized Form Input component
+const FormInput = memo(({ field, value, onChange, isSubmitting }) => (
+  <div className="relative flex flex-col group">
+    <div className="flex items-center w-full">
+      <field.icon className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-lg sm:text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
+      <input
+        type={field.type}
+        name={field.name}
+        value={value}
+        onChange={onChange}
+        placeholder={field.placeholder}
+        disabled={isSubmitting}
+        required
+        className="w-full h-11 pl-7 sm:pl-8 text-sm sm:text-base text-[#000048] placeholder-[#000048]/60 border-b-2 border-gray-200 focus:border-[#0b60a0] focus:outline-none transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed bg-transparent"
+      />
+    </div>
+  </div>
+))
+
+FormInput.displayName = "FormInput"
 
 const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
   const [formData, setFormData] = useState({
@@ -64,7 +88,10 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
         `${import.meta.env.VITE_API_BASE_URL}/api/forms/plan`,
         {
           ...formData,
-          selectedPlan,
+          selectedPlan: {
+            ...selectedPlan,
+            isStartingPrice: selectedPlan.name === "Advanced",
+          },
         },
         {
           headers: {
@@ -90,10 +117,10 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
   }
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    })
+    }))
   }
 
   const handleBackdropClick = (e) => {
@@ -118,6 +145,29 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
 
   if (!selectedPlan) return null
 
+  const formFields = [
+    {
+      icon: IoPersonOutline,
+      name: "name",
+      type: "text",
+      placeholder: "Name *",
+    },
+    {
+      icon: IoMailOutline,
+      name: "email",
+      type: "email",
+      placeholder: "Email *",
+    },
+    {
+      icon: IoPhonePortraitOutline,
+      name: "phone",
+      type: "tel",
+      placeholder: "Phone Number *",
+    },
+  ]
+
+  const isAdvancedPlan = selectedPlan.name === "Advanced"
+
   return (
     <AnimatePresence mode="wait">
       {isOpen && (
@@ -127,86 +177,57 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
           onClick={handleBackdropClick}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-[2px]"
+          className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/40 backdrop-blur-[2px] overflow-y-auto"
         >
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="relative w-full max-w-6xl bg-gradient-to-br from-[#000048] to-[#0b60a0] rounded-lg shadow-xl overflow-hidden"
+            className="relative w-full max-w-6xl bg-gradient-to-br from-[#000048] to-[#0b60a0] rounded-lg shadow-xl overflow-hidden my-2 sm:my-4"
           >
             <button
               onClick={handleClose}
               disabled={isSubmitting}
-              className="absolute right-5 top-5 text-white/70 hover:text-white z-20 transition-colors disabled:opacity-50"
+              className="fixed sm:absolute right-4 top-4 text-white z-20 transition-all disabled:opacity-50 bg-black/30 hover:bg-black/40 p-2.5 rounded-full"
+              aria-label="Close modal"
             >
-              <IoClose className="w-6 h-6" />
+              <IoClose className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
 
-            <div className="container mx-auto flex flex-col lg:flex-row gap-8 p-6 lg:p-8">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 p-4 sm:p-6 lg:p-8 max-h-[90vh] lg:max-h-[85vh] overflow-y-auto">
               {/* Left Column - Form */}
               <motion.div
-                initial={{ y: 50, opacity: 0 }}
+                initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="w-full lg:w-7/12"
+                transition={{ duration: 0.3 }}
+                className="w-full lg:w-7/12 flex-shrink-0"
               >
                 {isSuccess ? (
                   <SuccessMessage onReset={resetForm} />
                 ) : (
-                  <div className="bg-white shadow-2xl rounded-lg p-6 lg:p-8">
-                    <div className="mb-8">
-                      <h2 className="text-lg font-light text-[#000048] mb-2">
+                  <div className="bg-white shadow-2xl rounded-lg p-4 sm:p-6 lg:p-8">
+                    <div className="mb-6 sm:mb-8">
+                      <h2 className="text-base sm:text-lg font-light text-[#000048] mb-1.5">
                         Subscribe to Our Services
                       </h2>
-                      <h3 className="text-3xl font-bold text-[#000048] tracking-tight">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-[#000048] tracking-tight">
                         Complete your subscription
                       </h3>
                     </div>
 
                     <form
                       onSubmit={handleSubmit}
-                      className="space-y-6"
+                      className="space-y-5 sm:space-y-6"
                     >
-                      {[
-                        {
-                          icon: IoPersonOutline,
-                          name: "name",
-                          type: "text",
-                          placeholder: "Name *",
-                        },
-                        {
-                          icon: IoMailOutline,
-                          name: "email",
-                          type: "email",
-                          placeholder: "Email *",
-                        },
-                        {
-                          icon: IoPhonePortraitOutline,
-                          name: "phone",
-                          type: "tel",
-                          placeholder: "Phone Number *",
-                        },
-                      ].map((field) => (
-                        <div
+                      {formFields.map((field) => (
+                        <FormInput
                           key={field.name}
-                          className="relative flex flex-col group"
-                        >
-                          <div className="flex items-center">
-                            <field.icon className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
-                            <input
-                              type={field.type}
-                              name={field.name}
-                              value={formData[field.name]}
-                              onChange={handleChange}
-                              placeholder={field.placeholder}
-                              disabled={isSubmitting}
-                              required
-                              className="w-full h-10 pl-8 text-[#000048] placeholder-[#000048]/60 border-b-2 border-gray-200 focus:border-[#0b60a0] focus:outline-none transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                            />
-                          </div>
-                        </div>
+                          field={field}
+                          value={formData[field.name]}
+                          onChange={handleChange}
+                          isSubmitting={isSubmitting}
+                        />
                       ))}
 
                       <motion.button
@@ -214,13 +235,13 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
                         whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full sm:w-1/2 bg-blue-600 text-white px-6 py-3 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full sm:w-auto min-w-[200px] bg-blue-600 text-white px-6 py-3 text-sm sm:text-base font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <span>
                           {isSubmitting ? "Processing..." : "Subscribe Now"}
                         </span>
                         <GrSend
-                          className={`w-5 h-5 ${
+                          className={`w-4 h-4 sm:w-5 sm:h-5 ${
                             isSubmitting ? "animate-pulse" : ""
                           }`}
                         />
@@ -231,29 +252,34 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
               </motion.div>
 
               {/* Right Column - Plan Info */}
-              <div className="w-full lg:w-5/12 space-y-6 lg:space-y-8 py-4 lg:py-8 px-4 lg:px-8 relative z-10">
+              <div className="w-full lg:w-5/12 space-y-4 sm:space-y-6 py-2 sm:py-4 px-2 sm:px-4 relative z-10">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <IoRocketOutline className="text-4xl text-white" />
-                    <h1 className="text-2xl lg:text-3xl font-light text-white tracking-wide">
+                    <IoRocketOutline className="text-3xl sm:text-4xl text-white" />
+                    <h1 className="text-xl sm:text-2xl lg:text-3xl font-light text-white tracking-wide">
                       Ready to Launch?
                     </h1>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     <div>
-                      <h2 className="text-2xl lg:text-4xl font-black text-white leading-tight">
+                      <h2 className="text-xl sm:text-2xl lg:text-4xl font-black text-white leading-tight">
                         {selectedPlan.name} Plan
                       </h2>
-                      <p className="text-white/80 mt-2 text-lg">
+                      <p className="text-white/80 mt-2 text-sm sm:text-base lg:text-lg">
                         {selectedPlan.description ||
                           "Description not available"}
                       </p>
                     </div>
 
-                    <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg p-6 mr-4 lg:mr-8">
-                      <div className="flex items-baseline gap-2 mb-4">
-                        <span className="text-5xl font-bold text-white">
+                    <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg p-4 sm:p-6">
+                      {isAdvancedPlan && (
+                        <span className="block text-white/80 text-sm mb-1">
+                          Starting at
+                        </span>
+                      )}
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
                           ${selectedPlan.price}
                         </span>
                       </div>
@@ -269,4 +295,4 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
   )
 }
 
-export default PlanModal
+export default memo(PlanModal)

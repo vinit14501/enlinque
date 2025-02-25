@@ -5,8 +5,8 @@ import {
   FaGoogle,
   FaAddressBook,
   FaCloudUploadAlt,
+  FaArrowRight,
 } from "react-icons/fa"
-import { BsArrowRight } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
 import React from "react"
 import websitedevelopment from "../../../assets/websitedevelopment.webp"
@@ -154,8 +154,10 @@ const WebsiteDevelopment = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-blue-600 text-white font-semibold font-raleway py-2 px-4 sm:px-5 rounded-lg inline-flex items-center gap-1 sm:gap-2 text-sm sm:text-base transition-all duration-300"
+                onClick={() => navigate("/digitalmarketing")}
               >
-                Digital Marketing
+                Digital Marketing{" "}
+                <FaArrowRight className="text-base sm:text-base" />
               </motion.button>
             </div>
           </div>
