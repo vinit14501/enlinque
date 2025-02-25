@@ -1,8 +1,8 @@
 import seo from "../../../../assets/seo.webp"
-import writing from "../../../../assets/writing.jpg"
-import branding from "../../../../assets/branding.jpg"
-import analytics from "../../../../assets/analytics.jpg"
-import social from "../../../../assets/social.jpg"
+import writing from "../../../../assets/writing.webp"
+import branding from "../../../../assets/branding.webp"
+import analytics from "../../../../assets/analytics.webp"
+import social from "../../../../assets/social.webp"
 
 const SocialMediaDesktop = () => {
   const panels = [
