@@ -1,8 +1,8 @@
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { FaLinkedin } from "react-icons/fa"
-import { GrSend } from "react-icons/gr"
-import axios from "axios"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { FaLinkedin } from "react-icons/fa";
+import { GrSend } from "react-icons/gr";
+import axios from "axios";
 import {
   IoPersonOutline,
   IoBusinessOutline,
@@ -11,7 +11,7 @@ import {
   IoChatbubbleOutline,
   IoCheckmarkCircleOutline,
   IoRefreshOutline,
-} from "react-icons/io5"
+} from "react-icons/io5";
 
 const initialFormState = {
   name: "",
@@ -19,7 +19,7 @@ const initialFormState = {
   email: "",
   phone: "",
   message: "",
-}
+};
 
 const initialErrorState = {
   name: "",
@@ -27,13 +27,13 @@ const initialErrorState = {
   email: "",
   phone: "",
   message: "",
-}
+};
 
 const SuccessMessage = ({ onReset }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    className="bg-white shadow-2xl rounded-lg p-8 flex flex-col items-center justify-center min-h-[400px] space-y-6"
+    className="bg-white shadow-2xl rounded-lg p-8 flex flex-col items-center justify-center min-h-100 space-y-6"
   >
     <IoCheckmarkCircleOutline className="text-6xl text-green-600" />
     <h2 className="text-2xl font-bold text-[#000048] text-center">
@@ -53,18 +53,18 @@ const SuccessMessage = ({ onReset }) => (
       <span>Send Another Message</span>
     </motion.button>
   </motion.div>
-)
+);
 
 const Contact = () => {
-  const [formData, setFormData] = useState(initialFormState)
-  const [formErrors, setFormErrors] = useState(initialErrorState)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
+  const [formData, setFormData] = useState(initialFormState);
+  const [formErrors, setFormErrors] = useState(initialErrorState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const validateForm = () => {
-    const { name, company, email, phone, message } = formData
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/
+    const { name, company, email, phone, message } = formData;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
 
     const newErrors = {
       name:
@@ -81,41 +81,41 @@ const Contact = () => {
           ? "Please enter a valid phone number"
           : "",
       message: !message.trim() ? "Message is required" : "",
-    }
+    };
 
-    setFormErrors(newErrors)
-    return !Object.values(newErrors).some((error) => error !== "")
-  }
+    setFormErrors(newErrors);
+    return !Object.values(newErrors).some((error) => error !== "");
+  };
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
+    }));
 
     if (formErrors[name]) {
       setFormErrors((prev) => ({
         ...prev,
         [name]: "",
-      }))
+      }));
     }
-  }
+  };
 
   const resetForm = () => {
-    setFormData(initialFormState)
-    setFormErrors(initialErrorState)
-    setIsSuccess(false)
-  }
+    setFormData(initialFormState);
+    setFormErrors(initialErrorState);
+    setIsSuccess(false);
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (!validateForm()) {
-      return
+      return;
     }
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     try {
       const response = await axios.post(
@@ -126,28 +126,28 @@ const Contact = () => {
             "Content-Type": "application/json",
           },
           withCredentials: true,
-        }
-      )
+        },
+      );
 
       if (response.data.success) {
-        setIsSuccess(true)
-        setFormData(initialFormState)
-        setFormErrors(initialErrorState)
+        setIsSuccess(true);
+        setFormData(initialFormState);
+        setFormErrors(initialErrorState);
       }
     } catch (error) {
-      console.error("Contact form error:", error)
+      console.error("Contact form error:", error);
       const errorMessage =
         error.response?.data?.message ||
         error.response?.data?.error ||
-        "Failed to send message. Please try again later."
-      alert(errorMessage) // Fallback error handling
+        "Failed to send message. Please try again later.";
+      alert(errorMessage); // Fallback error handling
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
-    <div className="bg-gradient-to-br from-[#000048] to-[#0b60a0] min-h-[calc(100vh-144px)]">
+    <div className="bg-linear-to-br from-[#000048] to-[#0b60a0] min-h-[calc(100vh-144px)]">
       <div className="container mx-auto max-w-7xl flex flex-col lg:flex-row gap-8 lg:gap-16 p-4 lg:p-8">
         {/* Left Column */}
         <div className="w-full lg:w-6/12 space-y-6 lg:space-y-12 py-4 lg:py-8 lg:-ml-12 relative z-10">
@@ -188,7 +188,7 @@ const Contact = () => {
               <h3 className="text-xl text-white font-semibold whitespace-nowrap">
                 Connect With Us
               </h3>
-              <span className="flex-grow border-t-2 border-white/30"></span>
+              <span className="grow border-t-2 border-white/30"></span>
             </div>
 
             <div className="flex gap-6">
@@ -233,10 +233,7 @@ const Contact = () => {
                   </h3>
                 </div>
 
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-6"
-                >
+                <form onSubmit={handleSubmit} className="space-y-6">
                   {[
                     {
                       icon: IoPersonOutline,
@@ -335,7 +332,7 @@ const Contact = () => {
         </motion.div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

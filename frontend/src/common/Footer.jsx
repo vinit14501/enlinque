@@ -1,11 +1,11 @@
-import { motion } from "framer-motion"
-import { FaLinkedin } from "react-icons/fa"
-import { MdEmail } from "react-icons/md"
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { motion } from "framer-motion";
+import { FaLinkedin } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Footer = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const services = [
     { label: "Website Development", path: "/websitedevelopment" },
@@ -16,42 +16,42 @@ const Footer = () => {
     { label: "E-Commerce", path: "/#services" },
     { label: "Digital Transformation", path: "/#services" },
     { label: "Agile Implementation", path: "/#services" },
-  ]
+  ];
 
   const resources = [
     { label: "About", path: "/about" },
     { label: "Privacy Policy", path: "/privacy-policy" },
     { label: "Terms of service", path: "/terms-of-service" },
-  ]
+  ];
 
   const scrollToServices = () => {
-    const servicesSection = document.getElementById("services")
+    const servicesSection = document.getElementById("services");
     if (servicesSection) {
-      const navHeight = document.querySelector("nav").offsetHeight
-      const elementPosition = servicesSection.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight
+      const navHeight = document.querySelector("nav").offsetHeight;
+      const elementPosition = servicesSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
 
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",
-      })
+      });
     } else if (location.pathname !== "/") {
-      navigate("/#services")
+      navigate("/#services");
     }
-  }
+  };
 
   const handleServiceClick = (path) => {
     if (path === "/#services") {
       if (location.pathname === "/") {
-        scrollToServices()
+        scrollToServices();
       } else {
-        navigate("/#services")
+        navigate("/#services");
       }
     } else {
-      navigate(path)
-      window.scrollTo(0, 0)
+      navigate(path);
+      window.scrollTo(0, 0);
     }
-  }
+  };
 
   const animations = {
     container: {
@@ -76,7 +76,7 @@ const Footer = () => {
         },
       },
     },
-  }
+  };
 
   return (
     <motion.footer
@@ -102,10 +102,7 @@ const Footer = () => {
           {/* Right side sections */}
           <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-8">
             {/* Services */}
-            <motion.div
-              variants={animations.item}
-              className="space-y-4"
-            >
+            <motion.div variants={animations.item} className="space-y-4">
               <h3 className="text-2xl font-bold tracking-wide">Services</h3>
               <ul className="space-y-2.5">
                 {services.map((service, index) => (
@@ -135,10 +132,7 @@ const Footer = () => {
             </motion.div>
 
             {/* Resources */}
-            <motion.div
-              variants={animations.item}
-              className="space-y-4"
-            >
+            <motion.div variants={animations.item} className="space-y-4">
               <h3 className="text-2xl font-bold tracking-wide">Company</h3>
               <ul className="space-y-2.5">
                 {resources.map((resource, index) => (
@@ -159,17 +153,14 @@ const Footer = () => {
             </motion.div>
 
             {/* Contact Information */}
-            <motion.div
-              variants={animations.item}
-              className="space-y-4"
-            >
+            <motion.div variants={animations.item} className="space-y-4">
               <h3 className="text-2xl font-bold tracking-wide">Contact</h3>
               <ul className="space-y-3">
                 <motion.li
                   variants={animations.item}
                   className="flex items-center space-x-3"
                 >
-                  <MdEmail className="text-white text-xl flex-shrink-0" />
+                  <MdEmail className="text-white text-xl shrink-0" />
                   <a
                     href="mailto:contact@enlinque.com"
                     className="text-white hover:text-blue-400 transition-colors duration-200 text-sm"
@@ -181,7 +172,7 @@ const Footer = () => {
                   variants={animations.item}
                   className="flex items-center space-x-3"
                 >
-                  <FaLinkedin className="text-white text-xl flex-shrink-0" />
+                  <FaLinkedin className="text-white text-xl shrink-0" />
                   <a
                     href="#"
                     className="text-white hover:text-blue-400 transition-colors duration-200 text-sm"
@@ -208,7 +199,7 @@ const Footer = () => {
         </motion.div>
       </div>
     </motion.footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

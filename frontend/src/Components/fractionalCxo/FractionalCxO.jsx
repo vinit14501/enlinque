@@ -1,12 +1,12 @@
-import { motion } from "framer-motion"
-import { FaCheckCircle } from "react-icons/fa"
-import cmo from "../../assets/cmo.webp"
-import cto from "../../assets/cto.webp"
-import cfo from "../../assets/cfo.webp"
-import coo from "../../assets/coo.webp"
-import cio from "../../assets/cio.webp"
-import fractional from "../../assets/fractional.webp"
-import ContactCta from "../contact cta/ContactCta"
+import { motion } from "framer-motion";
+import { FaCheckCircle } from "react-icons/fa";
+import cmo from "../../assets/cmo.webp";
+import cto from "../../assets/cto.webp";
+import cfo from "../../assets/cfo.webp";
+import coo from "../../assets/coo.webp";
+import cio from "../../assets/cio.webp";
+import fractional from "../../assets/fractional.webp";
+import ContactCta from "../contact cta/ContactCta";
 
 const services = [
   {
@@ -79,23 +79,23 @@ const services = [
       "Enhance organizational efficiency and productivity",
     ],
   },
-]
+];
 
 export default function FractionalCxO() {
   const handleScroll = (e, id) => {
-    e.preventDefault()
-    const element = document.getElementById(id)
-    const offset = 100 // Adjust this value to control how far from the top the section should stop
-    const bodyRect = document.body.getBoundingClientRect().top
-    const elementRect = element.getBoundingClientRect().top
-    const elementPosition = elementRect - bodyRect
-    const offsetPosition = elementPosition - offset
+    e.preventDefault();
+    const element = document.getElementById(id);
+    const offset = 100; // Adjust this value to control how far from the top the section should stop
+    const bodyRect = document.body.getBoundingClientRect().top;
+    const elementRect = element.getBoundingClientRect().top;
+    const elementPosition = elementRect - bodyRect;
+    const offsetPosition = elementPosition - offset;
 
     window.scrollTo({
       top: offsetPosition,
       behavior: "smooth",
-    })
-  }
+    });
+  };
 
   return (
     <div className="font-sans bg-white">
@@ -189,7 +189,7 @@ export default function FractionalCxO() {
                     <div className="absolute -left-2 md:-left-4 -bottom-2 md:-bottom-4 w-full h-full bg-gradient-to-r from-blue-950 via-blue-800 to-blue-600 z-0"></div>
                     <motion.div
                       whileHover={{ scale: 1.03 }}
-                      className="relative z-10 flex-grow overflow-hidden"
+                      className="relative z-10 grow overflow-hidden"
                     >
                       <img
                         src={service.image}
@@ -205,13 +205,13 @@ export default function FractionalCxO() {
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                       {service.description}
                     </p>
-                    <ul className="space-y-2 md:space-y-3 text-gray-700 flex-grow">
+                    <ul className="space-y-2 md:space-y-3 text-gray-700 grow">
                       {service.points.map((point, idx) => (
                         <li
                           key={idx}
                           className="flex items-center text-sm md:text-base"
                         >
-                          <FaCheckCircle className="text-[#0b60a0] mr-3 flex-shrink-0" />
+                          <FaCheckCircle className="text-[#0b60a0] mr-3 shrink-0" />
                           {point}
                         </li>
                       ))}
@@ -227,13 +227,13 @@ export default function FractionalCxO() {
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                       {service.description}
                     </p>
-                    <ul className="space-y-2 md:space-y-3 text-gray-700 flex-grow">
+                    <ul className="space-y-2 md:space-y-3 text-gray-700 grow">
                       {service.points.map((point, idx) => (
                         <li
                           key={idx}
                           className="flex items-center text-sm md:text-base"
                         >
-                          <FaCheckCircle className="text-[#0b60a0] mr-3 flex-shrink-0" />
+                          <FaCheckCircle className="text-[#0b60a0] mr-3 shrink-0" />
                           {point}
                         </li>
                       ))}
@@ -243,7 +243,7 @@ export default function FractionalCxO() {
                     <div className="absolute -right-2 md:-right-4 -bottom-2 md:-bottom-4 w-full h-full bg-gradient-to-r from-blue-600 via-blue-800 to-blue-950 z-0"></div>
                     <motion.div
                       whileHover={{ scale: 1.03 }}
-                      className="relative z-10 flex-grow overflow-hidden"
+                      className="relative z-10 grow overflow-hidden"
                     >
                       <img
                         src={service.image}
@@ -262,5 +262,5 @@ export default function FractionalCxO() {
       {/* Connect Section */}
       <ContactCta />
     </div>
-  )
+  );
 }

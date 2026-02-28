@@ -1,22 +1,22 @@
-import { motion } from "framer-motion"
-import { BsArrowRight } from "react-icons/bs"
-import { FaArrowRight } from "react-icons/fa"
-import ctaBackground from "../../../assets/digitalmarketingbanner1.webp"
-import cta3 from "../../../assets/digitalmarketingbanner2.webp"
-import arrow from "../../../assets/arrow.webp"
-import ContactCta from "../../contact cta/ContactCta"
-import { digitalMarketingServices } from "./digitalMarketingServices"
-import { useNavigate } from "react-router-dom"
-import SocialMediaSection from "./social media/SocialMediaSection"
-import MarketingComponentsSection from "./MarketingComponentsSection"
+import { motion } from "framer-motion";
+import { BsArrowRight } from "react-icons/bs";
+import { FaArrowRight } from "react-icons/fa";
+import ctaBackground from "../../../assets/digitalmarketingbanner1.webp";
+import cta3 from "../../../assets/digitalmarketingbanner2.webp";
+import arrow from "../../../assets/arrow.webp";
+import ContactCta from "../../contact cta/ContactCta";
+import { digitalMarketingServices } from "./digitalMarketingServices";
+import { useNavigate } from "react-router-dom";
+import SocialMediaSection from "./social media/SocialMediaSection";
+import MarketingComponentsSection from "./MarketingComponentsSection";
 
 const DigitalMarketing = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const scrollToServices = () => {
-    const pricingSection = document.getElementById("services-section")
-    pricingSection.scrollIntoView({ behavior: "smooth", block: "start" })
-  }
+    const pricingSection = document.getElementById("services-section");
+    pricingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
@@ -77,9 +77,9 @@ const DigitalMarketing = () => {
       {/* First CTA Banner */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden">
         {/* Background with multiple layers */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#000048] via-blue-600 to-[#0b60a0]" />
+        <div className="absolute inset-0 bg-linear-to-br from-[#000048] via-blue-600 to-[#0b60a0]" />
         <div className="absolute inset-0 bg-grid-white/[0.05]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#000048]" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#000048]" />
 
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="flex justify-between items-center">
@@ -142,7 +142,7 @@ const DigitalMarketing = () => {
                           <img
                             src={arrow}
                             alt="arrow"
-                            className="w-4 h-4 mt-1 flex-shrink-0"
+                            className="w-4 h-4 mt-1 shrink-0"
                           />
                           <span>{point}</span>
                         </li>
@@ -157,7 +157,7 @@ const DigitalMarketing = () => {
 
       {/* Second CTA Banner */}
       <div
-        className="relative w-full h-[300px] sm:h-[350px] md:h-[400px] bg-cover bg-center"
+        className="relative w-full h-75 sm:h-87.5 md:h-100 bg-cover bg-center"
         style={{ backgroundImage: `url(${cta3})` }}
       >
         <motion.div
@@ -220,7 +220,7 @@ const DigitalMarketing = () => {
       {/* Connect Section */}
       <ContactCta />
     </div>
-  )
-}
+  );
+};
 
-export default DigitalMarketing
+export default DigitalMarketing;

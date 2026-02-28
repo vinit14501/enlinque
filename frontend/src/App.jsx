@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Navbar from "./Components/Navbar"
-import Footer from "./Components/Footer"
+import Navbar from "./common/Navbar"
+import Footer from "./common/Footer"
 import HomePage from "./pages/HomePage"
 import AboutPage from "./pages/AboutPage"
 import ContactPage from "./pages/ContactPage"
@@ -19,7 +19,7 @@ export default function App() {
       <Router>
         <div className="flex flex-col min-h-screen">
           <Navbar />
-          <main className="flex-grow">
+          <main className="grow">
             <Routes>
               <Route
                 path="/"

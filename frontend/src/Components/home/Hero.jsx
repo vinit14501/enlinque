@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   RiCheckboxBlankCircleLine,
   RiCheckboxBlankCircleFill,
-} from "react-icons/ri"
-import hero1 from "../../assets/1.webp"
-import hero2 from "../../assets/2.webp"
-import hero3 from "../../assets/3.webp"
-import hero4 from "../../assets/4.webp"
+} from "react-icons/ri";
+import hero1 from "../../assets/1.webp";
+import hero2 from "../../assets/2.webp";
+import hero3 from "../../assets/3.webp";
+import hero4 from "../../assets/4.webp";
 
 const carouselContent = [
   {
@@ -42,30 +42,30 @@ const carouselContent = [
     image: hero4,
     navWord: "App Development",
   },
-]
+];
 
 const Hero = () => {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
-    let interval
+    let interval;
     if (isAutoPlaying) {
       interval = setInterval(() => {
-        setActiveIndex((prev) => (prev + 1) % carouselContent.length)
-      }, 5000)
+        setActiveIndex((prev) => (prev + 1) % carouselContent.length);
+      }, 5000);
     }
-    return () => clearInterval(interval)
-  }, [isAutoPlaying])
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
 
   const handleSectionClick = (index) => {
-    setActiveIndex(index)
-    setIsAutoPlaying(false)
-    setTimeout(() => setIsAutoPlaying(true), 10000)
-  }
+    setActiveIndex(index);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 10000);
+  };
 
   return (
-    <div className="relative w-full min-h-[400px] md:min-h-[500px] lg:h-screen lg:max-h-[500px] flex overflow-hidden">
+    <div className="relative w-full min-h-100 md:min-h-[500px] lg:h-screen lg:max-h-[500px] flex overflow-hidden">
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.img
@@ -172,7 +172,7 @@ const Hero = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

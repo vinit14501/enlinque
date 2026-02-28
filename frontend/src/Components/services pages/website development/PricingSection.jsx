@@ -1,17 +1,17 @@
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { FaCheck, FaPlus } from "react-icons/fa"
-import { pricingPlans } from "./pricingPlans"
-import PlanModal from "../../modal/PlanModal"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { FaCheck, FaPlus } from "react-icons/fa";
+import { pricingPlans } from "./pricingPlans";
+import PlanModal from "../../modal/PlanModal";
 
 const PricingSection = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
 
   const handlePlanSelection = (plan) => {
-    setSelectedPlan(plan)
-    setIsModalOpen(true)
-  }
+    setSelectedPlan(plan);
+    setIsModalOpen(true);
+  };
 
   return (
     <section
@@ -82,7 +82,7 @@ const PricingSection = () => {
                       key={feature}
                       className="flex items-center text-base group-hover:transform group-hover:translate-x-1 transition-transform duration-300"
                     >
-                      <FaCheck className="text-blue-600 mr-3 flex-shrink-0" />
+                      <FaCheck className="text-blue-600 mr-3 shrink-0" />
                       <span className="leading-relaxed">{feature}</span>
                     </li>
                   ))}
@@ -100,7 +100,7 @@ const PricingSection = () => {
                       key={service}
                       className="flex items-center text-base group-hover:transform group-hover:translate-x-1 transition-transform duration-300"
                     >
-                      <FaPlus className="text-blue-600 mr-3 flex-shrink-0" />
+                      <FaPlus className="text-blue-600 mr-3 shrink-0" />
                       <span className="leading-relaxed">{service}</span>
                     </li>
                   ))}
@@ -118,7 +118,7 @@ const PricingSection = () => {
         selectedPlan={selectedPlan}
       />
     </section>
-  )
-}
+  );
+};
 
-export default PricingSection
+export default PricingSection;

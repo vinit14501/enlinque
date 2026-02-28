@@ -1,6 +1,6 @@
-import { useEffect, useState, memo } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { IoClose } from "react-icons/io5"
+import { useEffect, useState, memo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { IoClose } from "react-icons/io5";
 import {
   IoPersonOutline,
   IoMailOutline,
@@ -8,16 +8,16 @@ import {
   IoCheckmarkCircleOutline,
   IoRefreshOutline,
   IoRocketOutline,
-} from "react-icons/io5"
-import { GrSend } from "react-icons/gr"
-import axios from "axios"
+} from "react-icons/io5";
+import { GrSend } from "react-icons/gr";
+import axios from "axios";
 
 // Memoized SuccessMessage component to prevent unnecessary re-renders
 const SuccessMessage = memo(({ onReset }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    className="bg-white shadow-2xl rounded-lg p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center min-h-[300px] sm:min-h-[350px] w-full max-w-xl mx-auto space-y-4 sm:space-y-6"
+    className="bg-white shadow-2xl rounded-lg p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center min-h-75 sm:min-h-[350px] w-full max-w-xl mx-auto space-y-4 sm:space-y-6"
   >
     <IoCheckmarkCircleOutline className="text-4xl sm:text-5xl md:text-6xl text-green-600" />
     <h2 className="text-xl sm:text-2xl font-bold text-[#000048] text-center">
@@ -37,9 +37,9 @@ const SuccessMessage = memo(({ onReset }) => (
       <span>Subscribe to Another Plan</span>
     </motion.button>
   </motion.div>
-))
+));
 
-SuccessMessage.displayName = "SuccessMessage"
+SuccessMessage.displayName = "SuccessMessage";
 
 // Memoized Form Input component
 const FormInput = memo(({ field, value, onChange, isSubmitting }) => (
@@ -58,30 +58,30 @@ const FormInput = memo(({ field, value, onChange, isSubmitting }) => (
       />
     </div>
   </div>
-))
+));
 
-FormInput.displayName = "FormInput"
+FormInput.displayName = "FormInput";
 
 const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     const handleEsc = (e) => {
-      if (e.key === "Escape") onClose()
-    }
-    window.addEventListener("keydown", handleEsc)
-    return () => window.removeEventListener("keydown", handleEsc)
-  }, [onClose])
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [onClose]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const response = await axios.post(
@@ -97,53 +97,53 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
-      )
+        },
+      );
 
       if (response.data.success) {
-        setIsSuccess(true)
-        setFormData({ name: "", email: "", phone: "" })
+        setIsSuccess(true);
+        setFormData({ name: "", email: "", phone: "" });
       }
     } catch (error) {
-      console.error("Submission error:", error)
+      console.error("Submission error:", error);
       const errorMessage =
         error.response?.data?.message ||
         error.response?.data?.error ||
-        "Failed to submit plan subscription"
-      alert(errorMessage)
+        "Failed to submit plan subscription";
+      alert(errorMessage);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-    }))
-  }
+    }));
+  };
 
   const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) onClose()
-  }
+    if (e.target === e.currentTarget) onClose();
+  };
 
   const resetForm = () => {
     setFormData({
       name: "",
       email: "",
       phone: "",
-    })
-    setIsSuccess(false)
-  }
+    });
+    setIsSuccess(false);
+  };
 
   const handleClose = () => {
-    onClose()
+    onClose();
     setTimeout(() => {
-      setIsSuccess(false)
-    }, 200)
-  }
+      setIsSuccess(false);
+    }, 200);
+  };
 
-  if (!selectedPlan) return null
+  if (!selectedPlan) return null;
 
   const formFields = [
     {
@@ -164,9 +164,9 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
       type: "tel",
       placeholder: "Phone Number *",
     },
-  ]
+  ];
 
-  const isAdvancedPlan = selectedPlan.name === "Advanced"
+  const isAdvancedPlan = selectedPlan.name === "Advanced";
 
   return (
     <AnimatePresence mode="wait">
@@ -184,7 +184,7 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="relative w-full max-w-6xl bg-gradient-to-br from-[#000048] to-[#0b60a0] rounded-lg shadow-xl overflow-hidden my-2 sm:my-4"
+            className="relative w-full max-w-6xl bg-linear-to-br from-[#000048] to-[#0b60a0] rounded-lg shadow-xl overflow-hidden my-2 sm:my-4"
           >
             <button
               onClick={handleClose}
@@ -201,7 +201,7 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className="w-full lg:w-7/12 flex-shrink-0"
+                className="w-full lg:w-7/12 shrink-0"
               >
                 {isSuccess ? (
                   <SuccessMessage onReset={resetForm} />
@@ -292,7 +292,7 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
         </motion.div>
       )}
     </AnimatePresence>
-  )
-}
+  );
+};
 
-export default memo(PlanModal)
+export default memo(PlanModal);

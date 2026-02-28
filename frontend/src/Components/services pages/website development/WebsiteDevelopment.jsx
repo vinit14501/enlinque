@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import {
   FaServer,
   FaPaintBrush,
@@ -6,29 +6,29 @@ import {
   FaAddressBook,
   FaCloudUploadAlt,
   FaArrowRight,
-} from "react-icons/fa"
-import { useNavigate } from "react-router-dom"
-import React from "react"
-import websitedevelopment from "../../../assets/websitedevelopment.webp"
-import digitalmarketing from "../../../assets/digitalmarketing.webp"
-import PlanModal from "../../modal/PlanModal"
-import PricingSection from "./PricingSection"
-import ContactCta from "../../contact cta/ContactCta"
+} from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import React from "react";
+import websitedevelopment from "../../../assets/websitedevelopment.webp";
+import digitalmarketing from "../../../assets/digitalmarketing.webp";
+import PlanModal from "../../modal/PlanModal";
+import PricingSection from "./PricingSection";
+import ContactCta from "../../contact cta/ContactCta";
 
 const WebsiteDevelopment = () => {
-  const navigate = useNavigate()
-  const [isModalOpen, setIsModalOpen] = React.useState(false)
-  const [selectedPlan, setSelectedPlan] = React.useState(null)
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [selectedPlan, setSelectedPlan] = React.useState(null);
 
   const scrollToPricing = () => {
-    const pricingSection = document.getElementById("pricing-section")
-    pricingSection.scrollIntoView({ behavior: "smooth", block: "start" })
-  }
+    const pricingSection = document.getElementById("pricing-section");
+    pricingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const handlePlanSelection = (plan) => {
-    setSelectedPlan(plan)
-    setIsModalOpen(true)
-  }
+    setSelectedPlan(plan);
+    setIsModalOpen(true);
+  };
 
   const Services = [
     {
@@ -61,7 +61,7 @@ const WebsiteDevelopment = () => {
       description:
         "Ensuring your website stays updated, secure, and optimized for peak performance with regular enhancements and maintenance.",
     },
-  ]
+  ];
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
@@ -131,7 +131,7 @@ const WebsiteDevelopment = () => {
 
       {/* Digital Marketing Section */}
       <div
-        className="relative w-full h-[300px] sm:h-[350px] md:h-[400px] bg-cover bg-center"
+        className="relative w-full h-75 sm:h-87.5 md:h-100 bg-cover bg-center"
         style={{ backgroundImage: `url(${digitalmarketing})` }}
       >
         <motion.div
@@ -177,7 +177,7 @@ const WebsiteDevelopment = () => {
         selectedPlan={selectedPlan}
       />
     </div>
-  )
-}
+  );
+};
 
-export default WebsiteDevelopment
+export default WebsiteDevelopment;

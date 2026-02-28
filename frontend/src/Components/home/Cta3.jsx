@@ -1,14 +1,14 @@
-import { motion } from "framer-motion"
-import { FaArrowRight } from "react-icons/fa"
-import { useNavigate } from "react-router-dom"
-import cta from "../../assets/cta3.webp"
+import { motion } from "framer-motion";
+import { FaArrowRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import cta from "../../assets/cta3.webp";
 
 const Cta3 = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div
-      className="relative w-full h-[300px] sm:h-[350px] md:h-[400px] bg-cover bg-center"
+      className="relative w-full h-75 sm:h-87.5 md:h-100 bg-cover bg-center"
       style={{ backgroundImage: `url(${cta})` }}
     >
       <motion.div
@@ -37,7 +37,7 @@ const Cta3 = () => {
         </div>
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-export default Cta3
+export default Cta3;

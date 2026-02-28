@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react"
-import { Link, useNavigate, useLocation } from "react-router-dom"
-import { motion, AnimatePresence } from "framer-motion"
-import { FaBars, FaTimes } from "react-icons/fa"
-import logo from "../assets/logo.webp"
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaBars, FaTimes } from "react-icons/fa";
+import logo from "../assets/logo.webp";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const navigate = useNavigate()
-  const location = useLocation()
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
     { label: "Services", to: "/#services", isScroll: true },
@@ -23,54 +23,54 @@ const Navbar = () => {
       isScroll: false,
     },
     { label: "About", to: "/about", isScroll: false },
-  ]
+  ];
 
   const scrollToServices = () => {
-    const servicesSection = document.getElementById("services")
+    const servicesSection = document.getElementById("services");
     if (servicesSection) {
-      const navHeight = document.querySelector("nav").offsetHeight
-      const elementPosition = servicesSection.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight
+      const navHeight = document.querySelector("nav").offsetHeight;
+      const elementPosition = servicesSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
 
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",
-      })
+      });
     } else if (location.pathname !== "/") {
-      navigate("/#services")
+      navigate("/#services");
     }
-  }
+  };
 
   useEffect(() => {
     if (!location.hash) {
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     }
 
     if (location.hash === "#services" && location.pathname === "/") {
       setTimeout(() => {
-        scrollToServices()
-      }, 100)
+        scrollToServices();
+      }, 100);
     }
-  }, [location.pathname, location.hash])
+  }, [location.pathname, location.hash]);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   const handleContactClick = () => {
-    navigate("/contact")
-    window.scrollTo(0, 0)
-    if (isOpen) toggleMenu() // Added this line to close the mobile menu
-  }
+    navigate("/contact");
+    window.scrollTo(0, 0);
+    if (isOpen) toggleMenu(); // Added this line to close the mobile menu
+  };
 
   const handleNavItemClick = (item) => {
     if (item.isScroll && item.to === "/#services") {
-      scrollToServices()
+      scrollToServices();
     } else {
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     }
-    if (isOpen) toggleMenu()
-  }
+    if (isOpen) toggleMenu();
+  };
 
   return (
     <div className="relative">
@@ -79,7 +79,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24">
             <Link
               to="/"
-              className="flex-shrink-0 flex items-center"
+              className="shrink-0 flex items-center"
               onClick={() => window.scrollTo(0, 0)}
             >
               <img
@@ -130,10 +130,7 @@ const Navbar = () => {
               className="lg:hidden p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
               aria-label="Toggle menu"
             >
-              <FaBars
-                size={24}
-                className="text-gray-800"
-              />
+              <FaBars size={24} className="text-gray-800" />
             </button>
           </div>
         </div>
@@ -149,7 +146,7 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={toggleMenu}
-              className="fixed inset-0 bg-black bg-opacity-50 z-[60]"
+              className="fixed inset-0 bg-black bg-opacity-50 z-60"
             />
 
             <motion.div
@@ -157,7 +154,7 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-white shadow-xl z-[70] overflow-y-auto"
+              className="fixed top-0 right-0 h-full w-70 sm:w-[320px] bg-white shadow-xl z-70 overflow-y-auto"
             >
               <div className="sticky top-0 flex justify-end p-4 bg-white">
                 <button
@@ -165,10 +162,7 @@ const Navbar = () => {
                   className="p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
                   aria-label="Close menu"
                 >
-                  <FaTimes
-                    size={24}
-                    className="text-gray-800"
-                  />
+                  <FaTimes size={24} className="text-gray-800" />
                 </button>
               </div>
 
@@ -206,7 +200,7 @@ const Navbar = () => {
         )}
       </AnimatePresence>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
