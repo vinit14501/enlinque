@@ -83,29 +83,39 @@ const Hero = () => {
 
       {/* Content Container */}
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center lg:items-start justify-center px-4 sm:px-6 lg:px-8">
-        <div className="w-full lg:w-1/2 space-y-4 mb-16 text-center lg:text-left">
+        <div className="w-full lg:w-1/2 mb-16 text-center lg:text-left">
           <AnimatePresence mode="wait">
-            <motion.h1
-              key={carouselContent[activeIndex].header}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.6 }}
-              className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-raleway tracking-tight"
+            <motion.div
+              key={activeIndex}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="space-y-4"
             >
-              {carouselContent[activeIndex].header}
-            </motion.h1>
+              <motion.h1
+                variants={{
+                  initial: { opacity: 0, y: 20 },
+                  animate: { opacity: 1, y: 0 },
+                  exit: { opacity: 0, y: -20 },
+                }}
+                transition={{ duration: 0.6 }}
+                className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-raleway tracking-tight"
+              >
+                {carouselContent[activeIndex].header}
+              </motion.h1>
 
-            <motion.p
-              key={carouselContent[activeIndex].subtext}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-gray-200 text-sm sm:text-base lg:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed"
-            >
-              {carouselContent[activeIndex].subtext}
-            </motion.p>
+              <motion.p
+                variants={{
+                  initial: { opacity: 0, y: 20 },
+                  animate: { opacity: 1, y: 0 },
+                  exit: { opacity: 0, y: -20 },
+                }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-gray-200 text-sm sm:text-base lg:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed"
+              >
+                {carouselContent[activeIndex].subtext}
+              </motion.p>
+            </motion.div>
           </AnimatePresence>
         </div>
 
