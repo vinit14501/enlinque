@@ -3,7 +3,7 @@ import rateLimit from "express-rate-limit"
 const createRateLimiter = (windowMs, max) => {
   return rateLimit({
     windowMs,
-    max,
+    limit: max,
     message: {
       error: "Too many requests from this IP, please try again later.",
     },

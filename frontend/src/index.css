@@ -1,11 +1,105 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Pacifico&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* ── Font Family ─────────────────────────────────── */
+  --font-sans: "Raleway", ui-sans-serif, system-ui;
+
+  /* ── Colors ──────────────────────────────────────── */
+  --color-navy-900: #0A1128;
+
+  --color-services-bg: #F9F9F9;
+  --color-services-teal: #009688;
+  --color-services-teal-dark: #00796B;
+
+  --color-digital-dark: #111827;
+  --color-digital-dark-50: #f9fafb;
+  --color-digital-dark-100: #f3f4f6;
+  --color-digital-dark-200: #e5e7eb;
+  --color-digital-dark-300: #d1d5db;
+  --color-digital-dark-400: #9ca3af;
+  --color-digital-dark-500: #6b7280;
+  --color-digital-dark-600: #4b5563;
+  --color-digital-dark-700: #374151;
+  --color-digital-dark-800: #1f2937;
+  --color-digital-dark-900: #111827;
+
+  --color-digital-teal: #0d9488;
+  --color-digital-teal-50: #f0fdfa;
+  --color-digital-teal-100: #ccfbf1;
+  --color-digital-teal-200: #99f6e4;
+  --color-digital-teal-300: #5eead4;
+  --color-digital-teal-400: #2dd4bf;
+  --color-digital-teal-500: #14b8a6;
+  --color-digital-teal-600: #0d9488;
+  --color-digital-teal-700: #0f766e;
+  --color-digital-teal-800: #115e59;
+  --color-digital-teal-900: #134e4a;
+
+  /* ── Box Shadows ─────────────────────────────────── */
+  --shadow-neon: 0 0 15px rgba(45, 212, 191, 0.7);
+  --shadow-neon-teal: 0 0 15px rgba(0, 255, 255, 0.5);
+  --shadow-glow-teal: 0 0 20px rgba(0, 255, 255, 0.3);
+
+  /* ── Animations + Keyframes (co-located per v4 canonical spec) ── */
+  --animate-fadeIn: fadeIn 0.6s ease-out forwards;
+
+  @keyframes fadeIn {
+    0%   { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  --animate-slide-in-left: slide-in-left 0.7s ease-out;
+
+  @keyframes slide-in-left {
+    0%   { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  --animate-fadeInSequence1: fadeInSequence 0.6s ease-out forwards 100ms;
+  --animate-fadeInSequence2: fadeInSequence 0.6s ease-out forwards 200ms;
+  --animate-fadeInSequence3: fadeInSequence 0.6s ease-out forwards 300ms;
+  --animate-fadeInSequence4: fadeInSequence 0.6s ease-out forwards 400ms;
+  --animate-fadeInSequence5: fadeInSequence 0.6s ease-out forwards 500ms;
+  --animate-fadeInSequence6: fadeInSequence 0.6s ease-out forwards 600ms;
+
+  @keyframes fadeInSequence {
+    0%   { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  --animate-glitch: glitch 2s ease-in-out infinite;
+
+  @keyframes glitch {
+    0%, 100% { text-shadow: 0 0 5px rgba(0, 255, 255, 0); }
+    50%       { text-shadow: 0 0 10px rgba(0, 255, 255, 0.6); }
+  }
+
+  --animate-pulse: pulse 2s ease-in-out infinite;
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.05); }
+  }
+
+  --animate-gradient-x: gradient-x 3s ease infinite;
+
+  @keyframes gradient-x {
+    0%, 100% { background-position: 0% 50%; }
+    50%       { background-position: 100% 50%; }
+  }
+}
+
+/* ── Custom Utilities ────────────────────────────────── */
+
+@utility bg-circuit-pattern {
+  background-image:
+    linear-gradient(135deg, rgba(13, 148, 136, 0.1) 0%, rgba(13, 148, 136, 0.05) 100%),
+    radial-gradient(circle at top right, rgba(13, 148, 136, 0.2) 0%, transparent 20%);
+}
