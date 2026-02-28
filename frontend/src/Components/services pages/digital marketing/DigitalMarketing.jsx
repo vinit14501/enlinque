@@ -143,17 +143,23 @@ const DigitalMarketing = () => {
       </section>
 
       {/* Second CTA Banner */}
-      <div
-        className="relative w-full h-75 sm:h-87.5 md:h-100 bg-cover bg-center"
-        style={{ backgroundImage: `url(${cta3})` }}
-      >
+      <div className="relative w-full h-75 sm:h-87.5 md:h-100 overflow-hidden will-change-transform">
+        <img
+          src={cta3}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
           className="absolute bottom-0 left-0 right-0 flex justify-center"
         >
-          <div className="w-[80%] sm:w-[92%] md:w-[85%] bg-[#000048]/80 backdrop-blur-md p-4 sm:p-6 md:p-8 shadow-lg">
+          <div className="w-[80%] sm:w-[92%] md:w-[85%] bg-[#000048]/85 p-4 sm:p-6 md:p-8 shadow-lg">
             <div className="text-left text-white">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-raleway mb-2 sm:mb-3">
                 Digital Marketing Strategy
