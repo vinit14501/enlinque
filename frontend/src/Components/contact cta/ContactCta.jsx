@@ -1,10 +1,10 @@
-import { motion } from "framer-motion"
-import { BsArrowRight } from "react-icons/bs"
-import { useNavigate } from "react-router-dom"
-import Button from "../../common/Button"
+import { motion } from "framer-motion";
+import { BsArrowRight } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import Button from "../../common/Button";
 
 const ContactCta = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -14,7 +14,7 @@ const ContactCta = () => {
         staggerChildren: 0.2,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -26,14 +26,14 @@ const ContactCta = () => {
         ease: "easeOut",
       },
     },
-  }
+  };
 
   return (
     <motion.section
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="w-full py-8 sm:py-10 md:py-12 bg-[#0b60a0] sticky top-0 z-50"
+      className="w-full py-8 sm:py-10 md:py-12 bg-[#0b60a0] relative"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.h2
@@ -61,7 +61,7 @@ const ContactCta = () => {
         </Button>
       </div>
     </motion.section>
-  )
-}
+  );
+};
 
-export default ContactCta
+export default ContactCta;
