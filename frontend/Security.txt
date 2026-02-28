@@ -1,6 +1,0 @@
-/.well-known/security.txt
-Contact: mailto:security@enlinque.com
-Expires: 2025-12-31T23:59:59z
-Encryption: https://enlinque.com/pgp-key.txt
-Acknowledgments: https://enlinque.com/security-hall-of-fame
-Policy: https://enlinque.com/security-policy
