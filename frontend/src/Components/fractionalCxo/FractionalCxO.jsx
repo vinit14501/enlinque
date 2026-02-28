@@ -125,7 +125,7 @@ export default function FractionalCxO() {
               commitment. Our fractional CxOs bring decades of experience to
               elevate your business.
             </p>
-            <p className="text-lg md:text-xl max-w-3xl mx-auto text-white font-bold tracking-[0.1em]">
+            <p className="text-lg md:text-xl max-w-3xl mx-auto text-white font-bold tracking-widest">
               <a
                 href="#cio"
                 onClick={(e) => handleScroll(e, "cio")}
@@ -186,7 +186,7 @@ export default function FractionalCxO() {
               {index % 2 === 0 ? (
                 <>
                   <div className="relative group flex flex-col justify-center">
-                    <div className="absolute -left-2 md:-left-4 -bottom-2 md:-bottom-4 w-full h-full bg-gradient-to-r from-blue-950 via-blue-800 to-blue-600 z-0"></div>
+                    <div className="absolute -left-2 md:-left-4 -bottom-2 md:-bottom-4 w-full h-full bg-linear-to-r from-blue-950 via-blue-800 to-blue-600 z-0"></div>
                     <motion.div
                       whileHover={{ scale: 1.03 }}
                       className="relative z-10 grow overflow-hidden"
@@ -194,7 +194,7 @@ export default function FractionalCxO() {
                       <img
                         src={service.image}
                         alt={service.title}
-                        className="w-full h-[250px] md:h-[350px] object-cover object-center"
+                        className="w-full h-62.5 md:h-87.5 object-cover object-center"
                       />
                     </motion.div>
                   </div>
@@ -240,7 +240,7 @@ export default function FractionalCxO() {
                     </ul>
                   </div>
                   <div className="relative group flex flex-col justify-center">
-                    <div className="absolute -right-2 md:-right-4 -bottom-2 md:-bottom-4 w-full h-full bg-gradient-to-r from-blue-600 via-blue-800 to-blue-950 z-0"></div>
+                    <div className="absolute -right-2 md:-right-4 -bottom-2 md:-bottom-4 w-full h-full bg-linear-to-r from-blue-600 via-blue-800 to-blue-950 z-0"></div>
                     <motion.div
                       whileHover={{ scale: 1.03 }}
                       className="relative z-10 grow overflow-hidden"
@@ -248,7 +248,7 @@ export default function FractionalCxO() {
                       <img
                         src={service.image}
                         alt={service.title}
-                        className="w-full h-[250px] md:h-[350px] object-cover object-center"
+                        className="w-full h-62.5 md:h-87.5 object-cover object-center"
                       />
                     </motion.div>
                   </div>

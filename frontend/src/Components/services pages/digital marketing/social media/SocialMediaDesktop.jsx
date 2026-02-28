@@ -1,8 +1,8 @@
-import seo from "../../../../assets/seo.webp"
-import writing from "../../../../assets/writing.webp"
-import branding from "../../../../assets/branding.webp"
-import analytics from "../../../../assets/analytics.webp"
-import social from "../../../../assets/social.webp"
+import seo from "../../../../assets/seo.webp";
+import writing from "../../../../assets/writing.webp";
+import branding from "../../../../assets/branding.webp";
+import analytics from "../../../../assets/analytics.webp";
+import social from "../../../../assets/social.webp";
 
 const SocialMediaDesktop = () => {
   const panels = [
@@ -31,7 +31,7 @@ const SocialMediaDesktop = () => {
       image: branding,
       alt: "Construction Company Branding",
     },
-  ]
+  ];
 
   return (
     <div className="relative w-full hidden md:block">
@@ -43,11 +43,8 @@ const SocialMediaDesktop = () => {
       >
         <div className="flex flex-row">
           {panels.map((panel, index) => (
-            <div
-              key={index}
-              className="w-1/5 relative"
-            >
-              <div className="h-[500px] lg:h-[600px] xl:h-[700px] relative">
+            <div key={index} className="w-1/5 relative">
+              <div className="h-125 lg:h-150 xl:h-175 relative">
                 <img
                   src={panel.image}
                   alt={panel.alt}
@@ -66,16 +63,13 @@ const SocialMediaDesktop = () => {
 
       <svg className="absolute -bottom-1 w-0 h-0">
         <defs>
-          <clipPath
-            id="wave-clip"
-            clipPathUnits="objectBoundingBox"
-          >
+          <clipPath id="wave-clip" clipPathUnits="objectBoundingBox">
             <path d="M0,0.1 L0,0.1 Q0.5,0.2 1,0.1 L1,0.9 Q0.5,0.8 0,0.9 Z" />
           </clipPath>
         </defs>
       </svg>
     </div>
-  )
-}
+  );
+};
 
-export default SocialMediaDesktop
+export default SocialMediaDesktop;

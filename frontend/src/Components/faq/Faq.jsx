@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md"
-import { BsClipboardCheck } from "react-icons/bs"
+import { useState } from "react";
+import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
+import { BsClipboardCheck } from "react-icons/bs";
 
 const FAQItem = ({ title, content, isOpen, onToggle }) => {
   return (
@@ -27,7 +27,7 @@ const FAQItem = ({ title, content, isOpen, onToggle }) => {
 
       <div
         className={`transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-100 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="px-4 pb-4 text-gray-600 text-sm leading-relaxed">
@@ -35,11 +35,11 @@ const FAQItem = ({ title, content, isOpen, onToggle }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default function Faq() {
-  const [openIndex, setOpenIndex] = useState(-1)
+  const [openIndex, setOpenIndex] = useState(-1);
 
   const faqData = [
     {
@@ -79,11 +79,11 @@ export default function Faq() {
       content:
         "We have experience working with e-commerce, technology, healthcare, and various other industries, but we adapt to the needs of any business.",
     },
-  ]
+  ];
 
   const toggleFAQ = (index) => {
-    setOpenIndex(index === openIndex ? -1 : index)
-  }
+    setOpenIndex(index === openIndex ? -1 : index);
+  };
 
   return (
     <div className="pt-24 pb-12 bg-slate-50">
@@ -117,5 +117,5 @@ export default function Faq() {
         </div>
       </div>
     </div>
-  )
+  );
 }

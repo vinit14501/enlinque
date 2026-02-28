@@ -1,6 +1,6 @@
-import { motion } from "framer-motion"
-import { HiDocument } from "react-icons/hi"
-import { privacyPolicyData } from "./privacyPolicyData"
+import { motion } from "framer-motion";
+import { HiDocument } from "react-icons/hi";
+import { privacyPolicyData } from "./privacyPolicyData";
 
 export default function PrivacyPolicy() {
   const containerVariants = {
@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, x: -20 },
@@ -22,7 +22,7 @@ export default function PrivacyPolicy() {
       x: 0,
       transition: { duration: 0.3 },
     },
-  }
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center py-8 bg-gradient-to-r from-[#000048] to-[#0b60a0]"
+        className="text-center py-8 bg-linear-to-r from-[#000048] to-[#0b60a0]"
       >
         <div className="flex items-center justify-center gap-3 mb-4">
           <HiDocument className="text-4xl text-white" />
@@ -62,10 +62,7 @@ export default function PrivacyPolicy() {
 
             {section.subsections ? (
               section.subsections.map((subsection, index) => (
-                <div
-                  key={index}
-                  className="mb-6"
-                >
+                <div key={index} className="mb-6">
                   <h3 className="text-xl font-medium text-[#0b60a0] mb-3">
                     {subsection.title}
                   </h3>
@@ -73,10 +70,7 @@ export default function PrivacyPolicy() {
                   {subsection.items && (
                     <ul className="list-disc pl-6 space-y-2">
                       {subsection.items.map((item, i) => (
-                        <li
-                          key={i}
-                          className="text-black"
-                        >
+                        <li key={i} className="text-black">
                           {item}
                         </li>
                       ))}
@@ -90,10 +84,7 @@ export default function PrivacyPolicy() {
                 {section.items && (
                   <ul className="list-disc pl-6 space-y-2">
                     {section.items.map((item, index) => (
-                      <li
-                        key={index}
-                        className="text-black"
-                      >
+                      <li key={index} className="text-black">
                         {item}
                       </li>
                     ))}
@@ -114,5 +105,5 @@ export default function PrivacyPolicy() {
         ))}
       </motion.div>
     </div>
-  )
+  );
 }

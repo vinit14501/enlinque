@@ -17,7 +17,7 @@ const SuccessMessage = memo(({ onReset }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    className="bg-white shadow-2xl rounded-lg p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center min-h-75 sm:min-h-[350px] w-full max-w-xl mx-auto space-y-4 sm:space-y-6"
+    className="bg-white shadow-2xl rounded-lg p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center min-h-75 sm:min-h-87.5 w-full max-w-xl mx-auto space-y-4 sm:space-y-6"
   >
     <IoCheckmarkCircleOutline className="text-4xl sm:text-5xl md:text-6xl text-green-600" />
     <h2 className="text-xl sm:text-2xl font-bold text-[#000048] text-center">
@@ -235,7 +235,7 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
                         whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full sm:w-auto min-w-[200px] bg-blue-600 text-white px-6 py-3 text-sm sm:text-base font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full sm:w-auto min-w-50 bg-blue-600 text-white px-6 py-3 text-sm sm:text-base font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <span>
                           {isSubmitting ? "Processing..." : "Subscribe Now"}

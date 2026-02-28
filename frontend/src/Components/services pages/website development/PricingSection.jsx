@@ -16,7 +16,7 @@ const PricingSection = () => {
   return (
     <section
       id="pricing-section"
-      className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50"
+      className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-white to-gray-50"
     >
       <div className="container mx-auto">
         <div className="text-center mb-12">
