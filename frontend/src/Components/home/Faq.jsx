@@ -1,4 +1,5 @@
 import { useState } from "react"
+import PropTypes from "prop-types"
 
 const FAQItem = ({ title, content, isOpen, onToggle }) => {
   return (
@@ -53,6 +54,13 @@ const FAQItem = ({ title, content, isOpen, onToggle }) => {
       </div>
     </div>
   )
+}
+
+FAQItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onToggle: PropTypes.func.isRequired,
 }
 
 export default function Faq() {

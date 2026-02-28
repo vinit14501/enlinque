@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import { FaLinkedin } from "react-icons/fa";
 import { GrSend } from "react-icons/gr";
@@ -12,6 +13,7 @@ import {
   IoCheckmarkCircleOutline,
   IoRefreshOutline,
 } from "react-icons/io5";
+import Button from "../../common/Button";
 
 const initialFormState = {
   name: "",
@@ -43,17 +45,15 @@ const SuccessMessage = ({ onReset }) => (
       Your message has been successfully received. We will get back to you
       shortly.
     </p>
-    <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={onReset}
-      className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-    >
-      <IoRefreshOutline className="text-xl" />
-      <span>Send Another Message</span>
-    </motion.button>
+    <Button icon={IoRefreshOutline} iconPosition="left" onClick={onReset}>
+      Send Another Message
+    </Button>
   </motion.div>
 );
+
+SuccessMessage.propTypes = {
+  onReset: PropTypes.func.isRequired,
+};
 
 const Contact = () => {
   const [formData, setFormData] = useState(initialFormState);
@@ -311,20 +311,15 @@ const Contact = () => {
                     )}
                   </div>
 
-                  <motion.button
-                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  <Button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="w-1/2 bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                    icon={GrSend}
+                    loading={isSubmitting}
+                    loadingText="Sending..."
+                    className="w-1/2 mx-auto"
                   >
-                    <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
-                    <GrSend
-                      className={`w-4 h-4 sm:w-5 sm:h-5 ${
-                        isSubmitting ? "animate-pulse" : ""
-                      }`}
-                    />
-                  </motion.button>
+                    Send Message
+                  </Button>
                 </form>
               </div>
             )}

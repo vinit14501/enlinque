@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { FaArrowRight } from "react-icons/fa";
+import { BsArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import Button from "../../common/Button";
 import cta from "../../assets/cta3.webp";
 
 const Cta3 = () => {
@@ -25,14 +26,9 @@ const Cta3 = () => {
             <p className="text-sm sm:text-base md:text-lg font-raleway mb-3 sm:mb-4 opacity-80">
               That Elevate Brands and Engage Audiences
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-blue-600 text-white font-semibold font-raleway py-2 px-4 sm:px-5 rounded-lg inline-flex items-center gap-1 sm:gap-2 text-sm sm:text-base transition-all duration-300"
-              onClick={() => navigate("/websitedevelopment")}
-            >
-              Get Started <FaArrowRight className="text-base sm:text-base" />
-            </motion.button>
+            <Button icon={BsArrowRight} onClick={() => navigate("/websitedevelopment")}>
+              Get Started
+            </Button>
           </div>
         </div>
       </motion.div>

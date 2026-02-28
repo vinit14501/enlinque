@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { FaCheck, FaPlus } from "react-icons/fa";
 import { pricingPlans } from "./pricingPlans";
 import PlanModal from "../../modal/PlanModal";
+import Button from "../../../common/Button";
 
 const PricingSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,14 +62,9 @@ const PricingSection = () => {
 
               {/* Button Section */}
               <div className="px-8 py-6 bg-white border-b border-gray-100 flex justify-center">
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => handlePlanSelection(plan)}
-                  className="inline-flex items-center justify-center px-10 py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 group-hover:shadow-blue-200"
-                >
+                <Button onClick={() => handlePlanSelection(plan)}>
                   Choose Plan
-                </motion.button>
+                </Button>
               </div>
 
               {/* Features List with Enhanced Styling */}

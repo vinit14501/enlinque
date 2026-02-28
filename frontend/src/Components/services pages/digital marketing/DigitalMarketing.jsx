@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { BsArrowRight } from "react-icons/bs";
-import { FaArrowRight } from "react-icons/fa";
+import Button from "../../../common/Button";
 import ctaBackground from "../../../assets/digitalmarketingbanner1.webp";
 import cta3 from "../../../assets/digitalmarketingbanner2.webp";
 import arrow from "../../../assets/arrow.webp";
@@ -48,14 +48,7 @@ const DigitalMarketing = () => {
                   out in a <span>competitive market.</span>
                 </p>
               </div>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={scrollToServices}
-                className="bg-blue-600 text-white px-3 sm:px-4 md:px-6 py-2 md:py-3 text-sm sm:text-base md:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                Explore our Services
-              </motion.button>
+              <Button onClick={scrollToServices}>Explore our Services</Button>
             </div>
           </div>
         </div>
@@ -98,15 +91,9 @@ const DigitalMarketing = () => {
               </h2>
             </motion.div>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold font-raleway text-[#000048] bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 gap-2"
-              onClick={() => navigate("/contact")}
-            >
-              <span>Reach out to us</span>
-              <BsArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-            </motion.button>
+            <Button variant="secondary" icon={BsArrowRight} onClick={() => navigate("/contact")}>
+              Reach out to us
+            </Button>
           </div>
         </div>
       </section>
@@ -176,15 +163,9 @@ const DigitalMarketing = () => {
                 craft a tailored digital marketing strategy that drives results
                 and sets you up for success.
               </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-blue-600 text-white font-semibold font-raleway py-2 px-4 sm:px-5 rounded-lg inline-flex items-center gap-1 sm:gap-2 text-sm sm:text-base transition-all duration-300"
-                onClick={() => navigate("/contact")}
-              >
-                Request a Quote{" "}
-                <FaArrowRight className="text-base sm:text-base" />
-              </motion.button>
+              <Button icon={BsArrowRight} onClick={() => navigate("/contact")}>
+                Request a Quote
+              </Button>
             </div>
           </div>
         </motion.div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import { BsClipboardCheck } from "react-icons/bs";
 
@@ -36,6 +37,13 @@ const FAQItem = ({ title, content, isOpen, onToggle }) => {
       </div>
     </div>
   );
+};
+
+FAQItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onToggle: PropTypes.func.isRequired,
 };
 
 export default function Faq() {
@@ -100,7 +108,7 @@ export default function Faq() {
         </h2>
 
         <p className="text-center text-base text-gray-600 mb-8">
-          Have questions? We're here to help! Check out our most commonly asked
+          Have questions? We&apos;re here to help! Check out our most commonly asked
           questions below.
         </p>
 

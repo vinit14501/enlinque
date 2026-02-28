@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { BsArrowRight } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
+import Button from "../../common/Button"
 
 const Cta2 = () => {
   const navigate = useNavigate()
@@ -50,16 +51,14 @@ const Cta2 = () => {
           click away from turning your vision into success.
         </motion.p>
 
-        <motion.button
+        <Button
+          variant="secondary"
+          icon={BsArrowRight}
           variants={itemVariants}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold font-raleway text-[#000048] bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 gap-2"
           onClick={() => navigate("/contact")}
         >
           Get in Touch
-          <BsArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-        </motion.button>
+        </Button>
       </div>
     </motion.section>
   )

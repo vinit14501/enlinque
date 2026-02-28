@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../assets/logo.webp";
+import Button from "./Button";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,7 @@ const Navbar = () => {
     { label: "About", to: "/about", isScroll: false },
   ];
 
-  const scrollToServices = () => {
+  const scrollToServices = useCallback(() => {
     const servicesSection = document.getElementById("services");
     if (servicesSection) {
       const navHeight = document.querySelector("nav").offsetHeight;
@@ -39,7 +40,7 @@ const Navbar = () => {
     } else if (location.pathname !== "/") {
       navigate("/#services");
     }
-  };
+  }, [location.pathname, navigate]);
 
   useEffect(() => {
     if (!location.hash) {
@@ -51,7 +52,7 @@ const Navbar = () => {
         scrollToServices();
       }, 100);
     }
-  }, [location.pathname, location.hash]);
+  }, [location.pathname, location.hash, scrollToServices]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -111,18 +112,7 @@ const Navbar = () => {
             </div>
 
             <div className="hidden lg:flex items-center">
-              <motion.button
-                onClick={handleContactClick}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="
-                  px-4 sm:px-5 py-2 sm:py-2.5 bg-blue-600 text-white
-                  rounded-lg text-base sm:text-lg font-semibold font-raleway
-                  shadow-lg hover:shadow-xl transition-shadow duration-300 gap-2
-                "
-              >
-                Contact Us
-              </motion.button>
+              <Button onClick={handleContactClick}>Contact Us</Button>
             </div>
 
             <button
@@ -182,18 +172,9 @@ const Navbar = () => {
                   </Link>
                 ))}
 
-                <motion.button
-                  onClick={handleContactClick}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="
-                    w-full mt-4 py-3 bg-blue-600 text-white
-                    rounded-lg text-base sm:text-lg font-semibold font-raleway
-                   shadow-lg hover:shadow-xl transition-shadow duration-300 gap-2
-                  "
-                >
+                <Button onClick={handleContactClick} className="w-full mt-4">
                   Contact Us
-                </motion.button>
+                </Button>
               </div>
             </motion.div>
           </>

@@ -5,29 +5,21 @@ import {
   FaGoogle,
   FaAddressBook,
   FaCloudUploadAlt,
-  FaArrowRight,
 } from "react-icons/fa";
+import { BsArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import Button from "../../../common/Button";
 import websitedevelopment from "../../../assets/websitedevelopment.webp";
 import digitalmarketing from "../../../assets/digitalmarketing.webp";
-import PlanModal from "../../modal/PlanModal";
 import PricingSection from "./PricingSection";
 import ContactCta from "../../contact cta/ContactCta";
 
 const WebsiteDevelopment = () => {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [selectedPlan, setSelectedPlan] = React.useState(null);
 
   const scrollToPricing = () => {
     const pricingSection = document.getElementById("pricing-section");
     pricingSection.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const handlePlanSelection = (plan) => {
-    setSelectedPlan(plan);
-    setIsModalOpen(true);
   };
 
   const Services = [
@@ -93,14 +85,7 @@ const WebsiteDevelopment = () => {
                   both visually stunning and strategically effective.
                 </p>
               </div>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={scrollToPricing}
-                className="bg-blue-600 text-white px-3 sm:px-4 md:px-6 py-2 md:py-3 text-sm sm:text-base md:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                Check Pricing
-              </motion.button>
+              <Button onClick={scrollToPricing}>Check Pricing</Button>
             </div>
           </div>
         </div>
@@ -150,15 +135,9 @@ const WebsiteDevelopment = () => {
                 marketing strategies to boost visibility, drive traffic, and
                 increase conversions.
               </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-blue-600 text-white font-semibold font-raleway py-2 px-4 sm:px-5 rounded-lg inline-flex items-center gap-1 sm:gap-2 text-sm sm:text-base transition-all duration-300"
-                onClick={() => navigate("/digitalmarketing")}
-              >
-                Digital Marketing{" "}
-                <FaArrowRight className="text-base sm:text-base" />
-              </motion.button>
+              <Button icon={BsArrowRight} onClick={() => navigate("/digitalmarketing")}>
+                Digital Marketing
+              </Button>
             </div>
           </div>
         </motion.div>
@@ -169,13 +148,6 @@ const WebsiteDevelopment = () => {
 
       {/* Connect Section */}
       <ContactCta />
-
-      {/* Modal Component */}
-      <PlanModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        selectedPlan={selectedPlan}
-      />
     </div>
   );
 };

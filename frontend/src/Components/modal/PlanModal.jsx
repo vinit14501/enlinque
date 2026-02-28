@@ -1,4 +1,5 @@
 import { useEffect, useState, memo } from "react";
+import PropTypes from "prop-types";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoClose } from "react-icons/io5";
 import {
@@ -11,6 +12,7 @@ import {
 } from "react-icons/io5";
 import { GrSend } from "react-icons/gr";
 import axios from "axios";
+import Button from "../../common/Button";
 
 // Memoized SuccessMessage component to prevent unnecessary re-renders
 const SuccessMessage = memo(({ onReset }) => (
@@ -27,19 +29,17 @@ const SuccessMessage = memo(({ onReset }) => (
       Your subscription request has been successfully received. We will get back
       to you shortly.
     </p>
-    <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={onReset}
-      className="flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base w-auto"
-    >
-      <IoRefreshOutline className="text-lg sm:text-xl" />
-      <span>Subscribe to Another Plan</span>
-    </motion.button>
+    <Button icon={IoRefreshOutline} iconPosition="left" onClick={onReset}>
+      Subscribe to Another Plan
+    </Button>
   </motion.div>
 ));
 
 SuccessMessage.displayName = "SuccessMessage";
+
+SuccessMessage.propTypes = {
+  onReset: PropTypes.func.isRequired,
+};
 
 // Memoized Form Input component
 const FormInput = memo(({ field, value, onChange, isSubmitting }) => (
@@ -61,6 +61,18 @@ const FormInput = memo(({ field, value, onChange, isSubmitting }) => (
 ));
 
 FormInput.displayName = "FormInput";
+
+FormInput.propTypes = {
+  field: PropTypes.shape({
+    icon: PropTypes.elementType.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    placeholder: PropTypes.string.isRequired,
+  }).isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
+};
 
 const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
   const [formData, setFormData] = useState({
@@ -230,22 +242,15 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
                         />
                       ))}
 
-                      <motion.button
-                        whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                        whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                      <Button
                         type="submit"
-                        disabled={isSubmitting}
-                        className="w-full sm:w-auto min-w-50 bg-blue-600 text-white px-6 py-3 text-sm sm:text-base font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                        icon={GrSend}
+                        loading={isSubmitting}
+                        loadingText="Processing..."
+                        className="w-full sm:w-auto min-w-50 mx-auto"
                       >
-                        <span>
-                          {isSubmitting ? "Processing..." : "Subscribe Now"}
-                        </span>
-                        <GrSend
-                          className={`w-4 h-4 sm:w-5 sm:h-5 ${
-                            isSubmitting ? "animate-pulse" : ""
-                          }`}
-                        />
-                      </motion.button>
+                        Subscribe Now
+                      </Button>
                     </form>
                   </div>
                 )}
@@ -293,6 +298,16 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
       )}
     </AnimatePresence>
   );
+};
+
+PlanModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  selectedPlan: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  }),
 };
 
 export default memo(PlanModal);

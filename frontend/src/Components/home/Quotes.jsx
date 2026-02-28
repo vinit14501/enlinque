@@ -1,25 +1,14 @@
-import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa"
 
 export default function Quotes() {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
-
   return (
     <div className="flex items-center justify-center min-h-[40vh] sm:min-h-[45vh] md:min-h-[50vh] bg-[#000048] font-['lora']">
       <div className="w-full max-w-xl sm:max-w-2xl px-4 sm:px-6 py-8 sm:py-10 md:py-12">
-        <div
-          className={`
-            transition-all duration-1000 ease-out
-            ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }
-          `}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
         >
           <div className="border-t border-white mb-3 sm:mb-4 transition-all duration-1000"></div>
           <div className="relative px-8 sm:px-10 md:px-12">
@@ -44,7 +33,7 @@ export default function Quotes() {
             – Walt Disney
           </p>
           <div className="border-b border-gray-400 mt-3 sm:mt-4 transition-all duration-1000"></div>
-        </div>
+        </motion.div>
       </div>
     </div>
   )
