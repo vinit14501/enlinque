@@ -77,6 +77,8 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="w-full h-full object-cover absolute inset-0"
             alt={carouselContent[activeIndex].title}
+            fetchPriority={activeIndex === 0 ? "high" : "auto"}
+            loading={activeIndex === 0 ? "eager" : "lazy"}
           />
         </AnimatePresence>
       </div>

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaLinkedin } from "react-icons/fa";
 import { GrSend } from "react-icons/gr";
 import axios from "axios";
+import toast from "react-hot-toast";
 import {
   IoPersonOutline,
   IoBusinessOutline,
@@ -140,7 +141,7 @@ const Contact = () => {
         error.response?.data?.message ||
         error.response?.data?.error ||
         "Failed to send message. Please try again later.";
-      alert(errorMessage); // Fallback error handling
+      toast.error(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -193,14 +194,14 @@ const Contact = () => {
 
             <div className="flex gap-6">
               <a
-                href="mailto:hello@example.com"
+                href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`}
                 className="flex items-center gap-2 text-white hover:text-blue-200 transition-colors duration-300 group"
               >
                 <IoMailOutline className="text-2xl transform group-hover:scale-110 transition-transform duration-300" />
                 <span className="font-medium">Email</span>
               </a>
               <a
-                href="https://linkedin.com"
+                href={import.meta.env.VITE_LINKEDIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-white hover:text-blue-200 transition-colors duration-300 group"

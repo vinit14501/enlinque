@@ -16,7 +16,6 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <!-- <link rel="preload" href="/your-font.woff2" as="font" type="font/woff2" crossorigin> -->
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://enlinque.com/" />
@@ -43,35 +42,18 @@
     content="Professional business solutions including Fractional CxO services and Website Development. Expert consulting and digital transformation services." />
   <meta name="twitter:image" content="https://enlinque.com/twitter-image.jpg" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0d9488" />
+  <!-- Favicon — all referenced via ./src/assets so Vite processes and hashes them -->
+  <link rel="icon" type="image/x-icon" href="./src/assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./src/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./src/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./src/assets/apple-touch-icon.png" />
   <meta name="msapplication-TileColor" content="#0d9488" />
-<link rel="icon" type="image/x-icon" href="./src/assets/favicon.ico">
 
-
-  <!-- DNS Prefetch -->
-  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
-
-  <!-- Preload Critical Assets -->
-  <!-- <link rel="preload" href="/fonts/raleway-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin /> -->
-  <!-- <link rel="preload" href="/css/index.css" as="style" /> -->
-  <!-- <link rel="preload" href="/js/main.js" as="script" /> -->
-
-  <!-- Inline Critical CSS -->
-  <style>
-    /* Add critical CSS here */
-    body {
-      margin: 0;
-    }
-
-    #root {
-      min-height: 100vh;
-    }
-  </style>
+  <!-- Google Fonts: preconnect first, then load Raleway (the only font used) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" />
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -103,6 +85,12 @@
         ]
     }
     </script>
+
+  <!-- Inline Critical CSS -->
+  <style>
+    body { margin: 0; }
+    #root { min-height: 100vh; }
+  </style>
 
   <title>Enlinque Consulting LLC</title>
 </head>

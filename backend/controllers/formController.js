@@ -3,19 +3,29 @@ import { ContactForm } from "../models/ContactForm.js"
 import { PlanForm } from "../models/PlanForm.js"
 import { contactFormTemplate, planFormTemplate } from "./emailTemplates.js"
 
-// Create transporter with more detailed configuration
-const createTransporter = () => {
-  return nodemailer.createTransport({
-    host: "smtp.hostinger.com",
-    port: 465,
-    secure: true, // use SSL
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-    debug: true,
-    logger: true, // Enable logger
-  })
+// Lazy-initialized module-level singleton with connection pooling.
+// Cannot be created at module evaluation time because ES module imports are
+// hoisted — process.env vars from dotenv are not yet populated when this
+// module is first evaluated. The singleton is created on first request call,
+// at which point dotenv.config() has already run in server.js.
+let transporter = null
+
+const getTransporter = () => {
+  if (!transporter) {
+    transporter = nodemailer.createTransport({
+      host: "smtp.hostinger.com",
+      port: 465,
+      secure: true,
+      pool: true,
+      maxConnections: 3,
+      maxMessages: 100,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    })
+  }
+  return transporter
 }
 
 export const submitContactForm = async (req, res) => {
@@ -25,7 +35,6 @@ export const submitContactForm = async (req, res) => {
     const { name, company, email, phone, message } = req.body
     const submittedAt = new Date()
 
-    // First, save to database independently of email status
     const contactForm = new ContactForm({
       name,
       company,
@@ -36,35 +45,17 @@ export const submitContactForm = async (req, res) => {
     })
 
     savedForm = await contactForm.save()
-    console.log("Form data saved to database successfully")
 
-    // Then attempt to send emails
-    const transporter = createTransporter()
+    const mailer = getTransporter()
 
-    // Test connection first
-    await transporter.verify()
-    console.log("Transporter verified successfully")
-
-    // Send admin notification
-    const mailOptions = {
+    await mailer.sendMail({
       from: `"Contact Form" <${process.env.EMAIL_USER}>`,
       to: process.env.RECIPIENT_EMAIL,
-      subject: "🔔 New Contact Form Submission",
-      html: contactFormTemplate({
-        name,
-        company,
-        email,
-        phone,
-        message,
-        submittedAt,
-      }),
-    }
+      subject: "New Contact Form Submission",
+      html: contactFormTemplate({ name, company, email, phone, message, submittedAt }),
+    })
 
-    await transporter.sendMail(mailOptions)
-    console.log("Admin notification sent successfully")
-
-    // Send user confirmation
-    const userConfirmation = {
+    await mailer.sendMail({
       from: `"Enlinque" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "We received your message",
@@ -76,10 +67,7 @@ export const submitContactForm = async (req, res) => {
           <p>Best regards,<br>Enlinque Team</p>
         </div>
       `,
-    }
-
-    await transporter.sendMail(userConfirmation)
-    console.log("User confirmation sent successfully")
+    })
 
     res.status(200).json({
       success: true,
@@ -87,9 +75,8 @@ export const submitContactForm = async (req, res) => {
       formId: savedForm._id,
     })
   } catch (error) {
-    console.error("Detailed error:", error)
+    console.error("Contact form error:", error.message)
 
-    // If we successfully saved to database but email failed
     if (savedForm) {
       res.status(200).json({
         success: true,
@@ -115,7 +102,6 @@ export const submitPlanForm = async (req, res) => {
     const { name, email, phone, selectedPlan } = req.body
     const submittedAt = new Date()
 
-    // First save to database
     const planForm = new PlanForm({
       name,
       email,
@@ -125,31 +111,17 @@ export const submitPlanForm = async (req, res) => {
     })
 
     savedForm = await planForm.save()
-    console.log("Plan form saved to database successfully")
 
-    // Then attempt to send emails
-    const transporter = createTransporter()
-    await transporter.verify()
+    const mailer = getTransporter()
 
-    // Send admin notification
-    const mailOptions = {
+    await mailer.sendMail({
       from: `"Plan Form" <${process.env.EMAIL_USER}>`,
       to: process.env.RECIPIENT_EMAIL,
-      subject: "🎯 New Plan Selection",
-      html: planFormTemplate({
-        name,
-        email,
-        phone,
-        selectedPlan,
-        submittedAt,
-      }),
-    }
+      subject: "New Plan Selection",
+      html: planFormTemplate({ name, email, phone, selectedPlan, submittedAt }),
+    })
 
-    await transporter.sendMail(mailOptions)
-    console.log("Plan form admin notification sent successfully")
-
-    // Send user confirmation
-    const userConfirmation = {
+    await mailer.sendMail({
       from: `"Enlinque" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "Thank you for your interest!",
@@ -162,10 +134,7 @@ export const submitPlanForm = async (req, res) => {
           <p>Best regards,<br>Enlinque Team</p>
         </div>
       `,
-    }
-
-    await transporter.sendMail(userConfirmation)
-    console.log("Plan form user confirmation sent successfully")
+    })
 
     res.status(200).json({
       success: true,
@@ -173,9 +142,8 @@ export const submitPlanForm = async (req, res) => {
       formId: savedForm._id,
     })
   } catch (error) {
-    console.error("Detailed error:", error)
+    console.error("Plan form error:", error.message)
 
-    // If we successfully saved to database but email failed
     if (savedForm) {
       res.status(200).json({
         success: true,
