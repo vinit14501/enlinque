@@ -86,6 +86,8 @@ const Navbar = () => {
               <img
                 src={logo}
                 alt="Company Logo"
+                width="200"
+                height="80"
                 className="h-12 w-auto sm:h-16 lg:h-20 object-contain transition-all duration-200"
               />
             </Link>

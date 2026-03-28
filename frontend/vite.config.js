@@ -17,19 +17,8 @@ export default defineConfig({
     target: ["es2020", "chrome87", "firefox78", "safari14", "edge88"],
     rollupOptions: {
       output: {
-        manualChunks: {
-          "react-vendor": ["react", "react-dom"],
-          "router-vendor": ["react-router-dom"],
-          "motion-vendor": ["framer-motion"],
-          "icons-vendor": ["react-icons"],
-          "http-vendor": ["axios"],
-          "toast-vendor": ["react-hot-toast"],
-        },
-        chunkFileNames: (chunkInfo) => {
-          const prefix = chunkInfo.name.includes("vendor") ? "vendor" : "chunk"
-          return `assets/${prefix}/[name]-[hash].js`
-        },
         entryFileNames: "assets/[name]-[hash].js",
+        chunkFileNames: "assets/[name]-[hash].js",
         assetFileNames: "assets/[name]-[hash].[ext]",
       },
     },

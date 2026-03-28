@@ -1,0 +1,70 @@
+Reduce unused JavaScript Est savings of 376 KiB
+Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+enlinque.com 1st party
+720.2 KiB	376.1 KiB
+/assets/index-CmMOD5P7.js(enlinque.com)
+427.8 KiB
+250.0 KiB
+…vendor/react-vendor-ClRYcD-s.js(enlinque.com)
+292.5 KiB
+126.2 KiB
+
+
+
+Reduce unused CSS Est savings of 56 KiB
+Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. Learn how to reduce unused CSS.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+Google Fonts cdn 
+29.9 KiB	29.9 KiB
+/css2?family=…(fonts.googleapis.com)
+29.9 KiB
+29.9 KiB
+enlinque.com 1st party
+38.2 KiB	26.4 KiB
+/assets/index-pYVjPG7L.css(enlinque.com)
+38.2 KiB
+26.4 KiB
+
+
+
+Image elements do not have explicit width and height
+Set an explicit width and height on image elements to reduce layout shifts and improve CLS. Learn how to set image dimensionsCLSUnscored
+URL
+enlinque.com 1st party
+Company Logo
+<img src="/assets/logo-H4ngmEPJ.webp" alt="Company Logo" class="h-12 w-auto sm:h-16 lg:h-20 object-contain transition-all duration-200">
+/assets/logo-H4ngmEPJ.webp(enlinque.com)
+
+
+
+Minify CSS Est savings of 3 KiB
+Minifying CSS files can reduce network payload sizes. Learn how to minify CSS.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+Google Fonts cdn 
+30.7 KiB	3.2 KiB
+/css2?family=…(fonts.googleapis.com)
+30.7 KiB
+3.2 KiB
+
+
+
+Avoid long main-thread tasks 2 long tasks found
+Lists the longest tasks on the main thread, useful for identifying worst contributors to input delay. Learn how to avoid long main-thread tasksTBTUnscored
+URL
+Start Time
+Duration
+enlinque.com 1st party
+234 ms
+/assets/index-CmMOD5P7.js(enlinque.com)
+7,881 ms
+150 ms
+…vendor/react-vendor-ClRYcD-s.js(enlinque.com)
+7,735 ms
+84 ms
