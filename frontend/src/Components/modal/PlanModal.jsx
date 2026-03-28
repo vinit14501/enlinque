@@ -12,6 +12,7 @@ import {
 } from "react-icons/io5";
 import { GrSend } from "react-icons/gr";
 import axios from "axios";
+import toast from "react-hot-toast";
 import Button from "../../common/Button";
 
 // Memoized SuccessMessage component to prevent unnecessary re-renders
@@ -118,11 +119,7 @@ const PlanModal = ({ isOpen, onClose, selectedPlan }) => {
       }
     } catch (error) {
       console.error("Submission error:", error);
-      const errorMessage =
-        error.response?.data?.message ||
-        error.response?.data?.error ||
-        "Failed to submit plan subscription";
-      alert(errorMessage);
+      toast.error("Failed to submit. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

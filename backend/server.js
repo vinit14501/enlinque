@@ -1,4 +1,6 @@
 import dotenv from "dotenv"
+dotenv.config()
+
 import express from "express"
 import cors from "cors"
 import helmet from "helmet"
@@ -6,22 +8,18 @@ import mongoSanitize from "express-mongo-sanitize"
 import compression from "compression"
 import connectDB from "./config/db.js"
 import formRoutes from "./routes/formRoutes.js"
-import { errorHandler } from "./utils/emailConfigChecker.js"
+import { validateEnv } from "./utils/emailConfigChecker.js"
 
-// Configure dotenv at the start
-dotenv.config()
+// Hard-fail at startup if any required environment variable is missing.
+// This prevents the server from silently running in a broken state.
+validateEnv()
 
 const app = express()
 
-// Connect to MongoDB
-connectDB()
+// FRONTEND_URL is guaranteed set by validateEnv above — no wildcard fallback.
+const frontendUrl = process.env.FRONTEND_URL.replace(/\/$/, "")
 
-// Get frontend URL with fallback
-const frontendUrl = process.env.FRONTEND_URL
-  ? process.env.FRONTEND_URL.replace(/\/$/, "")
-  : "*"
-
-// CORS Configuration
+// CORS
 app.use(
   cors({
     origin: frontendUrl,
@@ -31,18 +29,13 @@ app.use(
   })
 )
 
-// Security Middleware
+// Security headers.
+// contentSecurityPolicy is intentionally disabled: this server is a pure JSON API.
+// It never serves HTML, scripts, or styles, so CSP provides no security value here.
+// CSP belongs on the frontend, enforced via Nginx response headers.
 app.use(
   helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-        styleSrc: ["'self'", "'unsafe-inline'"],
-        imgSrc: ["'self'", "data:", "https:"],
-        connectSrc: ["'self'", frontendUrl],
-      },
-    },
+    contentSecurityPolicy: false,
     crossOriginEmbedderPolicy: false,
     crossOriginResourcePolicy: false,
   })
@@ -58,7 +51,10 @@ app.use(mongoSanitize())
 // Compression
 app.use(compression())
 
-// Test route
+// Connect to MongoDB
+connectDB()
+
+// Health check
 app.get("/", (req, res) => {
   res.status(200).json({
     status: "success",
@@ -69,25 +65,24 @@ app.get("/", (req, res) => {
 // API routes
 app.use("/api/forms", formRoutes)
 
-app.use(errorHandler)
-
 // 404 handler
-app.use((req, res, next) => {
+app.use((req, res) => {
   res.status(404).json({
     success: false,
     message: "Route not found",
   })
 })
 
-// Global error handler
+// Global error handler — receives errors passed via next(err) from controllers.
+// Never sends internal error details (messages, stack traces) to clients.
 app.use((err, req, res, next) => {
-  console.error("Error:", err)
+  console.error("Unhandled error:", err.name, err.message)
 
-  // Mongoose validation error
+  // Mongoose schema validation error
   if (err.name === "ValidationError") {
     return res.status(400).json({
       success: false,
-      message: "Validation Error",
+      message: "Validation failed. Please check your input and try again.",
       errors: Object.values(err.errors).map((e) => e.message),
     })
   }
@@ -96,16 +91,13 @@ app.use((err, req, res, next) => {
   if (err.code === 11000) {
     return res.status(400).json({
       success: false,
-      message: "Duplicate key error",
-      field: Object.keys(err.keyPattern)[0],
+      message: "A submission with these details already exists.",
     })
   }
 
-  // Default error
   res.status(err.status || 500).json({
     success: false,
-    message: err.message || "Internal server error",
-    ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
+    message: "An unexpected error occurred. Please try again later.",
   })
 })
 
@@ -117,7 +109,7 @@ const server = app.listen(PORT, () => {
 
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err) => {
-  console.error("UNHANDLED REJECTION! 💥 Shutting down...")
+  console.error("UNHANDLED REJECTION! Shutting down...")
   console.error(err.name, err.message)
   server.close(() => {
     process.exit(1)
@@ -126,7 +118,7 @@ process.on("unhandledRejection", (err) => {
 
 // Handle uncaught exceptions
 process.on("uncaughtException", (err) => {
-  console.error("UNCAUGHT EXCEPTION! 💥 Shutting down...")
+  console.error("UNCAUGHT EXCEPTION! Shutting down...")
   console.error(err.name, err.message)
   process.exit(1)
 })

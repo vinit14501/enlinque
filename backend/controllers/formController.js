@@ -28,7 +28,7 @@ const getTransporter = () => {
   return transporter
 }
 
-export const submitContactForm = async (req, res) => {
+export const submitContactForm = async (req, res, next) => {
   let savedForm = null
 
   try {
@@ -78,6 +78,8 @@ export const submitContactForm = async (req, res) => {
     console.error("Contact form error:", error.message)
 
     if (savedForm) {
+      // Expected degraded state: form reached the database but the email step
+      // failed. Return success so the user is not asked to re-submit.
       res.status(200).json({
         success: true,
         message:
@@ -86,16 +88,15 @@ export const submitContactForm = async (req, res) => {
         emailError: true,
       })
     } else {
-      res.status(500).json({
-        success: false,
-        message: "Failed to process your request",
-        error: error.message,
-      })
+      // Unexpected failure (DB unreachable, schema violation, etc.).
+      // Delegate to the global error handler — it logs server-side and sends
+      // a generic message to the client with no internal details exposed.
+      next(error)
     }
   }
 }
 
-export const submitPlanForm = async (req, res) => {
+export const submitPlanForm = async (req, res, next) => {
   let savedForm = null
 
   try {
@@ -145,6 +146,7 @@ export const submitPlanForm = async (req, res) => {
     console.error("Plan form error:", error.message)
 
     if (savedForm) {
+      // Expected degraded state: form saved, email failed.
       res.status(200).json({
         success: true,
         message:
@@ -153,11 +155,8 @@ export const submitPlanForm = async (req, res) => {
         emailError: true,
       })
     } else {
-      res.status(500).json({
-        success: false,
-        message: "Failed to process your request",
-        error: error.message,
-      })
+      // Unexpected failure — delegate to global error handler.
+      next(error)
     }
   }
 }
