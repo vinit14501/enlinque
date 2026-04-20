@@ -3,22 +3,20 @@
  * Reads APP_ENV from .env.local to self-configure.
  *
  * Usage:
- *   pm2 start ecosystem.config.mjs
+ *   pm2 start ecosystem.config.cjs
  *
  * .env.local must contain: APP_ENV=qa | APP_ENV=production
  */
 
-import { readFileSync } from "fs";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
+const fs = require("fs");
+const path = require("path");
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ENV_FILE = join(__dirname, ".env.local");
+const ENV_FILE = path.join(__dirname, ".env.local");
 
 function parseEnvFile(filePath) {
   try {
     const vars = {};
-    for (const line of readFileSync(filePath, "utf-8").split("\n")) {
+    for (const line of fs.readFileSync(filePath, "utf-8").split("\n")) {
       const trimmed = line.trim();
       if (!trimmed || trimmed.startsWith("#")) continue;
       const eq = trimmed.indexOf("=");
@@ -32,18 +30,18 @@ function parseEnvFile(filePath) {
 }
 
 const localEnv = parseEnvFile(ENV_FILE);
-const APP_ENV = localEnv.APP_ENV ?? process.env.APP_ENV ?? "production";
+const APP_ENV = localEnv.APP_ENV || process.env.APP_ENV || "production";
 
 const environments = {
   qa:         { name: "enlinque-qa", port: "3001" },
   production: { name: "enlinque",    port: "3000" },
 };
 
-const config = environments[APP_ENV] ?? environments.production;
+const config = environments[APP_ENV] || environments.production;
 
 console.log(`[ecosystem] APP_ENV=${APP_ENV} → pm2 app "${config.name}" on port ${config.port}`);
 
-const ecosystemConfig = {
+module.exports = {
   apps: [
     {
       name: config.name,
@@ -55,7 +53,6 @@ const ecosystemConfig = {
 
       cwd: __dirname,
 
-      // Non-secret operational vars — override anything in .env.local
       env: {
         NODE_ENV: "production",
         PORT: config.port,
@@ -71,5 +68,3 @@ const ecosystemConfig = {
     },
   ],
 };
-
-export default ecosystemConfig;
