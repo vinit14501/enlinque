@@ -1,0 +1,27 @@
+export default function Quotes() {
+  return (
+    <div className="flex items-center justify-center min-h-[40vh] sm:min-h-[45vh] md:min-h-[50vh] bg-[#000048] font-['lora']">
+      <div className="w-full max-w-xl sm:max-w-2xl px-4 sm:px-6 py-8 sm:py-10 md:py-12">
+        <div className="animate-fade-in-up-slow">
+          <div className="border-t border-white mb-3 sm:mb-4 transition-all duration-1000"></div>
+          <div className="relative px-12 sm:px-14 md:px-16">
+            <span className="absolute -left-2 sm:-left-4 md:-left-6 top-0 text-white text-5xl sm:text-6xl md:text-7xl leading-none select-none">&ldquo;</span>
+            <span className="absolute -right-2 sm:-right-4 md:-right-6 top-0 text-white text-5xl sm:text-6xl md:text-7xl leading-none select-none">&rdquo;</span>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-center italic text-white mb-3 sm:mb-4">
+              The way to get started is to quit talking and begin doing.
+            </p>
+          </div>
+          <p
+            className="
+              text-sm sm:text-base md:text-lg lg:text-xl
+              text-center text-white italic
+            "
+          >
+            – Walt Disney
+          </p>
+          <div className="border-b border-gray-400 mt-3 sm:mt-4 transition-all duration-1000"></div>
+        </div>
+      </div>
+    </div>
+  );
+}
