@@ -40,6 +40,9 @@ const carouselContent = [
   },
 ];
 
+const SWIPE_OFFSET_THRESHOLD = 50;
+const SWIPE_VELOCITY_THRESHOLD = 300;
+
 export default function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -60,9 +63,39 @@ export default function Hero() {
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
+  const handleDragEnd = (
+    _: unknown,
+    info: { offset: { x: number }; velocity: { x: number } }
+  ) => {
+    const { x: offsetX } = info.offset;
+    const { x: velocityX } = info.velocity;
+
+    const swipedLeft =
+      offsetX < -SWIPE_OFFSET_THRESHOLD ||
+      velocityX < -SWIPE_VELOCITY_THRESHOLD;
+    const swipedRight =
+      offsetX > SWIPE_OFFSET_THRESHOLD ||
+      velocityX > SWIPE_VELOCITY_THRESHOLD;
+
+    if (swipedLeft) {
+      handleSectionClick((activeIndex + 1) % carouselContent.length);
+    } else if (swipedRight) {
+      handleSectionClick(
+        (activeIndex - 1 + carouselContent.length) % carouselContent.length
+      );
+    }
+  };
+
   return (
-    <div className="relative w-full min-h-100 md:min-h-125 lg:h-screen lg:max-h-125 flex overflow-hidden">
-      <div className="absolute inset-0 z-0">
+    <motion.div
+      className="relative w-full min-h-100 md:min-h-125 lg:h-screen lg:max-h-125 flex overflow-hidden cursor-grab active:cursor-grabbing"
+      drag="x"
+      dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0}
+      dragMomentum={false}
+      onDragEnd={handleDragEnd}
+    >
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <AnimatePresence mode="sync">
           <motion.div
             key={carouselContent[activeIndex].image}
@@ -77,7 +110,7 @@ export default function Hero() {
               alt={carouselContent[activeIndex].title}
               fill
               className="object-cover"
-              preload={true}
+              priority={activeIndex === 0}
               sizes="100vw"
             />
           </motion.div>
@@ -183,6 +216,6 @@ export default function Hero() {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
