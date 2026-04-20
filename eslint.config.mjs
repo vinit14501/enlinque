@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // PM2 ecosystem config — CJS by convention, not application code
+    "ecosystem.config.cjs",
   ]),
 ]);
 
