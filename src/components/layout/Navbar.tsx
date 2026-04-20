@@ -1,0 +1,188 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter, usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import Button from "@/components/common/Button";
+
+const navItems = [
+  { label: "Services", to: "/#services", isScroll: true },
+  { label: "Fractional CxO", to: "/fractionalCxO", isScroll: false },
+  { label: "Website Development", to: "/websitedevelopment", isScroll: false },
+  { label: "Digital Marketing", to: "/digitalmarketing", isScroll: false },
+  { label: "About", to: "/about", isScroll: false },
+];
+
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const scrollToServices = useCallback(() => {
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      const nav = document.querySelector("nav");
+      const navHeight = nav ? nav.offsetHeight : 0;
+      const elementPosition = servicesSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    } else if (pathname !== "/") {
+      router.push("/#services");
+    }
+  }, [pathname, router]);
+
+  useEffect(() => {
+    const hash = typeof window !== "undefined" ? window.location.hash : "";
+
+    if (!hash) {
+      window.scrollTo(0, 0);
+    }
+
+    if (hash === "#services" && pathname === "/") {
+      setTimeout(() => {
+        scrollToServices();
+      }, 100);
+    }
+  }, [pathname, scrollToServices]);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleContactClick = () => {
+    router.push("/contact");
+    window.scrollTo(0, 0);
+    if (isOpen) toggleMenu();
+  };
+
+  const handleNavItemClick = (item: (typeof navItems)[0]) => {
+    if (item.isScroll && item.to === "/#services") {
+      scrollToServices();
+    } else {
+      window.scrollTo(0, 0);
+    }
+    if (isOpen) toggleMenu();
+  };
+
+  return (
+    <div className="relative">
+      <nav className="fixed top-0 left-0 w-full bg-white z-50 shadow-md">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24">
+            <Link
+              href="/"
+              className="shrink-0 flex items-center"
+              onClick={() => window.scrollTo(0, 0)}
+            >
+              <Image
+                src="/images/logo.webp"
+                alt="Company Logo"
+                width={200}
+                height={80}
+                style={{ width: "auto", height: "auto" }}
+                className="max-h-12 sm:max-h-16 lg:max-h-20 object-contain transition-all duration-200"
+                loading="eager"
+                fetchPriority="high"
+              />
+            </Link>
+
+            <div className="hidden lg:flex items-center justify-center flex-1 px-4">
+              <div className="flex items-center space-x-1 xl:space-x-3">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.to}
+                    onClick={() => handleNavItemClick(item)}
+                    className="
+                      px-2 py-2 text-black font-semibold font-raleway
+                      hover:text-blue-600 transition-colors duration-300
+                      group relative text-sm xl:text-base tracking-wide
+                      whitespace-nowrap
+                    "
+                  >
+                    {item.label}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="hidden lg:flex items-center">
+              <Button onClick={handleContactClick}>Contact Us</Button>
+            </div>
+
+            <button
+              onClick={toggleMenu}
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              <Menu size={24} className="text-gray-800" />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <div className="h-16 sm:h-20 lg:h-24 transition-all duration-200"></div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={toggleMenu}
+              className="fixed inset-0 bg-black bg-opacity-50 z-60"
+            />
+
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+              className="fixed top-0 right-0 h-full w-70 sm:w-[320px] bg-white shadow-xl z-70 overflow-y-auto"
+            >
+              <div className="sticky top-0 flex justify-end p-4 bg-white">
+                <button
+                  onClick={toggleMenu}
+                  className="p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
+                  aria-label="Close menu"
+                >
+                  <X size={24} className="text-gray-800" />
+                </button>
+              </div>
+
+              <div className="px-4 py-2">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.to}
+                    onClick={() => handleNavItemClick(item)}
+                    className="
+                      block py-3 px-4 text-base sm:text-lg font-medium
+                      font-raleway text-gray-800 hover:bg-gray-100
+                      rounded-lg transition-colors duration-200
+                    "
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+
+                <Button onClick={handleContactClick} className="w-full mt-4">
+                  Contact Us
+                </Button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
