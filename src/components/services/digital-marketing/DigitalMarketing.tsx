@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import ArrowIcon from "@/components/common/ArrowIcon";
 import Button from "@/components/common/Button";
 import ScrollButton from "@/components/common/ScrollButton";
 import ContactCta from "@/components/common/ContactCta";
@@ -112,14 +113,7 @@ export default function DigitalMarketing() {
                         key={pointIndex}
                         className="flex items-start gap-2 text-base text-black"
                       >
-                        <Image
-                          src="/images/arrow.webp"
-                          alt=""
-                          width={16}
-                          height={16}
-                          style={{ width: "auto", height: "auto" }}
-                          className="mt-1 shrink-0"
-                        />
+                        <ArrowIcon className="mt-1 shrink-0 w-4 h-4 text-[#0b60a0]" />
                         <span>{point}</span>
                       </li>
                     ))}
