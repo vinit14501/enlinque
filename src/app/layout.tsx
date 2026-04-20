@@ -101,7 +101,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" dir="ltr">
-      <body className={`${raleway.variable} ${raleway.className} antialiased`}>
+      <body className={`${raleway.variable} antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

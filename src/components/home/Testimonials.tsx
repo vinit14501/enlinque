@@ -47,10 +47,11 @@ function getVisibleCount(): number {
 
 export default function Testimonials() {
   const [startIndex, setStartIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(getVisibleCount);
+  const [visibleCount, setVisibleCount] = useState(3);
 
   useEffect(() => {
     const handleResize = () => setVisibleCount(getVisibleCount());
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
