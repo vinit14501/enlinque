@@ -86,8 +86,7 @@ export default function FractionalCxO() {
           alt="Fractional CxO Services"
           fill
           sizes="100vw"
-          loading="eager"
-          fetchPriority="high"
+          priority
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-black/60" />
@@ -162,8 +161,7 @@ export default function FractionalCxO() {
                           alt={service.title}
                           fill
                           sizes="(max-width: 768px) 100vw, 50vw"
-                          loading={index === 0 ? "eager" : "lazy"}
-                          fetchPriority={index === 0 ? "high" : "auto"}
+                          priority={index === 0}
                           className="object-cover object-center"
                         />
                       </div>

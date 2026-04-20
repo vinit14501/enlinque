@@ -78,7 +78,6 @@ export default function Hero() {
               fill
               className="object-cover"
               priority={activeIndex === 0}
-              loading={activeIndex === 0 ? "eager" : "lazy"}
               sizes="100vw"
             />
           </motion.div>
