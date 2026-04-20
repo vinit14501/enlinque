@@ -56,8 +56,8 @@ export default function WebsiteDevelopment() {
           alt="Website Development"
           fill
           className="object-cover object-center"
-          loading="eager"
-          fetchPriority="high"
+          priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative h-full flex items-center justify-center">
