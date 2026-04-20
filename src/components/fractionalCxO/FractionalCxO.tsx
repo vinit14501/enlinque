@@ -153,10 +153,10 @@ export default function FractionalCxO() {
             >
               {index % 2 === 0 ? (
                 <>
-                  <div className="relative group flex flex-col justify-center">
-                    <div className="absolute -left-2 md:-left-4 -bottom-2 md:-bottom-4 w-full h-full bg-linear-to-r from-blue-950 via-blue-800 to-blue-600 z-0"></div>
-                    <div className="relative z-10 grow overflow-hidden transition-transform duration-300 hover:scale-[1.03]">
-                      <div className="relative w-full h-62.5 md:h-87.5">
+                  <div className="flex flex-col justify-center">
+                    <div className="relative w-full h-62.5 md:h-87.5">
+                      <div className="absolute -left-2 md:-left-4 -bottom-2 md:-bottom-4 w-full h-full bg-linear-to-r from-blue-950 via-blue-800 to-blue-600 z-0"></div>
+                      <div className="relative z-10 w-full h-full overflow-hidden transition-transform duration-300 hover:scale-[1.03]">
                         <Image
                           src={service.image}
                           alt={service.title}
@@ -210,10 +210,10 @@ export default function FractionalCxO() {
                       ))}
                     </ul>
                   </div>
-                  <div className="relative group flex flex-col justify-center">
-                    <div className="absolute -right-2 md:-right-4 -bottom-2 md:-bottom-4 w-full h-full bg-linear-to-r from-blue-600 via-blue-800 to-blue-950 z-0"></div>
-                    <div className="relative z-10 grow overflow-hidden transition-transform duration-300 hover:scale-[1.03]">
-                      <div className="relative w-full h-62.5 md:h-87.5">
+                  <div className="flex flex-col justify-center">
+                    <div className="relative w-full h-62.5 md:h-87.5">
+                      <div className="absolute -right-2 md:-right-4 -bottom-2 md:-bottom-4 w-full h-full bg-linear-to-r from-blue-600 via-blue-800 to-blue-950 z-0"></div>
+                      <div className="relative z-10 w-full h-full overflow-hidden transition-transform duration-300 hover:scale-[1.03]">
                         <Image
                           src={service.image}
                           alt={service.title}
