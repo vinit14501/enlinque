@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ArrowIcon from "@/components/common/ArrowIcon";
 
 const columns = [
   [
@@ -45,14 +45,7 @@ export default function MarketingComponentsSection() {
                     key={item}
                     className="flex items-center gap-3 group cursor-pointer"
                   >
-                    <Image
-                      src="/images/arrow.webp"
-                      alt=""
-                      width={16}
-                      height={16}
-                      style={{ width: "auto", height: "auto" }}
-                      className="transform transition-transform group-hover:translate-x-1"
-                    />
+                    <ArrowIcon className="shrink-0 w-4 h-4 text-[#0b60a0] transform transition-transform group-hover:translate-x-1" />
                     <span>{item}</span>
                   </p>
                 ))}
