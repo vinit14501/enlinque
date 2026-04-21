@@ -10,13 +10,13 @@ import Testimonials from "@/components/home/Testimonials";
 import ContactCta from "@/components/common/ContactCta";
 
 export const metadata: Metadata = {
-  title: "Professional Business Solutions",
+  title: "Fractional CxO & Business Consulting",
   description:
-    "Enlinque Consulting LLC offers Fractional CxO services, website development, and digital marketing solutions to help your business grow.",
+    "Enlinque helps growing businesses access senior executive leadership — fractional CMO, CTO, and CEO services plus web development. Flexible. Cost-effective. Results-driven. Get started today.",
   openGraph: {
-    title: "Enlinque Consulting LLC - Professional Business Solutions",
+    title: "Fractional CxO & Business Consulting | Enlinque Consulting LLC",
     description:
-      "Fractional CxO services, website development, and digital marketing solutions to help your business grow.",
+      "Senior executive leadership on demand — fractional CMO, CTO, and CEO services plus web development for growing businesses.",
     url: "https://enlinque.com",
     images: [
       {
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Enlinque Consulting LLC - Professional Business Solutions",
+    title: "Fractional CxO & Business Consulting | Enlinque Consulting LLC",
     description:
-      "Fractional CxO services, website development, and digital marketing solutions.",
+      "Senior executive leadership on demand — fractional CMO, CTO, and CEO services plus web development for growing businesses.",
     images: ["/images/logo.webp"],
   },
   alternates: {

@@ -15,11 +15,11 @@ const raleway = Raleway({
 export const metadata: Metadata = {
   metadataBase: new URL("https://enlinque.com"),
   title: {
-    default: "Enlinque Consulting LLC - Professional Business Solutions",
+    default: "Fractional CxO & Business Consulting | Enlinque Consulting LLC",
     template: "%s | Enlinque Consulting LLC",
   },
   description:
-    "Professional business solutions including Fractional CxO services, Website Development, and Digital Marketing. Expert consulting and digital transformation services.",
+    "Enlinque helps growing businesses access senior executive leadership — fractional CMO, CTO, and CEO services plus web development. Flexible. Cost-effective. Results-driven. Get started today.",
   keywords: [
     "Fractional CxO",
     "Website Development",
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://enlinque.com",
     siteName: "Enlinque Consulting LLC",
-    title: "Enlinque Consulting LLC - Professional Business Solutions",
+    title: "Fractional CxO & Business Consulting | Enlinque Consulting LLC",
     description:
-      "Professional business solutions including Fractional CxO services and Website Development.",
+      "Enlinque helps growing businesses access senior executive leadership — fractional CMO, CTO, and CEO services plus web development. Flexible. Cost-effective. Results-driven.",
     images: [
       {
         url: "/images/logo.webp",
@@ -56,9 +56,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Enlinque Consulting LLC - Professional Business Solutions",
+    title: "Fractional CxO & Business Consulting | Enlinque Consulting LLC",
     description:
-      "Professional business solutions including Fractional CxO services and Website Development.",
+      "Enlinque helps growing businesses access senior executive leadership — fractional CMO, CTO, and CEO services plus web development. Flexible. Cost-effective. Results-driven.",
     images: ["/images/logo.webp"],
   },
   icons: {
@@ -90,7 +90,7 @@ export default function RootLayout({
     url: "https://enlinque.com",
     logo: "https://enlinque.com/images/logo.webp",
     description:
-      "Professional business solutions including Fractional CxO services and Website Development.",
+      "Enlinque helps growing businesses access senior executive leadership — fractional CMO, CTO, and CEO services plus web development.",
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
