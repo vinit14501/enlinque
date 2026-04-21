@@ -13,7 +13,6 @@ import {
   Send,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import toast from "react-hot-toast";
 import Button from "@/components/common/Button";
 import { submitPlanForm } from "@/actions/plan";
 
@@ -100,6 +99,7 @@ function PlanModal({ isOpen, onClose, selectedPlan }: PlanModalProps) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -113,6 +113,7 @@ function PlanModal({ isOpen, onClose, selectedPlan }: PlanModalProps) {
     e.preventDefault();
     if (!selectedPlan) return;
     setIsSubmitting(true);
+    setSubmitError("");
 
     try {
       const result = await submitPlanForm({
@@ -128,10 +129,10 @@ function PlanModal({ isOpen, onClose, selectedPlan }: PlanModalProps) {
         setIsSuccess(true);
         setFormData({ name: "", email: "", phone: "" });
       } else {
-        toast.error(result.message);
+        setSubmitError(result.message);
       }
     } catch {
-      toast.error("Failed to submit. Please try again.");
+      setSubmitError("Failed to submit. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -151,12 +152,14 @@ function PlanModal({ isOpen, onClose, selectedPlan }: PlanModalProps) {
   const resetForm = () => {
     setFormData({ name: "", email: "", phone: "" });
     setIsSuccess(false);
+    setSubmitError("");
   };
 
   const handleClose = () => {
     onClose();
     setTimeout(() => {
       setIsSuccess(false);
+      setSubmitError("");
     }, 200);
   };
 
@@ -247,6 +250,11 @@ function PlanModal({ isOpen, onClose, selectedPlan }: PlanModalProps) {
                         />
                       ))}
 
+                      {submitError && (
+                        <p className="text-red-500 text-sm text-center">
+                          {submitError}
+                        </p>
+                      )}
                       <Button
                         type="submit"
                         icon={Send}

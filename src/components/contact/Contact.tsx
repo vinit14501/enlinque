@@ -13,7 +13,6 @@ import {
   RefreshCw,
 } from "lucide-react";
 import LinkedinIcon from "@/components/icons/LinkedinIcon";
-import toast from "react-hot-toast";
 import Button from "@/components/common/Button";
 import { submitContactForm } from "@/actions/contact";
 
@@ -60,6 +59,7 @@ export default function Contact() {
   const [formErrors, setFormErrors] = useState(initialErrorState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const validateForm = () => {
     const { name, company, email, phone, message } = formData;
@@ -108,6 +108,7 @@ export default function Contact() {
     setFormData(initialFormState);
     setFormErrors(initialErrorState);
     setIsSuccess(false);
+    setSubmitError("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -118,6 +119,7 @@ export default function Contact() {
     }
 
     setIsSubmitting(true);
+    setSubmitError("");
 
     try {
       const result = await submitContactForm(formData);
@@ -127,10 +129,10 @@ export default function Contact() {
         setFormData(initialFormState);
         setFormErrors(initialErrorState);
       } else {
-        toast.error(result.message);
+        setSubmitError(result.message);
       }
     } catch {
-      toast.error("Failed to send message. Please try again later.");
+      setSubmitError("Failed to send message. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
@@ -311,6 +313,11 @@ export default function Contact() {
                     )}
                   </div>
 
+                  {submitError && (
+                    <p className="text-red-500 text-sm text-center">
+                      {submitError}
+                    </p>
+                  )}
                   <Button
                     type="submit"
                     icon={Send}
