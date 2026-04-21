@@ -20,6 +20,7 @@ interface SelectedPlan {
   name: string;
   description?: string;
   price: number;
+  isStartingPrice?: boolean;
 }
 
 interface PlanModalProps {
@@ -121,7 +122,7 @@ function PlanModal({ isOpen, onClose, selectedPlan }: PlanModalProps) {
         selectedPlan: {
           name: selectedPlan.name,
           price: selectedPlan.price,
-          isStartingPrice: selectedPlan.name === "Advanced",
+          isStartingPrice: selectedPlan.isStartingPrice ?? false,
         },
       });
 

@@ -27,7 +27,7 @@ export default function Navbar() {
       const nav = document.querySelector("nav");
       const navHeight = nav ? nav.offsetHeight : 0;
       const elementPosition = servicesSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      const offsetPosition = elementPosition + window.scrollY - navHeight;
 
       window.scrollTo({
         top: offsetPosition,

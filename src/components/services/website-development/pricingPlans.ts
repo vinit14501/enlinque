@@ -56,6 +56,7 @@ export const pricingPlans = [
     description:
       "A powerful, scalable solution for established businesses and enterprises",
     price: 1500,
+    isStartingPrice: true,
     features: [
       "Upto 8 Pages (upto 14 sections)",
       "$250 per additional page",

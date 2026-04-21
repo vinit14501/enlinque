@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronUp, ChevronDown, ClipboardCheck } from "lucide-react";
+import { ChevronDown, ClipboardCheck } from "lucide-react";
 const faqData = [
   {
     title: "What services does Enlinque offer?",
@@ -65,7 +65,7 @@ function FAQItem({
             isOpen ? "rotate-180" : "rotate-0"
           }`}
         >
-          {isOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+          <ChevronDown size={24} />
         </div>
       </div>
       <div

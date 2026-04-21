@@ -126,11 +126,12 @@ export default function DigitalMarketing() {
       </section>
 
       {/* Second CTA Banner */}
-      <div className="relative w-full h-75 sm:h-87.5 md:h-100 overflow-hidden will-change-transform">
+      <div className="relative w-full h-75 sm:h-87.5 md:h-100 overflow-hidden">
         <Image
           src="/images/digitalmarketingbanner2.webp"
           alt="Digital Marketing Strategy"
           fill
+          loading="eager"
           className="object-cover object-center"
         />
         <div className="absolute bottom-0 left-0 right-0 flex justify-center animate-fade-in-up">
@@ -172,10 +173,6 @@ export default function DigitalMarketing() {
             <span className="text-[#0b60a0] font-bold">drives growth</span>.
           </p>
         </div>
-      </div>
-
-      <div className="relative overflow-hidden bg-white">
-        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-10" />
       </div>
 
       {/* Connect Section */}

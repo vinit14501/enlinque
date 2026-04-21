@@ -15,6 +15,7 @@ import {
 import LinkedinIcon from "@/components/icons/LinkedinIcon";
 import Button from "@/components/common/Button";
 import { submitContactForm } from "@/actions/contact";
+import { PHONE_REGEX } from "@/lib/validation";
 
 const initialFormState = {
   name: "",
@@ -64,7 +65,7 @@ export default function Contact() {
   const validateForm = () => {
     const { name, company, email, phone, message } = formData;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
+    const phoneRegex = PHONE_REGEX;
 
     const newErrors = {
       name:
