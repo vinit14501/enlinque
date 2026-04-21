@@ -8,7 +8,7 @@ import Button from "@/components/common/Button";
 
 export default function Cta3() {
   return (
-    <div className="relative w-full h-75 sm:h-87.5 md:h-100 overflow-hidden will-change-transform">
+    <div className="relative w-full h-75 sm:h-87.5 md:h-100 overflow-hidden">
       <Image
         src="/images/cta3.webp"
         alt=""

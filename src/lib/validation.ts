@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+export const PHONE_REGEX = /^\+?[\d\s-]+$/;
+
 export const contactFormSchema = z.object({
   name: z
     .string()
@@ -16,7 +18,7 @@ export const contactFormSchema = z.object({
     .string()
     .trim()
     .max(20, "Phone number cannot exceed 20 characters")
-    .regex(/^\+?[\d\s-]+$/, "Please provide a valid phone number"),
+    .regex(PHONE_REGEX, "Please provide a valid phone number"),
   message: z
     .string()
     .trim()
@@ -35,7 +37,7 @@ export const planFormSchema = z.object({
     .string()
     .trim()
     .max(20, "Phone number cannot exceed 20 characters")
-    .regex(/^\+?[\d\s-]+$/, "Please provide a valid phone number"),
+    .regex(PHONE_REGEX, "Please provide a valid phone number"),
   selectedPlan: z.object({
     name: z
       .string()
