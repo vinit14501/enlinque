@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-12">
           {/* Logo and Tagline Section */}
           <div className="lg:col-span-4 space-y-3 animate-fade-in-up animate-stagger-1">
-            <h1 className="text-2xl font-bold">Enlinque Consulting</h1>
+            <p className="text-2xl font-bold">Enlinque Consulting</p>
             <p className="text-white text-lg font-medium">
               Where speed meets strategy
             </p>

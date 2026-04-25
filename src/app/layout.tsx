@@ -46,10 +46,13 @@ export const metadata: Metadata = {
       "Enlinque helps growing businesses access senior executive leadership — fractional CMO, CTO, and CEO services plus web development. Flexible. Cost-effective. Results-driven.",
     images: [
       {
-        url: "/images/logo.webp",
-        width: 512,
-        height: 512,
-        alt: "Enlinque Consulting LLC",
+        // Use a large banner image (1200×630) — the minimum required by
+        // LinkedIn Ads, Meta Ads, and Google Ads for proper creative rendering.
+        // Replace with a professionally designed branded OG image when available.
+        url: "/images/cta.webp",
+        width: 1200,
+        height: 630,
+        alt: "Enlinque Consulting LLC — Fractional CxO & Business Consulting",
       },
     ],
   },
@@ -58,7 +61,7 @@ export const metadata: Metadata = {
     title: "Fractional CxO & Business Consulting | Enlinque Consulting LLC",
     description:
       "Enlinque helps growing businesses access senior executive leadership — fractional CMO, CTO, and CEO services plus web development. Flexible. Cost-effective. Results-driven.",
-    images: ["/images/logo.webp"],
+    images: ["/images/cta.webp"],
   },
   icons: {
     icon: [
@@ -84,16 +87,36 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    // ProfessionalService is a LocalBusiness sub-type; using both types lets
+    // Google surface the business in local results AND knowledge panels.
+    "@type": ["Organization", "ProfessionalService"],
     name: "Enlinque Consulting LLC",
     url: "https://enlinque.com",
     logo: "https://enlinque.com/images/logo.webp",
     description:
       "Enlinque helps growing businesses access senior executive leadership — fractional CMO, CTO, and CEO services plus web development.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Pittsburgh",
+      addressRegion: "PA",
+      addressCountry: "US",
+    },
+    areaServed: "Worldwide",
+    knowsAbout: [
+      "IT Consulting",
+      "Digital Marketing",
+      "Fractional CxO",
+      "Website Development",
+      "Software Development",
+      "E-Commerce Solutions",
+      "Digital Transformation",
+      "Agile Implementation",
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
       email: "contact@enlinque.com",
+      availableLanguage: "English",
     },
     sameAs: ["https://linkedin.com/company/enlinque"],
   };

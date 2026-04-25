@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Check, Plus } from "lucide-react";
 import { pricingPlans } from "@/components/services/website-development/pricingPlans";
@@ -69,9 +70,20 @@ export default function PricingSection() {
               </div>
 
               <div className="px-8 py-6 bg-white border-b border-gray-100 flex justify-center">
-                <Button onClick={() => handlePlanSelection(plan)}>
-                  Choose Plan
-                </Button>
+                {/*
+                 * href="/contact" gives crawlers and ad-platform bots a valid,
+                 * resolvable destination. JavaScript intercepts the click to open
+                 * the plan modal instead, providing the richer UX when JS is on.
+                 */}
+                <Link
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePlanSelection(plan);
+                  }}
+                >
+                  <Button>Choose Plan</Button>
+                </Link>
               </div>
 
               <div className="bg-white px-8 py-6">
