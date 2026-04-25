@@ -40,7 +40,7 @@ export default function About() {
             alt="Hero Background"
             fill
             className="object-cover scale-105"
-            preload={true}
+            priority={true}
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/60" />

@@ -12,9 +12,9 @@ export const metadata: Metadata = {
     url: "https://enlinque.com/contact",
     images: [
       {
-        url: "/images/logo.webp",
-        width: 512,
-        height: 512,
+        url: "/images/about.webp",
+        width: 1200,
+        height: 630,
         alt: "Contact Enlinque Consulting",
       },
     ],
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Contact Us | Enlinque Consulting LLC",
     description:
       "Get in touch with Enlinque Consulting for strategic business and technology solutions.",
-    images: ["/images/logo.webp"],
+    images: ["/images/about.webp"],
   },
   alternates: {
     canonical: "/contact",
