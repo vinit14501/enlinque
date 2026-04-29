@@ -1,34 +1,11 @@
 import Image from "next/image";
-
-const panels = [
-  {
-    title: "Social media platforms",
-    image: "/images/social.webp",
-    alt: "Corporate Branding",
-  },
-  { title: "SEO", image: "/images/seo.webp", alt: "Hotel Branding" },
-  {
-    title: "Content writing",
-    image: "/images/writing.webp",
-    alt: "eCommerce Branding",
-  },
-  {
-    title: "Analytics",
-    image: "/images/analytics.webp",
-    alt: "Healthcare Branding",
-  },
-  {
-    title: "Branding",
-    image: "/images/branding.webp",
-    alt: "Construction Company Branding",
-  },
-];
+import { socialMediaPanels } from "@/components/services/digital-marketing/socialMediaPanels";
 
 export default function SocialMediaMobile() {
   return (
     <div className="relative w-full block md:hidden">
       <div className="flex flex-col">
-        {panels.map((panel, index) => (
+        {socialMediaPanels.map((panel, index) => (
           <div key={index} className="w-full relative mb-4">
             <div className="h-48 relative">
               <Image

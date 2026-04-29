@@ -37,7 +37,7 @@ export default function About() {
         <div className="absolute inset-0">
           <Image
             src="/images/about.webp"
-            alt="Hero Background"
+            alt="Enlinque team driving business and technology transformation"
             fill
             className="object-cover scale-105"
             priority={true}
@@ -199,7 +199,7 @@ export default function About() {
             <div className="w-full lg:w-1/2 overflow-hidden rounded-lg shadow-xl relative h-64 lg:h-auto lg:min-h-100">
               <Image
                 src="/images/value.webp"
-                alt="Company Values"
+                alt="Enlinque team embodying our values of reliability, flexibility, expertise, and collaboration"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"

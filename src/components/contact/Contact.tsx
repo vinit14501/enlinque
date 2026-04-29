@@ -143,24 +143,32 @@ export default function Contact() {
     {
       icon: User,
       name: "name",
+      id: "contact-name",
+      label: "Name",
       type: "text",
       placeholder: "Name *",
     },
     {
       icon: Building2,
       name: "company",
+      id: "contact-company",
+      label: "Company Name",
       type: "text",
       placeholder: "Company Name *",
     },
     {
       icon: Mail,
       name: "email",
+      id: "contact-email",
+      label: "Email",
       type: "email",
       placeholder: "Email *",
     },
     {
       icon: Smartphone,
       name: "phone",
+      id: "contact-phone",
+      label: "Phone Number",
       type: "tel",
       placeholder: "Phone Number *",
     },
@@ -264,9 +272,11 @@ export default function Contact() {
                       key={field.name}
                       className="relative flex flex-col group"
                     >
+                      <label htmlFor={field.id} className="sr-only">{field.label}</label>
                       <div className="flex items-center">
                         <field.icon className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
                         <input
+                          id={field.id}
                           type={field.type}
                           name={field.name}
                           value={formData[field.name as keyof typeof formData]}
@@ -289,12 +299,14 @@ export default function Contact() {
                   ))}
 
                   <div className="relative flex flex-col group">
+                    <label htmlFor="contact-message" className="sr-only">Message</label>
                     <div className="flex items-start">
                       <MessageCircle
                         className="absolute left-0 top-3 text-[#000048] group-focus-within:text-[#0b60a0] transition-colors duration-300"
                         size={20}
                       />
                       <textarea
+                        id="contact-message"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}

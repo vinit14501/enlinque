@@ -83,7 +83,7 @@ export default function Navbar() {
             >
               <Image
                 src="/images/logo.webp"
-                alt="Company Logo"
+                alt="Enlinque Consulting logo"
                 width={200}
                 height={80}
                 style={{ width: "auto", height: "auto" }}
