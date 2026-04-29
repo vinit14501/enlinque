@@ -58,6 +58,8 @@ const SuccessMessage = memo(function SuccessMessage({
 interface FormField {
   icon: LucideIcon;
   name: string;
+  id: string;
+  label: string;
   type: string;
   placeholder: string;
 }
@@ -75,9 +77,11 @@ const FormInput = memo(function FormInput({
 }) {
   return (
     <div className="relative flex flex-col group">
+      <label htmlFor={field.id} className="sr-only">{field.label}</label>
       <div className="flex items-center w-full">
         <field.icon className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-lg sm:text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
         <input
+          id={field.id}
           type={field.type}
           name={field.name}
           value={value}
@@ -170,18 +174,24 @@ function PlanModal({ isOpen, onClose, selectedPlan }: PlanModalProps) {
     {
       icon: User,
       name: "name",
+      id: "plan-name",
+      label: "Name",
       type: "text",
       placeholder: "Name *",
     },
     {
       icon: Mail,
       name: "email",
+      id: "plan-email",
+      label: "Email",
       type: "email",
       placeholder: "Email *",
     },
     {
       icon: Smartphone,
       name: "phone",
+      id: "plan-phone",
+      label: "Phone Number",
       type: "tel",
       placeholder: "Phone Number *",
     },

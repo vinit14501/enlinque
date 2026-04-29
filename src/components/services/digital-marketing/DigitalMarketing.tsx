@@ -16,7 +16,7 @@ export default function DigitalMarketing() {
       <section className="relative w-full h-[calc(80vh-4rem)] sm:h-[calc(80vh-5rem)] lg:h-[calc(80vh-6rem)]">
         <Image
           src="/images/digitalmarketingbanner1.webp"
-          alt="Digital Marketing"
+          alt="Digital marketing team planning SEO, social media, and advertising campaigns"
           fill
           className="object-cover object-center"
           priority={true}

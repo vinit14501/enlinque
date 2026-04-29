@@ -53,7 +53,7 @@ export default function WebsiteDevelopment() {
       <section className="relative w-full h-[calc(80vh-4rem)] sm:h-[calc(80vh-5rem)] lg:h-[calc(80vh-6rem)]">
         <Image
           src="/images/websitedevelopment.webp"
-          alt="Website Development"
+          alt="Custom website design and development for businesses"
           fill
           className="object-cover object-center"
           priority={true}
@@ -112,7 +112,7 @@ export default function WebsiteDevelopment() {
       <div className="relative w-full h-75 sm:h-87.5 md:h-100 overflow-hidden will-change-transform">
         <Image
           src="/images/digitalmarketing.webp"
-          alt="Digital Marketing"
+          alt="Digital marketing strategies to grow your online presence"
           fill
           className="object-cover object-center"
         />

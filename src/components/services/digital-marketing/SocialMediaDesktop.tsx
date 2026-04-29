@@ -1,35 +1,12 @@
 import Image from "next/image";
-
-const panels = [
-  {
-    title: "Social media platforms",
-    image: "/images/social.webp",
-    alt: "Corporate Branding",
-  },
-  { title: "SEO", image: "/images/seo.webp", alt: "Hotel Branding" },
-  {
-    title: "Content writing",
-    image: "/images/writing.webp",
-    alt: "eCommerce Branding",
-  },
-  {
-    title: "Analytics",
-    image: "/images/analytics.webp",
-    alt: "Healthcare Branding",
-  },
-  {
-    title: "Branding",
-    image: "/images/branding.webp",
-    alt: "Construction Company Branding",
-  },
-];
+import { socialMediaPanels } from "@/components/services/digital-marketing/socialMediaPanels";
 
 export default function SocialMediaDesktop() {
   return (
     <div className="relative w-full hidden md:block">
       <div className="relative w-full" style={{ clipPath: "url(#wave-clip)" }}>
         <div className="flex flex-row">
-          {panels.map((panel, index) => (
+          {socialMediaPanels.map((panel, index) => (
             <div key={index} className="w-1/5 relative">
               <div className="h-125 lg:h-150 xl:h-175 relative">
                 <Image
