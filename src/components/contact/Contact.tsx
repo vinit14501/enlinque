@@ -147,6 +147,7 @@ export default function Contact() {
       label: "Name",
       type: "text",
       placeholder: "Name *",
+      autocomplete: "name",
     },
     {
       icon: Building2,
@@ -155,6 +156,7 @@ export default function Contact() {
       label: "Company Name",
       type: "text",
       placeholder: "Company Name *",
+      autocomplete: "organization",
     },
     {
       icon: Mail,
@@ -163,6 +165,7 @@ export default function Contact() {
       label: "Email",
       type: "email",
       placeholder: "Email *",
+      autocomplete: "email",
     },
     {
       icon: Smartphone,
@@ -171,6 +174,7 @@ export default function Contact() {
       label: "Phone Number",
       type: "tel",
       placeholder: "Phone Number *",
+      autocomplete: "tel",
     },
   ];
 
@@ -228,7 +232,7 @@ export default function Contact() {
                   className="transform group-hover:scale-110 transition-transform duration-300"
                   size={24}
                 />
-                <span className="font-medium">Email</span>
+                <span className="font-medium">contact@enlinque.com</span>
               </a>
               <a
                 href={
@@ -272,13 +276,16 @@ export default function Contact() {
                       key={field.name}
                       className="relative flex flex-col group"
                     >
-                      <label htmlFor={field.id} className="sr-only">{field.label}</label>
+                      <label htmlFor={field.id} className="sr-only">
+                        {field.label}
+                      </label>
                       <div className="flex items-center">
                         <field.icon className="absolute left-0 top-1/2 -translate-y-1/2 text-[#000048] text-xl group-focus-within:text-[#0b60a0] transition-colors duration-300" />
                         <input
                           id={field.id}
                           type={field.type}
                           name={field.name}
+                          autoComplete={field.autocomplete}
                           value={formData[field.name as keyof typeof formData]}
                           onChange={handleChange}
                           placeholder={field.placeholder}
@@ -299,7 +306,9 @@ export default function Contact() {
                   ))}
 
                   <div className="relative flex flex-col group">
-                    <label htmlFor="contact-message" className="sr-only">Message</label>
+                    <label htmlFor="contact-message" className="sr-only">
+                      Message
+                    </label>
                     <div className="flex items-start">
                       <MessageCircle
                         className="absolute left-0 top-3 text-[#000048] group-focus-within:text-[#0b60a0] transition-colors duration-300"
@@ -308,6 +317,7 @@ export default function Contact() {
                       <textarea
                         id="contact-message"
                         name="message"
+                        autoComplete="off"
                         value={formData.message}
                         onChange={handleChange}
                         placeholder="Message *"
@@ -336,7 +346,7 @@ export default function Contact() {
                     icon={Send}
                     loading={isSubmitting}
                     loadingText="Sending..."
-                    className="w-1/2 mx-auto"
+                    className="w-full"
                   >
                     Send Message
                   </Button>
