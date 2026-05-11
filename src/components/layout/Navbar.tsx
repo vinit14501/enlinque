@@ -86,6 +86,7 @@ export default function Navbar() {
                 alt="Enlinque Consulting logo"
                 width={200}
                 height={80}
+                unoptimized
                 style={{ width: "auto", height: "auto" }}
                 className="max-h-12 sm:max-h-16 lg:max-h-20 object-contain transition-all duration-200"
                 priority={true}
