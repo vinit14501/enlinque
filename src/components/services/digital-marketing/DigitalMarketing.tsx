@@ -129,9 +129,9 @@ export default function DigitalMarketing() {
       <div className="relative w-full h-75 sm:h-87.5 md:h-100 overflow-hidden">
         <Image
           src="/images/digitalmarketingbanner2.webp"
-          alt="Digital Marketing Strategy"
+          alt="Digital marketing strategy session with data-driven planning"
           fill
-          loading="eager"
+          loading="lazy"
           className="object-cover object-center"
         />
         <div className="absolute bottom-0 left-0 right-0 flex justify-center animate-fade-in-up">

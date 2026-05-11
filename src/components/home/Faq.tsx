@@ -1,65 +1,6 @@
-"use client";
-
-import { useState } from "react";
-
-interface FAQItemProps {
-  title: string;
-  content: string;
-  isOpen: boolean;
-  onToggle: () => void;
-}
-
-function FAQItem({ title, content, isOpen, onToggle }: FAQItemProps) {
-  return (
-    <div className="border-b border-gray-200 last:border-b-0">
-      <div className="py-3 sm:py-4 cursor-pointer" onClick={onToggle}>
-        <div className="flex items-start">
-          <div className="flex-1">
-            <div className="flex justify-between items-center group">
-              <h3 className="text-base sm:text-lg font-medium font-raleway text-black pr-3 sm:pr-4 group-hover:text-[#0b60a0] transition-colors duration-200">
-                {title}
-              </h3>
-              <button
-                className="text-[#0b60a0] transition-transform duration-200 w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center"
-                aria-label={isOpen ? "Close answer" : "Show answer"}
-              >
-                <svg
-                  className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 ease-in-out ${
-                    isOpen ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            <div
-              className="overflow-hidden transition-all duration-300 ease-in-out"
-              style={{
-                maxHeight: isOpen ? "1000px" : "0",
-                opacity: isOpen ? 1 : 0,
-                marginTop: isOpen ? "0.75rem" : "0",
-              }}
-            >
-              <div className="text-black text-sm sm:text-base leading-relaxed">
-                {content}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+// No "use client" needed — native <details>/<summary> is interactive without JS.
+// Google indexes content inside <details> elements.
+// CSS class "faq-item" drives the open animation (defined in globals.css).
 
 const faqData = [
   {
@@ -100,12 +41,6 @@ const faqData = [
 ];
 
 export default function Faq() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(index === openIndex ? null : index);
-  };
-
   return (
     <div className="bg-white py-8 sm:py-10 md:py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -119,18 +54,43 @@ export default function Faq() {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="divide-y divide-gray-200 border-b border-gray-200">
-            {faqData.map((faq, index) => (
-              <FAQItem
-                key={index}
-                title={faq.title}
-                content={faq.content}
-                isOpen={openIndex === index}
-                onToggle={() => toggleFAQ(index)}
-              />
-            ))}
-          </div>
+        <div className="max-w-4xl mx-auto divide-y divide-gray-200 border-b border-gray-200">
+          {faqData.map((faq, index) => (
+            /*
+             * <details>/<summary> provides full keyboard navigation, screen-reader
+             * support, and works entirely without JavaScript. Google's crawler
+             * indexes the answer text regardless of open/closed state.
+             * The CSS class "faq-item" hooks into the open animation in globals.css.
+             */
+            <details
+              key={index}
+              className="group border-b border-gray-200 last:border-b-0 faq-item"
+            >
+              <summary className="py-3 sm:py-4 cursor-pointer list-none flex justify-between items-start">
+                <h3 className="text-base sm:text-lg font-medium font-raleway text-black pr-3 sm:pr-4 group-open:text-[#0b60a0] transition-colors duration-200">
+                  {faq.title}
+                </h3>
+                <span className="text-[#0b60a0] w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg
+                    className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+              </summary>
+              <div className="pb-3 sm:pb-4 text-black text-sm sm:text-base leading-relaxed faq-content">
+                {faq.content}
+              </div>
+            </details>
+          ))}
         </div>
       </div>
     </div>

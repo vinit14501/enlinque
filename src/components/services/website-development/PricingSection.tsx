@@ -71,12 +71,13 @@ export default function PricingSection() {
 
               <div className="px-8 py-6 bg-white border-b border-gray-100 flex justify-center">
                 {/*
-                 * href="/contact" gives crawlers and ad-platform bots a valid,
-                 * resolvable destination. JavaScript intercepts the click to open
-                 * the plan modal instead, providing the richer UX when JS is on.
+                 * Each plan links to /contact?plan=<name> — a unique, crawlable URL.
+                 * Google indexes every plan at its own destination rather than a
+                 * generic /contact page. JavaScript intercepts the click to open the
+                 * richer PlanModal instead, preserving the enhanced UX when JS is on.
                  */}
                 <Link
-                  href="/contact"
+                  href={`/contact?plan=${encodeURIComponent(plan.name)}`}
                   onClick={(e) => {
                     e.preventDefault();
                     handlePlanSelection(plan);

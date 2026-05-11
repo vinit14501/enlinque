@@ -229,3 +229,36 @@ html {
       transparent 20%
     );
 }
+
+/* ── FAQ <details>/<summary> open animation ─────────────────────────────────
+ * Works entirely without JavaScript — pure CSS driven by the browser's native
+ * [open] attribute that <details> receives when expanded.
+ * .faq-content is the direct non-summary child of .faq-item.
+ * The animation only fires on open; close is instant (browser default for
+ * <details>). For a close animation, JS would be required — not adding it here
+ * to preserve the no-JS progressive-enhancement guarantee.
+ * ─────────────────────────────────────────────────────────────────────────── */
+@keyframes faqOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq-item[open] .faq-content {
+  animation: faqOpen 0.25s ease-out forwards;
+}
+
+/* Remove the default browser disclosure triangle on <summary> elements.
+   Tailwind's list-none covers most browsers; these handle Safari / Firefox. */
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::marker {
+  display: none;
+}
