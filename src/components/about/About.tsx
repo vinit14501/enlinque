@@ -74,16 +74,17 @@ export default function About() {
                 Who We Are
               </h2>
               <p className="text-base sm:text-lg text-black">
-                Enlinque was founded on the belief that every great idea
-                deserves the chance to thrive. We understand the challenges
-                startups face—from navigating speed-to-market pressures to
-                scaling operations efficiently.
+                We are more than just a service provider; we are a collective of
+                seasoned technology architects, strategic marketers, and
+                operational leaders. Our team understands the high-stakes
+                environment of the startup world and the complex demands of
+                scaling an enterprise.
               </p>
               <p className="text-base sm:text-lg text-black">
-                We are a team of seasoned professionals with diverse expertise
-                in technology, strategy, marketing, and leadership. Together, we
-                bring a blend of innovation, strategy, and execution to help
-                businesses like yours overcome obstacles and achieve measurable
+                We don’t just offer advice—we offer a partnership. By
+                integrating ourselves into your mission, we bring a blend of
+                innovation, tactical execution, and visionary leadership to help
+                you overcome roadblocks and achieve measurable, high-ROI
                 results.
               </p>
             </div>
@@ -92,16 +93,19 @@ export default function About() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                 Our Approach
               </h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+                Where Speed Meets Strategy
+              </h2>
               <p className="text-base sm:text-lg text-white">
-                At Enlinque, we don&apos;t believe in one-size-fits-all
-                solutions. We take the time to understand your unique
-                challenges, goals, and vision, and we craft tailored strategies
-                that deliver real impact.
+                At Enlinque, we believe that in the modern business landscape,
+                you shouldn&apos;t have to choose between moving fast and moving
+                correctly. Many startups have the speed but lack the roadmap;
+                many established firms have the strategy but lack the agility.
               </p>
               <p className="text-base sm:text-lg text-white">
-                From concept to execution, we work as an extension of your team,
-                ensuring transparency, collaboration, and measurable success
-                every step of the way.
+                Enlinque was founded to bridge that gap. We are a high-impact
+                consulting and execution firm designed to help businesses
+                navigate digital transformation with precision and momentum.
               </p>
             </div>
           </div>
@@ -114,56 +118,59 @@ export default function About() {
           <div className="animate-fade-in animate-delay-400">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-[#000048]">
-                Our Vision
+                The Enlinque Success Path (Our 5-Step Framework)
               </h2>
               <p className="text-base sm:text-lg text-black max-w-3xl mx-auto">
-                At Enlinque, we bring together diverse perspectives and
-                cutting-edge skills to deliver exceptional results.
+                We move away from &ldquo;one-size-fits-all&rdquo; solutions.
+                Every project we undertake follows our proprietary framework to
+                ensure total alignment with your business goals:
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto">
-              <div className="bg-[#0b60a0] p-6 rounded-lg h-auto sm:h-80 flex flex-col">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
+              <div className="bg-[#0b60a0] p-6 rounded-lg flex flex-col">
                 <h3 className="text-lg sm:text-xl font-semibold mb-4 text-white">
-                  Innovation That Inspires
+                  Pinpoint
                 </h3>
-                <p className="text-white overflow-y-auto">
-                  We envision a future where businesses of all sizes harness
-                  cutting-edge technology and innovative strategies to drive
-                  growth and transformation. At Enlinque, we strive to be the
-                  catalyst that sparks creativity and pushes boundaries.
+                <p className="text-white">
+                  We conduct a deep-dive analysis of your current operations to
+                  identify hidden bottlenecks and untapped opportunities.
                 </p>
               </div>
-              <div className="bg-[#000048] p-6 rounded-lg h-auto sm:h-80 flex flex-col">
+              <div className="bg-[#000048] p-6 rounded-lg flex flex-col">
                 <h3 className="text-lg sm:text-xl font-semibold mb-4 text-white">
-                  Empowering Startups Globally
+                  Prioritize
                 </h3>
-                <p className="text-white overflow-y-auto">
-                  Our vision is to create an ecosystem where startups around the
-                  world have access to the resources, expertise, and support
-                  they need to thrive and scale, regardless of their industry or
-                  location.
+                <p className="text-white">
+                  We rank initiatives based on their potential for immediate
+                  impact and long-term value.
                 </p>
               </div>
-              <div className="bg-[#0b60a0] p-6 rounded-lg h-auto sm:h-80 flex flex-col">
+              <div className="bg-[#0b60a0] p-6 rounded-lg flex flex-col">
                 <h3 className="text-lg sm:text-xl font-semibold mb-4 text-white">
-                  Sustainable Growth
+                  Plan
                 </h3>
-                <p className="text-white overflow-y-auto">
-                  We are committed to fostering long-term success for our
-                  clients by promoting sustainable business practices, efficient
-                  processes, and strategic decision-making that drives
-                  meaningful impact.
+                <p className="text-white">
+                  We design a custom strategic roadmap that balances your budget
+                  with your scaling ambitions.
                 </p>
               </div>
-              <div className="bg-[#000048] p-6 rounded-lg h-auto sm:h-80 flex flex-col">
+              <div className="bg-[#000048] p-6 rounded-lg flex flex-col">
                 <h3 className="text-lg sm:text-xl font-semibold mb-4 text-white">
-                  Leadership Excellence
+                  Propel
                 </h3>
-                <p className="text-white overflow-y-auto">
-                  We aim to redefine what it means to lead by providing
-                  businesses with expert fractional leadership that ensures
-                  agility, strategic alignment, and operational excellence.
+                <p className="text-white">
+                  Our technical and marketing teams execute the plan with rapid,
+                  high-quality delivery.
+                </p>
+              </div>
+              <div className="bg-[#0b60a0] p-6 rounded-lg flex flex-col">
+                <h3 className="text-lg sm:text-xl font-semibold mb-4 text-white">
+                  Perfect
+                </h3>
+                <p className="text-white">
+                  We continuously monitor, optimize, and iterate to ensure
+                  sustainable growth and operational excellence.
                 </p>
               </div>
             </div>
