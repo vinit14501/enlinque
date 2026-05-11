@@ -7,6 +7,7 @@ import {
   User,
   Building2,
   Mail,
+  MapPin,
   Smartphone,
   MessageCircle,
   CircleCheck,
@@ -223,7 +224,7 @@ export default function Contact() {
               <span className="grow border-t-2 border-white/30"></span>
             </div>
 
-            <div className="flex gap-6">
+            <div className="flex flex-col gap-3">
               <a
                 href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@enlinque.com"}`}
                 className="flex items-center gap-2 text-white hover:text-blue-200 transition-colors duration-300 group"
@@ -245,6 +246,10 @@ export default function Contact() {
                 <LinkedinIcon className="w-6 h-6 transform group-hover:scale-110 transition-transform duration-300" />
                 <span className="font-medium">LinkedIn</span>
               </a>
+              <div className="flex items-center gap-2 text-white">
+                <MapPin size={24} className="shrink-0" />
+                <span className="font-medium">Pennsylvania, USA</span>
+              </div>
             </div>
           </div>
         </div>
