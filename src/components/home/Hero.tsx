@@ -5,6 +5,11 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Circle } from "lucide-react";
 
+// hasMounted pattern: on the first server-render and initial hydration pass
+// initial={false} is used so Framer Motion does NOT set opacity:0 in the
+// server-side HTML. Without JS the text remains fully visible.
+// After mount, hasMounted=true restores the carousel slide-in animation.
+
 const carouselContent = [
   {
     header: "Startup IT Solutions",
@@ -46,7 +51,6 @@ const SWIPE_VELOCITY_THRESHOLD = 300;
 export default function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
     if (isAutoPlaying) {
@@ -65,7 +69,7 @@ export default function Hero() {
 
   const handleDragEnd = (
     _: unknown,
-    info: { offset: { x: number }; velocity: { x: number } }
+    info: { offset: { x: number }; velocity: { x: number } },
   ) => {
     const { x: offsetX } = info.offset;
     const { x: velocityX } = info.velocity;
@@ -74,14 +78,13 @@ export default function Hero() {
       offsetX < -SWIPE_OFFSET_THRESHOLD ||
       velocityX < -SWIPE_VELOCITY_THRESHOLD;
     const swipedRight =
-      offsetX > SWIPE_OFFSET_THRESHOLD ||
-      velocityX > SWIPE_VELOCITY_THRESHOLD;
+      offsetX > SWIPE_OFFSET_THRESHOLD || velocityX > SWIPE_VELOCITY_THRESHOLD;
 
     if (swipedLeft) {
       handleSectionClick((activeIndex + 1) % carouselContent.length);
     } else if (swipedRight) {
       handleSectionClick(
-        (activeIndex - 1 + carouselContent.length) % carouselContent.length
+        (activeIndex - 1 + carouselContent.length) % carouselContent.length,
       );
     }
   };
@@ -119,16 +122,27 @@ export default function Hero() {
 
       {/* Content Container */}
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center lg:items-start justify-center px-4 sm:px-6 lg:px-8">
+        {/*
+         * Single H1 for the page — describes Enlinque's primary service offering.
+         * Visually hidden so it does not disrupt the hero design, but fully
+         * readable by search-engine crawlers and screen readers.
+         * The carousel headings below are demoted to H2 (multiple slide titles
+         * would create duplicate H1s, violating on-page SEO best practice).
+         */}
+        <h1 className="sr-only">
+          Fractional CxO &amp; Business Consulting Services
+        </h1>
+
         <div className="w-full lg:w-1/2 mb-16 text-center lg:text-left">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
-              initial="initial"
+              initial={false}
               animate="animate"
               exit="exit"
               className="space-y-4"
             >
-              <motion.h1
+              <motion.h2
                 variants={{
                   initial: { opacity: 0, y: 20 },
                   animate: { opacity: 1, y: 0 },
@@ -138,7 +152,7 @@ export default function Hero() {
                 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-raleway tracking-tight"
               >
                 {carouselContent[activeIndex].header}
-              </motion.h1>
+              </motion.h2>
 
               <motion.p
                 variants={{

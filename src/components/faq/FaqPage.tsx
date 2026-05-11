@@ -1,6 +1,6 @@
-"use client";
-
-import { useState } from "react";
+// No "use client" needed — native <details>/<summary> works without JavaScript.
+// Google and all crawlers index content inside <details> elements.
+// CSS class "faq-item" drives the open animation (defined in globals.css).
 import { ChevronDown, ClipboardCheck } from "lucide-react";
 const faqData = [
   {
@@ -40,54 +40,7 @@ const faqData = [
   },
 ];
 
-function FAQItem({
-  title,
-  content,
-  isOpen,
-  onToggle,
-}: {
-  title: string;
-  content: string;
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
-  return (
-    <div className="border border-blue-100 rounded-lg mb-4 overflow-hidden hover:border-blue-200 transition-colors duration-300">
-      <div
-        className="p-4 flex justify-between items-center cursor-pointer bg-white group"
-        onClick={onToggle}
-      >
-        <h3 className="text-base font-medium text-gray-800 group-hover:text-blue-600 transition-colors duration-300 pr-4">
-          {title}
-        </h3>
-        <div
-          className={`text-blue-500 transition-transform duration-300 ${
-            isOpen ? "rotate-180" : "rotate-0"
-          }`}
-        >
-          <ChevronDown size={24} />
-        </div>
-      </div>
-      <div
-        className={`transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-100 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="px-4 pb-4 text-gray-600 text-sm leading-relaxed">
-          {content}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function FaqPage() {
-  const [openIndex, setOpenIndex] = useState(-1);
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(index === openIndex ? -1 : index);
-  };
-
   return (
     <div className="pt-24 pb-12 bg-slate-50">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -109,13 +62,28 @@ export default function FaqPage() {
 
         <div className="space-y-4">
           {faqData.map((faq, index) => (
-            <FAQItem
+            /*
+             * <details>/<summary> provides full keyboard/screen-reader support and
+             * works entirely without JavaScript. Google indexes content inside
+             * <details> regardless of open/closed state (confirmed by Google 2024).
+             * The CSS class "faq-item" hooks into the open animation in globals.css.
+             */
+            <details
               key={index}
-              title={faq.title}
-              content={faq.content}
-              isOpen={openIndex === index}
-              onToggle={() => toggleFAQ(index)}
-            />
+              className="group border border-blue-100 rounded-lg overflow-hidden hover:border-blue-200 transition-colors duration-300 faq-item open:border-blue-200"
+            >
+              <summary className="p-4 flex justify-between items-center cursor-pointer bg-white list-none">
+                <h3 className="text-base font-medium text-gray-800 group-open:text-blue-600 transition-colors duration-300 pr-4">
+                  {faq.title}
+                </h3>
+                <div className="text-blue-500 transition-transform duration-300 group-open:rotate-180 shrink-0">
+                  <ChevronDown size={24} />
+                </div>
+              </summary>
+              <div className="px-4 pb-4 text-gray-600 text-sm leading-relaxed bg-white faq-content">
+                {faq.content}
+              </div>
+            </details>
           ))}
         </div>
       </div>

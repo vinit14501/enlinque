@@ -136,8 +136,9 @@ export default function Testimonials() {
                         src={testimonial.image}
                         width={56}
                         height={56}
+                        loading="lazy"
                         className="w-12 md:w-14 h-12 md:h-14 rounded-full border-2"
-                        alt={testimonial.name}
+                        alt={`Photo of ${testimonial.name}, ${testimonial.company}`}
                       />
                       <div>
                         <h6 className="text-black text-sm md:text-[15px] font-bold">
