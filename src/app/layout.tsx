@@ -9,6 +9,7 @@ const raleway = Raleway({
   weight: ["400", "600", "700", "800"],
   display: "swap",
   variable: "--font-raleway",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -122,7 +123,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" dir="ltr">
+    <html lang="en" dir="ltr" data-scroll-behavior="smooth">
       <body className={`${raleway.variable} antialiased`}>
         <script
           type="application/ld+json"
