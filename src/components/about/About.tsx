@@ -2,30 +2,30 @@ import Image from "next/image";
 import { CircleCheck, RefreshCw, Lightbulb, Handshake } from "lucide-react";
 import ContactCta from "@/components/common/ContactCta";
 
-const valueDetails = [
+const visionDetails = [
   {
     icon: CircleCheck,
-    title: "Reliability",
+    title: "Innovation That Inspires",
     description:
-      "Consistent and dependable delivery of high-quality services with accuracy and timely completion.",
+      "We envision a future where businesses of all sizes can leverage high-end technology to spark creativity and redefine their industries.",
   },
   {
     icon: RefreshCw,
-    title: "Flexibility",
+    title: "Empowering the Global Startup Ecosystem",
     description:
-      "Adapting seamlessly to changing business needs and market demands with scalable solutions.",
+      "Our goal is to democratize access to elite-level expertise, giving startups—regardless of location—the resources they need to compete on a global stage.",
   },
   {
     icon: Lightbulb,
-    title: "Expertise",
+    title: "Sustainable Growth & Scalability",
     description:
-      "Bringing specialized skills and industry knowledge to tackle complex tasks efficiently.",
+      "We are committed to fostering long-term success through efficient processes and strategic decision-making that drives meaningful, lasting impact.",
   },
   {
     icon: Handshake,
-    title: "Collaboration",
+    title: "Leadership Redefined",
     description:
-      "Promoting open communication, transparency, and teamwork for shared goals and success.",
+      "We aim to be the premier provider of fractional leadership, ensuring that agility and strategic alignment are accessible to every growing organization.",
   },
 ];
 
@@ -93,7 +93,7 @@ export default function About() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                 Our Approach
               </h2>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-white">
                 Where Speed Meets Strategy
               </h2>
               <p className="text-base sm:text-lg text-white">
@@ -183,24 +183,47 @@ export default function About() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="text-white animate-fade-in animate-delay-500">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-              Why Choose Us?
+              Why Partners Choose Enlinque
             </h2>
             <p className="text-base sm:text-lg md:text-xl mb-6 text-white">
-              Enlinque is more than a consulting firm—we are your partners in
-              growth. With a proven track record of helping startups and
-              businesses succeed, we bring the expertise, dedication, and
-              agility needed to turn your vision into reality. Let us help you
-              navigate the path to success with confidence and clarity.
+              Businesses choose us because we treat their challenges as our own.
+              We bring the dedication of an in-house team with the specialized
+              expertise of a global consultancy.
             </p>
+            <ul className="text-left space-y-4 mt-2">
+              <li className="text-base sm:text-lg md:text-xl text-white">
+                <span className="font-bold text-white">Reliability:</span> We
+                deliver high-quality, accurate results on time, every time.
+              </li>
+              <li className="text-base sm:text-lg md:text-xl text-white">
+                <span className="font-bold text-white">Flexibility:</span> Our
+                solutions scale with you, adapting seamlessly to shifting market
+                demands.
+              </li>
+              <li className="text-base sm:text-lg md:text-xl text-white">
+                <span className="font-bold text-white">
+                  Multi-Domain Expertise:
+                </span>{" "}
+                From AI-driven software development to high-conversion digital
+                marketing, we cover the entire digital spectrum.
+              </li>
+              <li className="text-base sm:text-lg md:text-xl text-white">
+                <span className="font-bold text-white">
+                  Transparent Collaboration:
+                </span>{" "}
+                We promote open communication and radical honesty, ensuring you
+                are never in the dark about your project&apos;s progress.
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
+      {/* Vision Section */}
       <section className="bg-white py-12 sm:py-16 md:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#000048] text-center mb-12 md:mb-16">
-            Our Values
+            Our Vision for the Future
           </h2>
           <div className="flex flex-col lg:flex-row w-full space-y-6 lg:space-y-0 lg:space-x-8">
             <div className="w-full lg:w-1/2 overflow-hidden rounded-lg shadow-xl relative h-64 lg:h-auto lg:min-h-100">
@@ -213,7 +236,7 @@ export default function About() {
               />
             </div>
             <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {valueDetails.map((value, index) => (
+              {visionDetails.map((value, index) => (
                 <div
                   key={index}
                   className="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300 animate-fade-in-up"
