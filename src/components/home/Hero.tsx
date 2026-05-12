@@ -99,7 +99,7 @@ export default function Hero() {
       onDragEnd={handleDragEnd}
     >
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <AnimatePresence mode="sync">
+        <AnimatePresence mode="sync" initial={false}>
           <motion.div
             key={carouselContent[activeIndex].image}
             initial={{ opacity: 0 }}
@@ -113,7 +113,8 @@ export default function Hero() {
               alt={carouselContent[activeIndex].title}
               fill
               className="object-cover"
-              priority={activeIndex === 0}
+              fetchPriority={activeIndex === 0 ? "high" : "auto"}
+              loading={activeIndex === 0 ? "eager" : "lazy"}
               sizes="100vw"
             />
           </motion.div>

@@ -40,7 +40,7 @@ export default function About() {
             alt="Enlinque team driving business and technology transformation"
             fill
             className="object-cover scale-105"
-            priority={true}
+            fetchPriority="high"
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/60" />

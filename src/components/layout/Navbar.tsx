@@ -87,9 +87,9 @@ export default function Navbar() {
                 width={200}
                 height={80}
                 unoptimized
-                style={{ width: "auto", height: "auto" }}
-                className="max-h-12 sm:max-h-16 lg:max-h-20 object-contain transition-all duration-200"
-                priority={true}
+                className="h-12 sm:h-16 lg:h-20 w-auto object-contain transition-all duration-200"
+                fetchPriority="high"
+                loading="eager"
               />
             </Link>
 
