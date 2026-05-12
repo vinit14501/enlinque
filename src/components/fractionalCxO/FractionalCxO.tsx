@@ -1,82 +1,176 @@
-﻿import Image from "next/image";
-import { CircleCheck } from "lucide-react";
+﻿"use client";
+
+import { useState } from "react";
+import Image from "next/image";
 import ContactCta from "@/components/common/ContactCta";
-import ScrollLink from "@/components/common/ScrollLink";
 
 const services = [
   {
     id: "cio",
     title: "Chief Information Officer (CIO)",
     shortTitle: "CIO",
+    headline: "Aligning IT Infrastructure with Global Business Ambitions.",
+    sectionHeader: "The Role of the Enlinque CIO",
     description:
-      "Leverage strategic IT leadership to transform digital capabilities and drive business innovation. Our CIOs align technology with business objectives, optimize digital infrastructure, and ensure long-term technological competitiveness.",
+      'In many organizations, IT is seen as a "support" function. Our Fractional CIOs shift that paradigm, transforming technology into a core driver of business innovation. We provide the high-level governance required to ensure your tech spend is an investment, not just an expense.',
     image: "/images/cio.webp",
-    points: [
-      "Develop and execute comprehensive IT strategies",
-      "Optimize and manage digital infrastructure",
-      "Lead digital transformation and innovation initiatives",
-      "Ensure cybersecurity, compliance, and risk management",
+    pillars: [
+      {
+        title: "Strategic IT Governance",
+        description:
+          "We establish a 12-to-36-month IT roadmap. This includes hardware lifecycles, software consolidation, and ensuring your technology stack supports your projected headcount growth.",
+      },
+      {
+        title: "Cybersecurity & Compliance Excellence",
+        description:
+          "We conduct deep-tier risk assessments. For companies operating internationally, we ensure compliance with GDPR, ISO 27001, and the Digital Personal Data Protection Act (DPDP).",
+      },
+      {
+        title: "Cloud Strategy & Migration",
+        description:
+          "Moving away from expensive on-premise servers. We architect hybrid or multi-cloud environments (AWS, Azure, Google Cloud) that offer maximum uptime and disaster recovery.",
+      },
+      {
+        title: "IT Audit & Cost Optimization",
+        description:
+          'We perform a "vampire cost" audit, identifying redundant SaaS subscriptions and negotiating enterprise-level contracts to slash monthly overhead.',
+      },
     ],
   },
   {
     id: "cto",
     title: "Chief Technology Officer (CTO)",
     shortTitle: "CTO",
+    headline: "Building Scalable Architecture for the Next Generation of Tech.",
+    sectionHeader: "The Technical Visionary",
     description:
-      "Accelerate innovation and digital transformation with strategic technology leadership. Our CTOs align technology with business objectives, oversee IT and engineering teams, and drive the adoption of cutting-edge solutions for sustainable growth.",
+      'A Fractional CTO from Enlinque isn\'t just a lead developer; they are the architect of your company\'s future. We bridge the gap between "business ideas" and "shippable code," ensuring your product is built on a foundation that won\'t crumble under the weight of 10x growth.',
     image: "/images/cto.webp",
-    points: [
-      "Define and execute technology roadmaps",
-      "Oversee IT infrastructure, architecture, and operations",
-      "Lead software development, deployment, and scalability",
-      "Foster a culture of innovation and continuous improvement",
+    pillars: [
+      {
+        title: "Architectural Audits & Design",
+        description:
+          "We evaluate your current codebase to identify technical debt. We design scalable microservices architectures and ensure your database logic is optimized for high-volume transactions.",
+      },
+      {
+        title: "Engineering Leadership & Mentorship",
+        description:
+          "We implement Agile and Scrum frameworks that actually work. We mentor your lead devs, optimize sprint velocities, and establish rigorous CI/CD (Continuous Integration/Continuous Deployment) pipelines.",
+      },
+      {
+        title: "Emerging Tech Integration",
+        description:
+          "We help you navigate the noise of AI/ML. Whether it's integrating Large Language Models (LLMs) or implementing Graph Neural Networks for security, we ensure tech adoption is purpose-driven.",
+      },
+      {
+        title: "Product Roadmap Execution",
+        description:
+          "We act as the translator between stakeholders and the dev team, turning abstract features into detailed technical specifications (PRDs).",
+      },
     ],
   },
   {
     id: "cmo",
     title: "Chief Marketing Officer (CMO)",
     shortTitle: "CMO",
+    headline: "Turning Marketing into a Predictable Revenue Engine.",
+    sectionHeader: "Strategic Growth Leadership",
     description:
-      "Elevate your brand and accelerate growth with strategic marketing leadership. Our CMOs craft data-driven marketing strategies, strengthen brand positioning, and optimize customer acquisition for long-term success.",
+      "Marketing at Enlinque isn't about \"likes\"—it's about ROI, LTV, and CAC. Our Fractional CMOs provide the executive oversight needed to build a multi-channel growth engine that works while you sleep.",
     image: "/images/cmo.webp",
-    points: [
-      "Develop and execute integrated marketing strategies",
-      "Define brand positioning, messaging, and market differentiation",
-      "Analyze market trends and customer insights to drive decision-making",
-      "Optimize digital and traditional marketing channels for maximum ROI",
+    pillars: [
+      {
+        title: "Full-Funnel Growth Strategy",
+        description:
+          'We map the entire customer journey, from cold awareness to post-purchase advocacy. We identify "leaks" in your sales funnel where potential revenue is being lost.',
+      },
+      {
+        title: "Performance Marketing & ROI Optimization",
+        description:
+          "We manage high-budget campaigns across Google Ads, Meta, and LinkedIn. Our focus is on ROAS (Return on Ad Spend) and reducing your Customer Acquisition Cost.",
+      },
+      {
+        title: "Brand Authority & Narrative",
+        description:
+          'We refine your brand\'s "voice" to ensure it commands authority in your industry. This includes content strategy, PR direction, and high-level positioning against competitors.',
+      },
+      {
+        title: "MarTech Stack Management",
+        description:
+          "We implement and optimize your marketing technology, including CRM (HubSpot/Salesforce), marketing automation, and advanced attribution modeling to see exactly where your leads come from.",
+      },
     ],
   },
   {
     id: "cfo",
     title: "Chief Financial Officer (CFO)",
     shortTitle: "CFO",
+    headline: "Financial Integrity for High-Growth Enterprises.",
+    sectionHeader: "Fiscal Leadership & Risk Management",
     description:
-      "Strengthen financial strategy and drive sustainable growth with expert CFO leadership. Our CFOs provide financial planning, risk management, and strategic insights to optimize business performance and profitability.",
+      "A bookkeeper records what happened; an Enlinque CFO tells you what will happen. We provide the financial sophistication needed to navigate fundraising, manage cash flow, and ensure long-term profitability.",
     image: "/images/cfo.webp",
-    points: [
-      "Oversee financial planning, budgeting, and forecasting.",
-      "Implement robust financial controls, compliance, and reporting.",
-      "Assess and mitigate financial and operational risks.",
-      "Provide data-driven insights to support strategic decision-making and growth.",
+    pillars: [
+      {
+        title: "Financial Modeling & Predictive Analysis",
+        description:
+          'We build 3-year financial models that allow you to run "what-if" scenarios: What if we hire 10 more devs? What if we pivot to a SaaS model?',
+      },
+      {
+        title: "Fundraising & Exit Readiness",
+        description:
+          'We prepare your "Data Room" for VCs or private equity. We clean up your Cap Table, refine your financial pitch, and lead the due diligence process.',
+      },
+      {
+        title: "Cash Flow & Burn Rate Governance",
+        description:
+          'We implement strict controls to manage your runway. We ensure you have enough capital to scale aggressively without hitting a "cash crunch."',
+      },
+      {
+        title: "Unit Economics Deep-Dive",
+        description:
+          "We analyze your margins at a granular level. We ensure your business model is sustainable by analyzing contribution margins and payback periods.",
+      },
     ],
   },
   {
     id: "coo",
     title: "Chief Operating Officer (COO)",
     shortTitle: "COO",
+    headline: "Operational Excellence: The Machinery of Scaling.",
+    sectionHeader: "The Execution Specialist",
     description:
-      "Streamline operations and boost organizational efficiency with experienced COO leadership. Our COOs excel at optimizing business processes, managing resource allocation, and driving operational excellence.",
+      'The CEO has the vision; the COO builds the system to achieve it. Enlinque Fractional COOs focus on the "internal plumbing" of your business, removing friction and ensuring that every department is aligned with the company\'s North Star.',
     image: "/images/coo.webp",
-    points: [
-      "Develop and implement operational strategies",
-      "Streamline workflows and optimize business processes",
-      "Manage resource allocation and utilization",
-      "Enhance organizational efficiency and productivity",
+    pillars: [
+      {
+        title: "Process Engineering & SOP Development",
+        description:
+          'We document and automate the "tribal knowledge" in your company. We build Standard Operating Procedures (SOPs) that make the business founder-independent.',
+      },
+      {
+        title: "Organizational Design & Culture",
+        description:
+          "We help design team structures that prevent silos. We create performance-based compensation plans and KPIs (Key Performance Indicators) that drive actual results.",
+      },
+      {
+        title: "Cross-Functional Alignment",
+        description:
+          "We ensure that Sales, Marketing, and Tech are not working at cross-purposes. We implement EOS (Entrepreneurial Operating System) or OKR (Objectives and Key Results) frameworks.",
+      },
+      {
+        title: "Supply Chain & Vendor Ecosystem",
+        description:
+          "We optimize your external operations, managing vendor relationships and streamlining procurement to increase your operational efficiency.",
+      },
     ],
   },
 ];
 
 export default function FractionalCxO() {
+  const [activeId, setActiveId] = useState("cio");
+  const active = services.find((s) => s.id === activeId)!;
+
   return (
     <div className="font-sans bg-white">
       {/* Hero Section */}
@@ -100,131 +194,108 @@ export default function FractionalCxO() {
               commitment. Our fractional CxOs bring decades of experience to
               elevate your business.
             </p>
-            <p className="text-lg md:text-xl max-w-3xl mx-auto text-white font-bold tracking-widest">
-              <ScrollLink
-                targetId="cio"
-                className="hover:text-blue-300 transition-colors cursor-pointer"
-              >
-                CIO
-              </ScrollLink>{" "}
-              |{" "}
-              <ScrollLink
-                targetId="cto"
-                className="hover:text-blue-300 transition-colors cursor-pointer"
-              >
-                CTO
-              </ScrollLink>{" "}
-              |{" "}
-              <ScrollLink
-                targetId="cmo"
-                className="hover:text-blue-300 transition-colors cursor-pointer"
-              >
-                CMO
-              </ScrollLink>{" "}
-              |{" "}
-              <ScrollLink
-                targetId="cfo"
-                className="hover:text-blue-300 transition-colors cursor-pointer"
-              >
-                CFO
-              </ScrollLink>{" "}
-              |{" "}
-              <ScrollLink
-                targetId="coo"
-                className="hover:text-blue-300 transition-colors cursor-pointer"
-              >
-                COO
-              </ScrollLink>
-            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {services.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => {
+                    setActiveId(s.id);
+                    document
+                      .getElementById("cxo-panel")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="px-5 py-2 rounded-full text-sm font-bold border border-white/60 bg-white/10 hover:bg-white/25 transition-colors tracking-wider"
+                >
+                  {s.shortTitle}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* CxO Sections */}
-      <div className="py-16 md:py-24 px-4">
-        <div className="max-w-6xl mx-auto space-y-16 md:space-y-24">
-          {services.map((service, index) => (
-            <div
-              id={service.id}
-              key={service.title}
-              className="grid md:grid-cols-2 gap-8 md:gap-12 items-stretch animate-fade-in-up"
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              {index % 2 === 0 ? (
-                <>
-                  <div className="flex flex-col justify-center">
-                    <div className="relative w-full h-62.5 md:h-87.5">
-                      <div className="absolute -left-2 md:-left-4 -bottom-2 md:-bottom-4 w-full h-full bg-linear-to-r from-blue-950 via-blue-800 to-blue-600 z-0"></div>
-                      <div className="relative z-10 w-full h-full overflow-hidden transition-transform duration-300 hover:scale-[1.03]">
-                        <Image
-                          src={service.image}
-                          alt={service.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          className="object-cover object-center"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-4 md:space-y-6 pl-0 md:pl-4 flex flex-col justify-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#0b60a0]">
-                      {service.title}
-                    </h2>
-                    <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                      {service.description}
-                    </p>
-                    <ul className="space-y-2 md:space-y-3 text-gray-700 grow">
-                      {service.points.map((point, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-center text-sm md:text-base"
-                        >
-                          <CircleCheck className="text-[#0b60a0] mr-3 shrink-0" />
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="space-y-4 md:space-y-6 pr-0 md:pr-4 flex flex-col justify-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#0b60a0]">
-                      {service.title}
-                    </h2>
-                    <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                      {service.description}
-                    </p>
-                    <ul className="space-y-2 md:space-y-3 text-gray-700 grow">
-                      {service.points.map((point, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-center text-sm md:text-base"
-                        >
-                          <CircleCheck className="text-[#0b60a0] mr-3 shrink-0" />
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <div className="relative w-full h-62.5 md:h-87.5">
-                      <div className="absolute -right-2 md:-right-4 -bottom-2 md:-bottom-4 w-full h-full bg-linear-to-r from-blue-600 via-blue-800 to-blue-950 z-0"></div>
-                      <div className="relative z-10 w-full h-full overflow-hidden transition-transform duration-300 hover:scale-[1.03]">
-                        <Image
-                          src={service.image}
-                          alt={service.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          className="object-cover object-center"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </>
-              )}
+      {/* Tab Navigation */}
+      <div className="sticky top-16 z-30 bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex overflow-x-auto no-scrollbar">
+            {services.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => setActiveId(s.id)}
+                className={`px-5 md:px-8 py-4 text-sm font-semibold whitespace-nowrap border-b-2 transition-all duration-200 ${
+                  activeId === s.id
+                    ? "border-[#0b60a0] text-[#0b60a0]"
+                    : "border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-300"
+                }`}
+              >
+                Fractional {s.shortTitle}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Content Panel */}
+      <div id="cxo-panel" className="py-14 md:py-20 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          {/* Role Header */}
+          <div className="grid md:grid-cols-5 gap-10 md:gap-16 items-center mb-14">
+            {/* Text */}
+            <div className="md:col-span-3 space-y-4">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0b60a0]/60">
+                Fractional {active.shortTitle}
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                {active.title}
+              </h2>
+              <p className="text-lg md:text-xl text-[#0b60a0] italic font-medium leading-snug">
+                {active.headline}
+              </p>
+              <div className="w-12 h-1 bg-[#0b60a0] rounded-full" />
+              <h3 className="text-base font-bold text-gray-700 uppercase tracking-wider">
+                {active.sectionHeader}
+              </h3>
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                {active.description}
+              </p>
             </div>
-          ))}
+
+            {/* Image */}
+            <div className="md:col-span-2 relative">
+              <div className="absolute -right-3 -bottom-3 w-full h-full bg-linear-to-br from-blue-600 to-blue-950 rounded-xl z-0" />
+              <div className="relative z-10 w-full aspect-4/3 overflow-hidden rounded-xl shadow-lg">
+                <Image
+                  src={active.image}
+                  alt={active.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="object-cover object-center transition-transform duration-500 hover:scale-[1.03]"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Service Pillars */}
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">
+              Detailed Service Pillars
+            </p>
+            <div className="grid sm:grid-cols-2 gap-5">
+              {active.pillars.map((pillar, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 rounded-xl border border-gray-100 bg-gray-50 hover:border-[#0b60a0]/30 hover:shadow-md transition-all duration-200"
+                >
+                  <h4 className="text-base font-bold text-[#0b60a0] mb-2">
+                    {pillar.title}
+                  </h4>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    {pillar.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
