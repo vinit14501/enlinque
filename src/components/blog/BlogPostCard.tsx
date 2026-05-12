@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Clock, Calendar } from "lucide-react";
 import type { BlogPost } from "@/components/blog/blogData";
+import AuthorAvatar from "@/components/blog/AuthorAvatar";
 
 // Static category color map — full class names required so Tailwind includes them
 const CATEGORY_COLORS: Record<string, string> = {
@@ -62,22 +63,30 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
 
         {/* Footer row */}
         <div className="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
-          {/* Meta */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-400">
-            <span className="flex items-center gap-1">
-              <Calendar className="w-3 h-3 shrink-0" />
-              {post.date}
-            </span>
-            <span className="flex items-center gap-1">
-              <Clock className="w-3 h-3 shrink-0" />
-              {post.readTime}
-            </span>
+          {/* Author + meta */}
+          <div className="flex items-center gap-2 min-w-0">
+            <AuthorAvatar author={post.author} size="xs" />
+            <div className="flex flex-col min-w-0">
+              <span className="text-xs font-medium text-gray-600 truncate">
+                {post.author.name}
+              </span>
+              <div className="flex items-center gap-2 text-xs text-gray-400">
+                <span className="flex items-center gap-0.5">
+                  <Calendar className="w-3 h-3 shrink-0" />
+                  {post.date}
+                </span>
+                <span className="flex items-center gap-0.5">
+                  <Clock className="w-3 h-3 shrink-0" />
+                  {post.readTime}
+                </span>
+              </div>
+            </div>
           </div>
 
           {/* Read more */}
           <Link
             href={`/blog/${post.slug}`}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-[#0b60a0] hover:text-[#000048] transition-colors duration-200 shrink-0 group/arrow"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-[#0b60a0] hover:text-[#000048] transition-colors duration-200 shrink-0 ml-2 group/arrow"
           >
             Read
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/arrow:translate-x-0.5" />

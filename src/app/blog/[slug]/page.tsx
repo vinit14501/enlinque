@@ -32,8 +32,8 @@ export async function generateMetadata({
       description: post.excerpt,
       url: `https://enlinque.com/blog/${post.slug}`,
       type: "article",
-      publishedTime: post.date,
-      authors: [post.author],
+      publishedTime: new Date(post.date).toISOString(),
+      authors: [post.author.name],
       images: [
         {
           url: `https://enlinque.com${post.coverImage}`,
@@ -68,5 +68,43 @@ export default async function BlogArticlePage({
     notFound();
   }
 
-  return <Article post={post} />;
+  // ── BlogPosting JSON-LD for Google rich results ─────────────────────────
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: `https://enlinque.com${post.coverImage}`,
+    datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.date).toISOString(),
+    author: {
+      "@type": "Organization",
+      name: post.author.name,
+      url: "https://enlinque.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Enlinque Consulting LLC",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://enlinque.com/images/logo.webp",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://enlinque.com/blog/${post.slug}`,
+    },
+    keywords: post.tags.join(", "),
+    articleSection: post.category,
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <Article post={post} />
+    </>
+  );
 }

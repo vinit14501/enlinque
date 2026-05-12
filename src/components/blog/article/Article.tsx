@@ -6,6 +6,7 @@ import {
 import ArticleReadingProgress from "@/components/blog/article/ArticleReadingProgress";
 import ArticleHero from "@/components/blog/article/ArticleHero";
 import ArticleTableOfContents from "@/components/blog/article/ArticleTableOfContents";
+import ArticleMobileToc from "@/components/blog/article/ArticleMobileToc";
 import ArticleBody from "@/components/blog/article/ArticleBody";
 import ArticleShareBar from "@/components/blog/article/ArticleShareBar";
 import ArticleRelated from "@/components/blog/article/ArticleRelated";
@@ -39,9 +40,12 @@ export default function Article({ post }: ArticleProps) {
       {/* ── Main article area: prose + sticky TOC sidebar ─────────── */}
       <div className="bg-white px-4 sm:px-6 lg:px-8 py-10 sm:py-14 md:py-16">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-12 xl:gap-16">
-            {/* Article body */}
-            <main>
+          {/* Mobile TOC — collapses to accordion on < lg screens */}
+          <ArticleMobileToc headings={headings} />
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-12 xl:gap-16 items-start">
+            {/* Article body — capped at 720px for optimal reading line-length */}
+            <main className="min-w-0 max-w-180">
               <ArticleBody content={post.content} />
               <ArticleShareBar title={post.title} slug={post.slug} />
             </main>

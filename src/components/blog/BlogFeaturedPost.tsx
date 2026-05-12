@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Clock, Calendar } from "lucide-react";
 import type { BlogPost } from "@/components/blog/blogData";
+import AuthorAvatar from "@/components/blog/AuthorAvatar";
 
 // Static category color map — full class names required so Tailwind includes them
 const CATEGORY_COLORS: Record<string, string> = {
@@ -65,14 +66,19 @@ export default function BlogFeaturedPost({ post }: BlogFeaturedPostProps) {
               {post.excerpt}
             </p>
 
-            {/* Meta row */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-400 mb-6">
-              <span className="font-medium text-gray-500">{post.author}</span>
-              <span className="flex items-center gap-1">
+            {/* Author + meta row */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6">
+              <div className="flex items-center gap-2">
+                <AuthorAvatar author={post.author} size="xs" />
+                <span className="text-sm font-medium text-gray-600">
+                  {post.author.name}
+                </span>
+              </div>
+              <span className="flex items-center gap-1 text-xs text-gray-400">
                 <Calendar className="w-3.5 h-3.5 shrink-0" />
                 {post.date}
               </span>
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1 text-xs text-gray-400">
                 <Clock className="w-3.5 h-3.5 shrink-0" />
                 {post.readTime}
               </span>

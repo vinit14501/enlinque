@@ -1,3 +1,21 @@
+// ─── Author ───────────────────────────────────────────────────────────────────
+
+export interface Author {
+  name: string;
+  role: string;
+  /** Absolute path to avatar image; empty string = render initials fallback */
+  avatarUrl: string;
+  linkedIn?: string;
+}
+
+/** Single source of truth for all Enlinque-authored content */
+export const ENLINQUE_AUTHOR: Author = {
+  name: "Enlinque Team",
+  role: "Enlinque Consulting",
+  avatarUrl: "", // Replace with /images/enlinque-author.webp when available
+  linkedIn: "https://www.linkedin.com/company/enlinque",
+};
+
 // ─── Category Types ───────────────────────────────────────────────────────────
 
 export type BlogCategory =
@@ -24,7 +42,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   category: BlogCategory;
-  author: string;
+  author: Author;
   date: string;
   readTime: string;
   coverImage: string;
@@ -98,7 +116,7 @@ export const blogPostsFull: BlogPostFull[] = [
     excerpt:
       "Most growing companies hit a point where marketing feels scattered — lots of activity, little traction. A Fractional CMO brings executive-level strategy without the full-time price tag. Here is how to know if the time is now.",
     category: "Leadership",
-    author: "Enlinque Team",
+    author: ENLINQUE_AUTHOR,
     date: "May 10, 2026",
     readTime: "6 min read",
     coverImage: "/images/cmo.webp",
@@ -181,7 +199,7 @@ export const blogPostsFull: BlogPostFull[] = [
     excerpt:
       "Your website is your best salesperson — yet most business websites are slow, confusing, and fail to convert. Here is a battle-tested 90-day framework to design, build, and launch a site that actually works.",
     category: "Web Development",
-    author: "Enlinque Team",
+    author: ENLINQUE_AUTHOR,
     date: "May 5, 2026",
     readTime: "8 min read",
     coverImage: "/images/websitedevelopment.webp",
@@ -234,7 +252,7 @@ export const blogPostsFull: BlogPostFull[] = [
     excerpt:
       "A full-time C-suite hire costs $300K+ per year before equity and benefits. A Fractional CxO delivers the same strategic firepower at a fraction of the cost. Let us break down the numbers that make this decision obvious.",
     category: "Business Strategy",
-    author: "Enlinque Team",
+    author: ENLINQUE_AUTHOR,
     date: "Apr 28, 2026",
     readTime: "5 min read",
     coverImage: "/images/value.webp",
@@ -282,7 +300,7 @@ export const blogPostsFull: BlogPostFull[] = [
     excerpt:
       "Google's AI Overviews now answer questions before users reach your website. The old playbook is obsolete. This guide covers the new SEO strategies that earn traffic, authority, and leads in the AI-first search landscape.",
     category: "Digital Marketing",
-    author: "Enlinque Team",
+    author: ENLINQUE_AUTHOR,
     date: "Apr 21, 2026",
     readTime: "7 min read",
     coverImage: "/images/seo.webp",
@@ -338,7 +356,7 @@ export const blogPostsFull: BlogPostFull[] = [
     excerpt:
       "70% of digital transformation initiatives fail to meet their goals. The culprit is rarely the technology — it is strategy, alignment, and execution. Here is what separates the organizations that succeed from those that stall.",
     category: "Technology",
-    author: "Enlinque Team",
+    author: ENLINQUE_AUTHOR,
     date: "Apr 14, 2026",
     readTime: "9 min read",
     coverImage: "/images/1.webp",
@@ -402,7 +420,7 @@ export const blogPostsFull: BlogPostFull[] = [
     excerpt:
       "Growth is the goal — but rapid scaling without the right leadership infrastructure leads to burnout, churn, and missed milestones. Here is how Fractional CxO support creates the breathing room leaders need to scale sustainably.",
     category: "Leadership",
-    author: "Enlinque Team",
+    author: ENLINQUE_AUTHOR,
     date: "Apr 7, 2026",
     readTime: "6 min read",
     coverImage: "/images/fractional.webp",
@@ -458,7 +476,7 @@ export const blogPostsFull: BlogPostFull[] = [
     excerpt:
       "Getting traffic to your store is only half the battle. The real win is converting visitors into buyers. These 7 proven optimization levers will help you reduce abandonment, boost average order value, and grow revenue without spending more on ads.",
     category: "Digital Marketing",
-    author: "Enlinque Team",
+    author: ENLINQUE_AUTHOR,
     date: "Mar 31, 2026",
     readTime: "7 min read",
     coverImage: "/images/analytics.webp",
@@ -519,7 +537,7 @@ export const blogPostsFull: BlogPostFull[] = [
     excerpt:
       "The choices you make in your first 90 days of development will either accelerate or constrain your growth for years. This guide breaks down how to choose a technology stack that survives your first million users.",
     category: "Technology",
-    author: "Enlinque Team",
+    author: ENLINQUE_AUTHOR,
     date: "Mar 24, 2026",
     readTime: "8 min read",
     coverImage: "/images/cto.webp",
@@ -581,7 +599,7 @@ export const blogPostsFull: BlogPostFull[] = [
     excerpt:
       "Markets shift. Algorithms change. Competition intensifies overnight. Yet the most resilient businesses do not just survive uncertainty — they build on it. Here is a strategic framework for growth planning in unpredictable times.",
     category: "Business Strategy",
-    author: "Enlinque Team",
+    author: ENLINQUE_AUTHOR,
     date: "Mar 17, 2026",
     readTime: "6 min read",
     coverImage: "/images/branding.webp",
