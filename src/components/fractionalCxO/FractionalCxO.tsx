@@ -174,7 +174,7 @@ export default function FractionalCxO() {
   return (
     <div className="font-sans bg-white">
       {/* Hero Section */}
-      <div className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] text-white overflow-hidden animate-fade-in">
+      <div className="relative h-[45vh] md:h-[50vh] lg:h-[60vh] text-white animate-fade-in">
         <Image
           src="/images/fractional.webp"
           alt="Fractional CxO Services"
@@ -184,38 +184,39 @@ export default function FractionalCxO() {
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-black/60" />
-        <div className="h-full max-w-5xl mx-auto px-4 text-center relative z-10 flex items-center justify-center">
-          <div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 font-raleway tracking-tight animate-fade-in-up">
-              Fractional CxO Services
-            </h1>
-            <p className="text-lg md:text-xl max-w-3xl mx-auto mb-6 md:mb-8 text-white font-light">
-              Access world-class executive leadership without the full-time
-              commitment. Our fractional CxOs bring decades of experience to
-              elevate your business.
-            </p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {services.map((s) => (
-                <button
-                  key={s.id}
-                  onClick={() => {
-                    setActiveId(s.id);
-                    document
-                      .getElementById("cxo-panel")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="px-5 py-2 rounded-full text-sm font-bold border border-white/60 bg-white/10 hover:bg-white/25 transition-colors tracking-wider"
-                >
-                  {s.shortTitle}
-                </button>
-              ))}
-            </div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 font-raleway tracking-tight animate-fade-in-up">
+            Fractional CxO Services
+          </h1>
+          <p className="text-base md:text-xl max-w-2xl mx-auto mb-6 md:mb-8 text-white font-light leading-relaxed">
+            Access world-class executive leadership without the full-time
+            commitment. Our fractional CxOs bring decades of experience to
+            elevate your business.
+          </p>
+          <div className="flex gap-3 justify-center">
+            {services.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => {
+                  setActiveId(s.id);
+                  document
+                    .getElementById("cxo-tabs")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="px-5 py-2 rounded-full text-sm font-bold border border-white/60 bg-white/10 hover:bg-white/25 transition-colors tracking-wider"
+              >
+                {s.shortTitle}
+              </button>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Tab Navigation */}
-      <div className="sticky top-16 z-30 bg-white border-b border-gray-200 shadow-sm">
+      <div
+        id="cxo-tabs"
+        className="sticky top-16 z-30 bg-white border-b border-gray-200 shadow-sm"
+      >
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex overflow-x-auto no-scrollbar">
             {services.map((s) => (
@@ -228,7 +229,10 @@ export default function FractionalCxO() {
                     : "border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-300"
                 }`}
               >
-                Fractional {s.shortTitle}
+                <span className="md:hidden">{s.shortTitle}</span>
+                <span className="hidden md:inline">
+                  Fractional {s.shortTitle}
+                </span>
               </button>
             ))}
           </div>
@@ -239,9 +243,9 @@ export default function FractionalCxO() {
       <div id="cxo-panel" className="py-14 md:py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           {/* Role Header */}
-          <div className="grid md:grid-cols-5 gap-10 md:gap-16 items-center mb-14">
+          <div className="grid md:grid-cols-5 gap-8 md:gap-16 items-center mb-10 md:mb-14">
             {/* Text */}
-            <div className="md:col-span-3 space-y-4">
+            <div className="md:col-span-3 space-y-4 order-2 md:order-1">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0b60a0]/60">
                 Fractional {active.shortTitle}
               </p>
@@ -251,8 +255,8 @@ export default function FractionalCxO() {
               <p className="text-lg md:text-xl text-[#0b60a0] italic font-medium leading-snug">
                 {active.headline}
               </p>
-              <div className="w-12 h-1 bg-[#0b60a0] rounded-full" />
-              <h3 className="text-base font-bold text-gray-700 uppercase tracking-wider">
+              <div className="hidden md:block w-12 h-1 bg-[#0b60a0] rounded-full" />
+              <h3 className="text-sm md:text-base font-bold text-gray-700 uppercase tracking-wider">
                 {active.sectionHeader}
               </h3>
               <p className="text-base md:text-lg text-gray-600 leading-relaxed">
@@ -261,9 +265,9 @@ export default function FractionalCxO() {
             </div>
 
             {/* Image */}
-            <div className="md:col-span-2 relative">
+            <div className="md:col-span-2 relative order-1 md:order-2">
               <div className="absolute -right-3 -bottom-3 w-full h-full bg-linear-to-br from-blue-600 to-blue-950 rounded-xl z-0" />
-              <div className="relative z-10 w-full aspect-4/3 overflow-hidden rounded-xl shadow-lg">
+              <div className="relative z-10 w-full aspect-video md:aspect-4/3 overflow-hidden rounded-xl shadow-lg">
                 <Image
                   src={active.image}
                   alt={active.title}
@@ -280,16 +284,16 @@ export default function FractionalCxO() {
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">
               Detailed Service Pillars
             </p>
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-2 gap-4">
               {active.pillars.map((pillar, idx) => (
                 <div
                   key={idx}
-                  className="p-6 rounded-xl border border-gray-100 bg-gray-50 hover:border-[#0b60a0]/30 hover:shadow-md transition-all duration-200"
+                  className="p-4 md:p-6 rounded-xl border border-gray-100 bg-gray-50 hover:border-[#0b60a0]/30 hover:shadow-md transition-all duration-200"
                 >
-                  <h4 className="text-base font-bold text-[#0b60a0] mb-2">
+                  <h4 className="text-sm md:text-base font-bold text-[#0b60a0] mb-1.5 md:mb-2">
                     {pillar.title}
                   </h4>
-                  <p className="text-sm text-gray-600 leading-relaxed">
+                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>

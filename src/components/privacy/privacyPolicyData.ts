@@ -1,9 +1,23 @@
-export const privacyPolicyData = {
-  introduction:
-    "At Enlinque, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you visit our website and use our services.",
+type PrivacySection = {
+  title: string;
+  content?: string;
+  list?: string[];
+  contact?: { email: string; address: string; company?: string };
+  subsections?: { subtitle: string; content: string; list?: string[] }[];
+  additional?: string;
+};
+
+export const privacyPolicyData: {
+  sections: PrivacySection[];
+} = {
   sections: [
     {
-      title: "Information We Collect",
+      title: "1. Introduction",
+      content:
+        "At Enlinque, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you visit our website and use our services.",
+    },
+    {
+      title: "2. Information We Collect",
       content:
         "We collect information that you voluntarily provide to us when you express an interest in obtaining information about us or our products and services.",
       list: [
@@ -13,7 +27,7 @@ export const privacyPolicyData = {
       ],
     },
     {
-      title: "Use of Your Information",
+      title: "3. Use of Your Information",
       content: "We use the information we collect to:",
       list: [
         "Respond to client inquiries and provide requested services.",
@@ -23,7 +37,7 @@ export const privacyPolicyData = {
       ],
     },
     {
-      title: "Ad Compliance & Digital Tracking",
+      title: "4. Ad Compliance & Digital Tracking",
       content:
         "Enlinque adheres to global standards for digital advertising and transparency.",
       list: [
@@ -33,17 +47,17 @@ export const privacyPolicyData = {
       ],
     },
     {
-      title: "Data Disclosure",
+      title: "5. Data Disclosure",
       content:
         "We do not sell, trade, or rent your personal identification information to third parties. We may share information with trusted third-party service providers (e.g., cloud hosting or email services) who assist us in operating our business, so long as those parties agree to keep this information confidential.",
     },
     {
-      title: "Security",
+      title: "6. Security",
       content:
         "We implement a variety of security measures to maintain the safety of your personal information. However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security.",
     },
     {
-      title: "Your Data Rights",
+      title: "7. Your Data Rights",
       content:
         "Under the Digital Personal Data Protection (DPDP) Act and other relevant regulations, you have the right to:",
       list: [
@@ -53,7 +67,7 @@ export const privacyPolicyData = {
       ],
     },
     {
-      title: "Contact Us",
+      title: "8. Contact Us",
       content:
         "If you have any questions about this Privacy Policy or our data practices, please contact us at:",
       contact: {

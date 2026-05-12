@@ -6,12 +6,8 @@ export default function PrivacyPolicy() {
       <div className="container mx-auto px-16 md:px-24 lg:px-32 py-12 max-w-5xl">
         <div className="animate-fade-in-up">
           <h1 className="text-4xl font-bold text-[#000048] mb-4">
-            Privacy Policy
+            Privacy Policy & Ad Compliance
           </h1>
-
-          <p className="text-[#0b60a0] text-lg font-normal mb-6 leading-7">
-            {privacyPolicyData.introduction}
-          </p>
 
           <div className="space-y-7">
             {privacyPolicyData.sections.map((section, index) => (
@@ -68,15 +64,19 @@ export default function PrivacyPolicy() {
 
                 {section.contact && (
                   <div className="mt-4 flex flex-col text-[#0b60a0] space-y-2">
-                    <p className="leading-7">{section.contact.company}</p>
-                    <a
-                      href={`mailto:${section.contact.email}`}
-                      className="hover:text-[#000048] transition-colors duration-300"
-                    >
-                      {section.contact.email}
-                    </a>
+                    <p className="leading-7">
+                      Email:{" "}
+                      <a
+                        href={`mailto:${section.contact.email}`}
+                        className="hover:text-[#000048] transition-colors duration-300"
+                      >
+                        {section.contact.email}
+                      </a>
+                    </p>
                     {section.contact.address && (
-                      <p className="leading-7">{section.contact.address}</p>
+                      <p className="leading-7">
+                        Address: {section.contact.address}
+                      </p>
                     )}
                   </div>
                 )}
