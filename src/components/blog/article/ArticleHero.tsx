@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Clock, Calendar, ArrowLeft } from "lucide-react";
 import type { BlogPostFull } from "@/components/blog/blogData";
+import AuthorAvatar from "@/components/blog/AuthorAvatar";
 
 // Static category color map — full class names required for Tailwind to include them
 const CATEGORY_COLORS: Record<string, string> = {
@@ -66,14 +67,27 @@ export default function ArticleHero({ post }: ArticleHeroProps) {
             {post.excerpt}
           </p>
 
-          {/* Meta row */}
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/60 animate-fade-in-up animate-stagger-5">
-            <span className="font-semibold text-white/80">{post.author}</span>
-            <span className="flex items-center gap-1.5">
+          {/* Author + meta row */}
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3 animate-fade-in-up animate-stagger-5">
+            <div className="flex items-center gap-2.5">
+              <AuthorAvatar author={post.author} size="sm" />
+              <div>
+                <p className="text-sm font-semibold text-white leading-tight">
+                  {post.author.name}
+                </p>
+                <p className="text-xs text-white/50 leading-tight">
+                  {post.author.role}
+                </p>
+              </div>
+            </div>
+            <span className="text-white/30 hidden sm:inline" aria-hidden="true">
+              ·
+            </span>
+            <span className="flex items-center gap-1.5 text-sm text-white/60">
               <Calendar className="w-4 h-4 shrink-0" />
               {post.date}
             </span>
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1.5 text-sm text-white/60">
               <Clock className="w-4 h-4 shrink-0" />
               {post.readTime}
             </span>
@@ -81,20 +95,16 @@ export default function ArticleHero({ post }: ArticleHeroProps) {
         </div>
       </div>
 
-      {/* ── Cover image — full-width below the header band ───────────── */}
-      <div className="bg-gray-100">
-        <div className="max-w-4xl mx-auto">
-          <div className="relative aspect-video overflow-hidden shadow-lg">
-            <Image
-              src={post.coverImage}
-              alt={post.coverImageAlt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 896px) 100vw, 896px"
-              priority
-            />
-          </div>
-        </div>
+      {/* ── Cover image — full-width editorial (à la Linear / McKinsey) ────── */}
+      <div className="relative w-full aspect-video overflow-hidden shadow-2xl">
+        <Image
+          src={post.coverImage}
+          alt={post.coverImageAlt}
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority
+        />
       </div>
     </header>
   );

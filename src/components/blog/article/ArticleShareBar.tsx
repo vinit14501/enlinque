@@ -18,6 +18,21 @@ function LinkedinIcon({ className }: { className?: string }) {
   );
 }
 
+// X (Twitter) logo SVG
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.732-8.835L2.063 2.25H8.41l4.264 5.638L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+    </svg>
+  );
+}
+
 const SITE_BASE = "https://enlinque.com";
 
 interface ArticleShareBarProps {
@@ -28,8 +43,11 @@ interface ArticleShareBarProps {
 export default function ArticleShareBar({ title, slug }: ArticleShareBarProps) {
   const [copied, setCopied] = useState(false);
   const articleUrl = `${SITE_BASE}/blog/${slug}`;
+  const encodedUrl = encodeURIComponent(articleUrl);
+  const encodedTitle = encodeURIComponent(title);
 
-  const linkedInHref = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`;
+  const linkedInHref = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+  const xHref = `https://x.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
 
   const handleCopy = async () => {
     try {
@@ -68,6 +86,18 @@ export default function ArticleShareBar({ title, slug }: ArticleShareBarProps) {
         >
           <LinkedinIcon className="w-4 h-4" />
           LinkedIn
+        </a>
+
+        {/* X / Twitter */}
+        <a
+          href={xHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Share "${title}" on X`}
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-black rounded-lg hover:bg-gray-800 transition-colors duration-200"
+        >
+          <XIcon className="w-4 h-4" />
+          Share on X
         </a>
 
         {/* Copy link */}
