@@ -1,102 +1,64 @@
 export const privacyPolicyData = {
   introduction:
-    'Enlinque ("we," "our," or "us") is committed to protecting the privacy and security of our clients, website visitors, and service users. This Privacy Policy explains how we collect, use, and protect your personal information when you use our website and services.',
+    "At Enlinque, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you visit our website and use our services.",
   sections: [
     {
       title: "Information We Collect",
-      subsections: [
-        {
-          subtitle: "Personal Information",
-          content:
-            "When you engage with our services, we may collect personal details such as:",
-          list: [
-            "Name, email address, phone number, and company details",
-            "Billing and payment information",
-            "Login credentials for client portals, hosting platforms, social media platforms, etc. (if applicable)",
-          ],
-        },
-        {
-          subtitle: "Non-Personal Information",
-          content: "We collect certain non-identifiable data, such as:",
-          list: [
-            "Browser type, IP address, and device information",
-            "Website usage analytics (pages visited, time spent, etc.)",
-            "Cookies and tracking technologies",
-          ],
-        },
-        {
-          subtitle: "Information from Third Parties",
-          content:
-            "We may receive information from third-party platforms like LinkedIn, Stripe, Google Analytics, or other integrations that support our business operations.",
-        },
-      ],
-    },
-    {
-      title: "How We Use Your Information",
-      content: "We use the collected information to:",
-      list: [
-        "Provide and improve our IT consulting, software development, and other services",
-        "Process transactions and manage client accounts",
-        "Respond to inquiries and customer support requests",
-        "Send updates, marketing communications, and newsletters (you can opt out anytime)",
-        "Analyze website usage and enhance user experience",
-      ],
-    },
-    {
-      title: "How We Share Your Information",
       content:
-        "We do not sell or rent your personal information. However, we may share it with:",
+        "We collect information that you voluntarily provide to us when you express an interest in obtaining information about us or our products and services.",
       list: [
-        "Service providers & partners (e.g., cloud hosting, payment processors, analytics tools)",
-        "Legal authorities when required by law, to protect our rights, or prevent fraud",
-        "Business transfers in case of a merger, acquisition, or sale of assets",
+        "Personal Data: Name, email address, phone number, and company name provided via contact forms.",
+        "Log Data: IP addresses, browser types, and pages visited (collected automatically for security and analytical purposes).",
+        "Cookies: Small files stored on your device to improve the site's performance and user experience.",
       ],
     },
     {
-      title: "Cookies & Tracking Technologies",
-      content: "Our website uses cookies and similar tracking technologies to:",
+      title: "Use of Your Information",
+      content: "We use the information we collect to:",
       list: [
-        "Improve site functionality and personalize content",
-        "Analyze user behavior to optimize marketing strategies",
-        "Facilitate login authentication and security",
+        "Respond to client inquiries and provide requested services.",
+        "Send administrative information, such as project updates or changes to our terms.",
+        "Optimize our website performance and marketing strategies.",
+        "Ensure the security and integrity of our digital platforms.",
       ],
-      additional:
-        "You can adjust your browser settings to disable cookies, but this may impact your website experience.",
     },
     {
-      title: "Data Security & Retention",
+      title: "Ad Compliance & Digital Tracking",
       content:
-        "We implement industry-standard security measures to protect your data from unauthorized access, alteration, or misuse. We retain personal information only for as long as necessary to fulfill the purposes outlined in this policy.",
-    },
-    {
-      title: "Your Rights & Choices",
-      content: "Depending on your location, you may have the right to:",
+        "Enlinque adheres to global standards for digital advertising and transparency.",
       list: [
-        "Access, update, or delete your personal data",
-        "Opt out of marketing emails or data processing activities",
-        "Request a copy of your stored data",
-        "File a complaint with relevant data protection authorities",
+        "Third-Party Pixels: We may use tracking pixels (such as the Meta Pixel or Google Ads Tag) to measure the effectiveness of our advertising campaigns and to serve relevant advertisements to visitors based on their past activity on our Site.",
+        "Remarketing: You may see Enlinque advertisements on third-party websites (like Google or Facebook) after visiting our Site.",
+        "Opt-Out: Users can opt out of targeted advertising by visiting the Network Advertising Initiative (NAI) opt-out page or adjusting their browser's cookie settings.",
       ],
-      additional:
-        "To exercise your rights, contact us at contact@enlinque.com.",
     },
     {
-      title: "Third-Party Links & Services",
+      title: "Data Disclosure",
       content:
-        "Our website may contain links to third-party sites. We are not responsible for their privacy practices, and we encourage you to review their policies before sharing your data.",
+        "We do not sell, trade, or rent your personal identification information to third parties. We may share information with trusted third-party service providers (e.g., cloud hosting or email services) who assist us in operating our business, so long as those parties agree to keep this information confidential.",
     },
     {
-      title: "Updates to This Privacy Policy",
+      title: "Security",
       content:
-        "We may update this policy periodically. Changes will be posted on this page, and we encourage you to review it regularly.",
+        "We implement a variety of security measures to maintain the safety of your personal information. However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security.",
+    },
+    {
+      title: "Your Data Rights",
+      content:
+        "Under the Digital Personal Data Protection (DPDP) Act and other relevant regulations, you have the right to:",
+      list: [
+        "Request access to the personal data we hold about you.",
+        "Request the correction of inaccurate data.",
+        "Request the deletion of your data when it is no longer necessary for the purposes for which it was collected.",
+      ],
     },
     {
       title: "Contact Us",
       content:
-        "For any questions regarding this Privacy Policy, please contact:",
+        "If you have any questions about this Privacy Policy or our data practices, please contact us at:",
       contact: {
-        company: "Enlinque",
         email: "contact@enlinque.com",
+        address: "Pennsylvania, USA",
       },
     },
   ],

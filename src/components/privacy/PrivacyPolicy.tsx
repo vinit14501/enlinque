@@ -75,6 +75,9 @@ export default function PrivacyPolicy() {
                     >
                       {section.contact.email}
                     </a>
+                    {section.contact.address && (
+                      <p className="leading-7">{section.contact.address}</p>
+                    )}
                   </div>
                 )}
               </div>
