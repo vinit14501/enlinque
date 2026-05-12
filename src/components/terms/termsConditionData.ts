@@ -1,118 +1,132 @@
+export type Subsection = {
+  label: string;
+  title: string;
+  content: string[];
+};
+
+export type TermsSection = {
+  id: number;
+  title: string;
+  intro?: string;
+  content: string[];
+  subsections?: Subsection[];
+};
+
 export const termsData = {
-  title: "Terms and Conditions",
+  title: "Terms of Service",
   metadata: {
-    effectiveDate: "12/1/2024",
-    lastUpdated: "12/1/2024",
+    effectiveDate: "05/12/2026",
+    lastUpdated: "05/12/2026",
   },
   introduction:
-    'Welcome to Enlinque! These Terms and Conditions ("Terms") govern your access to and use of our website and our services, including but not limited to IT consulting, Fractional CxO services, digital marketing, software development, eCommerce solutions, and digital transformation.\nBy using our website or engaging our services, you agree to be bound by these Terms. If you do not agree, please do not use our services.',
+    'These Terms of Service ("Terms") govern the relationship between Enlinque Consulting LLC ("Company," "we," "us") and the client ("Client," "you") regarding the professional services provided. By engaging our services or using our website, you agree to these terms in full.',
   sections: [
     {
       id: 1,
-      title: "Definitions",
-      content: [
-        '"Company," "we," "us," or "our" refers to Enlinque.',
-        '"User," "client," or "you" refers to any individual or business accessing our website or using our services.',
-        '"Services" refer to the consulting and development services provided by Enlinque Consulting LLC.',
+      title: "Service-Specific Terms",
+      intro:
+        "Enlinque provides a range of startup and enterprise solutions. Each service category is subject to the following specific terms:",
+      content: [],
+      subsections: [
+        {
+          label: "A",
+          title: "Fractional CxO Services (CIO, CTO, CMO, CFO, COO)",
+          content: [
+            "Nature of Service: Enlinque provides executive-level advisory and leadership on a part-time or project basis. This is a consulting relationship and does not constitute a full-time employment contract.",
+            "Decision Making: While our CxOs provide strategic direction, the final authority for corporate decisions remains with the Client's Board of Directors or CEO.",
+            "Access: Client must provide the Fractional CxO with necessary access to internal data, financial records, and team members to perform the role effectively.",
+          ],
+        },
+        {
+          label: "B",
+          title: "Software & Website Development",
+          content: [
+            'Scope of Work: Services are limited to the features and functionality defined in the signed Statement of Work (SOW). Any additions are considered "Scope Creep" and will require a change order.',
+            "Client Review: The Client is responsible for timely feedback during milestone reviews. Delays in feedback exceeding 5 business days may result in project timeline shifts.",
+            'Post-Launch Support: Unless a maintenance retainer is active, Enlinque provides a 30-day "Bug Fix" period post-launch. Subsequent updates are billable.',
+          ],
+        },
+        {
+          label: "C",
+          title: "Digital Marketing & SEO",
+          content: [
+            "Performance: While we use data-driven strategies to maximize ROI, Enlinque does not guarantee specific search engine rankings or conversion rates, as these are subject to third-party algorithm changes (Google, Meta, etc.).",
+            "Ad Spend: Client is responsible for paying advertising platforms (Google Ads, Meta Ads) directly. Enlinque's fee covers management and strategy only.",
+          ],
+        },
+        {
+          label: "D",
+          title: "IT Consulting & Digital Transformation",
+          content: [
+            "Implementation: Enlinque provides the roadmap and technical strategy. The Client is responsible for the internal cultural adoption of new technologies and processes.",
+            "Third-Party Tools: Recommendations for third-party software are based on current market data. Enlinque is not liable for the service uptime or performance of third-party vendors.",
+          ],
+        },
+        {
+          label: "E",
+          title: "Agile Implementation",
+          content: [
+            "Participation: For Agile methodologies to succeed, the Client's team must participate in scheduled ceremonies (Sprint Planning, Retrospectives). Lack of participation voids performance timelines.",
+          ],
+        },
       ],
     },
     {
       id: 2,
-      title: "Use of Services",
+      title: "Client Conditions & Agreements",
+      intro:
+        'To ensure the "Speed meets Strategy" promise, the Client must agree to the following conditions:',
       content: [
-        "You must be at least 18 years old or have legal parental/guardian consent to use our services.",
-        "You agree not to use our services for any illegal, fraudulent, or unauthorized activities.",
-        "We reserve the right to refuse or discontinue services at our discretion, especially in cases of misuse or non-compliance with these Terms.",
+        "Point of Contact: The Client shall designate one primary decision-maker to streamline communication and approvals.",
+        "Data Accuracy: The Client agrees to provide accurate, complete, and timely information regarding their business operations, finances, and technical hurdles.",
+        "Resource Availability: The Client must ensure that their internal team is available for necessary meetings and has the authority to provide required assets (logos, content, API keys).",
+        "Timely Payments: Work on any project phase will only commence or continue upon receipt of the agreed-upon deposit or milestone payment.",
       ],
     },
     {
       id: 3,
-      title: "Intellectual Property",
+      title: "Financial Terms",
       content: [
-        "All content on this website, including text, graphics, logos, and service descriptions, is owned or licensed by Enlinque and is protected under intellectual property laws.",
-        "You may not copy, modify, distribute, or reproduce any material from our website without our written consent.",
+        "Invoicing: Invoices are sent electronically and are due within 15 days of receipt unless otherwise specified.",
+        "Late Fees: Late payments may be subject to a fee of 1.5% per month on the outstanding balance.",
+        "Refunds: Due to the service-based nature of consulting and development, payments for work already completed are non-refundable.",
       ],
     },
     {
       id: 4,
-      title: "Payment Terms",
+      title: "Intellectual Property",
       content: [
-        "All services require full or milestone-based payments as agreed upon in the project contract.",
-        "Payments must be made via approved methods (credit card, wire transfer, Stripe, PayPal, etc.).",
-        "Failure to make timely payments may result in service suspension or termination.",
+        "Work Product: Upon final payment, the Client owns the end-deliverables (the website code, the marketing copy, the strategy docs).",
+        'Company Property: Enlinque retains ownership of its proprietary "Success Path" frameworks, pre-existing code snippets, and general consulting methodologies used to create the work product.',
       ],
     },
     {
       id: 5,
-      title: "Project Scope & Changes",
+      title: "Confidentiality & Non-Disclosure",
       content: [
-        "All project scopes will be defined in an official proposal or contract before work begins.",
-        "Any changes or additions to the agreed-upon scope may result in additional costs and timeline adjustments.",
-        "Delays caused by client inaction (e.g., late approvals, missing assets) may extend the project timeline.",
+        "Both Enlinque and the Client agree to keep all proprietary business information, trade secrets, and technical data strictly confidential. This obligation extends for a period of 3 years following the termination of services.",
       ],
     },
     {
       id: 6,
-      title: "Confidentiality & Data Protection",
+      title: "Limitation of Liability",
       content: [
-        "Both parties agree to keep all confidential information private and not disclose it to third parties without consent.",
-        "We implement security measures to protect user and client data, but we cannot guarantee absolute security due to external threats.",
+        "Enlinque's total liability for any claim arising out of these Terms or our services shall not exceed the total amount of fees paid by the Client to Enlinque during the 6 months preceding the claim. We are not liable for lost profits, data loss, or indirect damages.",
       ],
     },
     {
       id: 7,
-      title: "Third-Party Services & Integrations",
+      title: "Termination",
       content: [
-        "We may integrate third-party services (e.g., hosting providers, payment gateways, analytics tools) into your project.",
-        "We are not responsible for issues arising from third-party platforms but will assist in troubleshooting where possible.",
+        "Either party may terminate the agreement with 30 days' written notice. Upon termination, the Client shall pay for all work performed up to the effective date of termination.",
       ],
     },
     {
       id: 8,
-      title: "Service Warranties & Disclaimers",
+      title: "Governing Law",
       content: [
-        "We strive to provide high-quality services, but we do not guarantee specific results (e.g., traffic increases, revenue growth, or immediate digital transformation).",
-        'Services are provided "as is" without warranties of any kind, unless explicitly stated in a separate agreement.',
+        "These Terms are governed by the laws of Pennsylvania, USA. Any disputes arising shall be subject to the exclusive jurisdiction of the courts in Pennsylvania, USA.",
       ],
     },
-    {
-      id: 9,
-      title: "Limitation of Liability",
-      content: [
-        "Enlinque will not be liable for indirect, incidental, or consequential damages resulting from the use of our services.",
-        "Our liability will not exceed the total amount paid by the client for the service in question.",
-      ],
-    },
-    {
-      id: 10,
-      title: "Termination of Services",
-      content: [
-        "Either party may terminate a project with written notice if obligations are not met.",
-        "Upon termination, the client must settle any outstanding payments, and Enlinque will deliver any completed work as per the agreement.",
-      ],
-    },
-    {
-      id: 11,
-      title: "Dispute Resolution",
-      content: [
-        "Any disputes will first attempt to be resolved through negotiation and mediation.",
-        "If unresolved, disputes will be subject to the laws and jurisdiction of Pittsburgh, PA, USA.",
-      ],
-    },
-    {
-      id: 12,
-      title: "Changes to These Terms",
-      content: [
-        "We may update these Terms periodically. Continued use of our services after updates constitutes acceptance of the new Terms.",
-      ],
-    },
-    {
-      id: 13,
-      title: "Contact Information",
-      content: [
-        "For any questions or concerns regarding these Terms, please contact:",
-        "Enlinque Consulting LLC,\ncontact@enlinque.com",
-      ],
-    },
-  ],
+  ] as TermsSection[],
 };

@@ -35,28 +35,47 @@ export default function TermsConditions() {
             <h2 className="text-2xl sm:text-3xl font-semibold text-[#000048]">
               {section.id}. {section.title}
             </h2>
-            <div className="space-y-4">
-              {section.content.map((item, index) => (
-                <p
-                  key={index}
-                  className="text-[#0b60a0] text-base sm:text-lg leading-relaxed tracking-normal"
-                >
-                  {item.includes("contact@enlinque.com") ? (
-                    <>
-                      {item.split("contact@enlinque.com")[0]}
-                      <a
-                        href="mailto:contact@enlinque.com"
-                        className="text-[#0b60a0] hover:text-[#000048] underline transition-colors duration-300"
-                      >
-                        contact@enlinque.com
-                      </a>
-                    </>
-                  ) : (
-                    item
-                  )}
-                </p>
-              ))}
-            </div>
+
+            {section.intro && (
+              <p className="text-[#0b60a0] text-base sm:text-lg leading-relaxed tracking-normal">
+                {section.intro}
+              </p>
+            )}
+
+            {section.subsections && section.subsections.length > 0 && (
+              <div className="space-y-6 pl-4">
+                {section.subsections.map((sub) => (
+                  <div key={sub.label} className="space-y-3">
+                    <h3 className="text-xl sm:text-2xl font-semibold text-[#000048]">
+                      {sub.label}. {sub.title}
+                    </h3>
+                    <div className="space-y-3">
+                      {sub.content.map((item, index) => (
+                        <p
+                          key={index}
+                          className="text-[#0b60a0] text-base sm:text-lg leading-relaxed tracking-normal"
+                        >
+                          {item}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {section.content.length > 0 && (
+              <div className="space-y-4">
+                {section.content.map((item, index) => (
+                  <p
+                    key={index}
+                    className="text-[#0b60a0] text-base sm:text-lg leading-relaxed tracking-normal"
+                  >
+                    {item}
+                  </p>
+                ))}
+              </div>
+            )}
           </section>
         ))}
       </div>
