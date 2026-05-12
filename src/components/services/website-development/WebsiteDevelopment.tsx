@@ -56,7 +56,7 @@ export default function WebsiteDevelopment() {
           alt="Custom website design and development for businesses"
           fill
           className="object-cover object-center"
-          priority={true}
+          fetchPriority="high"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />

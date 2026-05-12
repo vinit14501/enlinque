@@ -19,7 +19,7 @@ export default function DigitalMarketing() {
           alt="Digital marketing team planning SEO, social media, and advertising campaigns"
           fill
           className="object-cover object-center"
-          priority={true}
+          fetchPriority="high"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />

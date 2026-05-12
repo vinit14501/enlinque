@@ -180,7 +180,7 @@ export default function FractionalCxO() {
           alt="Fractional CxO Services"
           fill
           sizes="100vw"
-          priority={true}
+          fetchPriority="high"
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-black/60" />
