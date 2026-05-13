@@ -248,7 +248,7 @@ export default function Contact() {
               </a>
               <div className="flex items-center gap-2 text-white">
                 <MapPin size={24} className="shrink-0" />
-                <span className="font-medium">Pennsylvania, USA</span>
+                <span className="font-medium">1597 Washington Pike STE A38-151, Bridgeville, PA 15017</span>
               </div>
             </div>
           </div>

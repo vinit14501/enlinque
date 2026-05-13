@@ -98,8 +98,10 @@ export default function RootLayout({
       "Enlinque helps growing businesses access senior executive leadership — fractional CMO, CTO, and CEO services plus web development.",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Pittsburgh",
+      streetAddress: "1597 Washington Pike STE A38-151",
+      addressLocality: "Bridgeville",
       addressRegion: "PA",
+      postalCode: "15017",
       addressCountry: "US",
     },
     areaServed: "Worldwide",

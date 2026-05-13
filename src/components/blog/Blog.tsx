@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import BlogHero from "@/components/blog/BlogHero";
 import BlogGrid from "@/components/blog/BlogGrid";
-import BlogNewsletter from "@/components/blog/BlogNewsletter";
 import ContactCta from "@/components/common/ContactCta";
 
 /** Skeleton shown while BlogGrid hydrates (required for useSearchParams) */
@@ -38,9 +37,6 @@ export default function Blog() {
       <Suspense fallback={<BlogGridSkeleton />}>
         <BlogGrid />
       </Suspense>
-
-      {/* Newsletter subscribe CTA */}
-      <BlogNewsletter />
 
       {/* Site-wide contact CTA */}
       <ContactCta />
