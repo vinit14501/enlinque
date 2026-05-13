@@ -1,6 +1,6 @@
 export default function BlogHero() {
   return (
-    <section className="bg-[#000048] px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 animate-fade-in">
+    <section className="bg-[#000048] px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 min-h-[40vh] md:min-h-[50vh] lg:min-h-[60vh] flex items-center animate-fade-in">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-3xl">
           <span className="inline-block bg-white/10 text-white/80 text-xs font-semibold tracking-widest uppercase px-3 py-1.5 rounded-full mb-5 animate-fade-in-up animate-stagger-1">

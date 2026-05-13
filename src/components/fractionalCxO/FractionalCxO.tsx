@@ -174,7 +174,7 @@ export default function FractionalCxO() {
   return (
     <div className="font-sans bg-white">
       {/* Hero Section */}
-      <div className="relative h-[45vh] md:h-[50vh] lg:h-[60vh] text-white animate-fade-in">
+      <div className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] text-white animate-fade-in">
         <Image
           src="/images/fractional.webp"
           alt="Fractional CxO Services"
