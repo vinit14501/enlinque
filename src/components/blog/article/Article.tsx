@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   slugifyHeading,
   getRelatedPosts,
@@ -38,13 +39,27 @@ export default function Article({ post }: ArticleProps) {
 
       {/* ── Main article area: prose + sticky TOC sidebar ─────────── */}
       <div className="bg-white px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Mobile TOC — collapses to accordion on < lg screens */}
           <ArticleMobileToc headings={headings} />
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-8 xl:gap-10">
             {/* Article body — capped at 720px for optimal reading line-length */}
             <main className="min-w-0 max-w-180">
+              {/* Cover image — full article column width, Medium-style */}
+              <figure className="not-prose mb-8 sm:mb-10">
+                <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-md">
+                  <Image
+                    src={post.coverImage}
+                    alt={post.coverImageAlt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) calc(100vw - 320px), 720px"
+                    priority
+                  />
+                </div>
+              </figure>
+
               <ArticleBody content={post.content} />
               <ArticleShareBar title={post.title} slug={post.slug} />
             </main>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { slugifyHeading, type ContentBlock } from "@/components/blog/blogData";
 
 interface ArticleBodyProps {
@@ -92,6 +93,45 @@ function Block({ block }: { block: ContentBlock }) {
 
     case "divider":
       return <hr className="my-8 border-gray-200" />;
+
+    case "image": {
+      if (!block.src) return null;
+
+      // Size variants:
+      //   normal (default) — full prose column width
+      //   wide             — negative margin breakout, ~130% of prose column
+      //   full             — edge-to-edge within the article container
+      const outerClass =
+        block.size === "wide"
+          ? "not-prose my-10 -mx-4 sm:-mx-10 lg:-mx-16"
+          : block.size === "full"
+            ? "not-prose my-10 -mx-4 sm:-mx-6 lg:-mx-8"
+            : "not-prose my-10 w-full";
+
+      const roundedClass =
+        block.size === "full" ? "" : "rounded-xl overflow-hidden";
+
+      return (
+        <figure className={outerClass}>
+          <div
+            className={`relative w-full aspect-video shadow-md ${roundedClass}`}
+          >
+            <Image
+              src={block.src}
+              alt={block.alt ?? ""}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 800px"
+            />
+          </div>
+          {block.caption && (
+            <figcaption className="mt-3 text-center text-sm text-gray-500 italic">
+              {block.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    }
 
     default:
       return null;

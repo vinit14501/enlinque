@@ -60,7 +60,8 @@ export type ContentBlockType =
   | "ol"
   | "blockquote"
   | "callout"
-  | "divider";
+  | "divider"
+  | "image";
 
 export interface ContentBlock {
   type: ContentBlockType;
@@ -68,6 +69,19 @@ export interface ContentBlock {
   text?: string;
   /** For ul, ol */
   items?: string[];
+  /** For image — absolute path or URL */
+  src?: string;
+  /** For image — alt text (accessibility) */
+  alt?: string;
+  /** For image — optional italicized caption below */
+  caption?: string;
+  /**
+   * For image — controls how wide the image renders relative to the prose column.
+   * normal (default) = full prose column width
+   * wide             = breaks out beyond prose column (~130% width)
+   * full             = edge-to-edge within the article container
+   */
+  size?: "normal" | "wide" | "full";
 }
 
 /** Full post with article body — only used by the detail page route */
