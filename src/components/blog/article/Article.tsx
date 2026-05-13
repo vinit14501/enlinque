@@ -38,12 +38,12 @@ export default function Article({ post }: ArticleProps) {
       <ArticleHero post={post} />
 
       {/* ── Main article area: prose + sticky TOC sidebar ─────────── */}
-      <div className="bg-white px-4 sm:px-6 lg:px-8 py-10 sm:py-14 md:py-16">
+      <div className="bg-white px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12">
         <div className="max-w-7xl mx-auto">
           {/* Mobile TOC — collapses to accordion on < lg screens */}
           <ArticleMobileToc headings={headings} />
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-12 xl:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-8 xl:gap-10">
             {/* Article body — capped at 720px for optimal reading line-length */}
             <main className="min-w-0 max-w-180">
               <ArticleBody content={post.content} />

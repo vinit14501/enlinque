@@ -96,7 +96,7 @@ export default function ArticleHero({ post }: ArticleHeroProps) {
       </div>
 
       {/* ── Cover image — full-width editorial (à la Linear / McKinsey) ────── */}
-      <div className="relative w-full aspect-video overflow-hidden shadow-2xl">
+      <div className="relative w-full aspect-21/9 max-h-120 overflow-hidden shadow-2xl">
         <Image
           src={post.coverImage}
           alt={post.coverImageAlt}
