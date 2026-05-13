@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Clock, Calendar, ArrowLeft } from "lucide-react";
 import type { BlogPostFull } from "@/components/blog/blogData";
@@ -22,89 +21,74 @@ export default function ArticleHero({ post }: ArticleHeroProps) {
     CATEGORY_COLORS[post.category] ?? "bg-gray-100 text-gray-700";
 
   return (
-    <header>
-      {/* ── Dark nav band ──────────────────────────────────────────────── */}
-      <div className="bg-[#000048] px-4 sm:px-6 lg:px-8 pt-10 pb-12 sm:pt-14 sm:pb-16 md:pt-16 md:pb-20">
-        <div className="max-w-4xl mx-auto">
-          {/* Breadcrumb */}
-          <nav
-            aria-label="Breadcrumb"
-            className="mb-6 animate-fade-in-up animate-stagger-1"
+    <header className="bg-[#000048] px-4 sm:px-8 lg:px-12 pt-10 pb-12 sm:pt-14 sm:pb-16">
+      <div className="max-w-4xl mx-auto">
+        {/* Breadcrumb */}
+        <nav
+          aria-label="Breadcrumb"
+          className="mb-6 animate-fade-in-up animate-stagger-1"
+        >
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors duration-200"
           >
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors duration-200"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              Back to Blog
-            </Link>
-          </nav>
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Back to Blog
+          </Link>
+        </nav>
 
-          {/* Category + Tags row */}
-          <div className="flex flex-wrap items-center gap-2 mb-5 animate-fade-in-up animate-stagger-2">
+        {/* Category + Tags */}
+        <div className="flex flex-wrap items-center gap-2 mb-5 animate-fade-in-up animate-stagger-2">
+          <span
+            className={`text-xs font-semibold px-3 py-1 rounded-full ${categoryColor}`}
+          >
+            {post.category}
+          </span>
+          {post.tags.slice(0, 2).map((tag) => (
             <span
-              className={`text-xs font-semibold px-3 py-1 rounded-full ${categoryColor}`}
+              key={tag}
+              className="text-xs font-medium px-2.5 py-1 rounded-full bg-white/10 text-white/70"
             >
-              {post.category}
+              {tag}
             </span>
-            {post.tags.slice(0, 2).map((tag) => (
-              <span
-                key={tag}
-                className="text-xs font-medium px-2.5 py-1 rounded-full bg-white/10 text-white/70"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          {/* H1 */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-5 animate-fade-in-up animate-stagger-3">
-            {post.title}
-          </h1>
-
-          {/* Excerpt */}
-          <p className="text-base sm:text-lg text-white/75 leading-relaxed mb-7 animate-fade-in-up animate-stagger-4">
-            {post.excerpt}
-          </p>
-
-          {/* Author + meta row */}
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-3 animate-fade-in-up animate-stagger-5">
-            <div className="flex items-center gap-2.5">
-              <AuthorAvatar author={post.author} size="sm" />
-              <div>
-                <p className="text-sm font-semibold text-white leading-tight">
-                  {post.author.name}
-                </p>
-                <p className="text-xs text-white/50 leading-tight">
-                  {post.author.role}
-                </p>
-              </div>
-            </div>
-            <span className="text-white/30 hidden sm:inline" aria-hidden="true">
-              ·
-            </span>
-            <span className="flex items-center gap-1.5 text-sm text-white/60">
-              <Calendar className="w-4 h-4 shrink-0" />
-              {post.date}
-            </span>
-            <span className="flex items-center gap-1.5 text-sm text-white/60">
-              <Clock className="w-4 h-4 shrink-0" />
-              {post.readTime}
-            </span>
-          </div>
+          ))}
         </div>
-      </div>
 
-      {/* ── Cover image — full-width editorial (à la Linear / McKinsey) ────── */}
-      <div className="relative w-full aspect-21/9 max-h-120 overflow-hidden shadow-2xl">
-        <Image
-          src={post.coverImage}
-          alt={post.coverImageAlt}
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
-        />
+        {/* H1 */}
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-5 animate-fade-in-up animate-stagger-3">
+          {post.title}
+        </h1>
+
+        {/* Excerpt */}
+        <p className="text-base sm:text-lg text-white/75 leading-relaxed mb-7 animate-fade-in-up animate-stagger-4">
+          {post.excerpt}
+        </p>
+
+        {/* Author + meta */}
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 animate-fade-in-up animate-stagger-5">
+          <div className="flex items-center gap-2.5">
+            <AuthorAvatar author={post.author} size="sm" />
+            <div>
+              <p className="text-sm font-semibold text-white leading-tight">
+                {post.author.name}
+              </p>
+              <p className="text-xs text-white/50 leading-tight">
+                {post.author.role}
+              </p>
+            </div>
+          </div>
+          <span className="text-white/30 hidden sm:inline" aria-hidden="true">
+            ·
+          </span>
+          <span className="flex items-center gap-1.5 text-sm text-white/60">
+            <Calendar className="w-4 h-4 shrink-0" />
+            {post.date}
+          </span>
+          <span className="flex items-center gap-1.5 text-sm text-white/60">
+            <Clock className="w-4 h-4 shrink-0" />
+            {post.readTime}
+          </span>
+        </div>
       </div>
     </header>
   );
