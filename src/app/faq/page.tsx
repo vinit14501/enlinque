@@ -46,7 +46,7 @@ const faqJsonLd = {
       name: "Where are you located, and do you work with international clients?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Enlinque is headquartered in Pittsburgh, PA, USA, and partners with clients worldwide, ensuring smooth communication and effective collaboration across borders.",
+        text: "Enlinque is headquartered at 1597 Washington Pike STE A38-151, Bridgeville, PA 15017, USA, and partners with clients worldwide, ensuring smooth communication and effective collaboration across borders.",
       },
     },
     {

@@ -10,7 +10,6 @@ import ArticleMobileToc from "@/components/blog/article/ArticleMobileToc";
 import ArticleBody from "@/components/blog/article/ArticleBody";
 import ArticleShareBar from "@/components/blog/article/ArticleShareBar";
 import ArticleRelated from "@/components/blog/article/ArticleRelated";
-import BlogNewsletter from "@/components/blog/BlogNewsletter";
 import ContactCta from "@/components/common/ContactCta";
 
 interface ArticleProps {
@@ -58,9 +57,6 @@ export default function Article({ post }: ArticleProps) {
 
       {/* Related articles */}
       <ArticleRelated posts={relatedPosts} />
-
-      {/* Newsletter CTA */}
-      <BlogNewsletter />
 
       {/* Site-wide contact CTA */}
       <ContactCta />
