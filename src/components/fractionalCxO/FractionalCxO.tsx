@@ -181,6 +181,7 @@ export default function FractionalCxO() {
           fill
           sizes="100vw"
           fetchPriority="high"
+          loading="eager"
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-black/60" />
@@ -188,27 +189,11 @@ export default function FractionalCxO() {
           <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 font-raleway tracking-tight animate-fade-in-up">
             Fractional CxO Services
           </h1>
-          <p className="text-base md:text-xl max-w-2xl mx-auto mb-6 md:mb-8 text-white font-light leading-relaxed">
+          <p className="text-base md:text-xl max-w-2xl mx-auto text-white font-light leading-relaxed">
             Access world-class executive leadership without the full-time
             commitment. Our fractional CxOs bring decades of experience to
             elevate your business.
           </p>
-          <div className="flex gap-3 justify-center">
-            {services.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => {
-                  setActiveId(s.id);
-                  document
-                    .getElementById("cxo-tabs")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="px-5 py-2 rounded-full text-sm font-bold border border-white/60 bg-white/10 hover:bg-white/25 transition-colors tracking-wider"
-              >
-                {s.shortTitle}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -218,7 +203,7 @@ export default function FractionalCxO() {
         className="sticky top-16 z-30 bg-white border-b border-gray-200 shadow-sm"
       >
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex overflow-x-auto no-scrollbar">
+          <div className="flex justify-center overflow-x-auto no-scrollbar">
             {services.map((s) => (
               <button
                 key={s.id}

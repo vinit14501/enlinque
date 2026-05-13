@@ -118,7 +118,7 @@ export default function About() {
           <div className="animate-fade-in animate-delay-400">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-[#000048]">
-                The Enlinque Success Path (Our 5-Step Framework)
+                Our 5-Step Framework
               </h2>
               <p className="text-base sm:text-lg text-black max-w-3xl mx-auto">
                 We move away from &ldquo;one-size-fits-all&rdquo; solutions.
@@ -178,41 +178,65 @@ export default function About() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
+      {/* Industries We Serve */}
       <section className="bg-[#0b60a0] py-12 sm:py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="text-white animate-fade-in animate-delay-500">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+          <p className="text-base sm:text-lg md:text-xl text-white">
+            We proudly serve startups across a wide range of industries, helping
+            them leverage technology, strategy, and innovation to achieve their
+            business goals. Our customized solutions are built to support growth
+            at every stage of the startup journey.
+          </p>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="bg-white py-12 sm:py-16 md:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="animate-fade-in animate-delay-500">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-[#000048]">
               Why Partners Choose Enlinque
             </h2>
-            <p className="text-base sm:text-lg md:text-xl mb-6 text-white">
+            <p className="text-base sm:text-lg md:text-xl mb-6 text-black">
               Businesses choose us because we treat their challenges as our own.
               We bring the dedication of an in-house team with the specialized
               expertise of a global consultancy.
             </p>
             <ul className="text-left space-y-4 mt-2">
-              <li className="text-base sm:text-lg md:text-xl text-white">
-                <span className="font-bold text-white">Reliability:</span> We
-                deliver high-quality, accurate results on time, every time.
+              <li className="flex items-start gap-3 text-base sm:text-lg md:text-xl text-black">
+                <CircleCheck className="text-[#0b60a0] h-6 w-6 mt-0.5 shrink-0" />
+                <span>
+                  <span className="font-bold text-[#000048]">Reliability:</span>{" "}
+                  We deliver high-quality, accurate results on time, every time.
+                </span>
               </li>
-              <li className="text-base sm:text-lg md:text-xl text-white">
-                <span className="font-bold text-white">Flexibility:</span> Our
-                solutions scale with you, adapting seamlessly to shifting market
-                demands.
+              <li className="flex items-start gap-3 text-base sm:text-lg md:text-xl text-black">
+                <CircleCheck className="text-[#0b60a0] h-6 w-6 mt-0.5 shrink-0" />
+                <span>
+                  <span className="font-bold text-[#000048]">Flexibility:</span>{" "}
+                  Our solutions scale with you, adapting seamlessly to shifting
+                  market demands.
+                </span>
               </li>
-              <li className="text-base sm:text-lg md:text-xl text-white">
-                <span className="font-bold text-white">
-                  Multi-Domain Expertise:
-                </span>{" "}
-                From AI-driven software development to high-conversion digital
-                marketing, we cover the entire digital spectrum.
+              <li className="flex items-start gap-3 text-base sm:text-lg md:text-xl text-black">
+                <CircleCheck className="text-[#0b60a0] h-6 w-6 mt-0.5 shrink-0" />
+                <span>
+                  <span className="font-bold text-[#000048]">
+                    Multi-Domain Expertise:
+                  </span>{" "}
+                  From AI-driven software development to high-conversion digital
+                  marketing, we cover the entire digital spectrum.
+                </span>
               </li>
-              <li className="text-base sm:text-lg md:text-xl text-white">
-                <span className="font-bold text-white">
-                  Transparent Collaboration:
-                </span>{" "}
-                We promote open communication and radical honesty, ensuring you
-                are never in the dark about your project&apos;s progress.
+              <li className="flex items-start gap-3 text-base sm:text-lg md:text-xl text-black">
+                <CircleCheck className="text-[#0b60a0] h-6 w-6 mt-0.5 shrink-0" />
+                <span>
+                  <span className="font-bold text-[#000048]">
+                    Transparent Collaboration:
+                  </span>{" "}
+                  We promote open communication and radical honesty, ensuring
+                  you are never in the dark about your project&apos;s progress.
+                </span>
               </li>
             </ul>
           </div>
@@ -221,12 +245,12 @@ export default function About() {
 
       {/* Vision Section */}
       <section className="bg-white py-12 sm:py-16 md:py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto =px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#000048] text-center mb-12 md:mb-16">
             Our Vision for the Future
           </h2>
-          <div className="flex flex-col lg:flex-row w-full space-y-6 lg:space-y-0 lg:space-x-8">
-            <div className="w-full lg:w-1/2 overflow-hidden rounded-lg shadow-xl relative h-64 lg:h-auto lg:min-h-100">
+          <div className="flex flex-col lg:flex-row w-full space-y-6 lg:space-y-0 lg:space-x-10">
+            <div className="w-full lg:w-5/12 overflow-hidden rounded-lg shadow-xl relative h-64 lg:h-auto lg:min-h-100">
               <Image
                 src="/images/value.webp"
                 alt="Enlinque team embodying our values of reliability, flexibility, expertise, and collaboration"
@@ -235,7 +259,7 @@ export default function About() {
                 className="object-cover"
               />
             </div>
-            <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="w-full lg:w-7/12 grid grid-cols-1 sm:grid-cols-2 gap-6">
               {visionDetails.map((value, index) => (
                 <div
                   key={index}
