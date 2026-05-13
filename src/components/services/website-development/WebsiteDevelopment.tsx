@@ -50,7 +50,7 @@ export default function WebsiteDevelopment() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative w-full h-[calc(80vh-4rem)] sm:h-[calc(80vh-5rem)] lg:h-[calc(80vh-6rem)]">
+      <section className="relative w-full h-[40vh] md:h-[50vh] lg:h-[60vh]">
         <Image
           src="/images/websitedevelopment.webp"
           alt="Custom website design and development for businesses"
