@@ -14,6 +14,8 @@ const navItems = [
   { label: "Website Development", to: "/websitedevelopment", isScroll: false },
   { label: "Digital Marketing", to: "/digitalmarketing", isScroll: false },
   { label: "About", to: "/about", isScroll: false },
+  { label: "Blog", to: "/blog", isScroll: false },
+  { label: "FAQ", to: "/faq", isScroll: false },
 ];
 
 export default function Navbar() {
