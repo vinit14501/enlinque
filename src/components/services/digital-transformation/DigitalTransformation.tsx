@@ -12,7 +12,36 @@ import {
 import Button from "@/components/common/Button";
 import ContactCta from "@/components/common/ContactCta";
 import ArrowIcon from "@/components/common/ArrowIcon";
+import FaqSection from "@/components/common/FaqSection";
 import { digitalTransformationServices } from "@/components/services/digital-transformation/digitalTransformationServices";
+
+const faqs = [
+  {
+    question: "How does Enlinque support digital transformation?",
+    answer:
+      "Enlinque helps businesses modernize operations, optimize technology infrastructure, improve workflows, and implement scalable digital strategies that support long-term growth.",
+  },
+  {
+    question: "Can Enlinque help align technology with business goals?",
+    answer:
+      "Yes. Enlinque works closely with businesses to ensure technology investments support operational efficiency, innovation, scalability, and profitability.",
+  },
+  {
+    question: "Does Enlinque help with IT infrastructure management?",
+    answer:
+      "Yes. Services include IT strategy development, infrastructure optimization, cybersecurity planning, and digital operations management.",
+  },
+  {
+    question: "Can Enlinque support business process optimization?",
+    answer:
+      "Yes. Enlinque identifies operational inefficiencies and implements systems, workflows, and automation strategies to improve productivity and performance.",
+  },
+  {
+    question: "Do you provide technology roadmaps for businesses?",
+    answer:
+      "Yes. Enlinque creates strategic technology roadmaps that help businesses scale efficiently while staying competitive in changing markets.",
+  },
+];
 
 const keyBenefits = [
   {
@@ -226,6 +255,9 @@ export default function DigitalTransformation() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FaqSection faqs={faqs} />
 
       {/* Connect Section */}
       <ContactCta />

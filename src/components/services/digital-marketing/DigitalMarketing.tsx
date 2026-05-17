@@ -4,9 +4,38 @@ import { ArrowRight } from "lucide-react";
 import ArrowIcon from "@/components/common/ArrowIcon";
 import Button from "@/components/common/Button";
 import ContactCta from "@/components/common/ContactCta";
+import FaqSection from "@/components/common/FaqSection";
 import { digitalMarketingServices } from "@/components/services/digital-marketing/digitalMarketingServices";
 import SocialMediaSection from "@/components/services/digital-marketing/SocialMediaSection";
 import MarketingComponentsSection from "@/components/services/digital-marketing/MarketingComponentsSection";
+
+const faqs = [
+  {
+    question: "What marketing services does Enlinque provide?",
+    answer:
+      "Enlinque provides strategic marketing leadership, brand positioning, customer acquisition planning, marketing optimization, and growth-focused business strategies.",
+  },
+  {
+    question: "How can Enlinque help improve customer acquisition?",
+    answer:
+      "Through market analysis, customer insights, marketing strategy, and performance optimization, Enlinque helps businesses attract and retain high-value customers.",
+  },
+  {
+    question: "Does Enlinque help businesses improve brand positioning?",
+    answer:
+      "Yes. Enlinque develops clear brand messaging, market positioning strategies, and differentiation plans to help businesses stand out.",
+  },
+  {
+    question: "Can Enlinque help with data-driven marketing decisions?",
+    answer:
+      "Yes. The team analyzes market trends, customer behavior, and performance metrics to create informed marketing strategies.",
+  },
+  {
+    question: "How does Enlinque improve marketing ROI?",
+    answer:
+      "By optimizing marketing channels, improving targeting strategies, refining campaigns, and aligning marketing with business objectives.",
+  },
+];
 
 export default function DigitalMarketing() {
   return (
@@ -171,6 +200,9 @@ export default function DigitalMarketing() {
           </p>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <FaqSection faqs={faqs} />
 
       {/* Connect Section */}
       <ContactCta />
