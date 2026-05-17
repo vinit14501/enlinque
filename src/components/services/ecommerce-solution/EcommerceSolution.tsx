@@ -59,7 +59,7 @@ export default function EcommerceSolution() {
       {/* Hero Section */}
       <section className="relative w-full h-[40vh] md:h-[50vh] lg:h-[60vh]">
         <Image
-          src="/images/ecommerce-hero.jpg"
+          src="/images/ecommerce-hero.webp"
           alt="E-commerce platform development for online business growth"
           fill
           className="object-cover object-center"
@@ -176,7 +176,7 @@ export default function EcommerceSolution() {
       {/* Image CTA Banner */}
       <div className="relative w-full h-75 sm:h-87.5 md:h-100 overflow-hidden">
         <Image
-          src="/images/ecommerce-cta.jpg"
+          src="/images/ecommerce-cta.webp"
           alt="E-commerce shopping experience with digital payment solutions"
           fill
           loading="lazy"

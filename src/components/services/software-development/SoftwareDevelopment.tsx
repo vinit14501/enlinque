@@ -59,7 +59,7 @@ export default function SoftwareDevelopment() {
       {/* Hero Section */}
       <section className="relative w-full h-[40vh] md:h-[50vh] lg:h-[60vh]">
         <Image
-          src="/images/softwaredevelopment-hero.jpg"
+          src="/images/softwaredevelopment-hero.webp"
           alt="Software development team building custom applications and digital solutions"
           fill
           className="object-cover object-center"
@@ -175,7 +175,7 @@ export default function SoftwareDevelopment() {
       {/* Image CTA Banner */}
       <div className="relative w-full h-75 sm:h-87.5 md:h-100 overflow-hidden">
         <Image
-          src="/images/softwaredevelopment-cta.jpg"
+          src="/images/softwaredevelopment-cta.webp"
           alt="Software developers collaborating on custom applications"
           fill
           loading="lazy"

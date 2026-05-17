@@ -59,7 +59,7 @@ export default function AgileImplementation() {
       {/* Hero Section */}
       <section className="relative w-full h-[40vh] md:h-[50vh] lg:h-[60vh]">
         <Image
-          src="/images/agile-hero.jpg"
+          src="/images/agile-hero.webp"
           alt="Agile team collaboration and sprint planning session"
           fill
           className="object-cover object-center"
@@ -173,7 +173,7 @@ export default function AgileImplementation() {
       {/* Image CTA Banner */}
       <div className="relative w-full h-75 sm:h-87.5 md:h-100 overflow-hidden">
         <Image
-          src="/images/agile-cta.jpg"
+          src="/images/agile-cta.webp"
           alt="Agile team whiteboard collaboration and sprint planning"
           fill
           loading="lazy"
