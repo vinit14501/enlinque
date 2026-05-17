@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -10,7 +10,6 @@ import {
   RefreshCcw,
 } from "lucide-react";
 import Button from "@/components/common/Button";
-import ScrollButton from "@/components/common/ScrollButton";
 import ContactCta from "@/components/common/ContactCta";
 import ArrowIcon from "@/components/common/ArrowIcon";
 import { agileServices } from "@/components/services/agile-implementation/agileServices";
@@ -26,7 +25,7 @@ const keyBenefits = [
     icon: LayoutGrid,
     text: "Scrum & Kanban Implementation",
     description:
-      "Deploy the right agile framework — structured Scrum sprints or continuous Kanban flow — tailored to your team's delivery model.",
+      "Deploy the right agile framework \u2014 structured Scrum sprints or continuous Kanban flow \u2014 tailored to your team's delivery model.",
   },
   {
     icon: Zap,
@@ -65,6 +64,7 @@ export default function AgileImplementation() {
           fill
           className="object-cover object-center"
           fetchPriority="high"
+          loading="eager"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />
@@ -76,19 +76,16 @@ export default function AgileImplementation() {
               </h1>
               <div className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8">
                 <p className="text-base sm:text-lg md:text-xl text-white">
-                  Transform how your teams work â€” with Scrum, Kanban, and
-                  custom agile frameworks that accelerate delivery and improve
+                  Transform how your teams work - with Scrum, Kanban, and custom
+                  agile frameworks that accelerate delivery and improve
                   collaboration.
                 </p>
                 <p className="text-base sm:text-lg md:text-xl text-white">
                   From agile coaching and team training to sprint planning and
-                  continuous improvement â€” we build adaptive, high-performing
+                  continuous improvement - we build adaptive, high-performing
                   teams.
                 </p>
               </div>
-              <ScrollButton targetId="services-section">
-                Learn More
-              </ScrollButton>
             </div>
           </div>
         </div>
@@ -99,7 +96,7 @@ export default function AgileImplementation() {
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20">
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal text-black tracking-wide leading-relaxed max-w-4xl mx-auto font-raleway">
             Move faster,{" "}
-            <span className="text-[#0b60a0] font-bold">deliver better</span> â€”
+            <span className="text-[#0b60a0] font-bold">deliver better</span> -
             with agile methodologies that build{" "}
             <span className="text-[#0b60a0] font-bold">
               adaptive, high-performing teams

@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -10,7 +10,6 @@ import {
   TrendingUp,
 } from "lucide-react";
 import Button from "@/components/common/Button";
-import ScrollButton from "@/components/common/ScrollButton";
 import ContactCta from "@/components/common/ContactCta";
 import ArrowIcon from "@/components/common/ArrowIcon";
 import { digitalTransformationServices } from "@/components/services/digital-transformation/digitalTransformationServices";
@@ -65,6 +64,7 @@ export default function DigitalTransformation() {
           fill
           className="object-cover object-center"
           fetchPriority="high"
+          loading="eager"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />
@@ -82,13 +82,10 @@ export default function DigitalTransformation() {
                 </p>
                 <p className="text-base sm:text-lg md:text-xl text-white">
                   From process automation and cloud migration to AI-driven
-                  insights and enterprise modernization â€” we build your
+                  insights and enterprise modernization - we build your
                   future-ready digital ecosystem.
                 </p>
               </div>
-              <ScrollButton targetId="services-section">
-                Learn More
-              </ScrollButton>
             </div>
           </div>
         </div>
@@ -101,7 +98,7 @@ export default function DigitalTransformation() {
             <span className="text-[#0b60a0] font-bold">
               Accelerate innovation
             </span>{" "}
-            and stay competitive â€” modernizing operations with{" "}
+            and stay competitive - modernizing operations with{" "}
             <span className="text-[#0b60a0] font-bold">
               advanced technologies
             </span>{" "}

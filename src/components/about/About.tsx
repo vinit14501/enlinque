@@ -41,6 +41,7 @@ export default function About() {
             fill
             className="object-cover scale-105"
             fetchPriority="high"
+            loading="eager"
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/60" />
