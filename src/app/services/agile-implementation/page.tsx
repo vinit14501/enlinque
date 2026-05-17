@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: "https://enlinque.com/services/agile-implementation",
     images: [
       {
-        url: "/images/agile-hero.jpg",
+        url: "/images/agile-hero.webp",
         width: 1920,
         height: 1280,
         alt: "Agile Implementation Services",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Agile Implementation | Enlinque Consulting LLC",
     description:
       "Expert agile implementation services — Scrum, Kanban, agile coaching, sprint planning, and team transformation for faster delivery and improved collaboration.",
-    images: ["/images/agile-hero.jpg"],
+    images: ["/images/agile-hero.webp"],
   },
   alternates: {
     canonical: "/services/agile-implementation",

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: "https://enlinque.com/services/ecommerce-solution",
     images: [
       {
-        url: "/images/ecommerce-hero.jpg",
+        url: "/images/ecommerce-hero.webp",
         width: 1920,
         height: 1280,
         alt: "E-Commerce Solution Services",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "E-Commerce Solution | Enlinque Consulting LLC",
     description:
       "End-to-end e-commerce solutions — custom store development, Shopify, WooCommerce, payment integration, and conversion optimization for online business growth.",
-    images: ["/images/ecommerce-hero.jpg"],
+    images: ["/images/ecommerce-hero.webp"],
   },
   alternates: {
     canonical: "/services/ecommerce-solution",

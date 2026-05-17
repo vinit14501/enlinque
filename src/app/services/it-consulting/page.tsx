@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: "https://enlinque.com/services/it-consulting",
     images: [
       {
-        url: "/images/itconsulting-hero.jpg",
+        url: "/images/itconsulting-hero.webp",
         width: 1920,
         height: 1280,
         alt: "IT Consulting Services",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "IT Consulting | Enlinque Consulting LLC",
     description:
       "Strategic IT consulting services — cloud strategy, infrastructure planning, cybersecurity, and technology advisory for startups and growing businesses.",
-    images: ["/images/itconsulting-hero.jpg"],
+    images: ["/images/itconsulting-hero.webp"],
   },
   alternates: {
     canonical: "/services/it-consulting",

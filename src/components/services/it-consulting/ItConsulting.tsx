@@ -59,7 +59,7 @@ export default function ItConsulting() {
       {/* Hero Section */}
       <section className="relative w-full h-[40vh] md:h-[50vh] lg:h-[60vh]">
         <Image
-          src="/images/itconsulting-hero.jpg"
+          src="/images/itconsulting-hero.webp"
           alt="IT consulting team planning technology strategy for business growth"
           fill
           className="object-cover object-center"
@@ -178,7 +178,7 @@ export default function ItConsulting() {
       {/* Image CTA Banner */}
       <div className="relative w-full h-75 sm:h-87.5 md:h-100 overflow-hidden">
         <Image
-          src="/images/itconsulting-cta.jpg"
+          src="/images/itconsulting-cta.webp"
           alt="IT consulting team collaborating on technology strategy"
           fill
           loading="lazy"
