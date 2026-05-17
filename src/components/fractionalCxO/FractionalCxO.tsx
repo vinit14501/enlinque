@@ -3,6 +3,51 @@
 import { useState } from "react";
 import Image from "next/image";
 import ContactCta from "@/components/common/ContactCta";
+import FaqSection from "@/components/common/FaqSection";
+
+const faqs = [
+  {
+    question: "What are Fractional CxO services?",
+    answer:
+      "Fractional CxO services give businesses access to experienced executive leadership on a part-time or project basis without the cost of hiring a full-time executive. Enlinque provides strategic leadership through Fractional CIO, CTO, CMO, CFO, and COO services.",
+  },
+  {
+    question: "What is a Fractional CIO and how can it help my business?",
+    answer:
+      "A Fractional CIO helps businesses align technology with business goals. They oversee IT strategy, digital transformation, cybersecurity, infrastructure optimization, and long-term technology planning.",
+  },
+  {
+    question: "What does a Fractional CTO do?",
+    answer:
+      "A Fractional CTO focuses on technology innovation, software strategy, system architecture, IT operations, and scalable technology solutions that support business growth.",
+  },
+  {
+    question: "How can a Fractional CMO improve marketing performance?",
+    answer:
+      "A Fractional CMO develops data-driven marketing strategies, strengthens brand positioning, improves customer acquisition, and helps businesses maximize marketing ROI.",
+  },
+  {
+    question: "What support does a Fractional CFO provide?",
+    answer:
+      "A Fractional CFO helps businesses with financial planning, forecasting, budgeting, compliance, risk management, and profitability improvement.",
+  },
+  {
+    question: "What are the benefits of hiring a Fractional COO?",
+    answer:
+      "A Fractional COO improves operational efficiency, streamlines workflows, manages business processes, and helps organizations scale effectively.",
+  },
+  {
+    question:
+      "Why should businesses choose fractional leadership instead of full-time executives?",
+    answer:
+      "Fractional leadership gives businesses access to experienced executives at a lower cost while providing flexibility, faster execution, and strategic guidance when needed.",
+  },
+  {
+    question: "Which industries can benefit from Fractional CxO services?",
+    answer:
+      "Startups, growing businesses, SMEs, technology companies, service businesses, and enterprises undergoing transformation can all benefit from fractional leadership.",
+  },
+];
 
 const services = [
   {
@@ -200,7 +245,7 @@ export default function FractionalCxO() {
       {/* Tab Navigation */}
       <div
         id="cxo-tabs"
-        className="sticky top-16 z-30 bg-white border-b border-gray-200 shadow-sm"
+        className="sticky top-16 sm:top-20 lg:top-24 z-30 bg-white border-b border-gray-200 shadow-sm"
       >
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-center overflow-x-auto no-scrollbar">
@@ -287,6 +332,9 @@ export default function FractionalCxO() {
           </div>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <FaqSection faqs={faqs} />
 
       {/* Connect Section */}
       <ContactCta />

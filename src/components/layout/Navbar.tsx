@@ -114,7 +114,7 @@ export default function Navbar() {
   };
 
   const handleServicesMouseLeave = () => {
-    hoverTimeoutRef.current = setTimeout(() => setServicesOpen(false), 120);
+    hoverTimeoutRef.current = setTimeout(() => setServicesOpen(false), 300);
   };
 
   const scrollToServices = useCallback(() => {
@@ -209,9 +209,9 @@ export default function Navbar() {
                   <AnimatePresence>
                     {servicesOpen && (
                       <motion.div
-                        initial={{ opacity: 0, y: -6, scale: 0.98 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
                         role="menu"
                         aria-label="Services menu"
