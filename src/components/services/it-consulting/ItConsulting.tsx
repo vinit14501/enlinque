@@ -10,7 +10,6 @@ import {
   BarChart3,
 } from "lucide-react";
 import Button from "@/components/common/Button";
-import ScrollButton from "@/components/common/ScrollButton";
 import ContactCta from "@/components/common/ContactCta";
 import ArrowIcon from "@/components/common/ArrowIcon";
 import { itConsultingServices } from "@/components/services/it-consulting/itConsultingServices";
@@ -26,7 +25,7 @@ const keyBenefits = [
     icon: Server,
     text: "IT Infrastructure Optimization",
     description:
-      "Scale your IT infrastructure with confidence — from legacy modernization and network performance tuning to capacity planning and disaster recovery.",
+      "Scale your IT infrastructure with confidence \u2014 from legacy modernization and network performance tuning to capacity planning and disaster recovery.",
   },
   {
     icon: Cloud,
@@ -65,6 +64,7 @@ export default function ItConsulting() {
           fill
           className="object-cover object-center"
           fetchPriority="high"
+          loading="eager"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />
@@ -81,12 +81,10 @@ export default function ItConsulting() {
                 </p>
                 <p className="text-base sm:text-lg md:text-xl text-white">
                   From cloud strategy and system modernization to cybersecurity
-                  and technology advisory — customized solutions for your needs.
+                  and technology advisory{" \u2014 "}customized solutions for
+                  your needs.
                 </p>
               </div>
-              <ScrollButton targetId="services-section">
-                Learn More
-              </ScrollButton>
             </div>
           </div>
         </div>
@@ -100,8 +98,8 @@ export default function ItConsulting() {
             <span className="text-[#0b60a0] font-bold">
               smarter technology investments
             </span>{" "}
-            — from IT audits and cloud strategy to cybersecurity and vendor
-            management, we align{" "}
+            {"\u2014 "}from IT audits and cloud strategy to cybersecurity and
+            vendor management, we align{" "}
             <span className="text-[#0b60a0] font-bold">
               IT with your business strategy
             </span>{" "}

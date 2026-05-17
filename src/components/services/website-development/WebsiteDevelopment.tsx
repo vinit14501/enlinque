@@ -9,7 +9,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Button from "@/components/common/Button";
-import ScrollButton from "@/components/common/ScrollButton";
 import PricingSection from "@/components/services/website-development/PricingSection";
 import ContactCta from "@/components/common/ContactCta";
 
@@ -57,6 +56,7 @@ export default function WebsiteDevelopment() {
           fill
           className="object-cover object-center"
           fetchPriority="high"
+          loading="eager"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />
@@ -77,9 +77,6 @@ export default function WebsiteDevelopment() {
                   both visually stunning and strategically effective.
                 </p>
               </div>
-              <ScrollButton targetId="pricing-section">
-                Check Pricing
-              </ScrollButton>
             </div>
           </div>
         </div>

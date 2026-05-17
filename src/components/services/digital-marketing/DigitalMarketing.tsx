@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ArrowIcon from "@/components/common/ArrowIcon";
 import Button from "@/components/common/Button";
-import ScrollButton from "@/components/common/ScrollButton";
 import ContactCta from "@/components/common/ContactCta";
 import { digitalMarketingServices } from "@/components/services/digital-marketing/digitalMarketingServices";
 import SocialMediaSection from "@/components/services/digital-marketing/SocialMediaSection";
@@ -20,6 +19,7 @@ export default function DigitalMarketing() {
           fill
           className="object-cover object-center"
           fetchPriority="high"
+          loading="eager"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />
@@ -40,9 +40,6 @@ export default function DigitalMarketing() {
                   out in a competitive market.
                 </p>
               </div>
-              <ScrollButton targetId="services-section">
-                Explore our Services
-              </ScrollButton>
             </div>
           </div>
         </div>

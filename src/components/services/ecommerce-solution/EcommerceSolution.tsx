@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -10,7 +10,6 @@ import {
   BarChart3,
 } from "lucide-react";
 import Button from "@/components/common/Button";
-import ScrollButton from "@/components/common/ScrollButton";
 import ContactCta from "@/components/common/ContactCta";
 import ArrowIcon from "@/components/common/ArrowIcon";
 import { ecommerceServices } from "@/components/services/ecommerce-solution/ecommerceServices";
@@ -26,7 +25,7 @@ const keyBenefits = [
     icon: ShoppingCart,
     text: "Shopify, WooCommerce & Custom Platforms",
     description:
-      "Expert platform implementation and customization — whether you choose Shopify, WooCommerce, or a fully custom-built solution tailored to your needs.",
+      "Expert platform implementation and customization \u2014 whether you choose Shopify, WooCommerce, or a fully custom-built solution tailored to your needs.",
   },
   {
     icon: CreditCard,
@@ -65,6 +64,7 @@ export default function EcommerceSolution() {
           fill
           className="object-cover object-center"
           fetchPriority="high"
+          loading="eager"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />
@@ -76,7 +76,7 @@ export default function EcommerceSolution() {
               </h1>
               <div className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8">
                 <p className="text-base sm:text-lg md:text-xl text-white">
-                  End-to-end e-commerce solutions â€” from custom store
+                  End-to-end e-commerce solutions - from custom store
                   development and payment integration to conversion optimization
                   and ongoing growth support.
                 </p>
@@ -85,9 +85,6 @@ export default function EcommerceSolution() {
                   WooCommerce, or fully custom stacks tailored to your business.
                 </p>
               </div>
-              <ScrollButton targetId="services-section">
-                Learn More
-              </ScrollButton>
             </div>
           </div>
         </div>
@@ -100,7 +97,7 @@ export default function EcommerceSolution() {
             <span className="text-[#0b60a0] font-bold">
               Launch, manage, and scale
             </span>{" "}
-            your online business â€” with{" "}
+            your online business - with{" "}
             <span className="text-[#0b60a0] font-bold">
               conversion-focused platforms
             </span>{" "}
@@ -126,7 +123,7 @@ export default function EcommerceSolution() {
                 Custom Store Development & Payment Integration
               </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-white/90">
-                End-to-end support for your e-commerce journey â€” from platform
+                End-to-end support for your e-commerce journey - from platform
                 selection to performance optimization
               </p>
             </div>

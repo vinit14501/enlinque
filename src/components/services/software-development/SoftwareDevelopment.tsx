@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -10,7 +10,6 @@ import {
   Settings2,
 } from "lucide-react";
 import Button from "@/components/common/Button";
-import ScrollButton from "@/components/common/ScrollButton";
 import ContactCta from "@/components/common/ContactCta";
 import ArrowIcon from "@/components/common/ArrowIcon";
 import { softwareDevelopmentServices } from "@/components/services/software-development/softwareDevelopmentServices";
@@ -65,6 +64,7 @@ export default function SoftwareDevelopment() {
           fill
           className="object-cover object-center"
           fetchPriority="high"
+          loading="eager"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />
@@ -76,7 +76,7 @@ export default function SoftwareDevelopment() {
               </h1>
               <div className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8">
                 <p className="text-base sm:text-lg md:text-xl text-white">
-                  Expert software development services â€” from MVP and web apps
+                  Expert software development services - from MVP and web apps
                   to enterprise-grade platforms built for scale and performance.
                 </p>
                 <p className="text-base sm:text-lg md:text-xl text-white">
@@ -84,9 +84,6 @@ export default function SoftwareDevelopment() {
                   high-performance software aligned with your business goals.
                 </p>
               </div>
-              <ScrollButton targetId="services-section">
-                Learn More
-              </ScrollButton>
             </div>
           </div>
         </div>
@@ -99,7 +96,7 @@ export default function SoftwareDevelopment() {
             <span className="text-[#0b60a0] font-bold">
               Build powerful, scalable software
             </span>{" "}
-            â€” from MVP to{" "}
+            - from MVP to{" "}
             <span className="text-[#0b60a0] font-bold">
               enterprise-grade applications
             </span>{" "}
