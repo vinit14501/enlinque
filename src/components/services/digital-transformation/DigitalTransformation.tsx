@@ -88,7 +88,7 @@ export default function DigitalTransformation() {
       {/* Hero Section */}
       <section className="relative w-full h-[40vh] md:h-[50vh] lg:h-[60vh]">
         <Image
-          src="/images/digitaltransformation-hero.jpg"
+          src="/images/cta.webp"
           alt="Digital transformation empowering businesses with modern technology and automation"
           fill
           className="object-cover object-center"
@@ -206,7 +206,7 @@ export default function DigitalTransformation() {
       {/* Image CTA Banner */}
       <div className="relative w-full h-75 sm:h-87.5 md:h-100 overflow-hidden">
         <Image
-          src="/images/digitaltransformation-cta.jpg"
+          src="/images/digitaltransformation-cta.webp"
           alt="Digital transformation with AI technology and innovation"
           fill
           loading="lazy"

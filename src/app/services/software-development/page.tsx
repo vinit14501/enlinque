@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: "https://enlinque.com/services/software-development",
     images: [
       {
-        url: "/images/softwaredevelopment-hero.jpg",
+        url: "/images/softwaredevelopment-hero.webp",
         width: 1920,
         height: 1280,
         alt: "Software Development Services",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Software Development | Enlinque Consulting LLC",
     description:
       "Custom software development services — web applications, mobile apps, SaaS platforms, APIs, and enterprise solutions built for scale and performance.",
-    images: ["/images/softwaredevelopment-hero.jpg"],
+    images: ["/images/softwaredevelopment-hero.webp"],
   },
   alternates: {
     canonical: "/services/software-development",

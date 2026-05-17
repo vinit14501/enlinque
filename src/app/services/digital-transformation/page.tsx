@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: "https://enlinque.com/services/digital-transformation",
     images: [
       {
-        url: "/images/digitaltransformation-hero.jpg",
+        url: "/images/cta.webp",
         width: 1920,
         height: 1280,
         alt: "Digital Transformation Services",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Digital Transformation | Enlinque Consulting LLC",
     description:
       "Accelerate innovation with digital transformation services — process automation, cloud migration, AI integration, and enterprise modernization for competitive advantage.",
-    images: ["/images/digitaltransformation-hero.jpg"],
+    images: ["/images/cta.webp"],
   },
   alternates: {
     canonical: "/services/digital-transformation",
