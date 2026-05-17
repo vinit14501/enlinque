@@ -12,7 +12,7 @@ const navItems = [
   { label: "Services", to: "/#services", isScroll: true },
   { label: "Fractional CxO", to: "/fractionalCxO", isScroll: false },
   { label: "Website Development", to: "/websitedevelopment", isScroll: false },
-  { label: "Digital Marketing", to: "/digitalmarketing", isScroll: false },
+  { label: "Digital Marketing", to: "/services/digital-marketing", isScroll: false },
   { label: "About", to: "/about", isScroll: false },
   { label: "Blog", to: "/blog", isScroll: false },
 ];

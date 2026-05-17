@@ -38,10 +38,40 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/digitalmarketing`,
+      url: `${baseUrl}/services/digital-marketing`,
       lastModified,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/services/it-consulting`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/services/software-development`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/services/ecommerce-solution`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/services/digital-transformation`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/services/agile-implementation`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/faq`,
