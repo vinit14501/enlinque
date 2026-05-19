@@ -77,7 +77,7 @@ export default function DigitalMarketing() {
       {/* Text Section */}
       <div className="relative overflow-hidden bg-white">
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20">
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal text-black tracking-wide leading-relaxed max-w-4xl mx-auto font-raleway">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-normal text-black leading-relaxed max-w-4xl mx-auto font-raleway">
             <span className="text-[#0b60a0] font-bold">Build a brand</span> that
             stands out. From awareness to advocacy - we craft tailored{" "}
             <span className="text-[#0b60a0] font-bold">digital strategies</span>{" "}
@@ -188,7 +188,7 @@ export default function DigitalMarketing() {
       {/* Second Text Section */}
       <div className="relative overflow-hidden bg-white">
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-10">
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal text-black tracking-wide leading-relaxed max-w-4xl mx-auto font-raleway">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-normal text-black leading-relaxed max-w-4xl mx-auto font-raleway">
             Custom Branding for{" "}
             <span className="text-[#0b60a0] font-bold">
               Businesses of All Sizes
