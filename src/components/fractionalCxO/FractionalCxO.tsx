@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import Button from "@/components/common/Button";
 import ContactCta from "@/components/common/ContactCta";
 import FaqSection from "@/components/common/FaqSection";
 
@@ -239,6 +242,11 @@ export default function FractionalCxO() {
             commitment. Our fractional CxOs bring decades of experience to
             elevate your business.
           </p>
+          <Link href="/contact" className="inline-block mt-7">
+            <Button variant="secondary" icon={ArrowRight}>
+              Book Your Free Consultation
+            </Button>
+          </Link>
         </div>
       </div>
 
