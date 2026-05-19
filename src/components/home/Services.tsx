@@ -6,6 +6,7 @@ import {
   ShoppingCart,
   Gauge,
   ListChecks,
+  ArrowRight,
 } from "lucide-react";
 
 const services = [
@@ -74,13 +75,17 @@ export default function Services() {
             <Link
               key={index}
               href={service.path}
-              className="bg-white border border-gray-200 p-6 rounded-lg shadow-md hover:shadow-xl transition-all group block"
+              className="bg-white border border-gray-200 p-6 rounded-lg shadow-md hover:shadow-xl hover:border-[#0b60a0]/30 transition-all group flex flex-col"
             >
-              <service.icon className="text-3xl md:text-4xl mb-4 text-[#0b60a0] group-hover:text-[#0b60a0] transition-colors" />
+              <service.icon className="text-3xl md:text-4xl mb-4 text-[#0b60a0] transition-colors" />
               <h3 className="text-lg md:text-xl font-semibold mb-3 text-[#0b60a0]">
                 {service.title}
               </h3>
-              <p className="text-base text-black">{service.description}</p>
+              <p className="text-base text-black flex-1">{service.description}</p>
+              <div className="mt-5 flex items-center gap-1.5 text-sm font-semibold text-[#0b60a0] group-hover:gap-2.5 transition-all duration-200">
+                Learn More
+                <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-1" />
+              </div>
             </Link>
           ))}
         </div>
