@@ -32,7 +32,7 @@ export default function Cta3() {
             <p className="text-sm sm:text-base md:text-lg font-raleway mb-3 sm:mb-4 opacity-80">
               That Elevate Brands and Engage Audiences
             </p>
-            <Link href="/websitedevelopment" className="inline-block">
+            <Link href="/services/website-development" className="inline-block">
               <Button icon={ArrowRight}>Get Started</Button>
             </Link>
           </div>

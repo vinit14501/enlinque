@@ -10,7 +10,7 @@ import {
   X,
   ChevronDown,
   Laptop,
-  Megaphone,
+  Globe,
   Code,
   ShoppingCart,
   Gauge,
@@ -26,10 +26,10 @@ const services = [
     description: "Technology strategy aligned to your business goals",
   },
   {
-    label: "Digital Marketing",
-    to: "/services/digital-marketing",
-    icon: Megaphone,
-    description: "Data-driven campaigns that maximize ROI",
+    label: "Website Development",
+    to: "/services/website-development",
+    icon: Globe,
+    description: "Professional websites built for performance and growth",
   },
   {
     label: "Software Development",
@@ -59,7 +59,7 @@ const services = [
 
 const navLinks = [
   { label: "Fractional CxO", to: "/fractionalCxO" },
-  { label: "Website Development", to: "/websitedevelopment" },
+  { label: "Digital Marketing", to: "/digital-marketing" },
   { label: "About", to: "/about" },
   { label: "Blog", to: "/blog" },
 ];
@@ -84,7 +84,10 @@ export default function Navbar() {
   // Close desktop dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) {
+      if (
+        servicesRef.current &&
+        !servicesRef.current.contains(e.target as Node)
+      ) {
         setServicesOpen(false);
       }
     }
@@ -198,7 +201,7 @@ export default function Navbar() {
                     aria-expanded={servicesOpen}
                     className="flex items-center gap-1 px-2 py-2 text-black font-semibold font-raleway hover:text-blue-600 transition-colors duration-300 group relative text-sm xl:text-base tracking-wide whitespace-nowrap focus:outline-none"
                   >
-                    Services
+                    IT Services
                     <ChevronDown
                       size={15}
                       className={`mt-px transition-transform duration-200 ${servicesOpen ? "rotate-180 text-blue-600" : ""}`}
@@ -321,7 +324,7 @@ export default function Navbar() {
                   aria-expanded={mobileServicesOpen}
                   className="w-full flex items-center justify-between py-3 px-4 text-base sm:text-lg font-medium font-raleway text-gray-800 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                 >
-                  <span>Services</span>
+                  <span>IT Services</span>
                   <ChevronDown
                     size={18}
                     className={`transition-transform duration-200 ${mobileServicesOpen ? "rotate-180 text-blue-600" : ""}`}
@@ -345,7 +348,10 @@ export default function Navbar() {
                             onClick={handleServiceClick}
                             className="flex items-center gap-3 py-2.5 px-4 rounded-lg text-sm font-medium font-raleway text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
                           >
-                            <service.icon size={15} className="text-[#0b60a0] shrink-0" />
+                            <service.icon
+                              size={15}
+                              className="text-[#0b60a0] shrink-0"
+                            />
                             {service.label}
                           </Link>
                         ))}
