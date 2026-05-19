@@ -7,50 +7,12 @@ import { ArrowRight } from "lucide-react";
 import Button from "@/components/common/Button";
 import ContactCta from "@/components/common/ContactCta";
 import FaqSection from "@/components/common/FaqSection";
-
-const faqs = [
-  {
-    question: "What are Fractional CxO services?",
-    answer:
-      "Fractional CxO services give businesses access to experienced executive leadership on a part-time or project basis without the cost of hiring a full-time executive. Enlinque provides strategic leadership through Fractional CIO, CTO, CMO, CFO, and COO services.",
-  },
-  {
-    question: "What is a Fractional CIO and how can it help my business?",
-    answer:
-      "A Fractional CIO helps businesses align technology with business goals. They oversee IT strategy, digital transformation, cybersecurity, infrastructure optimization, and long-term technology planning.",
-  },
-  {
-    question: "What does a Fractional CTO do?",
-    answer:
-      "A Fractional CTO focuses on technology innovation, software strategy, system architecture, IT operations, and scalable technology solutions that support business growth.",
-  },
-  {
-    question: "How can a Fractional CMO improve marketing performance?",
-    answer:
-      "A Fractional CMO develops data-driven marketing strategies, strengthens brand positioning, improves customer acquisition, and helps businesses maximize marketing ROI.",
-  },
-  {
-    question: "What support does a Fractional CFO provide?",
-    answer:
-      "A Fractional CFO helps businesses with financial planning, forecasting, budgeting, compliance, risk management, and profitability improvement.",
-  },
-  {
-    question: "What are the benefits of hiring a Fractional COO?",
-    answer:
-      "A Fractional COO improves operational efficiency, streamlines workflows, manages business processes, and helps organizations scale effectively.",
-  },
-  {
-    question:
-      "Why should businesses choose fractional leadership instead of full-time executives?",
-    answer:
-      "Fractional leadership gives businesses access to experienced executives at a lower cost while providing flexibility, faster execution, and strategic guidance when needed.",
-  },
-  {
-    question: "Which industries can benefit from Fractional CxO services?",
-    answer:
-      "Startups, growing businesses, SMEs, technology companies, service businesses, and enterprises undergoing transformation can all benefit from fractional leadership.",
-  },
-];
+import type { FaqItem } from "./types";
+import { cioFaqs } from "./cioFaqs";
+import { ctoFaqs } from "./ctoFaqs";
+import { cmoFaqs } from "./cmoFaqs";
+import { cfoFaqs } from "./cfoFaqs";
+import { cooFaqs } from "./cooFaqs";
 
 const services = [
   {
@@ -84,6 +46,7 @@ const services = [
           'We perform a "vampire cost" audit, identifying redundant SaaS subscriptions and negotiating enterprise-level contracts to slash monthly overhead.',
       },
     ],
+    faqs: cioFaqs,
   },
   {
     id: "cto",
@@ -116,6 +79,7 @@ const services = [
           "We act as the translator between stakeholders and the dev team, turning abstract features into detailed technical specifications (PRDs).",
       },
     ],
+    faqs: ctoFaqs,
   },
   {
     id: "cmo",
@@ -148,6 +112,7 @@ const services = [
           "We implement and optimize your marketing technology, including CRM (HubSpot/Salesforce), marketing automation, and advanced attribution modeling to see exactly where your leads come from.",
       },
     ],
+    faqs: cmoFaqs,
   },
   {
     id: "cfo",
@@ -180,6 +145,7 @@ const services = [
           "We analyze your margins at a granular level. We ensure your business model is sustainable by analyzing contribution margins and payback periods.",
       },
     ],
+    faqs: cfoFaqs,
   },
   {
     id: "coo",
@@ -212,6 +178,7 @@ const services = [
           "We optimize your external operations, managing vendor relationships and streamlining procurement to increase your operational efficiency.",
       },
     ],
+    faqs: cooFaqs,
   },
 ];
 
@@ -342,7 +309,7 @@ export default function FractionalCxO() {
       </div>
 
       {/* FAQ Section */}
-      <FaqSection faqs={faqs} />
+      {active.faqs.length > 0 && <FaqSection faqs={active.faqs} />}
 
       {/* Connect Section */}
       <ContactCta />
