@@ -244,7 +244,7 @@ export default function FractionalCxO() {
           </p>
           <Link href="/contact" className="inline-block mt-7">
             <Button variant="secondary" icon={ArrowRight}>
-              Book Your Free Consultation
+              Schedule a Consultation Today
             </Button>
           </Link>
         </div>
