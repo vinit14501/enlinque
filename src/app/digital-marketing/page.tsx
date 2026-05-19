@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Digital Marketing | Enlinque Consulting LLC",
     description:
       "Expert digital marketing solutions — SEO, content marketing, social media, and performance analytics.",
-    url: "https://enlinque.com/digitalmarketing",
+    url: "https://enlinque.com/digital-marketing",
     images: [
       {
         url: "/images/digitalmarketing.webp",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     images: ["/images/digitalmarketing.webp"],
   },
   alternates: {
-    canonical: "/digitalmarketing",
+    canonical: "/digital-marketing",
   },
 };
 
@@ -42,7 +42,7 @@ const jsonLd = {
   },
   description:
     "Expert digital marketing solutions — SEO, content marketing, social media, and performance analytics.",
-  url: "https://enlinque.com/digitalmarketing",
+  url: "https://enlinque.com/digital-marketing",
   serviceType: "Digital Marketing",
 };
 

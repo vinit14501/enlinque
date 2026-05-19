@@ -4,7 +4,7 @@ import LinkedinIcon from "@/components/icons/LinkedinIcon";
 import FooterServiceLink from "@/components/common/FooterServiceLink";
 
 const services = [
-  { label: "Website Development", path: "/websitedevelopment" },
+  { label: "Website Development", path: "/services/website-development" },
   { label: "Digital Marketing", path: "/services/digital-marketing" },
   { label: "Fractional CxO", path: "/fractionalCxO" },
   { label: "IT Consulting", path: "/services/it-consulting" },

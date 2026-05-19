@@ -32,7 +32,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/websitedevelopment`,
+      url: `${baseUrl}/digital-marketing`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services/website-development`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.8,

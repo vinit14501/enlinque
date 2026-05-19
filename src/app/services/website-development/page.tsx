@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Website Development | Enlinque Consulting LLC",
     description:
       "Custom website design and development services. Engaging digital experiences for businesses of all sizes.",
-    url: "https://enlinque.com/websitedevelopment",
+    url: "https://enlinque.com/services/website-development",
     images: [
       {
         url: "/images/websitedevelopment.webp",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     images: ["/images/websitedevelopment.webp"],
   },
   alternates: {
-    canonical: "/websitedevelopment",
+    canonical: "/services/website-development",
   },
 };
 
@@ -42,7 +42,7 @@ const jsonLd = {
   },
   description:
     "Custom website design and development services. Engaging digital experiences for businesses of all sizes.",
-  url: "https://enlinque.com/websitedevelopment",
+  url: "https://enlinque.com/services/website-development",
   serviceType: "Website Design and Development",
 };
 
