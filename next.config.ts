@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withPayload } from "@payloadcms/next/withPayload";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -7,7 +8,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
-  serverExternalPackages: ["mongoose"],
+  serverExternalPackages: ["mongoose", "@payloadcms/db-mongodb"],
 
   images: {
     remotePatterns: [],
@@ -46,7 +47,8 @@ const nextConfig: NextConfig = {
               `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://connect.facebook.net https://snap.licdn.com`,
               "style-src 'self' 'unsafe-inline'",
               // Tracking pixels from ad networks are delivered as 1×1 images.
-              "img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.facebook.com https://px.ads.linkedin.com",
+              // blob: is required for the Payload admin panel's file-upload preview thumbnails.
+              "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.facebook.com https://px.ads.linkedin.com",
               "font-src 'self'",
               // XHR/fetch endpoints for analytics and conversion reporting.
               "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://www.facebook.com https://px.ads.linkedin.com",
@@ -61,4 +63,8 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// withPayload integrates Payload CMS with Next.js:
+// - Adds Payload's server-external packages
+// - Injects the @payload-config module alias at build time
+// - Configures webpack to handle Payload's CSS and SCSS assets
+export default withPayload(nextConfig);

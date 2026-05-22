@@ -1,12 +1,34 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getPostBySlug, blogPostsFull } from "@/components/blog/blogData";
+import {
+  getAllPostSlugs,
+  getPostBySlug,
+  getRelatedPosts,
+  mapToListPost,
+} from "@/lib/payload-blog";
 import Article from "@/components/blog/article/Article";
 
+// ─── ISR — revalidate every 60 seconds ───────────────────────────────────────
+// Pages are pre-rendered at build time for known slugs and ISR-regenerated
+// within 60 seconds of a new or updated post being saved in the CMS.
+export const revalidate = 60;
+export const dynamicParams = true;
+
 // ─── Static Params ────────────────────────────────────────────────────────────
-// Pre-render all 9 article pages at build time (SSG)
-export function generateStaticParams() {
-  return blogPostsFull.map((post) => ({ slug: post.slug }));
+// Pre-render published articles at build time.
+// If PAYLOAD_SECRET / MONGO_URI are not available in the build environment,
+// we return an empty list and rely on ISR (dynamicParams = true) to render
+// each page on first request and cache it, instead of crashing the build.
+export async function generateStaticParams() {
+  if (!process.env.PAYLOAD_SECRET || !process.env.MONGO_URI) {
+    return [];
+  }
+  try {
+    const slugs = await getAllPostSlugs();
+    return slugs.map((slug) => ({ slug }));
+  } catch {
+    return [];
+  }
 }
 
 // ─── Dynamic Metadata ─────────────────────────────────────────────────────────
@@ -16,13 +38,15 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
-    return {
-      title: "Article Not Found | Enlinque",
-    };
+    return { title: "Article Not Found | Enlinque" };
   }
+
+  const coverUrl = post.coverImage?.url
+    ? `https://enlinque.com${post.coverImage.url}`
+    : undefined;
 
   return {
     title: `${post.title} | Enlinque`,
@@ -34,20 +58,17 @@ export async function generateMetadata({
       type: "article",
       publishedTime: new Date(post.date).toISOString(),
       authors: [post.author.name],
-      images: [
-        {
-          url: `https://enlinque.com${post.coverImage}`,
-          width: 1200,
-          height: 630,
-          alt: post.coverImageAlt,
-        },
-      ],
+      ...(coverUrl && {
+        images: [
+          { url: coverUrl, width: 1200, height: 630, alt: post.coverImageAlt },
+        ],
+      }),
     },
     twitter: {
       card: "summary_large_image",
       title: `${post.title} | Enlinque`,
       description: post.excerpt,
-      images: [`https://enlinque.com${post.coverImage}`],
+      ...(coverUrl && { images: [coverUrl] }),
     },
     alternates: {
       canonical: `/blog/${post.slug}`,
@@ -62,21 +83,27 @@ export default async function BlogArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
+  const related = await getRelatedPosts(post.id, post.category);
+  const relatedPosts = related.map(mapToListPost);
+
   // ── BlogPosting JSON-LD for Google rich results ─────────────────────────
-  const jsonLd = {
+  const coverUrl = post.coverImage?.url
+    ? `https://enlinque.com${post.coverImage.url}`
+    : undefined;
+
+  const jsonLd: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: `https://enlinque.com${post.coverImage}`,
     datePublished: new Date(post.date).toISOString(),
-    dateModified: new Date(post.date).toISOString(),
+    dateModified: new Date(post.updatedAt ?? post.date).toISOString(),
     author: {
       "@type": "Organization",
       name: post.author.name,
@@ -94,9 +121,13 @@ export default async function BlogArticlePage({
       "@type": "WebPage",
       "@id": `https://enlinque.com/blog/${post.slug}`,
     },
-    keywords: post.tags.join(", "),
+    keywords: post.tags.map((t: { tag: string }) => t.tag).join(", "),
     articleSection: post.category,
   };
+
+  if (coverUrl) {
+    jsonLd.image = coverUrl;
+  }
 
   return (
     <>
@@ -104,7 +135,7 @@ export default async function BlogArticlePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Article post={post} />
+      <Article post={post} relatedPosts={relatedPosts} />
     </>
   );
 }

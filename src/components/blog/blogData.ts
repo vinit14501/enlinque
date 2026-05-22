@@ -45,7 +45,7 @@ export interface BlogPost {
   author: Author;
   date: string;
   readTime: string;
-  coverImage: string;
+  coverImage: string | null;
   coverImageAlt: string;
   featured: boolean;
 }

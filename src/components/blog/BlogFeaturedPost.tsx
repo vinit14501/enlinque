@@ -33,22 +33,26 @@ export default function BlogFeaturedPost({ post }: BlogFeaturedPostProps) {
 
       <article className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group">
         <div className="grid grid-cols-1 lg:grid-cols-5">
-          {/* Cover Image — takes 3/5 on desktop */}
-          <div className="relative lg:col-span-3 min-h-65 sm:min-h-80 lg:min-h-105 overflow-hidden">
-            <Image
-              src={post.coverImage}
-              alt={post.coverImageAlt}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 1024px) 100vw, 60vw"
-              priority
-            />
-            {/* Gradient overlay on mobile bottom edge */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent lg:hidden" />
-          </div>
+          {/* Cover Image — takes 3/5 on desktop; omitted when no image is available */}
+          {post.coverImage ? (
+            <div className="relative lg:col-span-3 min-h-65 sm:min-h-80 lg:min-h-105 overflow-hidden">
+              <Image
+                src={post.coverImage}
+                alt={post.coverImageAlt}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                priority
+              />
+              {/* Gradient overlay on mobile bottom edge */}
+              <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent lg:hidden" />
+            </div>
+          ) : null}
 
-          {/* Content — takes 2/5 on desktop */}
-          <div className="lg:col-span-2 flex flex-col justify-center p-6 sm:p-8 lg:p-10">
+          {/* Content — full-width when no image, otherwise takes 2/5 on desktop */}
+          <div
+            className={`${post.coverImage ? "lg:col-span-2" : "lg:col-span-5"} flex flex-col justify-center p-6 sm:p-8 lg:p-10`}
+          >
             {/* Category badge */}
             <span
               className={`self-start text-xs font-semibold px-3 py-1 rounded-full mb-4 ${categoryColor}`}
