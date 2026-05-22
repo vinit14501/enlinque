@@ -23,22 +23,35 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
 
   return (
     <article className="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col h-full">
-      {/* Cover image */}
-      <Link
-        href={`/blog/${post.slug}`}
-        className="relative block aspect-video overflow-hidden shrink-0"
-        tabIndex={-1}
-        aria-hidden="true"
-      >
-        <Image
-          src={post.coverImage}
-          alt={post.coverImageAlt}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          loading="lazy"
-        />
-      </Link>
+      {/* Cover image — omitted when the post has no image set in the CMS */}
+      {post.coverImage ? (
+        <Link
+          href={`/blog/${post.slug}`}
+          className="relative block aspect-video overflow-hidden shrink-0"
+          tabIndex={-1}
+          aria-hidden="true"
+        >
+          <Image
+            src={post.coverImage}
+            alt={post.coverImageAlt}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            loading="lazy"
+          />
+        </Link>
+      ) : (
+        <Link
+          href={`/blog/${post.slug}`}
+          className="relative aspect-video shrink-0 bg-[#000048] flex items-center justify-center"
+          tabIndex={-1}
+          aria-hidden="true"
+        >
+          <span className="text-white/20 text-4xl font-bold select-none">
+            E
+          </span>
+        </Link>
+      )}
 
       {/* Content */}
       <div className="flex flex-col flex-1 p-5 sm:p-6">

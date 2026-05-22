@@ -1,9 +1,6 @@
 import Image from "next/image";
-import {
-  slugifyHeading,
-  getRelatedPosts,
-  type BlogPostFull,
-} from "@/components/blog/blogData";
+import { slugifyHeading, type BlogPost } from "@/components/blog/blogData";
+import type { PayloadPost } from "@/lib/payload-blog";
 import ArticleReadingProgress from "@/components/blog/article/ArticleReadingProgress";
 import ArticleHero from "@/components/blog/article/ArticleHero";
 import ArticleTableOfContents from "@/components/blog/article/ArticleTableOfContents";
@@ -14,20 +11,49 @@ import ArticleRelated from "@/components/blog/article/ArticleRelated";
 import ContactCta from "@/components/common/ContactCta";
 
 interface ArticleProps {
-  post: BlogPostFull;
+  post: PayloadPost;
+  relatedPosts: BlogPost[];
 }
 
-export default function Article({ post }: ArticleProps) {
-  // Extract headings for the Table of Contents — server-side, no client cost
-  const headings = post.content
-    .filter((block) => block.type === "h2" || block.type === "h3")
-    .map((block) => ({
-      id: slugifyHeading(block.text ?? ""),
-      text: block.text ?? "",
-      level: (block.type === "h2" ? 2 : 3) as 2 | 3,
-    }));
+type TocHeading = { id: string; text: string; level: 2 | 3 };
 
-  const relatedPosts = getRelatedPosts(post);
+/**
+ * Extract h2 and h3 headings from a Payload Lexical editor state JSON.
+ * The Lexical document is a tree: root → children nodes.
+ * Heading nodes have type "heading" and a tag property ("h2" | "h3").
+ */
+function extractHeadingsFromLexical(
+  content: Record<string, unknown>,
+): TocHeading[] {
+  type LexicalNode = {
+    type?: string;
+    tag?: string;
+    children?: Array<LexicalNode & { text?: string }>;
+  };
+
+  const root = content?.root as LexicalNode | undefined;
+  if (!root?.children) return [];
+
+  const headings: TocHeading[] = [];
+  for (const node of root.children) {
+    if (node.type === "heading" && (node.tag === "h2" || node.tag === "h3")) {
+      const text = (node.children ?? []).map((c) => c.text ?? "").join("");
+      if (text.trim()) {
+        headings.push({
+          id: slugifyHeading(text),
+          text,
+          level: node.tag === "h2" ? 2 : 3,
+        });
+      }
+    }
+  }
+  return headings;
+}
+
+export default function Article({ post, relatedPosts }: ArticleProps) {
+  const headings = extractHeadingsFromLexical(post.content);
+
+  const coverUrl = post.coverImage?.url ?? null;
 
   return (
     <>
@@ -47,18 +73,20 @@ export default function Article({ post }: ArticleProps) {
             {/* Article body — capped at 720px for optimal reading line-length */}
             <main className="min-w-0 max-w-180">
               {/* Cover image — full article column width, Medium-style */}
-              <figure className="not-prose mb-8 sm:mb-10">
-                <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-md">
-                  <Image
-                    src={post.coverImage}
-                    alt={post.coverImageAlt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) calc(100vw - 320px), 720px"
-                    priority
-                  />
-                </div>
-              </figure>
+              {coverUrl && (
+                <figure className="not-prose mb-8 sm:mb-10">
+                  <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-md">
+                    <Image
+                      src={coverUrl}
+                      alt={post.coverImageAlt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) calc(100vw - 320px), 720px"
+                      priority
+                    />
+                  </div>
+                </figure>
+              )}
 
               <ArticleBody content={post.content} />
               <ArticleShareBar title={post.title} slug={post.slug} />
