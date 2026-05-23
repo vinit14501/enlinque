@@ -1,6 +1,7 @@
 import path from "path";
 import sharp from "sharp";
 import { buildConfig } from "payload";
+import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import {
   BlocksFeature,
@@ -86,6 +87,27 @@ export default buildConfig({
     // Payload manages its own collections (users, media, posts, payload-*)
     // independently from the existing contactforms and planforms collections.
     url: process.env.MONGO_URI || "",
+  }),
+
+  // Payload v3 requires an explicit email adapter — without it every auth
+  // email (password reset, user verification) is silently dropped and the
+  // server emits a WARN on every startup.  nodemailerAdapter reads the same
+  // SMTP env vars already used by the custom transporter in src/lib/email.ts,
+  // so no new secrets are needed.  Payload creates its own internal transport
+  // via the adapter's bundled nodemailer; the adapter verifies the SMTP
+  // connection on startup and surfaces any misconfiguration immediately.
+  email: nodemailerAdapter({
+    defaultFromAddress: process.env.EMAIL_USER || "",
+    defaultFromName: "Enlinque",
+    transportOptions: {
+      host: process.env.SMTP_HOST || "smtp.hostinger.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.EMAIL_USER || "",
+        pass: process.env.EMAIL_PASS || "",
+      },
+    },
   }),
 
   // ── Startup migration: stamp legacy posts ──────────────────────────────────
