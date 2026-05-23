@@ -15,9 +15,51 @@ export const Posts: CollectionConfig = {
   slug: "posts",
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "category", "date", "featured"],
+    defaultColumns: ["title", "category", "date", "featured", "_status"],
     listSearchableFields: ["title", "excerpt"],
     description: "Blog articles published on the Enlinque website.",
+    preview: (doc) => {
+      const slug = typeof doc?.slug === "string" ? doc.slug : undefined;
+      if (!slug) return null;
+      const previewSecret = process.env.PREVIEW_SECRET;
+      if (!previewSecret) return null;
+      const params = new URLSearchParams({
+        slug,
+        collection: "posts",
+        path: `/blog/${slug}`,
+        previewSecret,
+      });
+      const baseURL =
+        process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000";
+      return `${baseURL}/preview?${params.toString()}`;
+    },
+  },
+  // Explicit read access is required when versions/drafts are enabled.
+  // Without it, Payload enforces access control with no default policy,
+  // causing 403 errors on anonymous (public) reads via the Local API.
+  //
+  // Rule:
+  //  - Authenticated CMS users → read everything (drafts + published)
+  //  - Public / unauthenticated → read only published documents
+  //    PLUS documents that pre-date draft mode (no _status field yet),
+  //    as recommended in the Payload docs for migrated collections.
+  access: {
+    read: ({ req }) => {
+      if (req.user) return true;
+      return {
+        or: [
+          { _status: { equals: "published" } },
+          { _status: { exists: false } },
+        ],
+      };
+    },
+  },
+  versions: {
+    drafts: {
+      autosave: {
+        interval: 375,
+      },
+    },
   },
   fields: [
     {

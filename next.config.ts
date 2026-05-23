@@ -51,7 +51,7 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: [
-          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           {
             key: "Strict-Transport-Security",
@@ -80,9 +80,11 @@ const nextConfig: NextConfig = {
               "font-src 'self'",
               // XHR/fetch endpoints for analytics and conversion reporting.
               "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://www.facebook.com https://px.ads.linkedin.com",
-              // DoubleClick and GTM Preview require frame-src for certain ad features.
-              "frame-src https://td.doubleclick.net https://www.googletagmanager.com",
-              "frame-ancestors 'none'",
+              // 'self' is required for the Payload CMS live-preview iframe, which
+              // embeds same-origin blog pages (/blog/:slug) inside the admin panel.
+              // DoubleClick and GTM Preview also require frame-src for ad features.
+              "frame-src 'self' https://td.doubleclick.net https://www.googletagmanager.com",
+              "frame-ancestors 'self'",
             ].join("; "),
           },
         ],
