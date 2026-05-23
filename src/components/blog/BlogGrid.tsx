@@ -126,10 +126,13 @@ export default function BlogGrid({ posts }: BlogGridProps) {
           />
           <input
             type="search"
+            id="blog-search"
+            name="q"
             value={searchInput}
             onChange={(e) => handleSearchChange(e.target.value)}
             placeholder="Search articles…"
             aria-label="Search articles"
+            autoComplete="off"
             className="w-full pl-11 pr-10 py-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0b60a0]/30 focus:border-[#0b60a0] transition-colors duration-200"
           />
           {searchInput && (
