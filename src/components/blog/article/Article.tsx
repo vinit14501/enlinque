@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { slugifyHeading, type BlogPost } from "@/components/blog/blogData";
-import type { PayloadPost } from "@/lib/payload-blog";
+import { resolveMediaUrl, type PayloadPost } from "@/lib/payload-blog";
 import ArticleReadingProgress from "@/components/blog/article/ArticleReadingProgress";
 import ArticleHero from "@/components/blog/article/ArticleHero";
 import ArticleTableOfContents from "@/components/blog/article/ArticleTableOfContents";
@@ -53,7 +53,7 @@ function extractHeadingsFromLexical(
 export default function Article({ post, relatedPosts }: ArticleProps) {
   const headings = extractHeadingsFromLexical(post.content);
 
-  const coverUrl = post.coverImage?.url ?? null;
+  const coverUrl = resolveMediaUrl(post.coverImage?.url);
 
   return (
     <>

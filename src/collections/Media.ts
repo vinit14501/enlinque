@@ -3,6 +3,16 @@ import type { CollectionConfig } from "payload";
 
 export const Media: CollectionConfig = {
   slug: "media",
+
+  // Blog images are public content — allow unauthenticated reads so that:
+  //   1. next/image optimizer (which makes server-side HTTP requests) can fetch files
+  //   2. Frontend visitors can view images without being logged in
+  // Write operations (create / update / delete) remain restricted to authenticated
+  // admin users via Payload's default access behaviour.
+  access: {
+    read: () => true,
+  },
+
   admin: {
     useAsTitle: "filename",
   },

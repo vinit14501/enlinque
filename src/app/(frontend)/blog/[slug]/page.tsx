@@ -5,6 +5,7 @@ import {
   getPostBySlug,
   getRelatedPosts,
   mapToListPost,
+  resolveMediaUrl,
 } from "@/lib/payload-blog";
 import Article from "@/components/blog/article/Article";
 
@@ -44,8 +45,9 @@ export async function generateMetadata({
     return { title: "Article Not Found | Enlinque" };
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SERVER_URL ?? "";
   const coverUrl = post.coverImage?.url
-    ? `https://enlinque.com${post.coverImage.url}`
+    ? `${siteUrl}${resolveMediaUrl(post.coverImage.url)}`
     : undefined;
 
   return {
@@ -54,7 +56,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${post.title} | Enlinque`,
       description: post.excerpt,
-      url: `https://enlinque.com/blog/${post.slug}`,
+      url: `${siteUrl}/blog/${post.slug}`,
       type: "article",
       publishedTime: new Date(post.date).toISOString(),
       authors: [post.author.name],
@@ -93,8 +95,9 @@ export default async function BlogArticlePage({
   const relatedPosts = related.map(mapToListPost);
 
   // ── BlogPosting JSON-LD for Google rich results ─────────────────────────
+  const siteUrl = process.env.NEXT_PUBLIC_SERVER_URL ?? "";
   const coverUrl = post.coverImage?.url
-    ? `https://enlinque.com${post.coverImage.url}`
+    ? `${siteUrl}${resolveMediaUrl(post.coverImage.url)}`
     : undefined;
 
   const jsonLd: Record<string, unknown> = {
@@ -107,19 +110,19 @@ export default async function BlogArticlePage({
     author: {
       "@type": "Organization",
       name: post.author.name,
-      url: "https://enlinque.com",
+      url: siteUrl,
     },
     publisher: {
       "@type": "Organization",
       name: "Enlinque Consulting LLC",
       logo: {
         "@type": "ImageObject",
-        url: "https://enlinque.com/images/logo.webp",
+        url: `${siteUrl}/images/logo.webp`,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://enlinque.com/blog/${post.slug}`,
+      "@id": `${siteUrl}/blog/${post.slug}`,
     },
     keywords: post.tags.map((t: { tag: string }) => t.tag).join(", "),
     articleSection: post.category,

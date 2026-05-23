@@ -156,6 +156,34 @@ export async function getRelatedPosts(
   ) as unknown as PayloadPost[];
 }
 
+// ─── Utilities ──────────────────────────────────────────────────────────────
+
+/**
+ * Payload always prepends serverURL to every media url field, producing an
+ * absolute URL like https://enlinque.com/api/media/file/cmo.webp.
+ *
+ * next/image refuses any absolute URL whose hostname is not listed under
+ * images.remotePatterns in next.config.ts.  Because these images are served
+ * from the same Next.js process there is no reason to involve an external
+ * hostname at all — a root-relative path (/api/media/file/cmo.webp) resolves
+ * against the current origin automatically and is always permitted by
+ * next/image with zero configuration.
+ *
+ * This function strips the serverURL origin so callers receive a
+ * root-relative path regardless of the environment:
+ *   - localhost dev  (NEXT_PUBLIC_SERVER_URL=http://localhost:3000)
+ *   - production VPS (NEXT_PUBLIC_SERVER_URL=https://enlinque.com)
+ */
+export function resolveMediaUrl(url: string | null | undefined): string | null {
+  if (!url) return null;
+  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL ?? "";
+  if (serverUrl && url.startsWith(serverUrl)) {
+    return url.slice(serverUrl.length) || null;
+  }
+  // Already root-relative or an unrelated origin — return unchanged.
+  return url;
+}
+
 // ─── Mappers ─────────────────────────────────────────────────────────────────
 
 /**
@@ -186,8 +214,9 @@ export function mapToListPost(doc: PayloadPost): BlogPost {
         })
       : "",
     readTime: doc.readTime,
-    // Use the Payload-served media URL; null when no image is set (cards render a placeholder)
-    coverImage: doc.coverImage?.url || null,
+    // Strip the serverURL origin so next/image receives a root-relative path.
+    // See resolveMediaUrl for the full rationale.
+    coverImage: doc.coverImage ? resolveMediaUrl(doc.coverImage.url) : null,
     coverImageAlt: doc.coverImageAlt,
     featured: doc.featured,
   };
