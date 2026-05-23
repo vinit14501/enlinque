@@ -4,6 +4,7 @@ import {
 } from "@payloadcms/richtext-lexical/react";
 import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import { slugifyHeading } from "@/components/blog/blogData";
+import CalloutBlock from "@/components/blog/blocks/CalloutBlock";
 
 interface ArticleBodyProps {
   content: Record<string, unknown>;
@@ -33,6 +34,28 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
 
     const Tag = node.tag as keyof JSX.IntrinsicElements;
     return <Tag id={id}>{children}</Tag>;
+  },
+  // ── Custom on-brand blocks ──────────────────────────────────────────────
+  // Spread any default block converters first so other future block types
+  // (e.g. images, uploads, relationships) keep working, then override callout.
+  blocks: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...((defaultConverters as any).blocks ?? {}),
+    callout: ({ node }) => {
+      // node.fields may be absent on an in-progress/malformed autosave — guard
+      // against that to prevent React from receiving undefined as a thrown value
+      // (which crashes its error recovery with "Cannot read .digest of undefined").
+      const fields = (node.fields ?? {}) as {
+        style?: "info" | "tip" | "key-takeaway" | "warning";
+        content?: string;
+      };
+      return (
+        <CalloutBlock
+          style={fields.style ?? "info"}
+          content={fields.content ?? ""}
+        />
+      );
+    },
   },
 });
 

@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { draftMode } from "next/headers";
 import type { Metadata } from "next";
 import {
   getAllPostSlugs,
@@ -8,6 +9,7 @@ import {
   resolveMediaUrl,
 } from "@/lib/payload-blog";
 import Article from "@/components/blog/article/Article";
+import { RefreshRouteOnSave } from "@/components/blog/article/RefreshRouteOnSave";
 
 // ─── ISR — revalidate every 60 seconds ───────────────────────────────────────
 // Pages are pre-rendered at build time for known slugs and ISR-regenerated
@@ -39,7 +41,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const { isEnabled: isDraftMode } = await draftMode();
+  const post = await getPostBySlug(slug, isDraftMode ? { draft: true } : {});
 
   if (!post) {
     return { title: "Article Not Found | Enlinque" };
@@ -85,7 +88,9 @@ export default async function BlogArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const { isEnabled: isDraftMode } = await draftMode();
+
+  const post = await getPostBySlug(slug, isDraftMode ? { draft: true } : {});
 
   if (!post) {
     notFound();
@@ -134,6 +139,7 @@ export default async function BlogArticlePage({
 
   return (
     <>
+      {isDraftMode && <RefreshRouteOnSave />}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

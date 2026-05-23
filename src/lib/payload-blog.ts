@@ -61,6 +61,15 @@ async function getPayloadClient() {
   return getPayload({ config });
 }
 
+/**
+ * Options for draft-mode queries (used during live preview).
+ * Only pass `draft: true` — overrideAccess is determined internally.
+ */
+interface FetchOptions {
+  /** When true, fetches the latest draft version from the versions table. */
+  draft?: boolean;
+}
+
 // ─── Query Functions ─────────────────────────────────────────────────────────
 
 /** Fetch all published posts sorted newest-first. Depth 1 populates coverImage. */
@@ -72,18 +81,36 @@ export async function getAllPosts(): Promise<PayloadPost[]> {
     depth: 1,
     limit: 1000,
     pagination: false,
+    // Enforce access.read so only published / migrated docs are returned publicly.
+    // The Posts collection access.read returns a _status constraint for unauthenticated requests.
+    overrideAccess: false,
   });
   return docs as unknown as PayloadPost[];
 }
 
-/** Fetch a single post by slug. Returns null if not found. */
-export async function getPostBySlug(slug: string): Promise<PayloadPost | null> {
+/**
+ * Fetch a single post by slug. Returns null if not found.
+ *
+ * - Normal mode (opts = {}): enforces access.read so only published/migrated
+ *   documents are returned to unauthenticated callers.
+ * - Draft mode (opts.draft = true): bypasses access and reads the latest version
+ *   from the versions table, enabling live preview of unpublished content.
+ */
+export async function getPostBySlug(
+  slug: string,
+  opts: FetchOptions = {},
+): Promise<PayloadPost | null> {
   const payload = await getPayloadClient();
   const { docs } = await payload.find({
     collection: "posts",
     where: { slug: { equals: slug } },
     depth: 1,
     limit: 1,
+    // Draft mode: read latest version from versions table, bypass access control.
+    // Public mode: enforce access.read to filter by _status (published only).
+    ...(opts.draft
+      ? { draft: true, overrideAccess: true }
+      : { overrideAccess: false }),
   });
   return docs.length > 0 ? (docs[0] as unknown as PayloadPost) : null;
 }
@@ -97,6 +124,8 @@ export async function getAllPostSlugs(): Promise<string[]> {
     limit: 1000,
     pagination: false,
     select: { slug: true },
+    // Only pre-render slugs for published content; drafts are served dynamically.
+    overrideAccess: false,
   });
   return docs.map((doc) => (doc as { slug: string }).slug);
 }
@@ -124,6 +153,7 @@ export async function getRelatedPosts(
     sort: "-date",
     depth: 1,
     limit,
+    overrideAccess: false,
   });
 
   if (sameCategory.length >= limit) {
@@ -148,6 +178,7 @@ export async function getRelatedPosts(
     sort: "-date",
     depth: 1,
     limit: needed,
+    overrideAccess: false,
   });
 
   return [...sameCategory, ...others].slice(
