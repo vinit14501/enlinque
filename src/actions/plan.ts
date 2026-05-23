@@ -13,7 +13,6 @@ import { PlanForm } from "@/models/PlanForm";
 interface ActionResult {
   success: boolean;
   message: string;
-  formId?: string;
   emailError?: boolean;
 }
 
@@ -76,7 +75,6 @@ export async function submitPlanForm(
     return {
       success: true,
       message: "Plan selection submitted successfully",
-      formId: savedForm._id.toString(),
     };
   } catch (error) {
     console.error(
@@ -89,7 +87,6 @@ export async function submitPlanForm(
         success: true,
         message:
           "Your plan selection was stored successfully, but email notification failed. We will contact you soon.",
-        formId: savedForm._id.toString(),
         emailError: true,
       };
     }

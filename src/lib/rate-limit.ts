@@ -40,7 +40,7 @@ export async function checkRateLimit(): Promise<{
   if (entry.count >= MAX_REQUESTS) {
     return {
       allowed: false,
-      message: "Too many requests from this IP, please try again later.",
+      message: "Too many requests. Please try again later.",
     };
   }
 
