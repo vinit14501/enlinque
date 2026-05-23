@@ -51,7 +51,7 @@ async function resolveMongoSrvViaDoH(srvUri: string): Promise<string> {
   if (!srvHosts.length) throw new Error("DoH SRV: no records returned");
 
   // 2. Resolve TXT records — Atlas stores authSource + replicaSet here
-  let txtParams: Record<string, string> = {};
+  const txtParams: Record<string, string> = {};
   for (const ep of doHEndpoints) {
     try {
       const res = await fetch(
@@ -111,12 +111,6 @@ export async function register() {
         try {
           process.env.MONGO_URI = await resolveMongoSrvViaDoH(
             process.env.MONGO_URI,
-          );
-          console.info(
-            "[Enlinque] c-ares SRV regression detected (Node.js %s). " +
-              "Resolved mongodb+srv:// via DNS-over-HTTPS → direct connection string. " +
-              "Upgrade to Node.js ≥ v24.15.0 for a permanent fix.",
-            process.version,
           );
         } catch (err) {
           console.error(

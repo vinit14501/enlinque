@@ -20,6 +20,34 @@ const nextConfig: NextConfig = {
 
   async headers() {
     return [
+      // ── Payload CMS admin panel ──────────────────────────────────────────
+      // X-Robots-Tag is a defense-in-depth layer: even if a crawler ignores
+      // robots.txt, the HTTP response header instructs it not to index or
+      // follow links within these routes.
+      // /admin/:path* uses path-to-regexp "*" (zero or more segments), so it
+      // matches /admin, /admin/login, /admin/collections/posts, etc.
+      {
+        source: "/admin/:path*",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive, nosnippet",
+          },
+        ],
+      },
+      // ── Payload REST API + GraphQL endpoints ─────────────────────────────
+      // Covers /api/users, /api/media, /api/posts, /api/graphql,
+      // /api/graphql-playground, and any future Payload REST collections.
+      {
+        source: "/api/:path*",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive, nosnippet",
+          },
+        ],
+      },
+      // ── All routes: security headers ────────────────────────────────────
       {
         source: "/(.*)",
         headers: [
