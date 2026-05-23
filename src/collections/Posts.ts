@@ -57,7 +57,13 @@ export const Posts: CollectionConfig = {
   versions: {
     drafts: {
       autosave: {
-        interval: 375,
+        // Payload default is 2000 ms. 375 ms is 5× too aggressive:
+        // it fires a PATCH /api/posts/:id draft-save on every keystroke,
+        // amplifies React state churn (triggering browser DevTools extensions
+        // far more often than necessary), inflates MongoDB version documents,
+        // and is the primary application-level contributor to the
+        // chrome.runtime.lastError "message channel closed" console noise.
+        interval: 2000,
       },
     },
   },
