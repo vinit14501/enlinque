@@ -26,8 +26,9 @@ export default function ArticleMobileToc({ headings }: ArticleMobileTocProps) {
     setOpen(false);
     const el = document.getElementById(id);
     if (el) {
-      const y = el.getBoundingClientRect().top + window.scrollY - 88;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      // scrollIntoView respects the CSS scroll-padding-top on <html>,
+      // which accounts for the fixed navbar at every breakpoint.
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
