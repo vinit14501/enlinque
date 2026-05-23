@@ -69,10 +69,13 @@ export default function ArticleTableOfContents({
                       e.preventDefault();
                       const el = document.getElementById(heading.id);
                       if (el) {
-                        // Offset for sticky navbar (~64px)
-                        const y =
-                          el.getBoundingClientRect().top + window.scrollY - 80;
-                        window.scrollTo({ top: y, behavior: "smooth" });
+                        // scrollIntoView respects the CSS scroll-padding-top
+                        // defined on <html>, which accounts for the fixed navbar.
+                        // No hardcoded pixel offsets needed here.
+                        el.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        });
                       }
                     }}
                   >

@@ -16,6 +16,22 @@ interface ArticleHeroProps {
   post: PayloadPost;
 }
 
+/**
+ * Format an ISO-8601 date string (as stored by Payload CMS) into a
+ * human-readable date like "April 20, 2026". Using timeZone:"UTC" prevents
+ * the date from shifting one day back/forward due to local timezone offsets.
+ */
+function formatPostDate(isoDate: string): string {
+  const date = new Date(isoDate);
+  if (isNaN(date.getTime())) return isoDate; // graceful fallback
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+}
+
 export default function ArticleHero({ post }: ArticleHeroProps) {
   const categoryColor =
     CATEGORY_COLORS[post.category] ?? "bg-gray-100 text-gray-700";
@@ -90,7 +106,7 @@ export default function ArticleHero({ post }: ArticleHeroProps) {
           </span>
           <span className="flex items-center gap-1.5 text-sm text-white/60">
             <Calendar className="w-4 h-4 shrink-0" />
-            {post.date}
+            {formatPostDate(post.date)}
           </span>
           <span className="flex items-center gap-1.5 text-sm text-white/60">
             <Clock className="w-4 h-4 shrink-0" />
