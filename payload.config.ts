@@ -23,6 +23,14 @@ export default buildConfig({
 
   admin: {
     user: Users.slug,
+    // Use Payload's built-in default (initials-based) avatar instead of the
+    // implicit Gravatar default.  Gravatar sends an MD5 hash of every admin
+    // user's email address to a third-party server on every panel load — a
+    // GDPR/privacy concern and an undeclared external dependency.  Setting
+    // 'default' eliminates that outbound request entirely, removes the need
+    // for https://www.gravatar.com in the CSP img-src directive, and keeps
+    // all admin-panel assets served from the same origin.
+    avatar: "default",
     meta: {
       titleSuffix: "— Enlinque CMS",
     },
