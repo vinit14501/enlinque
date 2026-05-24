@@ -14,12 +14,29 @@ import { Media } from "./src/collections/Media.ts";
 import { Posts } from "./src/collections/Posts.ts";
 
 export default buildConfig({
-  // Public-facing URL — used by Payload admin for absolute links and OAuth redirects
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000",
+  // Public-facing URL — used by Payload admin for absolute links and OAuth redirects.
+  // Strip any trailing slash so CORS and CSRF exact-match checks work whether
+  // NEXT_PUBLIC_SERVER_URL is set with or without a trailing slash.  A trailing
+  // slash in the allowed list causes Payload to reject every state-changing
+  // request (autosave, create, update) with 403 because the browser sends
+  // Origin: https://example.com but the list contains https://example.com/.
+  serverURL: (
+    process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000"
+  ).replace(/\/+$/, ""),
 
   // Allow same-origin requests from the frontend (required for local API + live preview postMessage)
-  cors: [process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000"],
-  csrf: [process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000"],
+  cors: [
+    (process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000").replace(
+      /\/+$/,
+      "",
+    ),
+  ],
+  csrf: [
+    (process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000").replace(
+      /\/+$/,
+      "",
+    ),
+  ],
 
   admin: {
     user: Users.slug,
@@ -60,8 +77,9 @@ export default buildConfig({
           path: `/blog/${slug}`,
           previewSecret,
         });
-        const baseURL =
-          process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000";
+        const baseURL = (
+          process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000"
+        ).replace(/\/+$/, "");
         return `${baseURL}/preview?${params.toString()}`;
       },
       collections: ["posts"],
