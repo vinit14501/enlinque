@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import type { CollectionConfig, FieldHook } from "payload";
 
 const slugifyValue: FieldHook = ({ value }) => {
@@ -214,4 +215,23 @@ export const Posts: CollectionConfig = {
       },
     },
   ],
+  // On-demand ISR: immediately purge cached pages when a post is published,
+  // updated while published, or unpublished — so the blog listing and
+  // article page always reflect the current CMS state without a rebuild.
+  hooks: {
+    afterChange: [
+      ({ doc, previousDoc }) => {
+        const slug = typeof doc.slug === "string" ? doc.slug : "";
+        const isPublished = doc._status === "published";
+        const wasPublished = previousDoc?._status === "published";
+
+        // Revalidate when the post is (or was) publicly visible.
+        // Covers: draft→published, published update, published→draft.
+        if (isPublished || wasPublished) {
+          revalidatePath("/blog");
+          if (slug) revalidatePath(`/blog/${slug}`);
+        }
+      },
+    ],
+  },
 };
