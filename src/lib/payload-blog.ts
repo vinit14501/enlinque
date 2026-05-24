@@ -194,25 +194,35 @@ export async function getRelatedPosts(
  * absolute URL like https://enlinque.com/api/media/file/cmo.webp.
  *
  * next/image refuses any absolute URL whose hostname is not listed under
- * images.remotePatterns in next.config.ts.  Because these images are served
- * from the same Next.js process there is no reason to involve an external
- * hostname at all — a root-relative path (/api/media/file/cmo.webp) resolves
+ * images.remotePatterns in next.config.ts.  Because these images are always
+ * served from the same Next.js process there is no reason to involve the
+ * origin at all — a root-relative path (/api/media/file/cmo.webp) resolves
  * against the current origin automatically and is always permitted by
  * next/image with zero configuration.
  *
- * This function strips the serverURL origin so callers receive a
- * root-relative path regardless of the environment:
- *   - localhost dev  (NEXT_PUBLIC_SERVER_URL=http://localhost:3000)
- *   - production VPS (NEXT_PUBLIC_SERVER_URL=https://enlinque.com)
+ * This function strips the origin from any absolute URL so callers always
+ * receive a root-relative path.  Using URL.pathname instead of a string
+ * slice makes this immune to trailing slashes in NEXT_PUBLIC_SERVER_URL
+ * (a trailing slash would cause slice() to consume the leading "/" of the
+ * path, producing "api/media/file/..." without a leading slash, which
+ * next/image rejects with a 400).  It is also environment-independent:
+ * migrating the database across environments (prod → QA → local) requires
+ * no data transformation because the origin is simply discarded.
  */
 export function resolveMediaUrl(url: string | null | undefined): string | null {
   if (!url) return null;
-  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL ?? "";
-  if (serverUrl && url.startsWith(serverUrl)) {
-    return url.slice(serverUrl.length) || null;
+  // Already root-relative — return unchanged.
+  if (url.startsWith("/")) return url;
+  // For absolute URLs, parse and return only the pathname.
+  // This is origin-agnostic: enlinque.com, qa.enlinque.com, localhost:3000,
+  // and any trailing slash variation all resolve to /api/media/file/<filename>.
+  try {
+    const { pathname } = new URL(url);
+    return pathname || null;
+  } catch {
+    // Not a parseable URL — return unchanged.
+    return url;
   }
-  // Already root-relative or an unrelated origin — return unchanged.
-  return url;
 }
 
 // ─── Mappers ─────────────────────────────────────────────────────────────────
