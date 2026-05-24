@@ -7,7 +7,6 @@ import { ArrowRight } from "lucide-react";
 import Button from "@/components/common/Button";
 import ContactCta from "@/components/common/ContactCta";
 import FaqSection from "@/components/common/FaqSection";
-import type { FaqItem } from "./types";
 import { cioFaqs } from "./cioFaqs";
 import { ctoFaqs } from "./ctoFaqs";
 import { cmoFaqs } from "./cmoFaqs";

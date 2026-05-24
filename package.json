@@ -8,7 +8,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed": "payload seed",
     "payload": "payload"
   },
   "dependencies": {

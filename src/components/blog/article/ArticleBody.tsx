@@ -1,7 +1,9 @@
+import React from "react";
 import {
   RichText,
   type JSXConvertersFunction,
 } from "@payloadcms/richtext-lexical/react";
+import type { SerializedBlockNode } from "@payloadcms/richtext-lexical";
 import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import { slugifyHeading } from "@/components/blog/blogData";
 import CalloutBlock from "@/components/blog/blocks/CalloutBlock";
@@ -32,27 +34,26 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
       .join("");
     const id = text.trim() ? slugifyHeading(text) : undefined;
 
-    const Tag = node.tag as keyof JSX.IntrinsicElements;
+    const Tag = node.tag as keyof React.JSX.IntrinsicElements;
     return <Tag id={id}>{children}</Tag>;
   },
   // ── Custom on-brand blocks ──────────────────────────────────────────────
   // Spread any default block converters first so other future block types
   // (e.g. images, uploads, relationships) keep working, then override callout.
   blocks: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ...((defaultConverters as any).blocks ?? {}),
-    callout: ({ node }) => {
-      // node.fields may be absent on an in-progress/malformed autosave — guard
-      // against that to prevent React from receiving undefined as a thrown value
-      // (which crashes its error recovery with "Cannot read .digest of undefined").
-      const fields = (node.fields ?? {}) as {
+    ...(defaultConverters.blocks ?? {}),
+    callout: ({
+      node,
+    }: {
+      node: SerializedBlockNode<{
         style?: "info" | "tip" | "key-takeaway" | "warning";
         content?: string;
-      };
+      }>;
+    }) => {
       return (
         <CalloutBlock
-          style={fields.style ?? "info"}
-          content={fields.content ?? ""}
+          style={node.fields.style ?? "info"}
+          content={node.fields.content ?? ""}
         />
       );
     },
