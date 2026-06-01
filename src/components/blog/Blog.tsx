@@ -2,6 +2,8 @@ import { Suspense } from "react";
 import BlogHero from "@/components/blog/BlogHero";
 import BlogGrid from "@/components/blog/BlogGrid";
 import ContactCta from "@/components/common/ContactCta";
+import { getAllPosts, mapToListPost } from "@/lib/payload-blog";
+import type { BlogPost } from "@/components/blog/blogData";
 
 /** Skeleton shown while BlogGrid hydrates (required for useSearchParams) */
 function BlogGridSkeleton() {
@@ -27,7 +29,22 @@ function BlogGridSkeleton() {
   );
 }
 
-export default function Blog() {
+/**
+ * Server component — fetches posts from Payload Local API and passes them
+ * down to BlogGrid (client component) as serializable props.
+ * BlogGrid handles category filtering and search client-side.
+ */
+export default async function Blog() {
+  let posts: BlogPost[] = [];
+  try {
+    const docs = await getAllPosts();
+    posts = docs.map(mapToListPost);
+  } catch {
+    // Payload may not be initialised on the very first cold boot before the
+    // database connection is ready. Render an empty grid rather than crashing.
+    posts = [];
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero — navy editorial banner */}
@@ -35,7 +52,7 @@ export default function Blog() {
 
       {/* Category filter + search + featured post + article grid + load more */}
       <Suspense fallback={<BlogGridSkeleton />}>
-        <BlogGrid />
+        <BlogGrid posts={posts} />
       </Suspense>
 
       {/* Site-wide contact CTA */}

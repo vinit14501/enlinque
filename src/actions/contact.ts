@@ -13,7 +13,6 @@ import { ContactForm } from "@/models/ContactForm";
 interface ActionResult {
   success: boolean;
   message: string;
-  formId?: string;
   emailError?: boolean;
 }
 
@@ -78,7 +77,6 @@ export async function submitContactForm(
     return {
       success: true,
       message: "Message sent and stored successfully",
-      formId: savedForm._id.toString(),
     };
   } catch (error) {
     console.error(
@@ -91,7 +89,6 @@ export async function submitContactForm(
         success: true,
         message:
           "Your message was stored successfully, but email notification failed. We will contact you soon.",
-        formId: savedForm._id.toString(),
         emailError: true,
       };
     }

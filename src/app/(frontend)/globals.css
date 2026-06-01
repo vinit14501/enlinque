@@ -4,9 +4,32 @@
 
 /* Enable smooth scrolling for native anchor navigation (no-JS fallback for
    ScrollButton/ScrollLink components). JavaScript-driven smooth scroll takes
-   precedence when available via window.scrollTo({ behavior: "smooth" }). */
+   precedence when available via element.scrollIntoView({ behavior: "smooth" }). */
 html {
   scroll-behavior: smooth;
+
+  /*
+   * Offset anchor targets and scrollIntoView() calls so that headings are
+   * never hidden behind the fixed navbar. Values match the navbar's responsive
+   * heights (h-16 / h-20 / h-24) plus 1.5 rem of visual breathing room.
+   *
+   * This is the single source of truth — both native anchor <a href="#id">
+   * navigation and JS scrollIntoView() respect this property automatically.
+   * No magic numbers in component code.
+   */
+  scroll-padding-top: 5.5rem; /* 64px navbar + 24px breathing = 88px (mobile) */
+}
+
+@media (min-width: 640px) {
+  html {
+    scroll-padding-top: 6.5rem; /* 80px navbar + 24px breathing = 104px (sm) */
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 8rem; /* 96px navbar + 32px breathing = 128px (lg/desktop) */
+  }
 }
 
 @theme {

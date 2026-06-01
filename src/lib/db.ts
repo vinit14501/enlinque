@@ -1,11 +1,9 @@
 import mongoose from "mongoose";
-import dns from "dns";
 
-// ROOT CAUSE: Node.js v24.13.0+ c-ares regression on Windows.
-// c-ares changed the fallback DNS resolver to report on port 53 instead of
-// port 0. This breaks mongodb+srv:// SRV record lookup.
-// Permanent fix: upgrade Node.js to v24.15.0+ (PR nodejs/node#61453).
-dns.setServers(["1.1.1.1", "8.8.8.8", "8.8.4.4"]);
+// NOTE: dns.setServers() was removed — it does NOT fix the c-ares SRV regression
+// in Node.js v24.13.x (the bug is at the socket level, not the server-list level).
+// The fix is in src/instrumentation.ts via DNS-over-HTTPS resolution.
+// Upgrade to Node.js ≥ v24.15.0 (PR nodejs/node#61453) for a permanent fix.
 
 const MAX_RETRIES = 5;
 const RETRY_DELAY_MS = 3000;

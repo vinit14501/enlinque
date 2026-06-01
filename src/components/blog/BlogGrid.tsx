@@ -4,7 +4,6 @@ import { useState, useCallback, useDeferredValue } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Search, X, ChevronDown } from "lucide-react";
 import {
-  blogPosts,
   BLOG_CATEGORIES,
   type BlogPost,
   type BlogCategory,
@@ -27,7 +26,11 @@ function fromCategorySlug(slug: string | null): "All" | BlogCategory {
   return (match as BlogCategory | undefined) ?? "All";
 }
 
-export default function BlogGrid() {
+interface BlogGridProps {
+  posts: BlogPost[];
+}
+
+export default function BlogGrid({ posts }: BlogGridProps) {
   const router = useRouter();
   const params = useSearchParams();
 
@@ -74,8 +77,8 @@ export default function BlogGrid() {
   // ── Derived data ────────────────────────────────────────────────────────────
   const categoryFiltered: BlogPost[] =
     activeCategory === "All"
-      ? blogPosts
-      : blogPosts.filter((p) => p.category === activeCategory);
+      ? posts
+      : posts.filter((p) => p.category === activeCategory);
 
   const filteredPosts: BlogPost[] = deferredSearch.trim()
     ? categoryFiltered.filter(
@@ -88,7 +91,7 @@ export default function BlogGrid() {
   // Featured post is only surfaced on the default "All" view with no search
   const featuredPost: BlogPost | null =
     activeCategory === "All" && !deferredSearch.trim()
-      ? (blogPosts.find((p) => p.featured) ?? null)
+      ? (posts.find((p) => p.featured) ?? null)
       : null;
 
   const gridPosts: BlogPost[] = featuredPost
@@ -103,8 +106,8 @@ export default function BlogGrid() {
 
   const countFor = (cat: "All" | BlogCategory): number =>
     cat === "All"
-      ? blogPosts.length
-      : blogPosts.filter((p) => p.category === cat).length;
+      ? posts.length
+      : posts.filter((p) => p.category === cat).length;
 
   const sectionLabel = deferredSearch.trim()
     ? `Search results for "${deferredSearch.trim()}"`
@@ -123,10 +126,13 @@ export default function BlogGrid() {
           />
           <input
             type="search"
+            id="blog-search"
+            name="q"
             value={searchInput}
             onChange={(e) => handleSearchChange(e.target.value)}
             placeholder="Search articles…"
             aria-label="Search articles"
+            autoComplete="off"
             className="w-full pl-11 pr-10 py-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0b60a0]/30 focus:border-[#0b60a0] transition-colors duration-200"
           />
           {searchInput && (

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Clock, Calendar, ArrowLeft } from "lucide-react";
-import type { BlogPostFull } from "@/components/blog/blogData";
+import type { PayloadPost } from "@/lib/payload-blog";
 import AuthorAvatar from "@/components/blog/AuthorAvatar";
 
 // Static category color map — full class names required for Tailwind to include them
@@ -13,12 +13,36 @@ const CATEGORY_COLORS: Record<string, string> = {
 };
 
 interface ArticleHeroProps {
-  post: BlogPostFull;
+  post: PayloadPost;
+}
+
+/**
+ * Format an ISO-8601 date string (as stored by Payload CMS) into a
+ * human-readable date like "April 20, 2026". Using timeZone:"UTC" prevents
+ * the date from shifting one day back/forward due to local timezone offsets.
+ */
+function formatPostDate(isoDate: string): string {
+  const date = new Date(isoDate);
+  if (isNaN(date.getTime())) return isoDate; // graceful fallback
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
 }
 
 export default function ArticleHero({ post }: ArticleHeroProps) {
   const categoryColor =
     CATEGORY_COLORS[post.category] ?? "bg-gray-100 text-gray-700";
+
+  // Normalise author to satisfy AuthorAvatar's non-nullable avatarUrl requirement
+  const author = {
+    name: post.author.name,
+    role: post.author.role,
+    avatarUrl: post.author.avatarUrl ?? "",
+    linkedIn: post.author.linkedIn ?? undefined,
+  };
 
   return (
     <header className="bg-[#000048] px-4 sm:px-8 lg:px-12 pt-10 pb-12 sm:pt-14 sm:pb-16">
@@ -44,9 +68,9 @@ export default function ArticleHero({ post }: ArticleHeroProps) {
           >
             {post.category}
           </span>
-          {post.tags.slice(0, 2).map((tag) => (
+          {post.tags.slice(0, 2).map(({ tag, id }) => (
             <span
-              key={tag}
+              key={id}
               className="text-xs font-medium px-2.5 py-1 rounded-full bg-white/10 text-white/70"
             >
               {tag}
@@ -67,13 +91,13 @@ export default function ArticleHero({ post }: ArticleHeroProps) {
         {/* Author + meta */}
         <div className="flex flex-wrap items-center gap-x-5 gap-y-3 animate-fade-in-up animate-stagger-5">
           <div className="flex items-center gap-2.5">
-            <AuthorAvatar author={post.author} size="sm" />
+            <AuthorAvatar author={author} size="sm" />
             <div>
               <p className="text-sm font-semibold text-white leading-tight">
-                {post.author.name}
+                {author.name}
               </p>
               <p className="text-xs text-white/50 leading-tight">
-                {post.author.role}
+                {author.role}
               </p>
             </div>
           </div>
@@ -82,7 +106,7 @@ export default function ArticleHero({ post }: ArticleHeroProps) {
           </span>
           <span className="flex items-center gap-1.5 text-sm text-white/60">
             <Calendar className="w-4 h-4 shrink-0" />
-            {post.date}
+            {formatPostDate(post.date)}
           </span>
           <span className="flex items-center gap-1.5 text-sm text-white/60">
             <Clock className="w-4 h-4 shrink-0" />
