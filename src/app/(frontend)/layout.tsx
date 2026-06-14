@@ -47,10 +47,9 @@ export const metadata: Metadata = {
       "Enlinque helps growing businesses access senior executive leadership — fractional CMO, CTO, and CEO services plus web development. Flexible. Cost-effective. Results-driven.",
     images: [
       {
-        // Use a large banner image (1200×630) — the minimum required by
-        // LinkedIn Ads, Meta Ads, and Google Ads for proper creative rendering.
-        // Replace with a professionally designed branded OG image when available.
-        url: "/images/cta.webp",
+        // Branded 1200×630 OG image (Enlinque logo) — meets the minimum size
+        // required by LinkedIn Ads, Meta Ads, and Google Ads for creative rendering.
+        url: "/images/enlinque-og.png",
         width: 1200,
         height: 630,
         alt: "Enlinque Consulting LLC — Fractional CxO & Business Consulting",
@@ -62,7 +61,7 @@ export const metadata: Metadata = {
     title: "Fractional CxO & Business Consulting | Enlinque Consulting LLC",
     description:
       "Enlinque helps growing businesses access senior executive leadership — fractional CMO, CTO, and CEO services plus web development. Flexible. Cost-effective. Results-driven.",
-    images: ["/images/cta.webp"],
+    images: ["/images/enlinque-og.png"],
   },
   icons: {
     icon: [
