@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: "https://enlinque.com",
     images: [
       {
-        url: "/images/cta.webp",
+        url: "/images/enlinque-og.png",
         width: 1200,
         height: 630,
         alt: "Enlinque Consulting LLC",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Fractional CxO & Business Consulting | Enlinque Consulting LLC",
     description:
       "Senior executive leadership on demand — fractional CMO, CTO, and CEO services plus web development for growing businesses.",
-    images: ["/images/cta.webp"],
+    images: ["/images/enlinque-og.png"],
   },
   alternates: {
     canonical: "/",
